@@ -3,7 +3,7 @@
 
 ## Installation
 
-1. IntelliJ starten
+1. IntelliJ starten  
 2. Im Quick Start "Check out from Version Control" wählen  
 2.1. Git auswählen  
 2.2. https://github.com/domu1de/IAAHausarbeit.git clonen und Dialog mit "yes" bestätigen
