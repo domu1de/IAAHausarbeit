@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2014 Domenic Muskulus, Alexander Mersmann.
+  ~ Licensed under the MIT License.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <!-- TODO definitions vererbung -->
+
+       <bean name="activationNotificationMail" class="de.nak.nakexammgmt.service.common.mail.DefaultNotificationMail" scope="prototype">
+              <property name="mailSender" ref="mailSender" />
+              <property name="messageSource" ref="messageSource" />
+              <property name="from" value="noreply@nordakademie.de" />
+              <property name="messageKey" value="mail.activation.message" />
+              <property name="subjectKey" value="mail.activation.subject" />
+       </bean>
+
+       <bean name="passwordResetNotificationMail" class="de.nak.nakexammgmt.service.common.mail.DefaultNotificationMail" scope="prototype">
+              <property name="mailSender" ref="mailSender" />
+              <property name="messageSource" ref="messageSource" />
+              <property name="from" value="noreply@nordakademie.de" />
+              <property name="messageKey" value="mail.passwordReset.message" />
+              <property name="subjectKey" value="mail.passwordReset.subject" />
+       </bean>
+
+       <bean name="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+              <property name="host" value="smtp.mandrillapp.com" />
+              <property name="port" value="587" />
+              <property name="protocol" value="smtp" />
+              <property name="username" value="domenic.muskulus@nordakademie.de" />
+              <property name="password" value="AxsFmqWppA0o3TZxKUU-RA" />
+              <property name="javaMailProperties">
+                     <props>
+                            <prop key="mail.smtp.auth">true</prop>
+                            <prop key="mail.smtp.starttls.enable">true</prop>
+                            <!-- should be used, but in this case it's to complicated to install the certificate on all PCs -->
+                            <prop key="mail.smtp.ssl.trust">smtp.mandrillapp.com</prop>
+                     </props>
+              </property>
+       </bean>
+
+</beans>

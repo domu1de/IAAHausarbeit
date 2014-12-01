@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) 2014 Domenic Muskulus, Alexander Mersmann.
+  ~ Licensed under the MIT License.
+  -->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:fragment="html-header">
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title th:text="#{txt.pageTitle}">NAK Exam Management</title>
+
+        <link href="../../static/css/vendor/bootstrap.min.css" th:href="@{/static/css/vendor/bootstrap.min.css}" rel="stylesheet" />
+        <link href="../../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet" />
+    </head>
+    <body>
+        <th:block th:fragment="layout-header">
+            <header class="navbar navbar-static-top main-nav" id="top" role="banner">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a th:href="@{/}" class="navbar-brand">Bootstrap</a>
+                    </div>
+                    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                        <ul class="nav navbar-nav">
+                            <li class="active">
+                                <a th:href="@{/}" th:text="#{txt.home}">Home</a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a th:href="@{/profile/}" th:if="${action.currentUser.loggedIn}" th:text="#{txt.profile}">Profile</a></li>
+                            <li><a th:href="@{/logout}" th:if="${action.currentUser.loggedIn}" th:text="#{txt.logout}">Log out</a></li>
+                            <li><a th:href="@{/login/}" th:unless="${action.currentUser.loggedIn}" th:text="#{txt.signIn}">Sign in</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+            <div class="jumbotron">
+                <div class="container">
+                    <h1 th:text="${action.currentUser.firstName + ' ' + action.currentUser.lastName}">Hello, world!</h1>
+                </div>
+            </div>
+        </th:block>
+
+        <div class="container">
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="../../static/js/vendor/bootstrap.min.js" th:src="@{/static/js/vendor/bootstrap.min.js}"></script>
+    </body>
+</html>

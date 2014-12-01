@@ -1,0 +1,43 @@
+/*
+ * Copyright (c) 2014 Domenic Muskulus, Alexander Mersmann.
+ * Licensed under the MIT License.
+ */
+
+body {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #eee;
+}
+
+.form-single {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+.form-single .form-signin-heading,
+.form-single .checkbox {
+    margin-bottom: 10px;
+}
+
+.form-single .checkbox {
+    font-weight: normal;
+}
+
+.form-single .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.form-single .form-control:focus {
+    z-index: 2;
+}
+
+.form-password-reset, .form-change-password {
+    max-width: 400px;
+}

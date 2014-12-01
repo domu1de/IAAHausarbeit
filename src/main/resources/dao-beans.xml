@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2014 Domenic Muskulus, Alexander Mersmann.
+  ~ Licensed under the MIT License.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean name="userDAO" class="de.nak.nakexammgmt.persistence.dao.user.UserHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean name="userSessionDAO" class="de.nak.nakexammgmt.persistence.dao.user.UserSessionHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean name="activationDAO" class="de.nak.nakexammgmt.persistence.dao.user.ActivationHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean name="passwordResetDAO" class="de.nak.nakexammgmt.persistence.dao.user.PasswordResetHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean name="roleDAO" class="de.nak.nakexammgmt.persistence.dao.user.RoleHibernateDAO" >
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+</beans>

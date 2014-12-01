@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<!--
+  ~ Copyright (c) 2014 Domenic Muskulus, Alexander Mersmann.
+  ~ Licensed under the MIT License.
+  -->
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>NAK Exam Management</title>
+
+        <link href="../../../static/css/vendor/bootstrap.min.css" th:href="@{/static/css/vendor/bootstrap.min.css}" rel="stylesheet">
+        <link href="../../../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet" />
+        <link href="../../../static/css/single-form-page.css" th:href="@{/static/css/single-form-page.css}" rel="stylesheet" />
+
+    </head>
+    <body>
+        <div class="container">
+
+            <form class="form-single form-change-password" role="form" accept-charset="UTF-8" method="post">
+                <h2 class="form-change-pw-heading" th:text="#{txt.changePassword.heading}">Please change your password</h2>
+
+                <div class="horizontal-button-group">
+                    <input type="password" name="password" class="form-control" th:placeholder="#{input.password}" placeholder="Password" required autofocus>
+                    <input type="password" name="confirmPassword" class="form-control" th:placeholder="#{input.confirmPassword}" placeholder="Confirm password" required>
+                </div>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{btn.changePassword}">Change password</button>
+                <input type="hidden" name="_method" value="put" />
+            </form>
+
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="../../../static/js/vendor/bootstrap.min.js" th:src="@{/static/js/vendor/bootstrap.min.js}"></script>
+    </body>
+</html>

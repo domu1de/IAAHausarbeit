@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<!--
+  ~ Copyright (c) 2014 Domenic Muskulus, Alexander Mersmann.
+  ~ Licensed under the MIT License.
+  -->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>NAK Exam Management</title>
+
+        <link href="../../static/css/vendor/bootstrap.min.css" th:href="@{/static/css/vendor/bootstrap.min.css}" rel="stylesheet">
+        <link href="../../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet" />
+        <link href="../../static/css/single-form-page.css" th:href="@{/static/css/single-form-page.css}" rel="stylesheet" />
+
+    </head>
+    <body>
+        <div class="container">
+
+            <form class="form-single" role="form" accept-charset="UTF-8" method="post">
+
+                <div class="alert alert-success alert-dismissible fade in" role="alert" th:each="message : ${action.actionMessages}">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <span th:text="${message}">Message 1</span>
+                </div>
+
+                <h2 class="form-signin-heading" th:text="#{txt.signIn.heading}">Please sign in</h2>
+                <div class="horizontal-button-group">
+                    <input type="text" name="username" class="form-control" th:placeholder="#{input.usernameOrEmail}" placeholder="Username or Email" required autofocus>
+                    <input type="password" name="password" class="form-control" th:placeholder="#{input.password}" placeholder="Password" required>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="rememberMe" value="true"><span th:text="#{input.rememberMe}">Remember me</span>
+                    </label>
+                </div>
+                <input type="hidden" name="__checkbox_rememberMe" />
+                <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{btn.signIn}">Sign in</button>
+                <a th:href="@{/password_reset/}" th:text="#{txt.forgotPassword}" >Forgot password?</a>
+
+            </form>
+
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="../../static/js/vendor/bootstrap.min.js" th:src="@{/static/js/vendor/bootstrap.min.js}"></script>
+    </body>
+</html>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+    <!-- **************************************************************** -->
+    <!-- MESSAGE EXTERNALIZATION/INTERNATIONALIZATION -->
+    <!-- Standard Spring MessageSource implementation -->
+    <!-- **************************************************************** -->
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="classpath:messages" />
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
+
+    <!-- The data source -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.h2.Driver"/>
+        <property name="url" value="jdbc:h2:file:~/nakexammgmt/db/nakexammgmt;AUTO_SERVER=TRUE"/>   <!-- TODO remove auto_server-->
+        <property name="username" value="sa"/>
+        <property name="password" value=""/>
+    </bean>
+
+    <!-- The session factory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <!-- scan for models and java.time.* converters (java8) -->
+        <property name="packagesToScan" value="de.nak.nakexammgmt.persistence.entity,de.nak.nakexammgmt.persistence.converter" />
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+        <property name="namingStrategy">
+            <bean class="org.hibernate.cfg.ImprovedNamingStrategy" />
+        </property>
+        <property name="entityInterceptor">
+            <bean class="de.nak.nakexammgmt.persistence.dao.AuditInterceptor" />
+        </property>
+    </bean>
+
+<!--    <bean id="loggingAspect" class="de.nak.nakexammgmt.util.LoggingAspect" />
+
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+
+    <aop:config>
+        <aop:aspect id="loggingAspect" ref="loggingAspect">
+            <aop:pointcut expression="execution(* de.nak.nakexammgmt.presentation.action..*.*(..))" id="actionPackagePointcut" />
+            <aop:around method="logAround" pointcut-ref="actionPackagePointcut" />
+        </aop:aspect>
+    </aop:config>-->
+
+    <!-- The transaction manager -->
+    <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!-- The advice -->
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="*" propagation="REQUIRED"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- The pointcut definition -->
+    <aop:config>
+        <aop:pointcut id="serviceMethods" expression="execution(* de.nak.nakexammgmt.service..*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethods"/>
+    </aop:config>
+
+    <import resource="dao-beans.xml" />
+    <import resource="service-beans.xml" />
+    <import resource="mail-beans.xml" />
+
+</beans>

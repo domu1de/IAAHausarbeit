@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2014 Domenic Muskulus, Alexander Mersmann.
+  ~ Licensed under the MIT License.
+  -->
+
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean name="authorizationService" class="de.nak.nakexammgmt.service.authorization.DefaultAuthorizationService" />
+
+    <bean name="guestProvider" class="de.nak.nakexammgmt.service.user.GuestProvider" >
+        <property name="roleDAO" ref="roleDAO" />
+    </bean>
+
+    <bean name="userService" class="de.nak.nakexammgmt.service.user.DefaultUserService">
+        <property name="userDAO" ref="userDAO" />
+        <property name="passwordEncoder" ref="passwordEncoder" />
+    </bean>
+
+    <bean name="authenticationService" class="de.nak.nakexammgmt.service.authentication.DefaultAuthenticationService" scope="request" autowire="byType">
+        <aop:scoped-proxy proxy-target-class="false" />
+        <property name="userSessionDAO" ref="userSessionDAO" />
+        <property name="guestProvider" ref="guestProvider" />
+    </bean>
+
+    <bean name="activationService" class="de.nak.nakexammgmt.service.user.DefaultActivationService">
+        <property name="activationDAO" ref="activationDAO" />
+        <property name="notificationMail" ref="activationNotificationMail" />
+        <property name="userService" ref="userService" />
+        <property name="urlProvider" ref="urlProvider" />
+    </bean>
+
+    <bean name="passwordResetService" class="de.nak.nakexammgmt.service.user.DefaultPasswordResetService">
+        <property name="passwordResetDAO" ref="passwordResetDAO" />
+        <property name="notificationMail" ref="passwordResetNotificationMail" />
+        <property name="userService" ref="userService" />
+        <property name="authenticationService" ref="authenticationService" />
+        <property name="urlProvider" ref="urlProvider" />
+    </bean>
+
+    <bean name="loginService" class="de.nak.nakexammgmt.service.common.DefaultLoginService">
+        <property name="userDAO" ref="userDAO" />
+        <property name="passwordEncoder" ref="passwordEncoder" />
+        <property name="authenticationService" ref="authenticationService" />
+        <property name="sessionService" ref="sessionService" />
+    </bean>
+
+    <bean name="adminService" class="de.nak.nakexammgmt.service.home.DefaultAdminService">
+        <property name="userService" ref="userService" />
+        <property name="activationService" ref="activationService" />
+        <property name="roleDAO" ref="roleDAO" />
+        <property name="authenticationService" ref="authenticationService"/>
+        <property name="passwordResetService" ref="passwordResetService"/>
+    </bean>
+
+    <bean name="sessionService" class="de.nak.nakexammgmt.service.common.DefaultSessionService" />
+
+    <bean name="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+    <bean name="urlProvider" class="de.nak.nakexammgmt.service.common.DefaultUrlProvider" scope="request" autowire="byType">
+        <aop:scoped-proxy proxy-target-class="false" />
+    </bean>
+
+</beans>
