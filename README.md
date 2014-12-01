@@ -1,4 +1,4 @@
-**Aufgabe:** Notendatenbank
+**Aufgabe:** Notendatenbank  
 **Autoren:** Domenic Muskulus, Alexander Mersmann
 
 ## Installation
