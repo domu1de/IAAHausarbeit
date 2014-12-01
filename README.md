@@ -15,11 +15,11 @@
 5.3. Struts2 > File Sets > Alle vier hinzufügen  
 5.4. Spring hinzufügen  
 5.5. Spring > File Sets > Alle drei hinzufügen
-6. File > Project Structure > Artifacts
-6.1. Unter naxexammgmt:war exploded > Available Libraries
-    "Maven__org_thymeleaf_extras_thymeleaf-extras-java8time_2_1_4-SNAPSHOT" per Doppelklick hinzufügen
-7. Run > Edit Configurations
-7.1. Lokalen Tomcat hinzufügen
-7.2. Deployment > Artifact hinzufügen > nakexammgmt:war wählen
-7.3. Application context setzen
+6. File > Project Structure > Artifacts  
+6.1. Unter naxexammgmt:war exploded > Available Libraries  
+    "Maven__org_thymeleaf_extras_thymeleaf-extras-java8time_2_1_4-SNAPSHOT" per Doppelklick hinzufügen  
+7. Run > Edit Configurations  
+7.1. Lokalen Tomcat hinzufügen  
+7.2. Deployment > Artifact hinzufügen > nakexammgmt:war wählen  
+7.3. Application context setzen  
 8. Fertig
