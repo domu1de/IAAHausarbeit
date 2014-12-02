@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<!--
+  ~ Copyright (c) 2014 Domenic Muskulus, Alexander Mersmann.
+  ~ Licensed under the MIT License.
+  -->
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>NAK Exam Management</title>
+
+        <link href="../../static/css/vendor/bootstrap.min.css" th:href="@{/static/css/vendor/bootstrap.min.css}" rel="stylesheet">
+        <link href="../../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet" />
+
+    </head>
+    <body>
+        <header class="navbar navbar-static-top main-nav" id="top" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a th:href="@{/}" class="navbar-brand">Bootstrap</a>
+                </div>
+                <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a th:href="@{/}" th:text="#{txt.home}">Home</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <div class="jumbotron">
+            <div class="container">
+                <h1 th:text="#{txt.resetDatabase.title}">Reset database</h1>
+            </div>
+        </div>
+        <div class="container">
+
+            <form class="form-single" role="form" accept-charset="UTF-8" method="post">
+
+                <div class="alert alert-success" role="alert" th:each="message : ${action.actionMessages}">
+                    <span th:text="${message}">Action message 1</span>
+                </div>
+
+                <input type="password" name="resetDatabaseModel.password" class="form-control" th:placeholder="#{input.password}" placeholder="Password" required>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{btn.resetDatabase}">Reset database</button>
+
+            </form>
+
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="../../static/js/vendor/bootstrap.min.js" th:src="@{/static/js/vendor/bootstrap.min.js}"></script>
+    </body>
+</html>

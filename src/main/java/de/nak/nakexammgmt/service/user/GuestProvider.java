@@ -7,6 +7,7 @@ package de.nak.nakexammgmt.service.user;
 
 import de.nak.nakexammgmt.persistence.dao.user.RoleDAO;
 import de.nak.nakexammgmt.persistence.entity.user.User;
+import de.nak.nakexammgmt.service.exception.DatabaseInvalidException;
 
 /**
  * Class that provides a singleton guest user.
@@ -17,7 +18,8 @@ import de.nak.nakexammgmt.persistence.entity.user.User;
  */
 public class GuestProvider {
 
-    private static final String FULL_NAME = "Guest";
+    private static final String FIRST_NAME = "Guest";
+    private static final String LAST_NAME = "";
     private static final String USERNAME = "guest";
     private static final String ROLE_NAME = "guest";
 
@@ -39,9 +41,17 @@ public class GuestProvider {
                 return false;
             }
         };
-        guest.setLastName(FULL_NAME);
+        guest.setFirstName(FIRST_NAME);
+        guest.setLastName(LAST_NAME);
         guest.setUsername(USERNAME);
         guest.setRole(roleDAO.findByName(ROLE_NAME));
+
+        //Fallback for not initialized database
+        if(guest.getRole() == null) {
+            guest = null;
+            throw new DatabaseInvalidException();
+        }
+
         return guest;
     }
 

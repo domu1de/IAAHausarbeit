@@ -110,4 +110,15 @@
         </action>
 
     </package>
+
+    <!-- DANGEROUS!!! Remove package for production -->
+    <package name="reset" extends="default">
+        <default-interceptor-ref name="defaultStack" />
+
+        <action name="reset_database" class="de.nak.nakexammgmt.presentation.action.ResetDatabaseAction" >
+            <param name="password">resetDB</param>
+            <result name="success" type="thymeleaf">reset_database</result>
+        </action>
+    </package>
+
 </struts>

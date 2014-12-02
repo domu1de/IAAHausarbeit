@@ -126,7 +126,7 @@ public class User extends AbstractEntity {
 
     @Override
     public String toString() {
-        return lastName;
+        return firstName + " " + lastName;
     }
 
     public String getFirstName() {

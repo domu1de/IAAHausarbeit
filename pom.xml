@@ -17,6 +17,14 @@
             <url>http://mvnrepository.com/</url>
             <name>http://mvnrepository.com</name>
         </repository>
+        <repository>
+            <id>oss-sonatype</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+            <name>oss-sonatype</name>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -156,10 +164,7 @@
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-java8time</artifactId>
-            <version>2.1.4-SNAPSHOT</version>
-            <!-- TODO: remove the following lines as soon as this dependency is present in any repository -->
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/thymeleaf-extras-java8time-2.1.4-SNAPSHOT.jar</systemPath>
+            <version>2.1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>

@@ -29,7 +29,7 @@
       <index name="FK_6SNRIQRFMP8FD9L2XW7Y6IE9V_INDEX_A" unique="false" columns="USER"/>
     </table>
     <table name="ROLE" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfQTJERkUwMUZfN0RGRF80NjkxXzlGRjFfRkQ5RjQ4QzQ3RUJCKQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRTQxNEJBNENfQjU0Ml80OUYxXzlCQUJfMUFFNjkyQjNFMUI4KQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
       <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
@@ -44,12 +44,13 @@
       <index name="FK_D64NNSMFMR8CSIBCDGG29WC5T_INDEX_F" unique="false" columns="ROLE"/>
     </table>
     <table name="USER" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNEMxRTZCQTFfNTZGMF80MzZGXzlDREZfNjA2ODU4ODQ2RjM2KQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfMzRERTIzMkJfNkJGOV80NUIwXzlEMDBfOTZFRDBDRjk5NzFCKQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
       <column name="ACTIVATED" sqlType="BOOLEAN" precision="1" scale="0" nullable="false" jdbcType="16"/>
       <column name="EMAIL" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="FULL_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="FIRST_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="LAST_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="PASSWORD" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="USERNAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="ROLE" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>

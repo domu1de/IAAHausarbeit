@@ -63,4 +63,13 @@
         <aop:scoped-proxy proxy-target-class="false" />
     </bean>
 
+    <bean name="resetDatabaseService" class="de.nak.nakexammgmt.service.common.DefaultResetDatabaseService">
+        <property name="sessionFactory" ref="sessionFactory" />
+        <property name="resource">
+            <bean class="org.springframework.core.io.ClassPathResource">
+                <constructor-arg name="path" value="init.sql" />
+            </bean>
+        </property>
+    </bean>
+
 </beans>
