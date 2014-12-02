@@ -18,7 +18,7 @@ public class WelcomeAction extends BaseAction {
 
     private static final String ADMIN = "admin";
     private static final String STUDENT = "student";
-    private static final String TEACHER = "teacher";
+    private static final String LECTURER = "lecturer";
     private static final String MANAGEMENT = "management";
 
     private AdminService adminService;
@@ -34,9 +34,9 @@ public class WelcomeAction extends BaseAction {
             case STUDENT:
                 executeStudent();
                 return STUDENT;
-            case TEACHER:
-                executeTeacher();
-                return TEACHER;
+            case LECTURER:
+                executeLecturer();
+                return LECTURER;
             case MANAGEMENT:
                 executeManagement();
                 return MANAGEMENT;
@@ -49,7 +49,7 @@ public class WelcomeAction extends BaseAction {
         // TODO implement.
     }
 
-    private void executeTeacher() {
+    private void executeLecturer() {
         //TODO implement.
     }
 

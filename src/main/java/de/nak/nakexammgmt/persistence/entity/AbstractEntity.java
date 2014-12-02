@@ -5,10 +5,7 @@
 
 package de.nak.nakexammgmt.persistence.entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 /**
@@ -34,6 +31,7 @@ public abstract class AbstractEntity {
         this.id = id;
     }
 
+    @Column(nullable = false, updatable = false)
     public LocalDateTime getCreatedAt() {
         return createdAt;
     }
@@ -42,6 +40,7 @@ public abstract class AbstractEntity {
         this.createdAt = createdAt;
     }
 
+    @Column(nullable = false)
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
     }

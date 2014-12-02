@@ -118,7 +118,7 @@ public class DefaultPasswordResetService implements PasswordResetService {
     private void sendNotification(User user, String token) {
         notificationMail.generate(
                 user.getEmail(),
-                user.getLastName(),
+                user.getFullName(),
                 urlProvider.urlForPasswordReset(token),
                 urlProvider.urlForPasswordReset(null)
         );

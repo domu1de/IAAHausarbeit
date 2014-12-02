@@ -18,8 +18,7 @@ import de.nak.nakexammgmt.service.exception.DatabaseInvalidException;
  */
 public class GuestProvider {
 
-    private static final String FIRST_NAME = "Guest";
-    private static final String LAST_NAME = "";
+    private static final String FULL_NAME = "Guest";
     private static final String USERNAME = "guest";
     private static final String ROLE_NAME = "guest";
 
@@ -41,8 +40,7 @@ public class GuestProvider {
                 return false;
             }
         };
-        guest.setFirstName(FIRST_NAME);
-        guest.setLastName(LAST_NAME);
+        guest.setFullName(FULL_NAME);
         guest.setUsername(USERNAME);
         guest.setRole(roleDAO.findByName(ROLE_NAME));
 

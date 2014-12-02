@@ -118,7 +118,7 @@ public class DefaultActivationService implements ActivationService {
      * @param token the token of the activation.
      */
     private void sendNotification(User user, String token) {
-        notificationMail.generate(user.getEmail(), user.getLastName(), urlProvider.urlForActivation(token));
+        notificationMail.generate(user.getEmail(), user.getFullName(), urlProvider.urlForActivation(token));
         notificationMail.send();
     }
 

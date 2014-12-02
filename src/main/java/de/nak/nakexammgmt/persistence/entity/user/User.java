@@ -14,7 +14,7 @@ import javax.persistence.Transient;
 import java.util.Set;
 
 /**
- * Entity to store the Users of the application. The system will differentiate between students, teachers, etc.
+ * Entity to store the Users of the application. The system will differentiate between students, lecturers, etc.
  * by Role and not by subclass. A guest can by identified using the transient method isLoggedIn().
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
@@ -25,8 +25,7 @@ public class User extends AbstractEntity {
     private String username;
     private String email;
     private String password;
-    private String firstName;
-    private String lastName;
+    private String fullName;
     private boolean activated = false;
     private Role role;
     private UserSession currentUserSession;
@@ -55,14 +54,6 @@ public class User extends AbstractEntity {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public boolean isActivated() {
@@ -126,14 +117,14 @@ public class User extends AbstractEntity {
 
     @Override
     public String toString() {
-        return firstName + " " + lastName;
+        return fullName;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 }

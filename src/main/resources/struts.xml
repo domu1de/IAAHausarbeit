@@ -70,7 +70,7 @@
         <action name="welcome" class="de.nak.nakexammgmt.presentation.action.WelcomeAction">
             <result name="admin" type="thymeleaf">welcome/admin</result>
             <result name="student" type="thymeleaf">welcome/student</result>
-            <result name="teacher" type="thymeleaf">welcome/teacher</result>
+            <result name="lecturer" type="thymeleaf">welcome/lecturer</result>
             <result name="management" type="thymeleaf">welcome/management</result>
         </action>
 

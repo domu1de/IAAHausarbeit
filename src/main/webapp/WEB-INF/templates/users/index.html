@@ -21,8 +21,7 @@
     <thead>
     <tr>
         <th>#</th>
-        <th>First name</th>
-        <th>Last name</th>
+        <th>Full name</th>
         <th>Username</th>
         <th>Email</th>
         <th>Role</th>
@@ -33,8 +32,7 @@
     <tbody>
     <tr th:each="user,iterStat : ${action.userModel.users}">
         <td th:text="${iterStat.index + 1}">2</td>
-        <td th:text="${user.firstName}">John</td>
-        <td th:text="${user.lastName}">Doe</td>
+        <td th:text="${user.FullName}">John Doe</td>
         <td th:text="${user.username}">@mdo</td>
         <td th:text="${user.email}">test@example.com</td>
         <td th:text="#{${'txt.role.' + user.role.name}}">guest</td>
