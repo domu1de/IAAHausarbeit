@@ -14,6 +14,9 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 
 /**
+ * Action to manage the reset of the database.
+ * Needs a configuration for a password.
+ *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
 public class ResetDatabaseAction extends BaseAction {
@@ -26,7 +29,7 @@ public class ResetDatabaseAction extends BaseAction {
 
     @Override
     public String execute() throws Exception {
-        if(isPost()) {
+        if (isPost()) {
             if (password != null && password.equals(resetDatabaseModel.getPassword())) {
                 resetDatabaseService.resetDatabase();
                 addActionMessage(getText("txt.resetDatabase.success"));
@@ -36,6 +39,11 @@ public class ResetDatabaseAction extends BaseAction {
         return SUCCESS;
     }
 
+    /**
+     * Tests if the current request is a post request.
+     *
+     * @return true if the request method is post.
+     */
     private boolean isPost() {
         HttpServletRequest context = ServletActionContext.getRequest();
         return context.getMethod().equalsIgnoreCase("post");

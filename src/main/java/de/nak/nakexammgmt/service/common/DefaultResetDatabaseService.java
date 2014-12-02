@@ -15,6 +15,9 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 
 /**
+ * Default implementation of the ResetDatabaseService.
+ * The SQL file to provide the needed queries will be injected as Resource.
+ *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
 public class DefaultResetDatabaseService implements ResetDatabaseService {
@@ -32,20 +35,17 @@ public class DefaultResetDatabaseService implements ResetDatabaseService {
         }
     }
 
+    /**
+     * Excecutes the given statement as SQLQuery.
+     *
+     * @param statement the SQLQuery.
+     */
     private void executeStatement(String statement) {
         sessionFactory.getCurrentSession().createSQLQuery(statement).executeUpdate();
     }
 
-    public SessionFactory getSessionFactory() {
-        return sessionFactory;
-    }
-
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
-    }
-
-    public Resource getResource() {
-        return resource;
     }
 
     public void setResource(Resource resource) {
