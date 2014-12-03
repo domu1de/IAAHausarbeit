@@ -3,15 +3,16 @@
  * Licensed under the MIT License.
  */
 
-package de.nak.nakexammgmt.persistence.dao.user;
+package de.nak.nakexammgmt.persistence.dao.user.hibernate;
 
-import de.nak.nakexammgmt.persistence.dao.HibernateDAO;
+import de.nak.nakexammgmt.persistence.dao.hibernate.HibernateDAO;
+import de.nak.nakexammgmt.persistence.dao.user.RoleDAO;
 import de.nak.nakexammgmt.persistence.entity.user.Role;
 
 import java.util.List;
 
 /**
- * Hibernate specific implementation of the {@link RoleDAO}
+ * Hibernate specific implementation of the {@link de.nak.nakexammgmt.persistence.dao.user.RoleDAO}
  *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */

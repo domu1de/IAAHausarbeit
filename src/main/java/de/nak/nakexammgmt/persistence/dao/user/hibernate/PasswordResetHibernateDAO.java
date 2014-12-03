@@ -3,14 +3,15 @@
  * Licensed under the MIT License.
  */
 
-package de.nak.nakexammgmt.persistence.dao.user;
+package de.nak.nakexammgmt.persistence.dao.user.hibernate;
 
-import de.nak.nakexammgmt.persistence.dao.HibernateDAO;
+import de.nak.nakexammgmt.persistence.dao.hibernate.HibernateDAO;
+import de.nak.nakexammgmt.persistence.dao.user.PasswordResetDAO;
 import de.nak.nakexammgmt.persistence.entity.user.PasswordReset;
 import de.nak.nakexammgmt.persistence.entity.user.User;
 
 /**
- * Hibernate specific implementation of the {@link PasswordResetDAO}
+ * Hibernate specific implementation of the {@link de.nak.nakexammgmt.persistence.dao.user.PasswordResetDAO}
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */

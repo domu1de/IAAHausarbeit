@@ -3,8 +3,9 @@
  * Licensed under the MIT License.
  */
 
-package de.nak.nakexammgmt.persistence.dao;
+package de.nak.nakexammgmt.persistence.dao.hibernate;
 
+import de.nak.nakexammgmt.persistence.dao.DAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 

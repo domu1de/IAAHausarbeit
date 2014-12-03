@@ -3,16 +3,17 @@
  * Licensed under the MIT License.
  */
 
-package de.nak.nakexammgmt.persistence.dao.user;
+package de.nak.nakexammgmt.persistence.dao.user.hibernate;
 
-import de.nak.nakexammgmt.persistence.dao.HibernateDAO;
+import de.nak.nakexammgmt.persistence.dao.hibernate.HibernateDAO;
+import de.nak.nakexammgmt.persistence.dao.user.UserSessionDAO;
 import de.nak.nakexammgmt.persistence.entity.user.User;
 import de.nak.nakexammgmt.persistence.entity.user.UserSession;
 
 import java.util.List;
 
 /**
- * Hibernate specific implementation of the {@link UserSessionDAO}
+ * Hibernate specific implementation of the {@link de.nak.nakexammgmt.persistence.dao.user.UserSessionDAO}
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */

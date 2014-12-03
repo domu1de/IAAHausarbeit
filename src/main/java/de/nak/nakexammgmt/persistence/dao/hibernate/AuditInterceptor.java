@@ -3,7 +3,7 @@
  * Licensed under the MIT License.
  */
 
-package de.nak.nakexammgmt.persistence.dao;
+package de.nak.nakexammgmt.persistence.dao.hibernate;
 
 import de.nak.nakexammgmt.persistence.entity.AbstractEntity;
 import org.hibernate.EmptyInterceptor;

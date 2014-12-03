@@ -3,14 +3,15 @@
  * Licensed under the MIT License.
  */
 
-package de.nak.nakexammgmt.persistence.dao.user;
+package de.nak.nakexammgmt.persistence.dao.user.hibernate;
 
-import de.nak.nakexammgmt.persistence.dao.HibernateDAO;
+import de.nak.nakexammgmt.persistence.dao.hibernate.HibernateDAO;
+import de.nak.nakexammgmt.persistence.dao.user.ActivationDAO;
 import de.nak.nakexammgmt.persistence.entity.user.Activation;
 import de.nak.nakexammgmt.persistence.entity.user.User;
 
 /**
- * Hibernate specific implementation of the {@link ActivationDAO}
+ * Hibernate specific implementation of the {@link de.nak.nakexammgmt.persistence.dao.user.ActivationDAO}
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */

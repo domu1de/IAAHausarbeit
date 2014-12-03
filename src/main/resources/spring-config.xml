@@ -38,7 +38,7 @@
             <bean class="org.hibernate.cfg.ImprovedNamingStrategy" />
         </property>
         <property name="entityInterceptor">
-            <bean class="de.nak.nakexammgmt.persistence.dao.AuditInterceptor" />
+            <bean class="de.nak.nakexammgmt.persistence.dao.hibernate.AuditInterceptor" />
         </property>
     </bean>
 
