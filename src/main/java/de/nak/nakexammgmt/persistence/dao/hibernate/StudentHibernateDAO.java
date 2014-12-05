@@ -6,10 +6,19 @@
 package de.nak.nakexammgmt.persistence.dao.hibernate;
 
 import de.nak.nakexammgmt.persistence.dao.StudentDAO;
+import de.nak.nakexammgmt.persistence.entity.Exam;
 import de.nak.nakexammgmt.persistence.entity.Student;
+
+import java.util.List;
 
 /**
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
 public class StudentHibernateDAO extends HibernateDAO<Student> implements StudentDAO {
+    @Override
+    public List<Student> findPossibleAttendees(Exam exam) {
+        return getCurrentSession().createQuery("")
+                .setParameter("exam", exam)
+                .list();
+    }
 }
