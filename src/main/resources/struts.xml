@@ -5,10 +5,10 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
     <constant name="struts.action.extension" value="," />
-    <!--<constant name="struts.patternMatcher" value="namedVariable" />-->
+    <constant name="struts.patternMatcher" value="namedVariable" />
     <constant name="struts.enable.SlashesInActionNames" value="true" />
     <constant name="struts.mapper.alwaysSelectFullNamespace" value="false" />
-    <constant name="struts.mapper.class" value="restful2" />
+    <constant name="struts.mapper.class" value="de.nak.nakexammgmt.util.struts.Restful3ActionMapper" />
     <constant name="struts.action.excludePattern" value="/static/.*" />
     <constant name="struts.enable.DynamicMethodInvocation" value="true" />
 
@@ -29,10 +29,10 @@
             <interceptor-stack name="authStack">
                 <interceptor-ref name="defaultStack">
                     <param name="validation.excludeMethods">
-                        input,back,cancel,browse,index,view,edit,editNew
+                        input,back,cancel,browse,index,show,edit,editNew
                     </param>
                     <param name="workflow.excludeMethods">
-                        input,back,cancel,browse,index,view,edit,editNew
+                        input,back,cancel,browse,index,show,edit,editNew
                     </param>
                 </interceptor-ref>
                 <interceptor-ref name="createSession" />
@@ -67,7 +67,7 @@
 
     <package name="public" extends="default">
 
-        <action name="welcome" class="de.nak.nakexammgmt.presentation.action.WelcomeAction">
+        <action name="welcome" class="de.nak.nakexammgmt.presentation.action.WelcomeAction" method="execute">
             <result name="admin" type="thymeleaf">welcome/admin</result>
             <result name="student" type="thymeleaf">welcome/student</result>
             <result name="lecturer" type="thymeleaf">welcome/lecturer</result>
@@ -78,7 +78,10 @@
             <result type="thymeleaf">404</result>
         </action>
 
-        <action name="login/" class="de.nak.nakexammgmt.presentation.action.LoginAction">
+        <action name="login" class="de.nak.nakexammgmt.presentation.action.LoginAction">
+            <param name="get">show</param>
+            <param name="post">login</param>
+
             <result name="return_to" type="redirect">${returnTo}</result>
             <result name="input" type="thymeleaf">login</result>
         </action>
@@ -86,25 +89,26 @@
         <action name="logout" class="de.nak.nakexammgmt.presentation.action.LoginAction" method="logout">
         </action>
 
-        <action name="activate/*" class="de.nak.nakexammgmt.presentation.action.ActivationAction">
+        <action name="activate/{token}" class="de.nak.nakexammgmt.presentation.action.ActivationAction">
             <param name="token">{1}</param>
             <result name="input" type="thymeleaf">activation/change_pw</result>
         </action>
 
-        <action name="users/*" class="de.nak.nakexammgmt.presentation.action.UsersAction">
-            <param name="userId">{1}</param>
+        <action name="users/{userId}?" class="de.nak.nakexammgmt.presentation.action.UsersAction">
             <result name="create" type="redirectAction">${"users/" + userId}</result>
             <result name="new" type="thymeleaf">users/new :: #form-create-user</result>
             <result name="index" type="thymeleaf">users/index</result>
         </action>
 
-        <action name="profile/*" class="de.nak.nakexammgmt.presentation.action.UserSessionsAction">
-            <param name="userSessionId">{1}</param>
+        <action name="profile" class="de.nak.nakexammgmt.presentation.action.UsersAction" method="profile">
             <result name="index" type="thymeleaf">user/user_sessions</result>
         </action>
 
-        <action name="password_reset/*" class="de.nak.nakexammgmt.presentation.action.PasswordResetAction">
-            <param name="token">{1}</param>
+        <action name="profile/security/{userSessionId}?" class="de.nak.nakexammgmt.presentation.action.UserSessionsAction">
+            <result name="index" type="thymeleaf">user/user_sessions</result>
+        </action>
+
+        <action name="password_reset/{token}?" class="de.nak.nakexammgmt.presentation.action.PasswordResetAction">
             <result name="index" type="thymeleaf">passwordReset/init</result>
             <result name="input" type="thymeleaf">passwordReset/change_pw</result>
         </action>
@@ -115,7 +119,10 @@
     <package name="reset" extends="default">
         <default-interceptor-ref name="defaultStack" />
 
-        <action name="reset_database" class="de.nak.nakexammgmt.presentation.action.ResetDatabaseAction" >
+        <action name="reset_database" class="de.nak.nakexammgmt.presentation.action.ResetDatabaseAction">
+            <param name="get">show</param>
+            <param name="post">reset</param>
+
             <param name="password">resetDB</param>
             <result name="success" type="thymeleaf">reset_database</result>
         </action>

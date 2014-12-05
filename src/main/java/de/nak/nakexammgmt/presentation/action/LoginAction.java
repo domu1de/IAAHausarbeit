@@ -25,14 +25,14 @@ public class LoginAction extends BaseAction {
     private String password;
     private boolean rememberMe;
 
-    public String index() {
+    public String show() {
         if (!getCurrentUser().isLoggedIn()) {
             return INPUT;
         }
         return REDIRECT_WELCOME;
     }
 
-    public String create() {
+    public String login() {
         if (loginService.validateLogin(username, password, rememberMe)) {
             if (returnTo != null && !returnTo.isEmpty()) {
                 return RETURN_TO;

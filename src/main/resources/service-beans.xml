@@ -65,11 +65,13 @@
 
     <bean name="resetDatabaseService" class="de.nak.nakexammgmt.service.common.DefaultResetDatabaseService">
         <property name="sessionFactory" ref="sessionFactory" />
-        <property name="resource">
-            <bean class="org.springframework.core.io.ClassPathResource">
-                <constructor-arg name="path" value="init.sql" />
-            </bean>
-        </property>
+        <property name="resource" value="classpath:init.sql" />
     </bean>
+
+    <bean name="geoIpProviderFactory" class="de.nak.nakexammgmt.util.GeoIp2ProviderFactory">
+        <property name="resource" value="classpath:GeoLite2-City.mmdb" />
+    </bean>
+
+    <bean name="geoIp2Provider" factory-bean="geoIpProviderFactory" factory-method="create" />
 
 </beans>

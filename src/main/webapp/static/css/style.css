@@ -309,3 +309,32 @@ li.session-device.session-current .mega-octicon {
     color: #777;
 }
 
+/*
+ * Grade colors
+ */
+.grade-a {
+    background-color: #33FF33;
+}
+
+.grade-b {
+    background-color: #CAFF70;
+}
+
+.grade-c {
+    background-color: #FFFF66;
+}
+
+.grade-d {
+    background-color: #FF5;
+}
+
+.grade-f {
+    background-color: #FF6666;
+}
+
+label.btn.active {
+    opacity: 1;
+    position: relative;
+    transform: scale(1.1);
+    box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.06); /*grayscale 30*/
+}

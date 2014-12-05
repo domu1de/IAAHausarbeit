@@ -5,9 +5,14 @@
 
 package de.nak.nakexammgmt.presentation.action;
 
+import com.maxmind.geoip2.GeoIp2Provider;
+import com.maxmind.geoip2.exception.AddressNotFoundException;
+import com.maxmind.geoip2.model.CityResponse;
 import de.nak.nakexammgmt.presentation.model.UserSessionModel;
 import de.nak.nakexammgmt.service.authentication.AuthenticationService;
 import de.nak.nakexammgmt.service.exception.NotFoundException;
+
+import java.net.InetAddress;
 
 /**
  * RESTful action to manage UserSession resources.
@@ -17,6 +22,7 @@ import de.nak.nakexammgmt.service.exception.NotFoundException;
 public class UserSessionsAction extends BaseAction {
 
     private AuthenticationService authenticationService;
+    private GeoIp2Provider geoIp2Provider;
 
     private UserSessionModel userSessionModel = new UserSessionModel();
     private Long userSessionId;
@@ -50,6 +56,15 @@ public class UserSessionsAction extends BaseAction {
         return ERROR;
     }
 
+    // TODO: exceptions
+    public CityResponse locateIp(String ip) throws Exception {
+        try {
+            return geoIp2Provider.city(InetAddress.getByName(ip));
+        } catch (AddressNotFoundException e) {
+            return null;
+        }
+    }
+
     public void setAuthenticationService(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
     }
@@ -68,5 +83,9 @@ public class UserSessionsAction extends BaseAction {
 
     public void setUserSessionId(Long userSessionId) {
         this.userSessionId = userSessionId;
+    }
+
+    public void setGeoIp2Provider(GeoIp2Provider geoIp2Provider) {
+        this.geoIp2Provider = geoIp2Provider;
     }
 }
