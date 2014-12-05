@@ -31,7 +31,7 @@ public class PasswordResetAction extends BaseAction {
         return INDEX;
     }
 
-    public String view() {
+    public String show() {
         if (!passwordResetService.validateResetRequest(token)) {
             addActionError(getText("txt.passwordReset.invalid"));
             return INDEX;

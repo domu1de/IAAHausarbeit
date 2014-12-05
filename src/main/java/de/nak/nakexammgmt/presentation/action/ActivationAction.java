@@ -22,7 +22,7 @@ public class ActivationAction extends BaseAction {
     private String password;
     private String confirmPassword;
 
-    public String view() {
+    public String show() {
         if (!activationService.validate(token)) {
             addActionError(getText("txt.activation.invalid"));
             return ERROR;

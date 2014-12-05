@@ -7,11 +7,8 @@ package de.nak.nakexammgmt.presentation.action;
 
 import de.nak.nakexammgmt.presentation.model.ResetDatabaseModel;
 import de.nak.nakexammgmt.service.common.ResetDatabaseService;
-import org.apache.struts2.ServletActionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * Action to manage the reset of the database.
@@ -27,26 +24,17 @@ public class ResetDatabaseAction extends BaseAction {
     private ResetDatabaseModel resetDatabaseModel = new ResetDatabaseModel();
     private ResetDatabaseService resetDatabaseService;
 
-    @Override
-    public String execute() throws Exception {
-        if (isPost()) {
-            if (password != null && password.equals(resetDatabaseModel.getPassword())) {
-                resetDatabaseService.resetDatabase();
-                addActionMessage(getText("txt.resetDatabase.success"));
-                LOGGER.info("Database reset");
-            }
-        }
+    public String show() {
         return SUCCESS;
     }
 
-    /**
-     * Tests if the current request is a post request.
-     *
-     * @return true if the request method is post.
-     */
-    private boolean isPost() {
-        HttpServletRequest context = ServletActionContext.getRequest();
-        return context.getMethod().equalsIgnoreCase("post");
+    public String reset() throws Exception {
+        if (password != null && password.equals(resetDatabaseModel.getPassword())) {
+            resetDatabaseService.resetDatabase();
+            addActionMessage(getText("txt.resetDatabase.success"));
+            LOGGER.info("Database reset");
+        }
+        return SUCCESS;
     }
 
     public ResetDatabaseModel getResetDatabaseModel() {

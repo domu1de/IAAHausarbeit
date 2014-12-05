@@ -9,7 +9,10 @@
     <!-- Standard Spring MessageSource implementation -->
     <!-- **************************************************************** -->
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="basename" value="classpath:messages" />
+        <property name="resourceLoader">
+            <bean class="de.nak.nakexammgmt.util.ClasspathResourceLoader" />
+        </property> <!-- intellij is not able to parse spring classpath syntax, so we make it explicit -->
+        <property name="basename" value="messages" />
         <property name="defaultEncoding" value="UTF-8" />
     </bean>
 
@@ -42,7 +45,8 @@
         </property>
     </bean>
 
-<!--    <bean id="loggingAspect" class="de.nak.nakexammgmt.util.LoggingAspect" />
+<!--    TODO: remove ?
+    <bean id="loggingAspect" class="de.nak.nakexammgmt.util.LoggingAspect" />
 
     <aop:aspectj-autoproxy proxy-target-class="true" />
 

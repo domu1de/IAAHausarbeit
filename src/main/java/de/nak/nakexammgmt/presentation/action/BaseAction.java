@@ -20,7 +20,7 @@ public abstract class BaseAction extends ActionSupport {
     protected static final String REDIRECT_WELCOME = "redirect_welcome";
 
     protected static final String INDEX = "index";
-    protected static final String VIEW = "view";
+    protected static final String SHOW = "show";
     protected static final String EDIT = "edit";
     protected static final String NEW = "new";
     protected static final String CREATE = "create";

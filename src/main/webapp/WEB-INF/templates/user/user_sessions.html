@@ -17,7 +17,7 @@
 
     </head>
     <body>
-        <th:block th:replace="layout :: layout-header"></th:block>
+        <th:block th:replace="layout :: layout-header" />
 
         <div class="container">
 
@@ -25,7 +25,7 @@
 
             <div>
                 <ul class="boxed-group-list">
-                    <li class="session-device session-current" th:each="userSession : ${action.userSessionModel.userSessions}">
+                    <li class="session-device session-current" th:each="userSession : ${action.userSessionModel.userSessions}"  th:with="locatedIp=${action.locateIp(userSession.ip)}">
 
                         <!-- Activity indicator -->
                         <span class="session-state-indicator recent" th:if="${userSession.id.equals(action.currentUser.currentUserSession.id)}"></span>
@@ -60,7 +60,7 @@
 
                                 <p>
                                     <strong>Location:</strong><br>
-                                    Krummesse, Schleswig-Holstein, Germany
+                                    <span th:text="${locatedIp} ? ${locatedIp.city.name + ', ' + locatedIp.mostSpecificSubdivision.name + ', ' + locatedIp.country.name} : 'unknown'">Krummesse, Schleswig-Holstein, Germany</span>
                                 </p>
                                 <p></p>
                                 <p>

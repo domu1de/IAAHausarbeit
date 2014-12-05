@@ -27,10 +27,10 @@ public class UsersAction extends BaseAction {
         return INDEX;
     }
 
-    public String view() throws NotFoundException {
+    public String show() throws NotFoundException {
         userModel = new UserModel();
         userModel.setUser(adminService.getUser(userId));
-        return VIEW;
+        return SHOW;
     }
 
     public String editNew() {
@@ -51,7 +51,7 @@ public class UsersAction extends BaseAction {
             return ERROR;
         }
         adminService.updateUser(userModel.getUser());
-        return VIEW;
+        return SHOW;
     }
 
     public String create() throws Exception {
@@ -80,6 +80,11 @@ public class UsersAction extends BaseAction {
         }
         adminService.deactivateUser(userId);
         return INDEX;
+    }
+
+    public String profile() throws NotFoundException {
+        userId = getCurrentUser().getId();
+        return show();
     }
 
     public void setAdminService(AdminService adminService) {
