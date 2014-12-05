@@ -16,13 +16,11 @@ import javax.persistence.OneToOne;
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
 @Entity
-public class Student extends AbstractEntity {
+public class Student extends Person {
 
     private Integer studentId;
     private User user;
     private Maniple maniple;
-    private String firstName;
-    private String lastName;
 
     @Column(unique = true)
     public Integer getStudentId() {
@@ -51,26 +49,10 @@ public class Student extends AbstractEntity {
         this.maniple = maniple;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     //TODO extract to service.
     public void setName(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        setFirstName(firstName);
+        setLastName(lastName);
         if (user != null) {
             user.setFullName(firstName + " " + lastName);
         }
