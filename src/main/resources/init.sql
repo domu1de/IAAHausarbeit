@@ -37,14 +37,14 @@ INSERT INTO FIELD_OF_STUDY (ID, CREATED_AT, UPDATED_AT, ABBREVIATION, NAME) VALU
   (3, NOW(), NOW(), 'A', 'Angewandte Informatik'),
   (4, NOW(), NOW(), 'B', 'Betriebswirtschaftslehre');
 INSERT INTO MANIPLE (ID, CREATED_AT, UPDATED_AT, YEAR, FIELD_OF_STUDY) VALUES
-  (1, NOW(), NOW(), 2011, 1),
-  (2, NOW(), NOW(), 2011, 2),
-  (3, NOW(), NOW(), 2011, 3),
-  (4, NOW(), NOW(), 2012, 1),
-  (5, NOW(), NOW(), 2015, 1),
-  (6, NOW(), NOW(), 2015, 2),
-  (7, NOW(), NOW(), 2015, 3),
-  (8, NOW(), NOW(), 2015, 4);
+  (1, NOW(), NOW(), '2011-01-01', 1),
+  (2, NOW(), NOW(), '2011-01-01', 2),
+  (3, NOW(), NOW(), '2011-01-01', 3),
+  (4, NOW(), NOW(), '2012-01-01', 1),
+  (5, NOW(), NOW(), '2015-01-01', 1),
+  (6, NOW(), NOW(), '2015-01-01', 2),
+  (7, NOW(), NOW(), '2015-01-01', 3),
+  (8, NOW(), NOW(), '2015-01-01', 4);
 INSERT INTO STUDENT (ID, CREATED_AT, UPDATED_AT, FIRST_NAME, LAST_NAME, STUDENT_ID, MANIPLE, USER) VALUES
   (1, NOW(), NOW(), 'Alexander', 'Mersmann', 5037, 1, 2),
   (2, NOW(), NOW(), 'Domenic', 'Muskulus', 5043, 1, 3),

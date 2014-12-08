@@ -5,7 +5,7 @@
   ~ Licensed under the MIT License.
   -->
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" ng-app>
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,134 +13,40 @@
         <title>NAK Exam Management</title>
 
         <link href="../../../static/css/vendor/bootstrap.min.css" th:href="@{/static/css/vendor/bootstrap.min.css}" rel="stylesheet" />
+        <link href="../../../static/css/vendor/bootstrap-select.min.css" th:href="@{/static/css/vendor/bootstrap-select.min.css}" rel="stylesheet" />
         <link href="../../../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet" />
+
     </head>
-    <body>
-        <th:block th:replace="layout :: layout-header"></th:block>
-
-        <div class="container">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Matrikelnummer</th>
-                    <th>Name</th>
-                    <th>Vorname</th>
-                    <th>Note</th>
-                    <th></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="user,iterStat : ${action.welcomeAdminModel.users}">
-                    <td th:text="${iterStat.index + 1}">1</td>
-                    <td th:text="${iterStat.index + 1}">5043</td>
-                    <td th:text="${user.fullName}">Muskulus</td>
-                    <td th:text="${user.username}">Domenic</td>
-                    <td>
-                        <div class="btn-group" data-toggle="buttons">
-                            <label class="btn grade-a">
-                                <input type="radio" name="options" value="1.0" autocomplete="off"> 1,0
-                            </label>
-                            <label class="btn grade-a">
-                                <input type="radio" name="options" value="1.3" autocomplete="off"> 1,3
-                            </label>
-                            <label class="btn grade-b">
-                                <input type="radio" name="options" value="1.7" autocomplete="off"> 1,7
-                            </label>
-                            <label class="btn grade-b">
-                                <input type="radio" name="options" value="2.0" autocomplete="off"> 2,0
-                            </label>
-                            <label class="btn grade-b">
-                                <input type="radio" name="options" value="2.3" autocomplete="off"> 2,3
-                            </label>
-                            <label class="btn grade-c">
-                                <input type="radio" name="options" value="2.7" autocomplete="off"> 2,7
-                            </label>
-                            <label class="btn grade-c">
-                                <input type="radio" name="options" value="3.0" autocomplete="off"> 3,0
-                            </label>
-                            <label class="btn grade-c">
-                                <input type="radio" name="options" value="3.3" autocomplete="off"> 3,3
-                            </label>
-                            <label class="btn grade-d">
-                                <input type="radio" name="options" value="3.7" autocomplete="off"> 3,7
-                            </label>
-                            <label class="btn grade-d">
-                                <input type="radio" name="options" value="4.0" autocomplete="off"> 4,0
-                            </label>
-                            <label class="btn grade-f">
-                                <input type="radio" name="options" value="5.0" autocomplete="off"> 5,0
-                            </label>
-                            <label class="btn grade-f">
-                                <input type="radio" name="options" value="6.0" autocomplete="off"> 6,0
-                            </label>
-                        </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-            <!-- Button trigger User Form modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-user-form" th:attr="data-modal-title=#{txt.createUser},data-modal-body=@{/users/new}">
-                New user
-            </button>
-
-            <!-- User Form Modal -->
-            <div class="modal fade" id="modal-user-form" tabindex="-1" role="dialog" aria-labelledby="modal-user-form-label" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title" id="modal-user-form-label">Modal title</h4>
-                        </div>
-                        <div class="modal-body"></div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary modal-submit-button">Save changes</button>
-                        </div>
-                    </div>
-                </div>
+    <body ng-controller="ExamController">
+        <form id="form-create-exam" th:action="@{/exam/}" role="form" accept-charset="UTF-8" method="post">
+            <div class="form-group">
+                <label th:text="#{input.email}">Course</label>
+                <select class="selectpicker" ng-model="maniple" ng-options="m.id as m.abbreviation for m in maniples"></select>
+                <select class="selectpicker" ng-model="course" ng-options="c.id as c.title for c in manipleCourses[maniple]"></select>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="email" th:text="#{input.email}">Email</label>
+                <input id="email" type="email" name="userModel.user.email" class="form-control" th:placeholder="#{input.email}" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <label for="role" th:text="#{input.role}">Role</label>
+            </div>
+            <button class="btn btn-primary btn-block" type="submit">Create exam</button>
+        </form>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="../../../static/js/vendor/bootstrap.min.js" th:src="@{/static/js/vendor/bootstrap.min.js}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.27/angular.min.js"></script>
+        <script src="../../../static/js/vendor/bootstrap-select.min.js" th:src="@{/static/js/vendor/bootstrap-select.min.js}"></script>
         <script src="../../../static/js/script.js" th:src="@{/static/js/script.js}"></script>
-        <script>
+        <script th:inline="javascript">
+            function ExamController($scope) {
+                $scope.maniples = /*[[${action.examModel.maniples}]]*/ null;
+                $scope.manipleCourses = /*[[${action.examModel.manipleCourses}]]*/ null;
+            }
+
             $(function() {
-                var loadedBodies = {};
-                $('#modal-user-form').on('show.bs.modal', function(event) {
-                    var $button = $(event.relatedTarget),
-                        $modal = $(this),
-                        $body = $modal.find('.modal-body'),
-                        $submitButton = $modal.find('.modal-submit-button');
-
-                    if (!loadedBodies[$button.data('modal-body')]) {
-                        $body.load($button.data('modal-body'), function () {
-                            $body.find('button[type="submit"]').remove();
-                            loadedBodies[$button.data('modal-body')] = $body.html();
-                        });
-
-                        $submitButton.off('click');
-                        $submitButton.on('click', function(clickEvent) {
-                            var $form = $body.find('form');
-                            $.ajax({
-                                type: 'POST',
-                                url: $form.attr('action'),
-                                data: $form.serialize(),
-                                success: function(data, status) {
-                                    $modal.hide();
-                                }
-                            });
-                        });
-                        // TODO: clear fields on close
-                    } else {
-                        $body.html(loadedBodies[$button.data('modal-body')]);
-                    }
-
-                    $modal.find('.modal-title').text($button.data('modal-title'));
-                    $submitButton.text($button.data('modal-title'));
-                });
+                $('.selectpicker').selectpicker();
             });
         </script>
     </body>
