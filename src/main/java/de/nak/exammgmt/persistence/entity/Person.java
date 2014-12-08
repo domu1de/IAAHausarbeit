@@ -5,13 +5,12 @@
 
 package de.nak.exammgmt.persistence.entity;
 
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
 
 /**
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@MappedSuperclass
 public abstract class Person extends AbstractEntity {
 
     private String firstName;
