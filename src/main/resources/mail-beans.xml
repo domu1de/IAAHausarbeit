@@ -8,7 +8,7 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-       <bean name="baseNotificationMail" abstract="true" class="de.nak.nakexammgmt.service.common.mail.DefaultNotificationMail" scope="prototype">
+       <bean name="baseNotificationMail" abstract="true" class="de.nak.exammgmt.service.common.mail.DefaultNotificationMail" scope="prototype">
               <property name="mailSender" ref="mailSender" />
               <property name="messageSource" ref="messageSource" />
               <property name="from" value="noreply@nordakademie.de" />

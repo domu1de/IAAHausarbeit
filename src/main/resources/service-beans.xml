@@ -8,31 +8,31 @@
        xmlns:aop="http://www.springframework.org/schema/aop" xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <bean name="authorizationService" class="de.nak.nakexammgmt.service.authorization.DefaultAuthorizationService" />
+    <bean name="authorizationService" class="de.nak.exammgmt.service.authorization.DefaultAuthorizationService" />
 
-    <bean name="guestProvider" class="de.nak.nakexammgmt.service.user.GuestProvider" >
+    <bean name="guestProvider" class="de.nak.exammgmt.service.user.GuestProvider" >
         <property name="roleDAO" ref="roleDAO" />
     </bean>
 
-    <bean name="userService" class="de.nak.nakexammgmt.service.user.DefaultUserService">
+    <bean name="userService" class="de.nak.exammgmt.service.user.DefaultUserService">
         <property name="userDAO" ref="userDAO" />
         <property name="passwordEncoder" ref="passwordEncoder" />
     </bean>
 
-    <bean name="authenticationService" class="de.nak.nakexammgmt.service.authentication.DefaultAuthenticationService" scope="request" autowire="byType">
+    <bean name="authenticationService" class="de.nak.exammgmt.service.authentication.DefaultAuthenticationService" scope="request" autowire="byType">
         <aop:scoped-proxy proxy-target-class="false" />
         <property name="userSessionDAO" ref="userSessionDAO" />
         <property name="guestProvider" ref="guestProvider" />
     </bean>
 
-    <bean name="activationService" class="de.nak.nakexammgmt.service.user.DefaultActivationService">
+    <bean name="activationService" class="de.nak.exammgmt.service.user.DefaultActivationService">
         <property name="activationDAO" ref="activationDAO" />
         <property name="notificationMail" ref="activationNotificationMail" />
         <property name="userService" ref="userService" />
         <property name="urlProvider" ref="urlProvider" />
     </bean>
 
-    <bean name="passwordResetService" class="de.nak.nakexammgmt.service.user.DefaultPasswordResetService">
+    <bean name="passwordResetService" class="de.nak.exammgmt.service.user.DefaultPasswordResetService">
         <property name="passwordResetDAO" ref="passwordResetDAO" />
         <property name="notificationMail" ref="passwordResetNotificationMail" />
         <property name="userService" ref="userService" />
@@ -40,14 +40,14 @@
         <property name="urlProvider" ref="urlProvider" />
     </bean>
 
-    <bean name="loginService" class="de.nak.nakexammgmt.service.common.DefaultLoginService">
+    <bean name="loginService" class="de.nak.exammgmt.service.common.DefaultLoginService">
         <property name="userDAO" ref="userDAO" />
         <property name="passwordEncoder" ref="passwordEncoder" />
         <property name="authenticationService" ref="authenticationService" />
         <property name="sessionService" ref="sessionService" />
     </bean>
 
-    <bean name="adminService" class="de.nak.nakexammgmt.service.home.DefaultAdminService">
+    <bean name="adminService" class="de.nak.exammgmt.service.home.DefaultAdminService">
         <property name="userService" ref="userService" />
         <property name="activationService" ref="activationService" />
         <property name="roleDAO" ref="roleDAO" />
@@ -55,20 +55,42 @@
         <property name="passwordResetService" ref="passwordResetService"/>
     </bean>
 
-    <bean name="sessionService" class="de.nak.nakexammgmt.service.common.DefaultSessionService" />
+    <bean name="examService" class="de.nak.exammgmt.service.DefaultExamService">
+        <property name="examDAO" ref="examDAO" />
+        <property name="examPerformanceService" ref="examPerformanceService" />
+        <property name="studentService" ref="studentService" />
+    </bean>
+
+    <bean name="examPerformanceService" class="de.nak.exammgmt.service.DefaultExamPerformanceService">
+    </bean>
+
+    <bean name="studentService" class="de.nak.exammgmt.service.DefaultStudentService">
+        <property name="studentDAO" ref="studentDAO" />
+    </bean>
+
+    <bean name="manipleService" class="de.nak.exammgmt.service.DefaultManipleService">
+        <property name="manipleDAO" ref="manipleDAO" />
+    </bean>
+
+    <bean name="courseService" class="de.nak.exammgmt.service.DefaultCourseService">
+        <property name="courseDAO" ref="courseDAO" />
+        <property name="manipleService" ref="manipleService" />
+    </bean>
+
+    <bean name="sessionService" class="de.nak.exammgmt.service.common.DefaultSessionService" />
 
     <bean name="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
-    <bean name="urlProvider" class="de.nak.nakexammgmt.service.common.DefaultUrlProvider" scope="request" autowire="byType">
+    <bean name="urlProvider" class="de.nak.exammgmt.service.common.DefaultUrlProvider" scope="request" autowire="byType">
         <aop:scoped-proxy proxy-target-class="false" />
     </bean>
 
-    <bean name="resetDatabaseService" class="de.nak.nakexammgmt.service.common.DefaultResetDatabaseService">
+    <bean name="resetDatabaseService" class="de.nak.exammgmt.service.common.DefaultResetDatabaseService">
         <property name="sessionFactory" ref="sessionFactory" />
         <property name="resource" value="classpath:init.sql" />
     </bean>
 
-    <bean name="geoIpProviderFactory" class="de.nak.nakexammgmt.util.GeoIp2ProviderFactory">
+    <bean name="geoIpProviderFactory" class="de.nak.exammgmt.util.GeoIp2ProviderFactory">
         <property name="resource" value="classpath:GeoLite2-City.mmdb" />
     </bean>
 

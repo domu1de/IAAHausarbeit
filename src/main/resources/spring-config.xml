@@ -10,7 +10,7 @@
     <!-- **************************************************************** -->
     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
         <property name="resourceLoader">
-            <bean class="de.nak.nakexammgmt.util.ClasspathResourceLoader" />
+            <bean class="de.nak.exammgmt.util.ClasspathResourceLoader" />
         </property> <!-- intellij is not able to parse spring classpath syntax, so we make it explicit -->
         <property name="basename" value="messages" />
         <property name="defaultEncoding" value="UTF-8" />
@@ -28,7 +28,7 @@
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <!-- scan for models and java.time.* converters (java8) -->
-        <property name="packagesToScan" value="de.nak.nakexammgmt.persistence.entity,de.nak.nakexammgmt.persistence.converter" />
+        <property name="packagesToScan" value="de.nak.exammgmt.persistence.entity,de.nak.nakexammgmtrsistence.converter" />
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
@@ -41,18 +41,18 @@
             <bean class="org.hibernate.cfg.ImprovedNamingStrategy" />
         </property>
         <property name="entityInterceptor">
-            <bean class="de.nak.nakexammgmt.persistence.dao.hibernate.AuditInterceptor" />
+            <bean class="de.nak.exammgmt.persistence.dao.hibernate.AuditInterceptor" />
         </property>
     </bean>
 
 <!--    TODO: remove ?
-    <bean id="loggingAspect" class="de.nak.nakexammgmt.util.LoggingAspect" />
+    <bean id="loggingAspect" class="de.nak.exammgmtil.LoggingAspect" />
 
     <aop:aspectj-autoproxy proxy-target-class="true" />
 
     <aop:config>
         <aop:aspect id="loggingAspect" ref="loggingAspect">
-            <aop:pointcut expression="execution(* de.nak.nakexammgmt.presentation.action..*.*(..))" id="actionPackagePointcut" />
+            <aop:pointcut expression="execution(* de.nak.exammgmtesentation.action..*.*(..))" id="actionPackagePointcut" />
             <aop:around method="logAround" pointcut-ref="actionPackagePointcut" />
         </aop:aspect>
     </aop:config>-->
@@ -71,7 +71,7 @@
 
     <!-- The pointcut definition -->
     <aop:config>
-        <aop:pointcut id="serviceMethods" expression="execution(* de.nak.nakexammgmt.service..*.*(..))"/>
+        <aop:pointcut id="serviceMethods" expression="execution(* de.nak.exammgmt.service..*.*(..))"/>
         <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethods"/>
     </aop:config>
 
