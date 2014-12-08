@@ -1,3 +1,4 @@
+// Drop old state
 DELETE FROM COURSE_LECTURERS;
 DELETE FROM EMPLOYEE;
 DELETE FROM COURSE;
@@ -7,17 +8,23 @@ DELETE FROM MANIPLE;
 DELETE FROM USER;
 DELETE FROM ROLE_PERMISSIONS;
 DELETE FROM ROLE;
+
+// Insert roles
 INSERT INTO ROLE (ID, CREATED_AT, UPDATED_AT, NAME) VALUES
   (1, now(), now(), 'guest'),
   (2, now(), now(), 'admin'),
   (3, now(), now(), 'lecturer'),
   (4, now(), now(), 'student'),
   (5, now(), now(), 'management');
+
+// Insert role permissions
 INSERT INTO ROLE_PERMISSIONS (ROLE, PERMISSIONS) VALUES
   (2, 'EDIT_USER'),
   (2, 'CREATE_USER'),
   (2, 'DELETE_USER'),
   (2, 'SHOW_USER');
+
+// Insert users
 INSERT INTO USER (ID, CREATED_AT, UPDATED_AT, ACTIVATED, EMAIL, FULL_NAME, PASSWORD, USERNAME, ROLE) VALUES
   (1, NOW(), NOW(), TRUE, 'admin@iaahausarbeit.de', 'Administrator',
    '$2a$10$.p3HZN.0FySMsam8Yz7er.2NlbBzQPXQYUCt.karL3F6ycXSvAaBy', 'admin', 2),
@@ -31,11 +38,15 @@ INSERT INTO USER (ID, CREATED_AT, UPDATED_AT, ACTIVATED, EMAIL, FULL_NAME, PASSW
    '$2a$10$.p3HZN.0FySMsam8Yz7er.2NlbBzQPXQYUCt.karL3F6ycXSvAaBy', 'reichert', 3),
   (6, NOW(), NOW(), TRUE, 'management@iaahausarbeit.de', 'Prüfungsamt',
    '$2a$10$.p3HZN.0FySMsam8Yz7er.2NlbBzQPXQYUCt.karL3F6ycXSvAaBy', 'mgmt', 5);
+
+// Insert fields of studies
 INSERT INTO FIELD_OF_STUDY (ID, CREATED_AT, UPDATED_AT, ABBREVIATION, NAME) VALUES
   (1, NOW(), NOW(), 'I', 'Wirtschaftsinformatik'),
   (2, NOW(), NOW(), 'W', 'Wirtschaftsingenieurwesen'),
   (3, NOW(), NOW(), 'A', 'Angewandte Informatik'),
   (4, NOW(), NOW(), 'B', 'Betriebswirtschaftslehre');
+
+// Insert maniples
 INSERT INTO MANIPLE (ID, CREATED_AT, UPDATED_AT, YEAR, FIELD_OF_STUDY) VALUES
   (1, NOW(), NOW(), '2011-01-01', 1),
   (2, NOW(), NOW(), '2011-01-01', 2),
@@ -58,17 +69,23 @@ INSERT INTO STUDENT (ID, CREATED_AT, UPDATED_AT, FIRST_NAME, LAST_NAME, STUDENT_
   (10, NOW(), NOW(), 'DummyStudent', '8', 1008, 7, NULL),
   (11, NOW(), NOW(), 'DummyStudent', '9', 1009, 7, NULL),
   (12, NOW(), NOW(), 'DummyStudent', '10', 1010, 7, NULL);
+
+// Insert courses
 INSERT INTO COURSE (ID, CREATED_AT, UPDATED_AT, DESCRIPTION, TITLE, MANIPLE) VALUES
   (1, NOW(), NOW(), 'Beschreibungstext IAA 2011', 'Internet Anwendungsarchitekturen', 1),
   (2, NOW(), NOW(), 'Beschreibungstext IAA 2015', 'Internet Anwendungsarchitekturen', 7),
   (3, NOW(), NOW(), 'Beschreibungstext Prog 1 2011', 'Programmierung 1', 1),
   (4, NOW(), NOW(), 'Beschreibungstext Prog 2 2011', 'Programmierung 2', 1),
   (5, NOW(), NOW(), 'Beschreibungstext Prog 1 2015', 'Programmierung 2', 7);
+
+// Insert employees
 INSERT INTO EMPLOYEE (ID, CREATED_AT, UPDATED_AT, FIRST_NAME, LAST_NAME, TITLE, USER) VALUES
   (1, NOW(), NOW(), 'Stephan', 'Anft', '', 4),
   (2, NOW(), NOW(), 'Stefan', 'Reichert', '', 5),
   (3, NOW(), NOW(), 'Ulrike', 'Heinrich', '', 6),
   (4, NOW(), NOW(), 'Johannes', 'Brauer', 'Prof. Dr.-Ing.', NULL);
+
+// Insert employee-course-mapping
 INSERT INTO COURSE_LECTURERS (COURSE, LECTURERS) VALUES
   (1, 1),
   (1, 2),

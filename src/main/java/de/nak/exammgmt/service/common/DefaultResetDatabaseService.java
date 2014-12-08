@@ -22,24 +22,28 @@ public class DefaultResetDatabaseService implements ResetDatabaseService {
 
     private SessionFactory sessionFactory;
     private Resource resource;
+    private StringBuffer stringBuffer = new StringBuffer();
 
     @Override
     public void resetDatabase() {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(resource.getFile())); //TODO find better solution.
-            reader.lines().forEach(this::executeStatement);
+            BufferedReader reader = new BufferedReader(new FileReader(resource.getFile()));
+            reader.lines().forEach(this::appendLine);
+            sessionFactory.getCurrentSession().createSQLQuery(stringBuffer.toString()).executeUpdate();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     /**
-     * Excecutes the given statement as SQLQuery.
+     * Appends the given line to the stringBuffer.
      *
-     * @param statement the SQLQuery.
+     * @param line the line.
      */
-    private void executeStatement(String statement) {
-        sessionFactory.getCurrentSession().createSQLQuery(statement).executeUpdate();
+    private void appendLine(String line) {
+        if (!line.startsWith("//") && !line.trim().isEmpty()) {
+            stringBuffer.append(line.trim());
+        }
     }
 
     public void setSessionFactory(SessionFactory sessionFactory) {
