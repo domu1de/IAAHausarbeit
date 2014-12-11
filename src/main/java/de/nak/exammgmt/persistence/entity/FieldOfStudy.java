@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 /**
+ * Entity to store a Field of Study.
+ *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
 @Entity

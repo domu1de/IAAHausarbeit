@@ -8,6 +8,11 @@ package de.nak.exammgmt.persistence.entity;
 import javax.persistence.*;
 
 /**
+ * Entity to store protocol items for ExamPerformances.
+ * All updates in ExamPerformances will be documented with such an item.
+ * The entity provides an inner type enum to differentiate between edits and reversals.
+ * Because of reversals the reference to the new ExamPerformance is optional.
+ *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
 @Entity
@@ -27,7 +32,7 @@ public class ExamPerformanceProtocolItem extends AbstractEntity{
         this.oldExamPerformance = oldExamPerformance;
     }
 
-    @OneToOne
+    @OneToOne(optional = true)
     public ExamPerformance getNewExamPerformance() {
         return newExamPerformance;
     }

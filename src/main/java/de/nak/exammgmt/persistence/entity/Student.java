@@ -5,21 +5,19 @@
 
 package de.nak.exammgmt.persistence.entity;
 
-import de.nak.exammgmt.persistence.entity.user.User;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 /**
+ * Entity to store a Student.
+ *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
 @Entity
 public class Student extends Person {
 
     private Integer studentId;
-    private User user;
     private Maniple maniple;
 
     @Column(unique = true)
@@ -29,15 +27,6 @@ public class Student extends Person {
 
     public void setStudentId(Integer studentId) {
         this.studentId = studentId;
-    }
-
-    @OneToOne
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     @ManyToOne
@@ -53,8 +42,8 @@ public class Student extends Person {
     public void setName(String firstName, String lastName) {
         setFirstName(firstName);
         setLastName(lastName);
-        if (user != null) {
-            user.setFullName(firstName + " " + lastName);
+        if (getUser() != null) {
+            getUser().setFullName(firstName + " " + lastName);
         }
     }
 }

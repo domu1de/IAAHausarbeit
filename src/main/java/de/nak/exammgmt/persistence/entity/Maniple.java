@@ -13,6 +13,9 @@ import java.time.Year;
 import java.time.format.DateTimeFormatter;
 
 /**
+ * Entity to store a Maniple.
+ * Provides transient methods for string-representations.
+ *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
 @Entity
