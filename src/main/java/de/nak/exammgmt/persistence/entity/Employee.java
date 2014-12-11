@@ -5,6 +5,7 @@
 
 package de.nak.exammgmt.persistence.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 /**
@@ -28,6 +29,7 @@ public class Employee extends Person {
         }
     }
 
+    @Column(nullable = false, unique = true)
     public long getEmployeeNumber() {
         return employeeNumber;
     }

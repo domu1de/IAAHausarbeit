@@ -5,324 +5,9 @@
       <identifier-quote-string>&quot;</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="upper" quoted-identifiers="exact"/>
-    <schema name="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT"/>
     <schema name="PUBLIC" catalog="NAKEXAMMGMT"/>
-    <table name="CATALOGS" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="CATALOG_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-    </table>
-    <table name="COLLATIONS" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="KEY" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-    </table>
-    <table name="COLUMNS" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="TABLE_CATALOG" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="COLUMN_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ORDINAL_POSITION" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="COLUMN_DEFAULT" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="IS_NULLABLE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="DATA_TYPE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="CHARACTER_MAXIMUM_LENGTH" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="CHARACTER_OCTET_LENGTH" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="NUMERIC_PRECISION" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="NUMERIC_PRECISION_RADIX" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="NUMERIC_SCALE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="CHARACTER_SET_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="COLLATION_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TYPE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="NULLABLE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="IS_COMPUTED" sqlType="BOOLEAN" precision="1" scale="0" nullable="true" jdbcType="16"/>
-      <column name="SELECTIVITY" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="CHECK_CONSTRAINT" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="SEQUENCE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="REMARKS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="SOURCE_DATA_TYPE" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
-    </table>
-    <table name="COLUMN_PRIVILEGES" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="GRANTOR" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="GRANTEE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_CATALOG" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="COLUMN_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="PRIVILEGE_TYPE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="IS_GRANTABLE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-    </table>
-    <table name="CONSTANTS" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="CONSTANT_CATALOG" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="CONSTANT_SCHEMA" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="CONSTANT_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="DATA_TYPE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="REMARKS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="SQL" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-    </table>
-    <table name="CONSTRAINTS" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="CONSTRAINT_CATALOG" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="CONSTRAINT_SCHEMA" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="CONSTRAINT_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="CONSTRAINT_TYPE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_CATALOG" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="UNIQUE_INDEX_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="CHECK_EXPRESSION" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="COLUMN_LIST" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="REMARKS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="SQL" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-    </table>
-    <table name="CROSS_REFERENCES" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="PKTABLE_CATALOG" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="PKTABLE_SCHEMA" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="PKTABLE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="PKCOLUMN_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="FKTABLE_CATALOG" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="FKTABLE_SCHEMA" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="FKTABLE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="FKCOLUMN_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ORDINAL_POSITION" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
-      <column name="UPDATE_RULE" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
-      <column name="DELETE_RULE" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
-      <column name="FK_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="PK_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="DEFERRABILITY" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
-    </table>
-    <table name="DOMAINS" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="DOMAIN_CATALOG" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="DOMAIN_SCHEMA" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="DOMAIN_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="COLUMN_DEFAULT" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="IS_NULLABLE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="DATA_TYPE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="PRECISION" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="SCALE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="TYPE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="SELECTIVITY" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="CHECK_CONSTRAINT" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="REMARKS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="SQL" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-    </table>
-    <table name="FUNCTION_ALIASES" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="ALIAS_CATALOG" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ALIAS_SCHEMA" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ALIAS_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="JAVA_CLASS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="JAVA_METHOD" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="DATA_TYPE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="TYPE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="COLUMN_COUNT" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="RETURNS_RESULT" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
-      <column name="REMARKS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="SOURCE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-    </table>
-    <table name="FUNCTION_COLUMNS" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="ALIAS_CATALOG" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ALIAS_SCHEMA" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ALIAS_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="JAVA_CLASS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="JAVA_METHOD" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="COLUMN_COUNT" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="POS" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="COLUMN_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="DATA_TYPE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="TYPE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="PRECISION" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="SCALE" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
-      <column name="RADIX" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
-      <column name="NULLABLE" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
-      <column name="COLUMN_TYPE" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
-      <column name="REMARKS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="COLUMN_DEFAULT" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-    </table>
-    <table name="HELP" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="SECTION" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TOPIC" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="SYNTAX" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TEXT" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-    </table>
-    <table name="INDEXES" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="TABLE_CATALOG" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="NON_UNIQUE" sqlType="BOOLEAN" precision="1" scale="0" nullable="true" jdbcType="16"/>
-      <column name="INDEX_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ORDINAL_POSITION" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
-      <column name="COLUMN_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="CARDINALITY" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="PRIMARY_KEY" sqlType="BOOLEAN" precision="1" scale="0" nullable="true" jdbcType="16"/>
-      <column name="INDEX_TYPE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="IS_GENERATED" sqlType="BOOLEAN" precision="1" scale="0" nullable="true" jdbcType="16"/>
-      <column name="INDEX_TYPE" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
-      <column name="ASC_OR_DESC" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="PAGES" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="FILTER_CONDITION" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="REMARKS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="SQL" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="SORT_TYPE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="CONSTRAINT_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="INDEX_CLASS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-    </table>
-    <table name="IN_DOUBT" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="TRANSACTION" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="STATE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-    </table>
-    <table name="LOCKS" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="SESSION_ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="LOCK_TYPE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-    </table>
-    <table name="QUERY_STATISTICS" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="SQL_STATEMENT" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="EXECUTION_COUNT" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="MIN_EXECUTION_TIME" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="MAX_EXECUTION_TIME" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="CUMULATIVE_EXECUTION_TIME" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="AVERAGE_EXECUTION_TIME" sqlType="DOUBLE" precision="17" scale="0" nullable="true" jdbcType="8"/>
-      <column name="STD_DEV_EXECUTION_TIME" sqlType="DOUBLE" precision="17" scale="0" nullable="true" jdbcType="8"/>
-      <column name="MIN_ROW_COUNT" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="MAX_ROW_COUNT" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="CUMULATIVE_ROW_COUNT" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="AVERAGE_ROW_COUNT" sqlType="DOUBLE" precision="17" scale="0" nullable="true" jdbcType="8"/>
-      <column name="STD_DEV_ROW_COUNT" sqlType="DOUBLE" precision="17" scale="0" nullable="true" jdbcType="8"/>
-    </table>
-    <table name="RIGHTS" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="GRANTEE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="GRANTEETYPE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="GRANTEDROLE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="RIGHTS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-    </table>
-    <table name="ROLES" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="REMARKS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-    </table>
-    <table name="SCHEMATA" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="CATALOG_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="SCHEMA_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="SCHEMA_OWNER" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="DEFAULT_CHARACTER_SET_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="DEFAULT_COLLATION_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="IS_DEFAULT" sqlType="BOOLEAN" precision="1" scale="0" nullable="true" jdbcType="16"/>
-      <column name="REMARKS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-    </table>
-    <table name="SEQUENCES" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="SEQUENCE_CATALOG" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="SEQUENCE_SCHEMA" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="SEQUENCE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="CURRENT_VALUE" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="INCREMENT" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="IS_GENERATED" sqlType="BOOLEAN" precision="1" scale="0" nullable="true" jdbcType="16"/>
-      <column name="REMARKS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="CACHE" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="MIN_VALUE" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="MAX_VALUE" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="IS_CYCLE" sqlType="BOOLEAN" precision="1" scale="0" nullable="true" jdbcType="16"/>
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-    </table>
-    <table name="SESSIONS" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="USER_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="SESSION_START" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="STATEMENT" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="STATEMENT_START" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="CONTAINS_UNCOMMITTED" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-    </table>
-    <table name="SESSION_STATE" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="KEY" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="SQL" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-    </table>
-    <table name="SETTINGS" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="VALUE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-    </table>
-    <table name="TABLES" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="TABLE_CATALOG" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_TYPE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="STORAGE_TYPE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="SQL" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="REMARKS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="LAST_MODIFICATION" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="TYPE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_CLASS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ROW_COUNT_ESTIMATE" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
-    </table>
-    <table name="TABLE_PRIVILEGES" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="GRANTOR" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="GRANTEE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_CATALOG" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="PRIVILEGE_TYPE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="IS_GRANTABLE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-    </table>
-    <table name="TABLE_TYPES" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="TYPE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-    </table>
-    <table name="TRIGGERS" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="TRIGGER_CATALOG" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TRIGGER_SCHEMA" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TRIGGER_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TRIGGER_TYPE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_CATALOG" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="BEFORE" sqlType="BOOLEAN" precision="1" scale="0" nullable="true" jdbcType="16"/>
-      <column name="JAVA_CLASS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="QUEUE_SIZE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="NO_WAIT" sqlType="BOOLEAN" precision="1" scale="0" nullable="true" jdbcType="16"/>
-      <column name="REMARKS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="SQL" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-    </table>
-    <table name="TYPE_INFO" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="TYPE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="DATA_TYPE" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="PRECISION" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="PREFIX" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="SUFFIX" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="PARAMS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="AUTO_INCREMENT" sqlType="BOOLEAN" precision="1" scale="0" nullable="true" jdbcType="16"/>
-      <column name="MINIMUM_SCALE" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
-      <column name="MAXIMUM_SCALE" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
-      <column name="RADIX" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="POS" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="CASE_SENSITIVE" sqlType="BOOLEAN" precision="1" scale="0" nullable="true" jdbcType="16"/>
-      <column name="NULLABLE" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
-      <column name="SEARCHABLE" sqlType="SMALLINT" precision="5" scale="0" nullable="true" jdbcType="5"/>
-    </table>
-    <table name="USERS" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ADMIN" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="REMARKS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-    </table>
-    <table name="VIEWS" schema="INFORMATION_SCHEMA" catalog="NAKEXAMMGMT" type="SYSTEM TABLE">
-      <column name="TABLE_CATALOG" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_SCHEMA" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="TABLE_NAME" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="VIEW_DEFINITION" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="CHECK_OPTION" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="IS_UPDATABLE" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="STATUS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="REMARKS" sqlType="VARCHAR" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
-      <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-    </table>
     <table name="ACTIVATION" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfQkZDOUI2MjNfMjU5Rl80NDA0Xzg5RjlfRjA0QThCQkQ2MkMxKQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRTYyQkVCMzFfMjUyMV80NzgwX0I2MEZfNjgwNDk0RDE2RkM4KQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="EXPIRES_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
@@ -333,7 +18,7 @@
       <index name="FK_D9L3BQTU0GA85GT36QOPC372T_INDEX_9" unique="false" columns="USER"/>
     </table>
     <table name="COURSE" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfOTIxNUMwMjhfOUJDQ180MkE4X0E1NzlfNUYyQTFCQUYwNUU4KQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRjdFMDg1QTZfODU2NF80RTREX0E1RUJfNTg5NjQ4Q0IxNDlBKQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
@@ -355,12 +40,13 @@
       <index name="FK_Q8C5P1N1E62TLA6T57T537TH1_INDEX_E" unique="false" columns="LECTURERS"/>
     </table>
     <table name="EMPLOYEE" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfMzY4RkVCRjBfQjBGQV80MzhEX0I4MDdfRDZGNDM0MDQ2NjU3KQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRDEyRDc5Q0NfODc5Ml80QkQ0XzkxMEVfODBERjM4RUY0NDQ4KQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="FIRST_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="LAST_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="TITLE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="EMPLOYEE_NUMBER" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>
       <column name="USER" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <primary-key name="CONSTRAINT_75" columns="ID"/>
       <foreign-key name="FK_B1OD27KMKS86DW2JPM4KWDRYK" columns="USER" ref-table="USER" ref-schema="PUBLIC" ref-catalog="NAKEXAMMGMT" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
@@ -371,7 +57,7 @@
       <index name="FK_B1OD27KMKS86DW2JPM4KWDRYK_INDEX_7" unique="false" columns="USER"/>
     </table>
     <table name="EXAM" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfMTAzNzVBRTFfMTM2Ql80M0UyXzhBREVfMkE0QTU0ODIzQzg4KQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNjdGMjQ4RDFfMTU4MV80QTU0XzlDQjFfMkMyMDA0RDFFNzc4KQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="DATE" sqlType="DATE" precision="8" scale="0" nullable="true" jdbcType="91"/>
@@ -389,7 +75,7 @@
       <index name="FK_T68Y4TM652CGWJ58B3H88LJBU_INDEX_B" unique="false" columns="EXAM"/>
     </table>
     <table name="EXAM_PERFORMANCE" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNDQ5MTc2ODJfMzk3NF80MEI1X0JBOTZfQzQ5OTg5RUU2MzA3KQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfQjIyRUM4RDZfOEU4N180NjY2XzlGRDVfRjUxMTc4MDRDNTA0KQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="ATTEMPT" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
@@ -414,7 +100,7 @@
       <index name="FK_F04V4F4QIBBXW9FV682R4LK45_INDEX_C" unique="false" columns="COURSE"/>
     </table>
     <table name="EXAM_PERFORMANCE_PROTOCOL_ITEM" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfREM3RDdFRkFfMzNFN180NjI5Xzk3MUZfOUE5NUY1NkYxNkU5KQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRTI2NzhDRTBfRDIzMl80NUNFXzkzQ0JfMkUxRkU4RUNGNjQyKQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
@@ -430,7 +116,7 @@
       <index name="FK_HWGUA6ATHCVN0FQCC2F1UM61U_INDEX_A" unique="false" columns="NEW_EXAM_PERFORMANCE"/>
     </table>
     <table name="FIELD_OF_STUDY" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfOTJDRTFBRUJfQjI4Ml80NkZCXzg0RDNfMEVDRjJCMjA3QUMwKQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfODQwOEJDMEVfMUZEMF80QkNFX0FGNEFfQ0Y4NkU0RTUwRjA3KQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="ABBREVIATION" sqlType="VARCHAR" precision="1" scale="0" nullable="false" jdbcType="12"/>
@@ -441,7 +127,7 @@
       <index name="UK_HGI2ROSAA4GTRNJOLJ2YJNCOH_INDEX_2" unique="true" columns="NAME"/>
     </table>
     <table name="MANIPLE" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfQjUxNzc2NENfNjZGRF80NTEyXzg1MTlfMEU4NzlGRjUxQkUyKQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNjI3QjE2MkFfMTlDMl80MTI4XzgyMkNfQTA0NEExRkJFQzEzKQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="YEAR" sqlType="DATE" precision="8" scale="0" nullable="false" jdbcType="91"/>
@@ -453,7 +139,7 @@
       <index name="FK_JI0CCJKDGCYIXJ9QG0GUAAOVS_INDEX_5" unique="false" columns="FIELD_OF_STUDY"/>
     </table>
     <table name="PASSWORD_RESET" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNTc0QUI1QjVfRjdFMV80ODJFXzhFNkNfREZFQjgzQ0Y4RTIwKQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRDExQjlFRTNfQ0JFQl80NjVFXzkyNENfQzY4NzhENURGNkIyKQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="EXPIRES_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
@@ -464,7 +150,7 @@
       <index name="FK_6SNRIQRFMP8FD9L2XW7Y6IE9V_INDEX_A" unique="false" columns="USER"/>
     </table>
     <table name="ROLE" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfOEY1MThGODVfQzQ3Q180MEUyX0JFNEVfNjA3NDgzMTY5RjIzKQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRDRCODNDRkFfRDIyMV80QTg2XzhBMTlfQTQ3RkE0NzUzRDk4KQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
@@ -479,14 +165,15 @@
       <index name="FK_D64NNSMFMR8CSIBCDGG29WC5T_INDEX_F" unique="false" columns="ROLE"/>
     </table>
     <table name="STUDENT" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfREM1NDgzNjBfQjNFMF80OTU0XzgwMDFfNjhGNDZFOUFBNkY5KQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRjVCQjRENjFfNDUwNl80MEFFXzhENEFfQUU4QzI5ODAwM0EzKQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="FIRST_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="LAST_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="TITLE" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="STUDENT_ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
-      <column name="MANIPLE" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <column name="USER" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
+      <column name="MANIPLE" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <primary-key name="CONSTRAINT_BA" columns="ID"/>
       <foreign-key name="FK_P5859BJD373A39QK74JFC95Y6" columns="MANIPLE" ref-table="MANIPLE" ref-schema="PUBLIC" ref-catalog="NAKEXAMMGMT" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <foreign-key name="FK_OHPJOXDTXXDECQHSRYXIE9FO3" columns="USER" ref-table="USER" ref-schema="PUBLIC" ref-catalog="NAKEXAMMGMT" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
@@ -496,7 +183,7 @@
       <index name="FK_P5859BJD373A39QK74JFC95Y6_INDEX_B" unique="false" columns="MANIPLE"/>
     </table>
     <table name="USER" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfMjRFRDJFQjdfMEY1Ql80NTgyXzgxQzJfNjNDMDQ0OTlDNUM4KQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNjlGMjdBQ0ZfQ0FGNV80NTVGXzk1RThfRUY1Q0RDQjFCMjJDKQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="ACTIVATED" sqlType="BOOLEAN" precision="1" scale="0" nullable="false" jdbcType="16"/>
@@ -517,7 +204,7 @@
       <index name="FK_DL7G53F7LPMORJC24KX74APX8_INDEX_2" unique="false" columns="ROLE"/>
     </table>
     <table name="USER_SESSION" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRTk4QkE5MzZfRjY2Ml80Rjc4X0JCQkJfQTlFNUJENjgyNjI4KQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRDEzMTRCRTZfNzczQl80RUJDXzk1RTNfMzc0QTdCMzVGQkM5KQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="IP" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
