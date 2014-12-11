@@ -9,6 +9,8 @@ import de.nak.exammgmt.persistence.dao.ManipleDAO;
 import de.nak.exammgmt.persistence.entity.Maniple;
 
 /**
+ * Hibernate specific implementation of the {@link ManipleDAO}
+ *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
 public class ManipleHibernateDAO extends HibernateDAO<Maniple> implements ManipleDAO {

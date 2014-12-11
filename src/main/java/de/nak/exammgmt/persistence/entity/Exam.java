@@ -7,16 +7,21 @@ package de.nak.exammgmt.persistence.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.util.Set;
 
 /**
+ * Entity to store an Exam.
+ * Reexaminations will not be stored separately, but identified through the ExamPerformance.
+ *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
 @Entity
 public class Exam extends AbstractEntity{
 
     private LocalDate date;
+    private Course course;
     private Set<Employee> lecturers;
 
     public LocalDate getDate() {
@@ -34,5 +39,14 @@ public class Exam extends AbstractEntity{
 
     public void setLecturers(Set<Employee> lecturers) {
         this.lecturers = lecturers;
+    }
+
+    @ManyToOne(optional = false)
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 }

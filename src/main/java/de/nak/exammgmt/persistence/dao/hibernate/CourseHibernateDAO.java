@@ -12,6 +12,8 @@ import de.nak.exammgmt.persistence.entity.Maniple;
 import java.util.List;
 
 /**
+ * Hibernate specific implementation of the {@link CourseDAO}
+ *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
 public class CourseHibernateDAO extends HibernateDAO<Course> implements CourseDAO {

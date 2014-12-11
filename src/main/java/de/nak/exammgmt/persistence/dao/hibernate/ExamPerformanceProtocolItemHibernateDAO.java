@@ -9,6 +9,8 @@ import de.nak.exammgmt.persistence.dao.ExamPerformanceProtocolItemDAO;
 import de.nak.exammgmt.persistence.entity.ExamPerformanceProtocolItem;
 
 /**
+ * Hibernate specific implementation of the {@link ExamPerformanceProtocolItemDAO}
+ *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
 public class ExamPerformanceProtocolItemHibernateDAO extends HibernateDAO<ExamPerformanceProtocolItem>

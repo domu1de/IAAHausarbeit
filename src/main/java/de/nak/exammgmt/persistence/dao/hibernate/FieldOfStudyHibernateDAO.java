@@ -9,6 +9,8 @@ import de.nak.exammgmt.persistence.dao.FieldOfStudyDAO;
 import de.nak.exammgmt.persistence.entity.FieldOfStudy;
 
 /**
+ * Hibernate specific implementation of the {@link FieldOfStudyDAO}
+ *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
 public class FieldOfStudyHibernateDAO extends HibernateDAO<FieldOfStudy> implements FieldOfStudyDAO {

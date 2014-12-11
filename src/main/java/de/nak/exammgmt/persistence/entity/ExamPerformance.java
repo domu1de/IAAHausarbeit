@@ -10,6 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 /**
+ * Entity to store an ExamPerformance.
+ * Every performance will be stored separately, reexaminations will be marked as such
+ * and are not part of the original data set.
+ * ExamPerformances cannot be updated or deleted but instead marked as reversed.
+ *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
 @Entity
@@ -17,7 +22,6 @@ public class ExamPerformance extends AbstractEntity {
 
     private Exam exam;
     private Student student;
-    private Course course;
     private Byte attempt;
     private Float grade;
     private boolean reversed = false;
@@ -97,12 +101,4 @@ public class ExamPerformance extends AbstractEntity {
         this.student = student;
     }
 
-    @ManyToOne(optional = false)
-    public Course getCourse() {
-        return course;
-    }
-
-    public void setCourse(Course course) {
-        this.course = course;
-    }
 }

@@ -156,7 +156,7 @@ INSERT INTO COURSE (ID, CREATED_AT, UPDATED_AT, DESCRIPTION, TITLE, MANIPLE) VAL
   (2, NOW(), NOW(), 'Beschreibungstext IAA 2015', 'Internet Anwendungsarchitekturen', 7),
   (3, NOW(), NOW(), 'Beschreibungstext Prog 1 2011', 'Programmierung 1', 1),
   (4, NOW(), NOW(), 'Beschreibungstext Prog 2 2011', 'Programmierung 2', 1),
-  (5, NOW(), NOW(), 'Beschreibungstext Prog 1 2015', 'Programmierung 2', 7),
+  (5, NOW(), NOW(), 'Beschreibungstext Prog 1 2015', 'Programmierung 1', 7),
   (6, NOW(), NOW(), 'Dummy Kurs I11', 'Dummy Kurs I11', 1),
   (7, NOW(), NOW(), 'Dummy Kurs W11', 'Dummy Kurs W11', 2),
   (8, NOW(), NOW(), 'Dummy Kurs B11', 'Dummy Kurs B11', 3),
