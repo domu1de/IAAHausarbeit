@@ -101,6 +101,11 @@ public class Restful3ActionMapper extends DefaultActionMapper {
                     }
                 }
                 mapping.setMethod(method);
+                if (method != null && (method.equals("editNew") || method.equals("edit"))) {
+                    actionName = actionName.substring(0, lastSlashPos + 1);
+                    mapping.setName(actionName);
+                    lastSlashPos = actionName.length() - 1;
+                }
             }
 
             // Try to determine parameters from the url before the action name

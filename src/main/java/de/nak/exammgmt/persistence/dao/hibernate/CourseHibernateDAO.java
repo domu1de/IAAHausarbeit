@@ -21,7 +21,7 @@ public class CourseHibernateDAO extends HibernateDAO<Course> implements CourseDA
     @Override
     @SuppressWarnings("unchecked")
     public List<Course> findByManiple(Maniple maniple) {
-        return getCurrentSession().createQuery("FROM Course c JOIN FETCH c.lecturers WHERE c.maniple = :maniple")
+        return getCurrentSession().createQuery("FROM Course WHERE maniple = :maniple")
                 .setParameter("maniple", maniple)
                 .list();
     }

@@ -27,6 +27,7 @@
       <primary-key name="CONSTRAINT_7" columns="ID"/>
       <foreign-key name="FK_SVB5BE24JJCHJQ5C0OBM5ESGC" columns="MANIPLE" ref-table="MANIPLE" ref-schema="PUBLIC" ref-catalog="NAKEXAMMGMT" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <exported-key name="FK_K3MA3QYLYMP7HUM12O6WODVT9" table="COURSE_LECTURERS" schema="PUBLIC" catalog="NAKEXAMMGMT" columns="COURSE"/>
+      <exported-key name="FK_SHDNJHOI07KTO5V9C214E55OT" table="EXAM" schema="PUBLIC" catalog="NAKEXAMMGMT" columns="COURSE"/>
       <exported-key name="FK_F04V4F4QIBBXW9FV682R4LK45" table="EXAM_PERFORMANCE" schema="PUBLIC" catalog="NAKEXAMMGMT" columns="COURSE"/>
       <index name="FK_SVB5BE24JJCHJQ5C0OBM5ESGC_INDEX_7" unique="false" columns="MANIPLE"/>
     </table>
@@ -57,13 +58,16 @@
       <index name="FK_B1OD27KMKS86DW2JPM4KWDRYK_INDEX_7" unique="false" columns="USER"/>
     </table>
     <table name="EXAM" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNjdGMjQ4RDFfMTU4MV80QTU0XzlDQjFfMkMyMDA0RDFFNzc4KQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfMTMxRTI5OUVfNzFCQ180RDNDX0I4OUNfNDJEMjNFMTQ5MTc1KQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="DATE" sqlType="DATE" precision="8" scale="0" nullable="true" jdbcType="91"/>
+      <column name="COURSE" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
       <primary-key name="CONSTRAINT_2" columns="ID"/>
+      <foreign-key name="FK_SHDNJHOI07KTO5V9C214E55OT" columns="COURSE" ref-table="COURSE" ref-schema="PUBLIC" ref-catalog="NAKEXAMMGMT" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <exported-key name="FK_T68Y4TM652CGWJ58B3H88LJBU" table="EXAM_LECTURERS" schema="PUBLIC" catalog="NAKEXAMMGMT" columns="EXAM"/>
       <exported-key name="FK_1LEONYE8W2D7I0EPNN3QMCP62" table="EXAM_PERFORMANCE" schema="PUBLIC" catalog="NAKEXAMMGMT" columns="EXAM"/>
+      <index name="FK_SHDNJHOI07KTO5V9C214E55OT_INDEX_2" unique="false" columns="COURSE"/>
     </table>
     <table name="EXAM_LECTURERS" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
       <column name="EXAM" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5"/>

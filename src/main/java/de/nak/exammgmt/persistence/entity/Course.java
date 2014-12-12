@@ -49,7 +49,7 @@ public class Course extends AbstractEntity {
         this.maniple = maniple;
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(nullable = false), inverseJoinColumns = @JoinColumn(nullable = false))
     public Set<Employee> getLecturers() {
         return lecturers;
@@ -58,4 +58,5 @@ public class Course extends AbstractEntity {
     public void setLecturers(Set<Employee> lecturers) {
         this.lecturers = lecturers;
     }
+
 }

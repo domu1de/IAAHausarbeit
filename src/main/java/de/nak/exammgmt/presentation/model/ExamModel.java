@@ -9,10 +9,7 @@ import de.nak.exammgmt.persistence.entity.Course;
 import de.nak.exammgmt.persistence.entity.Exam;
 import de.nak.exammgmt.persistence.entity.Maniple;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Domenic Muskulus <domenic@muskulus.eu>
@@ -22,6 +19,7 @@ public class ExamModel {
     private Exam exam;
     private List<Maniple> maniples = new ArrayList<>();
     private Map<Long, List<Course>> manipleCourses = new HashMap<>();
+    private Set<String> test = new HashSet<>();
 
     public Exam getExam() {
         return exam;
@@ -49,5 +47,13 @@ public class ExamModel {
 
     public void setManipleCourses(Map<Long, List<Course>> manipleCourses) {
         this.manipleCourses = manipleCourses;
+    }
+
+    public Set<String> getTest() {
+        return test;
+    }
+
+    public void setTest(Set<String> test) {
+        this.test = test;
     }
 }

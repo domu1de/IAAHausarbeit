@@ -38,6 +38,9 @@ public class DefaultTemplateEngineProvider implements TemplateEngineProvider {
         templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
         templateEngine.setMessageResolver(new StrutsMessageResolver());
+
+        templateEngine.clearDialects();
+        templateEngine.addDialect(new CustomStandardDialect());
         templateEngine.addDialect(new Java8TimeDialect());
     }
 

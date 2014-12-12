@@ -6,6 +6,7 @@
 package de.nak.exammgmt.persistence.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
@@ -18,7 +19,7 @@ import java.util.Set;
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
 @Entity
-public class Exam extends AbstractEntity{
+public class Exam extends AbstractEntity {
 
     private LocalDate date;
     private Course course;
@@ -32,7 +33,7 @@ public class Exam extends AbstractEntity{
         this.date = date;
     }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     public Set<Employee> getLecturers() {
         return lecturers;
     }
