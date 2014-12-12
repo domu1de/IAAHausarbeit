@@ -13,7 +13,7 @@ import de.nak.exammgmt.persistence.entity.user.UserSession;
 import java.util.List;
 
 /**
- * Hibernate specific implementation of the {@link de.nak.exammgmt.persistence.dao.user.UserSessionDAO}
+ * Hibernate specific implementation of the {@link UserSessionDAO}
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */

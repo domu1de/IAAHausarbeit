@@ -12,6 +12,8 @@ import de.nak.exammgmt.persistence.entity.Student;
 import java.util.List;
 
 /**
+ * Default implementation of the {@Link StudentService}.
+ *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
 public class DefaultStudentService implements StudentService {

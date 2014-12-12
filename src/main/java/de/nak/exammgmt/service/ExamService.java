@@ -13,6 +13,8 @@ import de.nak.exammgmt.service.exception.NotFoundException;
 import java.util.List;
 
 /**
+ * Contract for a service to manage Exams.
+ *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
 public interface ExamService {

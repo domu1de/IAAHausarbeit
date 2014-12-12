@@ -11,6 +11,8 @@ import de.nak.exammgmt.persistence.entity.Student;
 import java.util.List;
 
 /**
+ * Contract for a service to manage Students.
+ *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
 public interface StudentService {

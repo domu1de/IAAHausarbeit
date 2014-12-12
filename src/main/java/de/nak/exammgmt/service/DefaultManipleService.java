@@ -12,6 +12,8 @@ import de.nak.exammgmt.service.exception.NotFoundException;
 import java.util.List;
 
 /**
+ * Default implementation of the {@Link ManipleService}.
+ *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
 public class DefaultManipleService implements ManipleService {

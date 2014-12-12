@@ -46,13 +46,13 @@
     </bean>
 
 <!--    TODO: remove ?
-    <bean id="loggingAspect" class="de.nak.exammgmtil.LoggingAspect" />
+    <bean id="loggingAspect" class="de.nak.exammgmt.util.LoggingAspect" />
 
     <aop:aspectj-autoproxy proxy-target-class="true" />
 
     <aop:config>
         <aop:aspect id="loggingAspect" ref="loggingAspect">
-            <aop:pointcut expression="execution(* de.nak.exammgmtesentation.action..*.*(..))" id="actionPackagePointcut" />
+            <aop:pointcut expression="execution(* de.nak.exammgmt.presentation.action..*.*(..))" id="actionPackagePointcut" />
             <aop:around method="logAround" pointcut-ref="actionPackagePointcut" />
         </aop:aspect>
     </aop:config>-->

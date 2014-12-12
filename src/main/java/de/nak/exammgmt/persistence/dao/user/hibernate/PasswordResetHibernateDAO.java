@@ -11,7 +11,7 @@ import de.nak.exammgmt.persistence.entity.user.PasswordReset;
 import de.nak.exammgmt.persistence.entity.user.User;
 
 /**
- * Hibernate specific implementation of the {@link de.nak.exammgmt.persistence.dao.user.PasswordResetDAO}
+ * Hibernate specific implementation of the {@link PasswordResetDAO}
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */

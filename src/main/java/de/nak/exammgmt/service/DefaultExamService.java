@@ -14,6 +14,8 @@ import de.nak.exammgmt.service.exception.NotFoundException;
 import java.util.List;
 
 /**
+ * Default implementation of the {@Link ExamService}.
+ *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
 public class DefaultExamService implements ExamService {

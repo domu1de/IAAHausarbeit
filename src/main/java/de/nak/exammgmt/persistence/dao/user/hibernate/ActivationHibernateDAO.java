@@ -11,7 +11,7 @@ import de.nak.exammgmt.persistence.entity.user.Activation;
 import de.nak.exammgmt.persistence.entity.user.User;
 
 /**
- * Hibernate specific implementation of the {@link de.nak.exammgmt.persistence.dao.user.ActivationDAO}
+ * Hibernate specific implementation of the {@link ActivationDAO}
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */

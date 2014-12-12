@@ -12,7 +12,7 @@ import de.nak.exammgmt.persistence.entity.user.Role;
 import java.util.List;
 
 /**
- * Hibernate specific implementation of the {@link de.nak.exammgmt.persistence.dao.user.RoleDAO}
+ * Hibernate specific implementation of the {@link RoleDAO}
  *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */

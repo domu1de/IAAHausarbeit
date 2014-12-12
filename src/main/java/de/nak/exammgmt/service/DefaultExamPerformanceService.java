@@ -6,6 +6,8 @@
 package de.nak.exammgmt.service;
 
 /**
+ * Default implementation of the {@Link ExamPerformanceService}.
+ *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
 public class DefaultExamPerformanceService implements ExamPerformanceService {

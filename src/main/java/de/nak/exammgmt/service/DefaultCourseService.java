@@ -14,6 +14,8 @@ import de.nak.exammgmt.service.exception.NotFoundException;
 import java.util.List;
 
 /**
+ * Default implementation of the {@Link CourseService}.
+ *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
 public class DefaultCourseService implements CourseService {

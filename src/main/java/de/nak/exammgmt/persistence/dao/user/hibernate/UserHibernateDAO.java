@@ -12,7 +12,7 @@ import de.nak.exammgmt.persistence.entity.user.User;
 import java.util.List;
 
 /**
- * Hibernate specific implementation of the {@link de.nak.exammgmt.persistence.dao.user.UserDAO}
+ * Hibernate specific implementation of the {@link UserDAO}
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */

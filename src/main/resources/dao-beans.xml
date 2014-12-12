@@ -4,20 +4,40 @@
   ~ Licensed under the MIT License.
   -->
 
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-
-    <bean name="userDAO" class="de.nak.exammgmt.persistence.dao.user.hibernate.UserHibernateDAO">
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
-
-    <bean name="userSessionDAO" class="de.nak.exammgmt.persistence.dao.user.hibernate.UserSessionHibernateDAO">
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
-
     <bean name="activationDAO" class="de.nak.exammgmt.persistence.dao.user.hibernate.ActivationHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean name="courseDAO" class="de.nak.exammgmt.persistence.dao.hibernate.CourseHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean name="employeeDAO" class="de.nak.exammgmt.persistence.dao.hibernate.EmployeeHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean name="examDAO" class="de.nak.exammgmt.persistence.dao.hibernate.ExamHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean name="examPerformanceDAO" class="de.nak.exammgmt.persistence.dao.hibernate.ExamPerformanceHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean name="examPerformanceProtocolItemDAO"
+          class="de.nak.exammgmt.persistence.dao.hibernate.ExamPerformanceProtocolItemHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean name="fieldOfStudyDAO" class="de.nak.exammgmt.persistence.dao.hibernate.FieldOfStudyHibernateDAO">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <bean name="manipleDAO" class="de.nak.exammgmt.persistence.dao.hibernate.ManipleHibernateDAO">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
@@ -25,39 +45,19 @@
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-    <bean name="roleDAO" class="de.nak.exammgmt.persistence.dao.user.hibernate.RoleHibernateDAO" >
+    <bean name="roleDAO" class="de.nak.exammgmt.persistence.dao.user.hibernate.RoleHibernateDAO">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-    <bean name="courseDAO" class="de.nak.exammgmt.persistence.dao.hibernate.CourseHibernateDAO" >
+    <bean name="studentDAO" class="de.nak.exammgmt.persistence.dao.hibernate.StudentHibernateDAO">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-    <bean name="employeeDAO" class="de.nak.exammgmt.persistence.dao.hibernate.EmployeeHibernateDAO" >
+    <bean name="userDAO" class="de.nak.exammgmt.persistence.dao.user.hibernate.UserHibernateDAO">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-    <bean name="examDAO" class="de.nak.exammgmt.persistence.dao.hibernate.ExamHibernateDAO" >
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
-
-    <bean name="examPerformanceDAO" class="de.nak.exammgmt.persistence.dao.hibernate.ExamPerformanceHibernateDAO" >
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
-
-    <bean name="examPerformanceProtocolItemDAO" class="de.nak.exammgmt.persistence.dao.hibernate.ExamPerformanceProtocolItemHibernateDAO" >
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
-
-    <bean name="fieldOfStudyDAO" class="de.nak.exammgmt.persistence.dao.hibernate.FieldOfStudyHibernateDAO" >
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
-
-    <bean name="manipleDAO" class="de.nak.exammgmt.persistence.dao.hibernate.ManipleHibernateDAO" >
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
-
-    <bean name="studentDAO" class="de.nak.exammgmt.persistence.dao.hibernate.StudentHibernateDAO" >
+    <bean name="userSessionDAO" class="de.nak.exammgmt.persistence.dao.user.hibernate.UserSessionHibernateDAO">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 

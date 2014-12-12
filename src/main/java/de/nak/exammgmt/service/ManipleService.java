@@ -11,6 +11,8 @@ import de.nak.exammgmt.service.exception.NotFoundException;
 import java.util.List;
 
 /**
+ * Contract for a service to manage Maniples.
+ *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
 public interface ManipleService {
