@@ -7,6 +7,7 @@ package de.nak.exammgmt.persistence.entity;
 
 import de.nak.exammgmt.persistence.entity.user.User;
 
+import javax.persistence.FetchType;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 
@@ -41,7 +42,7 @@ public abstract class Person extends AbstractEntity {
         this.lastName = lastName;
     }
 
-    @OneToOne(optional = true)
+    @OneToOne(optional = true, fetch = FetchType.LAZY)
     public User getUser() {
         return user;
     }
