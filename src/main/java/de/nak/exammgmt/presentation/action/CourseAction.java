@@ -3,9 +3,7 @@
  * Licensed under the MIT License.
  */
 
-package de.nak.exammgmt.presentation;
-
-import de.nak.exammgmt.presentation.action.BaseAction;
+package de.nak.exammgmt.presentation.action;
 
 /**
  * @author Domenic Muskulus <domenic@muskulus.eu>

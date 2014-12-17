@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<!--
+  ~ Copyright (c) 2014 Domenic Muskulus, Alexander Mersmann.
+  ~ Licensed under the MIT License.
+  -->
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>NAK Exam Management</title>
+
+        <link href="../../../static/css/vendor/bootstrap.min.css" th:href="@{/static/css/vendor/bootstrap.min.css}" rel="stylesheet" />
+        <link href="../../../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet" />
+    </head>
+    <body>
+        <th:block th:replace="layout :: layout-header"></th:block>
+
+        <div class="container">
+            <form id="form-exam-grades" role="form" accept-charset="UTF-8" method="post">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Modul</th>
+                            <th>Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="attempt : ${action.studentActionModel.lastAttempts}">
+                            <td th:text="${attempt.exam.course.title}">Modul 1</td>
+                            <td th:text="${attempt.grade}" th:class="${action.toCssClass(attempt.grade)}">1.0</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button class="btn btn-primary btn-block" type="submit">Push grades</button>
+            </form>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="../../../static/js/vendor/bootstrap.min.js" th:src="@{/static/js/vendor/bootstrap.min.js}"></script>
+        <script src="../../../static/js/script.js" th:src="@{/static/js/script.js}"></script>
+    </body>
+</html>

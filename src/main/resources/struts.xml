@@ -125,11 +125,17 @@
             <result name="new" type="thymeleaf">exam/new</result>
         </action>
 
-        <action name="student/{studentId}?" class="de.nak.exammgmt.presentation.action.StudentAction">
+        <action name="grades" class="de.nak.exammgmt.presentation.action.StudentAction" method="personalGrades">
 
         </action>
+
+        <action name="student/{studentId}?" class="de.nak.exammgmt.presentation.action.StudentAction">
+            <result name="show" type="thymeleaf">student/grades</result>
+        </action>
         
-        <action name="course/{courseId}?" class=""
+        <action name="course/{courseId}?" class="de.nak.exammgmt.presentation.action.CourseAction">
+
+        </action>
 
     </package>
 
