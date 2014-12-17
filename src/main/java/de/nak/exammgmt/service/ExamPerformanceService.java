@@ -25,7 +25,7 @@ public interface ExamPerformanceService {
      * @param studentId id of the student to look for
      * @return list of last attempts
      */
-    List<ExamPerformance> listLastAttempts(Long studentId);
+    List<ExamPerformance> listLastAttempts(long studentId) throws NotFoundException;
 
     /**
      * Lists the current performances for the given course.
@@ -33,6 +33,6 @@ public interface ExamPerformanceService {
      * @param courseId id of the course to look for
      * @return list of current performances
      */
-    List<ExamPerformance> listCurrentPerformances(Long courseId) throws NotFoundException;
+    List<ExamPerformance> listCurrentPerformances(long courseId) throws NotFoundException;
 
 }

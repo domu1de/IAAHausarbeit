@@ -7,6 +7,7 @@ package de.nak.exammgmt.service;
 
 import de.nak.exammgmt.persistence.entity.Exam;
 import de.nak.exammgmt.persistence.entity.Student;
+import de.nak.exammgmt.service.exception.NotFoundException;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public interface StudentService {
      * @param studentId the id of the student
      * @return the student
      */
-    Student get(Long studentId);
+    Student get(long studentId) throws NotFoundException;
 
     /**
      * Lists all possible attendees for the given exam.

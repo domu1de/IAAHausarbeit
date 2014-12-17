@@ -68,13 +68,14 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
     }
 
     @Override
-    public List<ExamPerformance> listLastAttempts(Long studentId) {
-        Student student = studentService.get(studentId);
+    // TODO: listCourseResults vllt besser?
+    public List<ExamPerformance> listLastAttempts(long studentId) throws NotFoundException {
+        Student student = studentService.get(studentId); // FIXME: oder nur in object wrappen?
         return examPerformanceDAO.findLastAttemptsByStudent(student);
     }
 
     @Override
-    public List<ExamPerformance> listCurrentPerformances(Long courseId) throws NotFoundException {
+    public List<ExamPerformance> listCurrentPerformances(long courseId) throws NotFoundException {
         Course course = courseService.get(courseId);
         return examPerformanceDAO.findCurrentByCourse(course);
     }

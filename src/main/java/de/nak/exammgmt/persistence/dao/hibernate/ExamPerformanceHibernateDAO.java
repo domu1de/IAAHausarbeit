@@ -43,32 +43,42 @@ public class ExamPerformanceHibernateDAO extends HibernateDAO<ExamPerformance> i
     @Override
     @SuppressWarnings("unchecked")
     public List<ExamPerformance> findLastAttemptsByStudent(Student student) {
-        return getCurrentSession().createQuery(
-                "FROM ExamPerformance ep1 " +
-                        "LEFT JOIN ExamPerformance ep2 " +
-                        "ON (ep1.student = ep2.student " +
-                        "AND ep1.exam.course = ep2.exam.course " +
-                        "AND ep1.updatedAt < ep2.updatedAt) " +
-                        "WHERE ep2 IS NULL " +
-                        "AND ep1.student = :student " +
-                        "AND NOT ep1.reversed")
-                .setParameter("student", student)
+        return getCurrentSession().createSQLQuery(
+                "SELECT ep1.* " +
+                "FROM EXAM_PERFORMANCE ep1 " +
+                    "JOIN EXAM e1 ON (e1.ID = ep1.EXAM) " +
+                    "LEFT JOIN (" +
+                        "SELECT ep2.ID, ep2.STUDENT, ep2.UPDATED_AT, e2.COURSE " +
+                        "FROM EXAM_PERFORMANCE ep2 " +
+                            "JOIN EXAM e2 ON ep2.EXAM = e2.ID " +
+                        "WHERE NOT ep2.REVERSED" +
+                        ") ep3 ON (ep1.STUDENT = ep3.STUDENT AND ep1.UPDATED_AT < ep3.UPDATED_AT AND e1.COURSE = ep3.COURSE) " +
+                "WHERE NOT ep1.REVERSED " +
+                    "AND ep3.ID IS NULL " +
+                    "AND ep1.STUDENT = :student_id")
+                .addEntity(ExamPerformance.class)
+                .setLong("student_id", student.getId())
                 .list();
     }
 
     @Override
     @SuppressWarnings("unchecked")
     public List<ExamPerformance> findCurrentByCourse(Course course) {
-        return getCurrentSession().createQuery(
-                "FROM ExamPerformance ep1 " +
-                        "LEFT JOIN ExamPerformance ep2 " +
-                        "ON (ep1.student = ep2.student " +
-                        "AND ep1.exam.course = ep2.exam.course " +
-                        "AND ep1.updatedAt < ep2.updatedAt) " +
-                        "WHERE ep2 IS NULL " +
-                        "AND ep1.exam.course = :course " +
-                        "AND NOT ep1.reversed")
-                .setParameter("course", course)
+        return getCurrentSession().createSQLQuery(
+                "SELECT ep1.* " +
+                "FROM EXAM_PERFORMANCE ep1 " +
+                    "JOIN EXAM e1 ON (e1.ID = ep1.EXAM) " +
+                    "LEFT JOIN (" +
+                        "SELECT ep2.ID, ep2.STUDENT, ep2.UPDATED_AT, e2.COURSE " +
+                        "FROM EXAM_PERFORMANCE ep2 " +
+                            "JOIN EXAM e2 ON ep2.EXAM = e2.ID " +
+                        "WHERE NOT ep2.REVERSED" +
+                    ") ep3 ON (ep1.STUDENT = ep3.STUDENT AND ep1.UPDATED_AT < ep3.UPDATED_AT AND e1.COURSE = ep3.COURSE) " +
+                "WHERE NOT ep1.REVERSED " +
+                    "AND ep3.ID IS NULL " +
+                    "AND e1.COURSE = :course_id")
+                .addEntity(ExamPerformance.class)
+                .setLong("course_id", course.getId())
                 .list();
     }
 
