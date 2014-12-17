@@ -7,7 +7,7 @@ package de.nak.exammgmt.service.common.mail;
 
 /**
  * Contract for a Notification Mail in the system. The contract allows sending multiple mails at once.
- *
+ *TODO rename to mailer
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
 public interface NotificationMail {
@@ -25,5 +25,10 @@ public interface NotificationMail {
      * Sends all previously generated NotificationMails.
      */
     void send();
+
+    /**
+     * Clears all generated and unsent messages.
+     */
+    void clear();
 
 }

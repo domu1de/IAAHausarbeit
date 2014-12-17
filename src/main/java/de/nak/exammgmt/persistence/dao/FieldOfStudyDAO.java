@@ -8,7 +8,7 @@ package de.nak.exammgmt.persistence.dao;
 import de.nak.exammgmt.persistence.entity.FieldOfStudy;
 
 /**
- * Data Access Object to provide persisted {@Link FieldOfStudy} entities.
+ * Data Access Object to provide persisted {@link FieldOfStudy} entities.
  *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */

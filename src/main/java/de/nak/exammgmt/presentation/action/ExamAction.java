@@ -5,12 +5,15 @@
 
 package de.nak.exammgmt.presentation.action;
 
+import de.nak.exammgmt.persistence.entity.Exam;
 import de.nak.exammgmt.persistence.entity.Maniple;
 import de.nak.exammgmt.presentation.model.ExamModel;
 import de.nak.exammgmt.service.CourseService;
 import de.nak.exammgmt.service.ExamService;
 import de.nak.exammgmt.service.ManipleService;
 import de.nak.exammgmt.service.exception.AlreadyCreatedException;
+
+import java.util.HashSet;
 
 /**
  * @author Domenic Muskulus <domenic@muskulus.eu>
@@ -35,10 +38,14 @@ public class ExamAction extends BaseAction {
     }
 
     public String create() {
-        if (examModel.getExam() == null) {
-            addActionError("bla"); // FIXME
+        Exam exam = examModel.getExam();
+
+        if (exam == null) {
+            addActionError("bg"); // FIXME
             return ERROR;
         }
+
+        exam.setLecturers(new HashSet<>(examModel.getLecturers()));
 
         try {
             examService.create(examModel.getExam());

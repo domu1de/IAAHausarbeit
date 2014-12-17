@@ -19,4 +19,6 @@ public interface StudentService {
 
     List<Student> listPossibleAttendees(Exam exam);
 
+    List<Student> listPossibleReexaminationAttendees(Exam exam);
+
 }

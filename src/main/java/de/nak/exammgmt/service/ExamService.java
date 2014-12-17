@@ -6,6 +6,7 @@
 package de.nak.exammgmt.service;
 
 import de.nak.exammgmt.persistence.entity.Exam;
+import de.nak.exammgmt.persistence.entity.ExamPerformance;
 import de.nak.exammgmt.persistence.entity.Student;
 import de.nak.exammgmt.service.exception.AlreadyCreatedException;
 import de.nak.exammgmt.service.exception.NotFoundException;
@@ -23,7 +24,11 @@ public interface ExamService {
 
     void save(Exam exam);
 
+    void saveExamPerformances(long examId, List<ExamPerformance> examPerformances, boolean isReexamination) throws NotFoundException;
+
     List<Student> listPossibleAttendees(long examId) throws NotFoundException;
+
+    List<Student> listPossibleReexaminationAttendees(long examId) throws NotFoundException;
 
     Exam get(long examId) throws NotFoundException;
 }

@@ -67,4 +67,11 @@ public interface AuthenticationService {
      */
     void revokeCurrentUserSession(User user) throws NotFoundException;
 
+    /**
+     * Gets the currently authenticated user.
+     *
+     * @return the current user
+     */
+    User getCurrentUser();
+
 }

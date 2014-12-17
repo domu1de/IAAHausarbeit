@@ -37,13 +37,21 @@
         <property name="manipleService" ref="manipleService"/>
     </bean>
 
+    <bean name="employeeService" class="de.nak.exammgmt.service.DefaultEmployeeService">
+        <property name="employeeDAO" ref="employeeDAO" />
+    </bean>
+
     <bean name="examPerformanceService" class="de.nak.exammgmt.service.DefaultExamPerformanceService">
+        <property name="authenticationService" ref="authenticationService" />
+        <property name="employeeService" ref="employeeService" />
+        <property name="examPerformanceDAO" ref="examPerformanceDAO" />
     </bean>
 
     <bean name="examService" class="de.nak.exammgmt.service.DefaultExamService">
         <property name="examDAO" ref="examDAO" />
         <property name="examPerformanceService" ref="examPerformanceService" />
         <property name="studentService" ref="studentService" />
+        <property name="notificationMail" ref="gradeNotificationMail" />
     </bean>
 
     <bean name="geoIp2Provider" factory-bean="geoIpProviderFactory" factory-method="create"/>

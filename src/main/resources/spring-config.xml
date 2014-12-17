@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 
     <!-- **************************************************************** -->
     <!-- MESSAGE EXTERNALIZATION/INTERNATIONALIZATION -->
     <!-- Standard Spring MessageSource implementation -->
+    <!-- Here we use a ReloadableClasspathResourceBundleMessageSource as IntelliJ is not able to parse the spring -->
+    <!-- classpath-syntax and therefore offers no auto-completion (https://youtrack.jetbrains.com/issue/IDEA-122239) -->
     <!-- **************************************************************** -->
-    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-        <property name="resourceLoader">
-            <bean class="de.nak.exammgmt.util.ClasspathResourceLoader" />
-        </property> <!-- intellij is not able to parse spring classpath syntax, so we make it explicit -->
+    <bean id="messageSource" class="de.nak.exammgmt.util.ReloadableClasspathResourceBundleMessageSource">
         <property name="basename" value="messages" />
         <property name="defaultEncoding" value="UTF-8" />
     </bean>
@@ -34,7 +34,7 @@
                 <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
             </props>
         </property>
         <property name="namingStrategy">

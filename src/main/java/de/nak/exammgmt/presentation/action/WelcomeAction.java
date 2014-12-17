@@ -6,6 +6,8 @@
 package de.nak.exammgmt.presentation.action;
 
 import de.nak.exammgmt.presentation.model.WelcomeAdminModel;
+import de.nak.exammgmt.presentation.model.WelcomeManagementModel;
+import de.nak.exammgmt.service.ExamService;
 import de.nak.exammgmt.service.home.AdminService;
 
 /**
@@ -22,8 +24,10 @@ public class WelcomeAction extends BaseAction {
     private static final String MANAGEMENT = "management";
 
     private AdminService adminService;
+    private ExamService examService;
 
     private WelcomeAdminModel welcomeAdminModel;
+    private WelcomeManagementModel welcomeManagementModel;
 
     @Override
     public String execute() throws Exception {
@@ -46,7 +50,7 @@ public class WelcomeAction extends BaseAction {
     }
 
     private void executeManagement() {
-        // TODO implement.
+
     }
 
     private void executeLecturer() {
@@ -66,6 +70,10 @@ public class WelcomeAction extends BaseAction {
         this.adminService = adminService;
     }
 
+    public void setExamService(ExamService examService) {
+        this.examService = examService;
+    }
+
     public WelcomeAdminModel getWelcomeAdminModel() {
         return welcomeAdminModel;
     }
@@ -73,4 +81,13 @@ public class WelcomeAction extends BaseAction {
     public void setWelcomeAdminModel(WelcomeAdminModel welcomeAdminModel) {
         this.welcomeAdminModel = welcomeAdminModel;
     }
+
+    public WelcomeManagementModel getWelcomeManagementModel() {
+        return welcomeManagementModel;
+    }
+
+    public void setWelcomeManagementModel(WelcomeManagementModel welcomeManagementModel) {
+        this.welcomeManagementModel = welcomeManagementModel;
+    }
+
 }

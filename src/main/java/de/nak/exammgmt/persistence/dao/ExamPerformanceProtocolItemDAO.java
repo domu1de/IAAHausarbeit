@@ -8,7 +8,7 @@ package de.nak.exammgmt.persistence.dao;
 import de.nak.exammgmt.persistence.entity.ExamPerformanceProtocolItem;
 
 /**
- * Data Access Object to provide persisted {@Link ExamPerformanceProtocolItem} entities.
+ * Data Access Object to provide persisted {@link ExamPerformanceProtocolItem} entities.
  *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */

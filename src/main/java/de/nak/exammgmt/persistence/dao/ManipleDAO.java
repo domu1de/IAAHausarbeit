@@ -8,7 +8,7 @@ package de.nak.exammgmt.persistence.dao;
 import de.nak.exammgmt.persistence.entity.Maniple;
 
 /**
- * Data Access Object to provide persisted {@Link Maniple} entities.
+ * Data Access Object to provide persisted {@link Maniple} entities.
  *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */

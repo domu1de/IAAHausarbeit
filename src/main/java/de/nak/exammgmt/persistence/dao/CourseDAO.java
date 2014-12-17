@@ -11,7 +11,7 @@ import de.nak.exammgmt.persistence.entity.Maniple;
 import java.util.List;
 
 /**
- * Data Access Object to provide persisted {@Link Course} entities.
+ * Data Access Object to provide persisted {@link Course} entities.
  *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */

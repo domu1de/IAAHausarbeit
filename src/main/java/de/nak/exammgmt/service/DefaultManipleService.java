@@ -12,7 +12,7 @@ import de.nak.exammgmt.service.exception.NotFoundException;
 import java.util.List;
 
 /**
- * Default implementation of the {@Link ManipleService}.
+ * Default implementation of the {@link ManipleService}.
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */

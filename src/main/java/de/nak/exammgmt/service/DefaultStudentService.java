@@ -12,7 +12,7 @@ import de.nak.exammgmt.persistence.entity.Student;
 import java.util.List;
 
 /**
- * Default implementation of the {@Link StudentService}.
+ * Default implementation of the {@link StudentService}.
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
@@ -24,6 +24,11 @@ public class DefaultStudentService implements StudentService {
     public List<Student> listPossibleAttendees(Exam exam) {
         // TODO: check exam
         return studentDAO.findPossibleAttendees(exam);
+    }
+
+    @Override
+    public List<Student> listPossibleReexaminationAttendees(Exam exam) {
+        return studentDAO.findPossibleReexaminationAttendees(exam);
     }
 
     public void setStudentDAO(StudentDAO studentDAO) {

@@ -45,18 +45,22 @@ public class DefaultNotificationMail implements NotificationMail {
     @Override
     public void send() {
         if (mailMessages.isEmpty()) {
-            throw new RuntimeException(); // FIXME: exception
+            LOGGER.warn("DefaultNotificationMail: There are no messages to send.");
         }
 
         try {
-            LOGGER.info("Sending activation mails"); // TODO: remove
             mailSender.send(mailMessages.toArray(new SimpleMailMessage[mailMessages.size()]));
         } catch (MailException e) {
-            LOGGER.warn("Mail delivery failed", e);
+            LOGGER.warn("DefaultNotificationMail: Mail delivery failed", e);
             throw e;
         } finally {
-            mailMessages.clear();
+            clear();
         }
+    }
+
+    @Override
+    public void clear() {
+        mailMessages.clear();
     }
 
     public void setMessageSource(MessageSource messageSource) {

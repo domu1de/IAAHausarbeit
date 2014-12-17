@@ -67,6 +67,7 @@ public class Restful3ActionMapper extends DefaultActionMapper {
             }
 
             // If a method hasn't been explicitly named, try to guess using ReST-style patterns
+            // TODO gut so, oder lieber inside.out?
             if (mapping.getMethod() == null) {
                 String method = null;
                 if (id == null) {
@@ -84,7 +85,7 @@ public class Restful3ActionMapper extends DefaultActionMapper {
                         method = getMethod(actionConfig, "get", "editNew");
 
                         // Viewing the form the edit
-                    } else if (isGet(request) && id.matches("^[^/]+/edit$")) {
+                    } else if (isGet(request) && "edit".equals(id)) {
                         method = getMethod(actionConfig, "get", "edit");
                         // TODO: testen!
                         // Viewing an item e.g. foo/1
@@ -98,9 +99,12 @@ public class Restful3ActionMapper extends DefaultActionMapper {
                         // Removing an item e.g. foo/1
                     } else if (isDelete(request)) {
                         method = getMethod(actionConfig, "delete", "remove");
+                    } else if (isPost(request)) {
+                        method = getMethod(actionConfig, "post", null);
                     }
                 }
                 mapping.setMethod(method);
+
                 if (method != null && (method.equals("editNew") || method.equals("edit"))) {
                     actionName = actionName.substring(0, lastSlashPos + 1);
                     mapping.setName(actionName);
@@ -144,7 +148,7 @@ public class Restful3ActionMapper extends DefaultActionMapper {
                      //   LOG.warn("Unable to determine parameters from the url", e);
                    // }
                 }
-                mapping.setName(actionName.substring(actionSlashPos+1));
+                mapping.setName(actionName.substring(actionSlashPos + 1));
             }
         }
 

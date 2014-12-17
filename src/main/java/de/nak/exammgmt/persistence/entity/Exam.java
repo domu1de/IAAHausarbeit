@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -23,7 +24,7 @@ public class Exam extends AbstractEntity {
 
     private LocalDate date;
     private Course course;
-    private Set<Employee> lecturers;
+    private Set<Employee> lecturers = new HashSet<>();
 
     public LocalDate getDate() {
         return date;
@@ -50,4 +51,5 @@ public class Exam extends AbstractEntity {
     public void setCourse(Course course) {
         this.course = course;
     }
+
 }

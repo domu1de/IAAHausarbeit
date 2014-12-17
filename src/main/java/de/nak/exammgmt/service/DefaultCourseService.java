@@ -14,7 +14,7 @@ import de.nak.exammgmt.service.exception.NotFoundException;
 import java.util.List;
 
 /**
- * Default implementation of the {@Link CourseService}.
+ * Default implementation of the {@link CourseService}.
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
@@ -25,7 +25,11 @@ public class DefaultCourseService implements CourseService {
 
     @Override
     public Course get(long courseId) throws NotFoundException {
-        return null;
+        Course course = courseDAO.findById(courseId);
+        if (course == null) {
+            throw new NotFoundException(Course.class);
+        }
+        return course;
     }
 
     @Override

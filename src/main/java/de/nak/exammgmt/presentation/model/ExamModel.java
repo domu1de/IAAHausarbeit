@@ -6,10 +6,14 @@
 package de.nak.exammgmt.presentation.model;
 
 import de.nak.exammgmt.persistence.entity.Course;
+import de.nak.exammgmt.persistence.entity.Employee;
 import de.nak.exammgmt.persistence.entity.Exam;
 import de.nak.exammgmt.persistence.entity.Maniple;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Domenic Muskulus <domenic@muskulus.eu>
@@ -19,7 +23,7 @@ public class ExamModel {
     private Exam exam;
     private List<Maniple> maniples = new ArrayList<>();
     private Map<Long, List<Course>> manipleCourses = new HashMap<>();
-    private Set<String> test = new HashSet<>();
+    private List<Employee> lecturers = new ArrayList<>();
 
     public Exam getExam() {
         return exam;
@@ -49,11 +53,12 @@ public class ExamModel {
         this.manipleCourses = manipleCourses;
     }
 
-    public Set<String> getTest() {
-        return test;
+    public List<Employee> getLecturers() {
+        return lecturers;
     }
 
-    public void setTest(Set<String> test) {
-        this.test = test;
+    public void setLecturers(List<Employee> lecturers) {
+        this.lecturers = lecturers;
     }
+
 }

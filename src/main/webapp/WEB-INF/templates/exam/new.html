@@ -13,34 +13,37 @@
         <title>NAK Exam Management</title>
 
         <link href="../../../static/css/vendor/bootstrap.min.css" th:href="@{/static/css/vendor/bootstrap.min.css}" rel="stylesheet"/>
-        <link href="../../../static/css/vendor/bootstrap-select.min.css" th:href="@{/static/css/vendor/bootstrap-select.min.css}" rel="stylesheet"/>
         <link href="../../../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet"/>
 
     </head>
-    <body ng-controller="ExamController">
-        <form id="form-create-exam" th:action="@{/exam/}" role="form" accept-charset="UTF-8" method="post">
-            <div class="form-group">
-                <label th:text="#{input.email}">Course</label>
-                <select class="selectpicker step1">
-                    <option>Please select...</option>
-                </select>
-                <select class="selectpicker step2" name="examModel.exam.course.id">
-                    <option>Please select...</option>
-                </select>
-                <select class="selectpicker step3" name="examModel.exam.lecturers[].id">
-                    <option>Please select...</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="date" th:text="#{input.date}">Date</label>
-                <input id="date" type="text" name="examModel.exam.date" class="form-control" th:placeholder="#{input.date}" placeholder="Date" required>
-            </div>
-            <button class="btn btn-primary btn-block" type="submit">Create exam</button>
-        </form>
+    <body>
+
+        <th:block th:replace="layout :: layout-header"></th:block>
+
+        <div class="container">
+            <form id="form-create-exam" th:action="@{/exam/}" role="form" accept-charset="UTF-8" method="post">
+                <div class="form-group">
+                    <label th:text="#{input.email}">Course</label>
+                    <select class="selectpicker step1">
+                        <option>Please select...</option>
+                    </select>
+                    <select class="selectpicker step2" name="examModel.exam.course.id">
+                        <option>Please select...</option>
+                    </select>
+                    <select class="selectpicker step3" name="examModel.lecturers.id" multiple>
+                        <option>Please select...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date" th:text="#{input.date}">Date</label>
+                    <input id="date" type="text" name="examModel.exam.date" class="form-control" th:placeholder="#{input.date}" placeholder="Date" required>
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">Create exam</button>
+            </form>
+        </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="../../../static/js/vendor/bootstrap.min.js" th:src="@{/static/js/vendor/bootstrap.min.js}"></script>
-        <script src="../../../static/js/vendor/bootstrap-select.min.js" th:src="@{/static/js/vendor/bootstrap-select.min.js}"></script>
         <script src="../../../static/js/vendor/jquery.cascadingdropdown.js" th:src="@{/static/js/vendor/jquery.cascadingdropdown.js}"></script>
         <script src="../../../static/js/script.js" th:src="@{/static/js/script.js}"></script>
         <script th:inline="javascript">
@@ -82,7 +85,7 @@
                                         selected: false
                                     };
                                 }));
-                                $dropdowns.selectpicker('refresh');
+                                //$dropdowns.selectpicker('refresh');
                             }
                         },
                         {
@@ -106,7 +109,7 @@
                                         selected: false
                                     };
                                 }));
-                                $dropdowns.selectpicker('refresh');
+                                //$dropdowns.selectpicker('refresh');
                             }
                         }
                     ]

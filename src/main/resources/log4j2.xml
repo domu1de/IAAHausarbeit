@@ -26,6 +26,6 @@
         <Logger name="com.opensymphony" level="DEBUG" />
         <Logger name="org.apache.struts2" level="DEBUG" />
         <Logger name="org.springframework.beans" level="DEBUG" />
-        <Logger name="org.thymeleaf" level="TRACE" />
+        <Logger name="org.thymeleaf" level="DEBUG" />
     </Loggers>
 </Configuration>

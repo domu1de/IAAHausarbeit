@@ -24,7 +24,8 @@ import static java.util.Arrays.stream;
 
 /**
  * Default implementation of the AuthenticationService that uses cookies to save the sessions.
- * Request scoped.
+ *
+ * NOTE: This service must be request scoped to work properly!
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
@@ -34,6 +35,8 @@ public class DefaultAuthenticationService implements AuthenticationService {
     private GuestProvider guestProvider;
     private HttpServletRequest request;
     private HttpServletResponse response;
+
+    private User currentUser;
 
     @Override
     public User authenticate() {
@@ -52,7 +55,10 @@ public class DefaultAuthenticationService implements AuthenticationService {
 
         renewUserSession(userSession);
         userSession.getUser().setCurrentUserSession(userSession);
-        return userSession.getUser();
+
+        currentUser = userSession.getUser();
+
+        return currentUser;
     }
 
     @Override
@@ -99,6 +105,14 @@ public class DefaultAuthenticationService implements AuthenticationService {
 
         userSessionDAO.delete(currentUserSession);
         response.addCookie(UserSessionCookie.deleteCookie());
+    }
+
+    @Override
+    public User getCurrentUser() {
+        if (currentUser == null) {
+            return authenticate();
+        }
+        return currentUser;
     }
 
     /**

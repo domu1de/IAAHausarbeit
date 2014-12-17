@@ -35,9 +35,9 @@ INSERT INTO ROLE_PERMISSIONS (ROLE, PERMISSIONS) VALUES
 INSERT INTO USER (ID, CREATED_AT, UPDATED_AT, ACTIVATED, EMAIL, FULL_NAME, PASSWORD, USERNAME, ROLE) VALUES
   (1, NOW(), NOW(), TRUE, 'admin@iaahausarbeit.de', 'Administrator',
    '$2a$10$.p3HZN.0FySMsam8Yz7er.2NlbBzQPXQYUCt.karL3F6ycXSvAaBy', 'admin', 2),
-  (2, NOW(), NOW(), TRUE, 'alexander.mersmann@nordakademie.de', 'Alexander Mersmann',
+  (2, NOW(), NOW(), TRUE, 'alexander.mersmann@gmx.de', 'Alexander Mersmann',
    '$2a$10$.p3HZN.0FySMsam8Yz7er.2NlbBzQPXQYUCt.karL3F6ycXSvAaBy', '12832', 4),
-  (3, NOW(), NOW(), TRUE, 'domenic.muskulus@nordakademie.de', 'Domenic Muskulus',
+  (3, NOW(), NOW(), TRUE, 'domenic@muskulus.eu', 'Domenic Muskulus',
    '$2a$10$.p3HZN.0FySMsam8Yz7er.2NlbBzQPXQYUCt.karL3F6ycXSvAaBy', '12838', 4),
   (4, NOW(), NOW(), TRUE, 'stephan.anft@nordakademie.de', 'Stephan Anft',
    '$2a$10$.p3HZN.0FySMsam8Yz7er.2NlbBzQPXQYUCt.karL3F6ycXSvAaBy', 'anft', 3),

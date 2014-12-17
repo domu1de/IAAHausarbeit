@@ -8,6 +8,7 @@ package de.nak.exammgmt.persistence.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 /**
  * Entity to store an ExamPerformance.
@@ -22,8 +23,8 @@ public class ExamPerformance extends AbstractEntity {
 
     private Exam exam;
     private Student student;
-    private Byte attempt;
-    private Float grade;
+    private int attempt;
+    private float grade;
     private boolean reversed = false;
     private Employee creator;
     private boolean reexamination = false;
@@ -48,20 +49,20 @@ public class ExamPerformance extends AbstractEntity {
     }
 
     @Column(nullable = false, updatable = false)
-    public Byte getAttempt() {
+    public int getAttempt() {
         return attempt;
     }
 
-    public void setAttempt(Byte attempt) {
+    public void setAttempt(int attempt) {
         this.attempt = attempt;
     }
 
-    @Column(nullable = false, updatable = false)
-    public Float getGrade() {
+    @Column(nullable = false, updatable = false, precision = 2, scale = 1, columnDefinition = "DECIMAL(2, 1)")
+    public float getGrade() {
         return grade;
     }
 
-    public void setGrade(Float grade) {
+    public void setGrade(float grade) {
         this.grade = grade;
     }
 
@@ -99,6 +100,12 @@ public class ExamPerformance extends AbstractEntity {
 
     public void setStudent(Student student) {
         this.student = student;
+    }
+
+    @Transient
+    // TODO: service?!
+    public boolean isPassed() {
+        return (!reexamination && grade <= 4) || (reexamination && grade <= 3);
     }
 
 }

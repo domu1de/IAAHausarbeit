@@ -5,13 +5,14 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
     <constant name="struts.action.extension" value="," />
-    <constant name="struts.patternMatcher" value="namedVariable" />
+    <constant name="struts.patternMatcher" value="restfulPatternMatcher" />
     <constant name="struts.enable.SlashesInActionNames" value="true" />
     <constant name="struts.mapper.alwaysSelectFullNamespace" value="false" />
     <constant name="struts.mapper.class" value="de.nak.exammgmt.util.struts.Restful3ActionMapper" />
     <constant name="struts.action.excludePattern" value="/static/.*" />
     <constant name="struts.enable.DynamicMethodInvocation" value="true" />
 
+    <bean type="com.opensymphony.xwork2.util.PatternMatcher" name="restfulPatternMatcher" class="de.nak.exammgmt.util.struts.RestfulPatternMatcher" />
     <bean type="com.opensymphony.xwork2.UnknownHandler" name="restUnknownHandler" class="de.nak.exammgmt.util.struts.RestUnknownHandler" />
     <bean type="de.nak.exammgmt.util.struts.thymeleaf.TemplateEngineProvider" class="de.nak.exammgmt.util.struts.thymeleaf.DefaultTemplateEngineProvider" />
 
@@ -78,7 +79,7 @@
             <result type="thymeleaf">404</result>
         </action>
 
-        <action name="login" class="de.nak.exammgmt.presentation.action.LoginAction">
+        <action name="login/" class="de.nak.exammgmt.presentation.action.LoginAction">
             <param name="get">show</param>
             <param name="post">login</param>
 
@@ -90,7 +91,6 @@
         </action>
 
         <action name="activate/{token}" class="de.nak.exammgmt.presentation.action.ActivationAction">
-            <param name="token">{1}</param>
             <result name="input" type="thymeleaf">activation/change_pw</result>
         </action>
 
@@ -100,7 +100,7 @@
             <result name="index" type="thymeleaf">users/index</result>
         </action>
 
-        <action name="profile" class="de.nak.exammgmt.presentation.action.UsersAction" method="profile">
+        <action name="profile/" class="de.nak.exammgmt.presentation.action.UsersAction" method="profile">
             <result name="index" type="thymeleaf">user/user_sessions</result>
         </action>
 
@@ -113,9 +113,23 @@
             <result name="input" type="thymeleaf">passwordReset/change_pw</result>
         </action>
 
+        <action name="exam/{examId}/grades" class="de.nak.exammgmt.presentation.action.BatchAction">
+            <param name="get">show</param>
+            <param name="post">create</param>
+
+            <result name="new" type="thymeleaf">exam/batch</result>
+            <result name="create" type="redirectAction">${"exam/" + examId}</result>
+        </action>
+
         <action name="exam/{examId}?" class="de.nak.exammgmt.presentation.action.ExamAction">
             <result name="new" type="thymeleaf">exam/new</result>
         </action>
+
+        <action name="student/{studentId}?" class="de.nak.exammgmt.presentation.action.StudentAction">
+
+        </action>
+        
+        <action name="course/{courseId}?" class=""
 
     </package>
 

@@ -11,7 +11,7 @@ import de.nak.exammgmt.persistence.entity.Student;
 import java.util.List;
 
 /**
- * Data Access Object to provide persisted {@Link Student} entities.
+ * Data Access Object to provide persisted {@link Student} entities.
  *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
