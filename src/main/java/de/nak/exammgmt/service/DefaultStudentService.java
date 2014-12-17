@@ -21,6 +21,15 @@ public class DefaultStudentService implements StudentService {
     private StudentDAO studentDAO;
 
     @Override
+    public Student get(Long studentId) {
+        Student student = studentDAO.findById(studentId);
+        if (student == null) {
+            // TODO throw exception
+        }
+        return student;
+    }
+
+    @Override
     public List<Student> listPossibleAttendees(Exam exam) {
         // TODO: check exam
         return studentDAO.findPossibleAttendees(exam);

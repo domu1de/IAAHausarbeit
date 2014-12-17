@@ -6,7 +6,9 @@
 package de.nak.exammgmt.service;
 
 import de.nak.exammgmt.persistence.dao.ExamPerformanceDAO;
+import de.nak.exammgmt.persistence.entity.Course;
 import de.nak.exammgmt.persistence.entity.ExamPerformance;
+import de.nak.exammgmt.persistence.entity.Student;
 import de.nak.exammgmt.service.authentication.AuthenticationService;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
@@ -22,10 +24,12 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
     private ExamPerformanceDAO examPerformanceDAO;
     private AuthenticationService authenticationService;
     private EmployeeService employeeService;
+    private StudentService studentService;
+    private CourseService courseService;
 
     @Override
     public void create(ExamPerformance examPerformance) throws NotFoundException {
-        List<ExamPerformance> attempts = examPerformanceDAO.findAttempts(examPerformance.getExam().getCourse(), examPerformance.getStudent());
+        List<ExamPerformance> attempts = examPerformanceDAO.findAttemptsByCourseAndStudent(examPerformance.getExam().getCourse(), examPerformance.getStudent());
         ExamPerformance lastAttempt = !attempts.isEmpty() ? attempts.get(0) : null;
 
         if (lastAttempt != null && lastAttempt.isPassed()) {
@@ -63,6 +67,18 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
         examPerformanceDAO.save(examPerformance);
     }
 
+    @Override
+    public List<ExamPerformance> listLastAttempts(Long studentId) {
+        Student student = studentService.get(studentId);
+        return examPerformanceDAO.findLastAttemptsByStudent(student);
+    }
+
+    @Override
+    public List<ExamPerformance> listCurrentPerformances(Long courseId) throws NotFoundException {
+        Course course = courseService.get(courseId);
+        return examPerformanceDAO.findCurrentByCourse(course);
+    }
+
     private void setAttempt(ExamPerformance examPerformance, ExamPerformance lastAttempt) {
         // FIXME, mach mich hübsch!
         if (lastAttempt != null) {
@@ -86,5 +102,13 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
 
     public void setEmployeeService(EmployeeService employeeService) {
         this.employeeService = employeeService;
+    }
+
+    public void setStudentService(StudentService studentService) {
+        this.studentService = studentService;
+    }
+
+    public void setCourseService(CourseService courseService) {
+        this.courseService = courseService;
     }
 }
