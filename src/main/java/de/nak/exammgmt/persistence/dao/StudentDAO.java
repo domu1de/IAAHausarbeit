@@ -29,6 +29,8 @@ public interface StudentDAO extends DAO<Student> {
 
     /**
      * Finds a list of all students who are allowed to take a reexamination in the given exam.
+     * A student is a possible attendee if he failed the exam with the possibility of a reexamination and if he
+     * did not attempt two reexaminations before for the course of the exam.
      *
      * @param exam the exam that shall be reexamined
      * @return list of students that are allowed to reexamine the exam
