@@ -6,11 +6,13 @@
 package de.nak.exammgmt.service;
 
 import de.nak.exammgmt.persistence.dao.ExamDAO;
+import de.nak.exammgmt.persistence.dao.StudentDAO;
 import de.nak.exammgmt.persistence.entity.Exam;
 import de.nak.exammgmt.persistence.entity.ExamPerformance;
 import de.nak.exammgmt.persistence.entity.Student;
 import de.nak.exammgmt.service.common.mail.NotificationMail;
 import de.nak.exammgmt.service.exception.AlreadyCreatedException;
+import de.nak.exammgmt.service.exception.ExamPerformanceValidationException;
 import de.nak.exammgmt.service.exception.NotFoundException;
 import org.springframework.transaction.support.TransactionSynchronizationAdapter;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
@@ -26,8 +28,17 @@ public class DefaultExamService implements ExamService {
 
     private ExamDAO examDAO;
     private ExamPerformanceService examPerformanceService;
-    private StudentService studentService;
+    private StudentDAO studentDAO;
     private NotificationMail notificationMail;
+
+    @Override
+    public Exam get(long examId) throws NotFoundException {
+        Exam exam = examDAO.findById(examId);
+        if (exam == null) {
+            throw new NotFoundException(Exam.class);
+        }
+        return exam;
+    }
 
     @Override
     public void create(Exam exam) throws AlreadyCreatedException {
@@ -40,25 +51,16 @@ public class DefaultExamService implements ExamService {
 
     @Override
     public void save(Exam exam) {
-
+        // TODO
     }
 
     @Override
-    public Exam get(long examId) throws NotFoundException {
-        Exam exam = examDAO.findById(examId);
-        if (exam == null) {
-            throw new NotFoundException(Exam.class);
-        }
-        return exam;
-    }
-
-    @Override
-    public void saveExamPerformances(long examId, List<ExamPerformance> examPerformances, boolean isReexamination) throws NotFoundException {
+    public void saveExamPerformances(long examId, List<ExamPerformance> examPerformances, boolean isReexamination) throws NotFoundException, ExamPerformanceValidationException {
         Exam exam = get(examId);
 
         List<Student> possibleAttendees = !isReexamination
-                ? studentService.listPossibleAttendees(exam)
-                : studentService.listPossibleReexaminationAttendees(exam);
+                ? listPossibleAttendees(exam)
+                : listPossibleReexaminationAttendees(exam);
 
         for (ExamPerformance examPerformance : examPerformances) {
             // Get persisted version of student
@@ -94,12 +96,26 @@ public class DefaultExamService implements ExamService {
 
     @Override
     public List<Student> listPossibleAttendees(long examId) throws NotFoundException {
-        return null;
+        Exam exam = get(examId);
+        return listPossibleAttendees(exam);
+    }
+
+    @Override
+    public List<Student> listPossibleAttendees(Exam exam) {
+        // TODO not null
+        return studentDAO.findPossibleAttendees(exam);
     }
 
     @Override
     public List<Student> listPossibleReexaminationAttendees(long examId) throws NotFoundException {
-        return null;
+        Exam exam = get(examId);
+        return listPossibleReexaminationAttendees(exam);
+    }
+
+    @Override
+    public List<Student> listPossibleReexaminationAttendees(Exam exam) {
+        // TODO not null
+        return studentDAO.findPossibleReexaminationAttendees(exam);
     }
 
     public void setExamDAO(ExamDAO examDAO) {
@@ -110,11 +126,11 @@ public class DefaultExamService implements ExamService {
         this.examPerformanceService = examPerformanceService;
     }
 
-    public void setStudentService(StudentService studentService) {
-        this.studentService = studentService;
-    }
-
     public void setNotificationMail(NotificationMail notificationMail) {
         this.notificationMail = notificationMail;
+    }
+
+    public void setStudentDAO(StudentDAO studentDAO) {
+        this.studentDAO = studentDAO;
     }
 }

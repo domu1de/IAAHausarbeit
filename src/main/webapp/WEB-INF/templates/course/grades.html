@@ -21,25 +21,27 @@
         <div class="container">
 
             <dl class="dl-horizontal">
-                <dt th:text="#{txt.student}">Student</dt>
-                <dd th:text="${action.studentActionModel.student.name}">Hans Müllerchen</dd>
-                <dt th:text="#{txt.studentId}">StudentId</dt>
-                <dd th:text="${action.studentActionModel.student.studentId}">1001</dd>
+                <dt th:text="#{txt.course}">Course</dt>
+                <dd th:text="${action.courseActionModel.course.title}">IAA</dd>
                 <dt th:text="#{txt.maniple}">Manipel</dt>
-                <dd th:text="${action.studentActionModel.student.maniple}">I11</dd>
+                <dd th:text="${action.courseActionModel.course.maniple}">I11</dd>
+                <dt th:text="#{txt.lecturers}">Lecturers</dt>
+                <dd th:text="${#strings.listJoin(action.courseActionModel.course.lecturers.{name}, ', ')}">Anft, Reichert</dd>
             </dl>
 
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Modul</th>
+                        <th>Student</th>
+                        <th>Versuch</th>
                         <th>Note</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="attempt : ${action.studentActionModel.lastAttempts}">
-                        <td th:text="${attempt.exam.course.title}">Modul 1</td>
-                        <td th:text="${#numbers.formatDecimal(attempt.reexaminationattempt.grade,1,1)}" th:class="${action.toCssClass(attempt.grade)}">1.0</td>
+                    <tr th:each="performance : ${action.courseActionModel.currentPerformances}">
+                        <td th:text="|${performance.student.name} (${performance.student.studentId})|">Hans Müllerchen</td>
+                        <td th:text="${performance.attempt}">1</td>
+                        <td th:text="${#numbers.formatDecimal(performance.grade,1,1)}" th:class="${action.toCssClass(performance.grade)}">1.0</td>
                     </tr>
                 </tbody>
             </table>

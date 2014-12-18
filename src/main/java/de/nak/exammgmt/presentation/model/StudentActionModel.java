@@ -5,7 +5,8 @@
 
 package de.nak.exammgmt.presentation.model;
 
-import de.nak.exammgmt.persistence.entity.ExamPerformance;
+import de.nak.exammgmt.persistence.entity.Student;
+import de.nak.exammgmt.service.Enrollment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +16,23 @@ import java.util.List;
  */
 public class StudentActionModel {
 
-    List<ExamPerformance> lastAttempts = new ArrayList<>();
+    private Student student;
+    private List<Enrollment> enrollments = new ArrayList<>();
 
-    public List<ExamPerformance> getLastAttempts() {
-        return lastAttempts;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setLastAttempts(List<ExamPerformance> lastAttempts) {
-        this.lastAttempts = lastAttempts;
+    public void setStudent(Student student) {
+        this.student = student;
     }
+
+    public List<Enrollment> getEnrollments() {
+        return enrollments;
+    }
+
+    public void setEnrollments(List<Enrollment> enrollments) {
+        this.enrollments = enrollments;
+    }
+
 }

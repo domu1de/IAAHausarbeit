@@ -34,26 +34,33 @@
 
     <bean name="courseService" class="de.nak.exammgmt.service.DefaultCourseService">
         <property name="courseDAO" ref="courseDAO"/>
-        <property name="manipleService" ref="manipleService"/>
+        <property name="examPerformanceDAO" ref="examPerformanceDAO" />
     </bean>
 
     <bean name="employeeService" class="de.nak.exammgmt.service.DefaultEmployeeService">
         <property name="employeeDAO" ref="employeeDAO" />
     </bean>
 
+    <bean name="enrollmentService" class="de.nak.exammgmt.service.DefaultEnrollmentService">
+        <property name="studentService" ref="studentService" />
+        <property name="courseService" ref="courseService" />
+        <property name="manipleService" ref="manipleService" />
+    </bean>
+
     <bean name="examPerformanceService" class="de.nak.exammgmt.service.DefaultExamPerformanceService">
         <property name="authenticationService" ref="authenticationService" />
         <property name="employeeService" ref="employeeService" />
         <property name="examPerformanceDAO" ref="examPerformanceDAO" />
-        <property name="courseService" ref="courseService" />
-        <property name="studentService" ref="studentService" />
+        <property name="examPerformanceValidator" ref="examPerformanceValidator" />
     </bean>
+
+    <bean name="examPerformanceValidator" class="de.nak.exammgmt.service.validation.DefaultExamPerformanceValidator" />
 
     <bean name="examService" class="de.nak.exammgmt.service.DefaultExamService">
         <property name="examDAO" ref="examDAO" />
         <property name="examPerformanceService" ref="examPerformanceService" />
-        <property name="studentService" ref="studentService" />
         <property name="notificationMail" ref="gradeNotificationMail" />
+        <property name="studentDAO" ref="studentDAO" />
     </bean>
 
     <bean name="geoIp2Provider" factory-bean="geoIpProviderFactory" factory-method="create"/>
@@ -75,6 +82,8 @@
 
     <bean name="manipleService" class="de.nak.exammgmt.service.DefaultManipleService">
         <property name="manipleDAO" ref="manipleDAO" />
+        <property name="courseDAO" ref="courseDAO" />
+        <property name="studentDAO" ref="studentDAO" />
     </bean>
 
     <bean name="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
@@ -96,6 +105,7 @@
 
     <bean name="studentService" class="de.nak.exammgmt.service.DefaultStudentService">
         <property name="studentDAO" ref="studentDAO"/>
+        <property name="examPerformanceDAO" ref="examPerformanceDAO" />
     </bean>
 
     <bean name="urlProvider" class="de.nak.exammgmt.service.common.DefaultUrlProvider" scope="request"

@@ -5,8 +5,9 @@
 
 package de.nak.exammgmt.service;
 
+import de.nak.exammgmt.persistence.dao.ExamPerformanceDAO;
 import de.nak.exammgmt.persistence.dao.StudentDAO;
-import de.nak.exammgmt.persistence.entity.Exam;
+import de.nak.exammgmt.persistence.entity.ExamPerformance;
 import de.nak.exammgmt.persistence.entity.Student;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
@@ -20,6 +21,7 @@ import java.util.List;
 public class DefaultStudentService implements StudentService {
 
     private StudentDAO studentDAO;
+    private ExamPerformanceDAO examPerformanceDAO;
 
     @Override
     public Student get(long studentId) throws NotFoundException {
@@ -31,17 +33,22 @@ public class DefaultStudentService implements StudentService {
     }
 
     @Override
-    public List<Student> listPossibleAttendees(Exam exam) {
-        // TODO: check exam
-        return studentDAO.findPossibleAttendees(exam);
+    public List<ExamPerformance> listCurrentPerformancePerCourse(long studentId) throws NotFoundException {
+        Student student = get(studentId);
+        return listCurrentPerformancePerCourse(student);
     }
 
     @Override
-    public List<Student> listPossibleReexaminationAttendees(Exam exam) {
-        return studentDAO.findPossibleReexaminationAttendees(exam);
+    public List<ExamPerformance> listCurrentPerformancePerCourse(Student student) {
+        // TODO not null
+        return examPerformanceDAO.findLastAttemptsByStudent(student);
     }
 
     public void setStudentDAO(StudentDAO studentDAO) {
         this.studentDAO = studentDAO;
+    }
+
+    public void setExamPerformanceDAO(ExamPerformanceDAO examPerformanceDAO) {
+        this.examPerformanceDAO = examPerformanceDAO;
     }
 }

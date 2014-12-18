@@ -8,11 +8,9 @@
     <!-- **************************************************************** -->
     <!-- MESSAGE EXTERNALIZATION/INTERNATIONALIZATION -->
     <!-- Standard Spring MessageSource implementation -->
-    <!-- Here we use a ReloadableClasspathResourceBundleMessageSource as IntelliJ is not able to parse the spring -->
-    <!-- classpath-syntax and therefore offers no auto-completion (https://youtrack.jetbrains.com/issue/IDEA-122239) -->
     <!-- **************************************************************** -->
-    <bean id="messageSource" class="de.nak.exammgmt.util.ReloadableClasspathResourceBundleMessageSource">
-        <property name="basename" value="messages" />
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="classpath:messages" />
         <property name="defaultEncoding" value="UTF-8" />
     </bean>
 

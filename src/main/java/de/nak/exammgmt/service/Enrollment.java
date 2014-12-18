@@ -15,7 +15,8 @@ public class Enrollment {
 
     private Student student;
     private Course course;
-    private float grade;
+    private Float grade;
+    private Integer attempt;
 
     public Student getStudent() {
         return student;
@@ -33,11 +34,20 @@ public class Enrollment {
         this.course = course;
     }
 
-    public float getGrade() {
+    public Float getGrade() {
         return grade;
     }
 
-    public void setGrade(float grade) {
+    public void setGrade(Float grade) {
         this.grade = grade;
     }
+
+    public Integer getAttempt() {
+        return attempt;
+    }
+
+    public void setAttempt(Integer attempt) {
+        this.attempt = attempt;
+    }
+
 }

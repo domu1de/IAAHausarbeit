@@ -7,6 +7,7 @@ package de.nak.exammgmt.presentation.action;
 
 import de.nak.exammgmt.presentation.GradePresenter;
 import de.nak.exammgmt.presentation.model.StudentActionModel;
+import de.nak.exammgmt.service.EnrollmentService;
 import de.nak.exammgmt.service.ExamPerformanceService;
 import de.nak.exammgmt.service.StudentService;
 import de.nak.exammgmt.service.exception.NotFoundException;
@@ -21,6 +22,7 @@ public class StudentAction extends BaseAction {
 
     private StudentService studentService;
     private ExamPerformanceService examPerformanceService;
+    private EnrollmentService enrollmentService;
 
     private StudentActionModel studentActionModel = new StudentActionModel();
 
@@ -29,7 +31,8 @@ public class StudentAction extends BaseAction {
             return ERROR; //FIXME
         }
 
-        studentActionModel.setLastAttempts(examPerformanceService.listLastAttempts(studentId));
+        studentActionModel.setStudent(studentService.get(studentId));
+        studentActionModel.setEnrollments(enrollmentService.listByStudent(studentId));
 
         return SHOW;
     }
@@ -38,6 +41,7 @@ public class StudentAction extends BaseAction {
         return "";
     }
 
+    // TODO: direct call in thyemleaf?!
     public String toCssClass(float grade) {
         return GradePresenter.toCssClass(grade);
     }
@@ -72,5 +76,9 @@ public class StudentAction extends BaseAction {
 
     public void setStudentActionModel(StudentActionModel studentActionModel) {
         this.studentActionModel = studentActionModel;
+    }
+
+    public void setEnrollmentService(EnrollmentService enrollmentService) {
+        this.enrollmentService = enrollmentService;
     }
 }

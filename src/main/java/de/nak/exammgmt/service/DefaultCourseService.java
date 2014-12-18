@@ -6,9 +6,9 @@
 package de.nak.exammgmt.service;
 
 import de.nak.exammgmt.persistence.dao.CourseDAO;
+import de.nak.exammgmt.persistence.dao.ExamPerformanceDAO;
 import de.nak.exammgmt.persistence.entity.Course;
-import de.nak.exammgmt.persistence.entity.Maniple;
-import de.nak.exammgmt.service.exception.MissingIdException;
+import de.nak.exammgmt.persistence.entity.ExamPerformance;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.List;
 public class DefaultCourseService implements CourseService {
 
     private CourseDAO courseDAO;
-    private ManipleService manipleService;
+    private ExamPerformanceDAO examPerformanceDAO;
 
     @Override
     public Course get(long courseId) throws NotFoundException {
@@ -33,24 +33,22 @@ public class DefaultCourseService implements CourseService {
     }
 
     @Override
-    public List<Course> list(long manipleId) throws NotFoundException {
-        return list(manipleService.get(manipleId));
+    public List<ExamPerformance> listCurrentPerformancePerStudent(long courseId) throws NotFoundException {
+        Course course = get(courseId);
+        return listCurrentPerformancePerStudent(course);
     }
 
     @Override
-    public List<Course> list(Maniple maniple) {
-        if (maniple.getId() == null) {
-            throw new MissingIdException();
-        }
-        // TODO: check if maniple exists, switch?!
-        return courseDAO.findByManiple(maniple);
+    public List<ExamPerformance> listCurrentPerformancePerStudent(Course course) {
+        // TODO not null
+        return examPerformanceDAO.findCurrentByCourse(course);
     }
 
     public void setCourseDAO(CourseDAO courseDAO) {
         this.courseDAO = courseDAO;
     }
 
-    public void setManipleService(ManipleService manipleService) {
-        this.manipleService = manipleService;
+    public void setExamPerformanceDAO(ExamPerformanceDAO examPerformanceDAO) {
+        this.examPerformanceDAO = examPerformanceDAO;
     }
 }

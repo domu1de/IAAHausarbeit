@@ -4,18 +4,55 @@
   ~ Copyright (c) 2014 Domenic Muskulus, Alexander Mersmann.
   ~ Licensed under the MIT License.
   -->
-
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <title>NAK Exam Management</title>
 
-        <link href="../../../static/css/vendor/bootstrap.min.css" th:href="@{/static/css/vendor/bootstrap.min.css}" rel="stylesheet" />
-        <link href="../../../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet" />
+        <link href="../../../static/css/vendor/bootstrap.min.css" th:href="@{/static/css/vendor/bootstrap.min.css}" rel="stylesheet"/>
+        <link href="../../../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet"/>
     </head>
     <body>
-        <h1>WELCOME MANAGEMENT</h1>
+        <th:block th:replace="layout :: layout-header"></th:block>
+
+        <div class="container">
+            <div>
+                <p>Noten erfassen</p>
+                <button id="main-exam-grades" type="button" class="btn btn-default">Hauptprüfung</button>
+                <button id="reexam-grades" type="button" class="btn btn-default">Nachprüfung</button>
+            </div>
+            <div>
+                <p>Prüfung</p>
+                <button type="button" class="btn btn-default">Anlegen</button>
+            </div>
+            <div>
+                <p>Studenten</p>
+                <button type="button" class="btn btn-default">Suchen</button>
+            </div>
+            <div>
+                <p>Module</p>
+                <button type="button" class="btn btn-default">Suchen</button>
+            </div>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="../../../static/js/vendor/bootstrap.min.js" th:src="@{/static/js/vendor/bootstrap.min.js}"></script>
+        <script src="../../../static/js/script.js" th:src="@{/static/js/script.js}"></script>
+        <script th:inline="javascript">
+            var baseURL = /*[[@{/}]]*/ '/';
+            $(function() {
+                $('#main-exam-grades').on('click', function(event) {
+                    var id = prompt("ID!");
+                    window.location.href = baseURL + '/exam/' + id + '/grades';
+                });
+
+                $('#reexam-grades').on('click', function(event) {
+                    var id = prompt("ID!");
+                    window.location.href = baseURL + '/exam/' + id + '/reexamination';
+                });
+            });
+        </script>
     </body>
 </html>

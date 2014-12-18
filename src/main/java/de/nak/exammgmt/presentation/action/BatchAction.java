@@ -8,7 +8,6 @@ package de.nak.exammgmt.presentation.action;
 import de.nak.exammgmt.persistence.entity.Exam;
 import de.nak.exammgmt.presentation.model.BatchActionModel;
 import de.nak.exammgmt.service.ExamService;
-import de.nak.exammgmt.service.StudentService;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
 /**
@@ -17,9 +16,9 @@ import de.nak.exammgmt.service.exception.NotFoundException;
 public class BatchAction extends BaseAction {
 
     private Long examId;
+    private boolean reexamination = false;
 
     private ExamService examService;
-    private StudentService studentService;
 
     private BatchActionModel batchActionModel = new BatchActionModel();
 
@@ -30,12 +29,12 @@ public class BatchAction extends BaseAction {
 
         Exam exam = examService.get(examId);
 
-        batchActionModel.setPossibleAttendees(studentService.listPossibleAttendees(exam));
+        batchActionModel.setPossibleAttendees(examService.listPossibleAttendees(exam));
 
         return NEW;
     }
 
-    public String create() throws NotFoundException {
+    public String create() throws Exception {
         if (examId == null) {
             return NOT_FOUND;
         }
@@ -69,7 +68,11 @@ public class BatchAction extends BaseAction {
         this.examService = examService;
     }
 
-    public void setStudentService(StudentService studentService) {
-        this.studentService = studentService;
+    public boolean isReexamination() {
+        return reexamination;
+    }
+
+    public void setReexamination(boolean reexamination) {
+        this.reexamination = reexamination;
     }
 }

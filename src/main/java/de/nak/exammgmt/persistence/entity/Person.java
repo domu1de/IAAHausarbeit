@@ -9,6 +9,7 @@ import de.nak.exammgmt.persistence.entity.user.User;
 
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 /**
  * Abstract entity for all Persons (currently students and employees) with basic attributes and an optional
@@ -20,7 +21,7 @@ import javax.persistence.OneToOne;
 @MappedSuperclass
 public abstract class Person extends AbstractEntity {
 
-    private String title;
+    private String title = "";
     private User user;
     private String firstName;
     private String lastName;
@@ -56,6 +57,11 @@ public abstract class Person extends AbstractEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    @Transient
+    public String getName() {
+        return String.join(" ", title, firstName, lastName).trim();
     }
 
 }

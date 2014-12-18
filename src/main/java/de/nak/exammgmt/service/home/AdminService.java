@@ -46,7 +46,7 @@ public interface AdminService {
     void deactivateUser(Long userId) throws NotFoundException;
 
     /**
-     * Reactives the deactived user with the given id and therefore reinits the activation process.
+     * Reactivates the deactivated user with the given id and therefore reinits the activation process.
      * See {@see AdminService#deactivateUser} for more information.
      *
      * @param userId id of the user to reactive.

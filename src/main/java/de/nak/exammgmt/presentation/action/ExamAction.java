@@ -8,7 +8,6 @@ package de.nak.exammgmt.presentation.action;
 import de.nak.exammgmt.persistence.entity.Exam;
 import de.nak.exammgmt.persistence.entity.Maniple;
 import de.nak.exammgmt.presentation.model.ExamModel;
-import de.nak.exammgmt.service.CourseService;
 import de.nak.exammgmt.service.ExamService;
 import de.nak.exammgmt.service.ManipleService;
 import de.nak.exammgmt.service.exception.AlreadyCreatedException;
@@ -25,14 +24,13 @@ public class ExamAction extends BaseAction {
     private Long examId;
 
     private ExamService examService;
-    private CourseService courseService;
     private ManipleService manipleService;
 
 
     public String editNew() {
         examModel.setManiples(manipleService.list());
         for (Maniple maniple : examModel.getManiples()) {
-            examModel.putManipleCourse(maniple.getId(), courseService.list(maniple));
+            examModel.putManipleCourse(maniple.getId(), manipleService.listCourses(maniple));
         }
         return NEW;
     }
@@ -81,7 +79,4 @@ public class ExamAction extends BaseAction {
         this.manipleService = manipleService;
     }
 
-    public void setCourseService(CourseService courseService) {
-        this.courseService = courseService;
-    }
 }

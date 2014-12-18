@@ -22,15 +22,15 @@ public class GradePresenter {
         String cssClass = "grade-";
 
         // TODO: schönere möglichkeit?
-        if (grade >= 1.0 && grade < 1.7) {
+        if (grade < 1.7) {
             cssClass += "a";
-        } else if (grade >= 1.7 && grade < 2.7) {
+        } else if (grade < 2.7) {
             cssClass += "b";
-        } else if (grade >= 2.7 && grade < 3.7) {
+        } else if (grade < 3.7) {
             cssClass += "c";
-        } else if (grade >= 3.7 && grade <= 4.0) {
+        } else if (grade <= 4.0) {
             cssClass += "d";
-        } else if (grade > 4.0) {
+        } else {
             cssClass += "f";
         }
 

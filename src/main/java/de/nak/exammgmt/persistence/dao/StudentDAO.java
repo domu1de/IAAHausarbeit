@@ -6,6 +6,7 @@
 package de.nak.exammgmt.persistence.dao;
 
 import de.nak.exammgmt.persistence.entity.Exam;
+import de.nak.exammgmt.persistence.entity.Maniple;
 import de.nak.exammgmt.persistence.entity.Student;
 
 import java.util.List;
@@ -18,19 +19,27 @@ import java.util.List;
 public interface StudentDAO extends DAO<Student> {
 
     /**
-     * Finds a List of all Students who can attend the given exam.
+     * Finds a list of all students who can attend the given exam.
      * A student is a possible attendee if he has not passed the course yet or failed it.
      *
-     * @param exam the Exam to find possible attendees for
-     * @return List of Students who are possible attendees
+     * @param exam the exam to find possible attendees for
+     * @return list of students who are possible attendees
      */
     List<Student> findPossibleAttendees(Exam exam);
 
     /**
-     * Finds a List of all Students who are allowed to take a reexamination in the given Exam.
+     * Finds a list of all students who are allowed to take a reexamination in the given exam.
      *
-     * @param exam the Exam that shall be reexamined
-     * @return List of Students that are allowed to reexamine the Exam
+     * @param exam the exam that shall be reexamined
+     * @return list of students that are allowed to reexamine the exam
      */
     List<Student> findPossibleReexaminationAttendees(Exam exam);
+
+    /**
+     * Finds a list of all students for the given maniple.
+     *
+     * @param maniple the maniple query with
+     * @return list of students of the given maniple
+     */
+    List<Student> findByManiple(Maniple maniple);
 }

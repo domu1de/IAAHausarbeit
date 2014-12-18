@@ -104,7 +104,7 @@
 
                                 response(course.lecturers.map(function(lecturer, index) {
                                     return {
-                                        label: lecturer.title + ' ' + lecturer.firstName + ' ' + lecturer.lastName,
+                                        label: lecturer.name,
                                         value: lecturer.id,
                                         selected: false
                                     };

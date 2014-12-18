@@ -5,6 +5,7 @@
 
 package de.nak.exammgmt.util;
 
+import org.springframework.context.ResourceLoaderAware;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.util.Assert;
 
@@ -13,7 +14,7 @@ import org.springframework.util.Assert;
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
-public class ReloadableClasspathResourceBundleMessageSource extends ReloadableResourceBundleMessageSource {
+public class ReloadableClasspathResourceBundleMessageSource extends ReloadableResourceBundleMessageSource implements ResourceLoaderAware {
 
     @Override
     public void setBasenames(String... basenames) {

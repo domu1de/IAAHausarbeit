@@ -6,11 +6,11 @@
 package de.nak.exammgmt.service;
 
 import de.nak.exammgmt.persistence.dao.ExamPerformanceDAO;
-import de.nak.exammgmt.persistence.entity.Course;
 import de.nak.exammgmt.persistence.entity.ExamPerformance;
-import de.nak.exammgmt.persistence.entity.Student;
 import de.nak.exammgmt.service.authentication.AuthenticationService;
+import de.nak.exammgmt.service.exception.ExamPerformanceValidationException;
 import de.nak.exammgmt.service.exception.NotFoundException;
+import de.nak.exammgmt.service.validation.ExamPerformanceValidator;
 
 import java.util.List;
 
@@ -22,62 +22,31 @@ import java.util.List;
 public class DefaultExamPerformanceService implements ExamPerformanceService {
 
     private ExamPerformanceDAO examPerformanceDAO;
+    private ExamPerformanceValidator examPerformanceValidator;
+
     private AuthenticationService authenticationService;
     private EmployeeService employeeService;
-    private StudentService studentService;
-    private CourseService courseService;
 
     @Override
-    public void create(ExamPerformance examPerformance) throws NotFoundException {
-        List<ExamPerformance> attempts = examPerformanceDAO.findAttemptsByCourseAndStudent(examPerformance.getExam().getCourse(), examPerformance.getStudent());
-        ExamPerformance lastAttempt = !attempts.isEmpty() ? attempts.get(0) : null;
+    public void create(ExamPerformance examPerformance) throws NotFoundException, ExamPerformanceValidationException {
+        List<ExamPerformance> previousAttempts = examPerformanceDAO.findAttemptsByCourseAndStudent(examPerformance.getExam().getCourse(), examPerformance.getStudent());
+        ExamPerformance lastAttempt = !previousAttempts.isEmpty() ? previousAttempts.get(0) : null;
 
-        if (lastAttempt != null && lastAttempt.isPassed()) {
-            // TODO: throw new exception
-        }
+        examPerformanceValidator.validate(examPerformance, previousAttempts);
 
         setAttempt(examPerformance, lastAttempt);
 
-        if (examPerformance.getAttempt() > 3) {
-            // TODO throw exception
-        }
-
         if (examPerformance.isReexamination()) {
-            if (attempts.isEmpty()) {
-                throw new RuntimeException();
-                // TODO exception
-            }
-
-            if (lastAttempt != null && lastAttempt.isReexamination()) {
-                // TODO exception
-            }
-
-            if (lastAttempt != null && !lastAttempt.isReexaminationPossible()) {
-                // TODO exception
-            }
-
-            if (attempts.stream().filter(ExamPerformance::isReexamination).count() >= 2) {
-                // TODO exception
-            }
+            examPerformance.setReexaminationPossible(false);
+        }
+        // TODO: exception?
+        if (examPerformance.getGrade() != 5.0f) {
+            examPerformance.setReexaminationPossible(false);
         }
 
-        // TODO get employee
         examPerformance.setCreator(employeeService.get(authenticationService.getCurrentUser()));
 
         examPerformanceDAO.save(examPerformance);
-    }
-
-    @Override
-    // TODO: listCourseResults vllt besser?
-    public List<ExamPerformance> listLastAttempts(long studentId) throws NotFoundException {
-        Student student = studentService.get(studentId); // FIXME: oder nur in object wrappen?
-        return examPerformanceDAO.findLastAttemptsByStudent(student);
-    }
-
-    @Override
-    public List<ExamPerformance> listCurrentPerformances(long courseId) throws NotFoundException {
-        Course course = courseService.get(courseId);
-        return examPerformanceDAO.findCurrentByCourse(course);
     }
 
     private void setAttempt(ExamPerformance examPerformance, ExamPerformance lastAttempt) {
@@ -105,11 +74,7 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
         this.employeeService = employeeService;
     }
 
-    public void setStudentService(StudentService studentService) {
-        this.studentService = studentService;
-    }
-
-    public void setCourseService(CourseService courseService) {
-        this.courseService = courseService;
+    public void setExamPerformanceValidator(ExamPerformanceValidator examPerformanceValidator) {
+        this.examPerformanceValidator = examPerformanceValidator;
     }
 }

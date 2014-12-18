@@ -121,6 +121,16 @@
             <result name="create" type="redirectAction">${"exam/" + examId}</result>
         </action>
 
+        <action name="exam/{examId}/reexamination" class="de.nak.exammgmt.presentation.action.BatchAction">
+            <param name="get">show</param>
+            <param name="post">create</param>
+
+            <param name="reexamination">true</param>
+
+            <result name="new" type="thymeleaf">exam/batch</result>
+            <result name="create" type="redirectAction">${"exam/" + examId}</result>
+        </action>
+
         <action name="exam/{examId}?" class="de.nak.exammgmt.presentation.action.ExamAction">
             <result name="new" type="thymeleaf">exam/new</result>
         </action>
@@ -134,7 +144,7 @@
         </action>
         
         <action name="course/{courseId}?" class="de.nak.exammgmt.presentation.action.CourseAction">
-
+            <result name="show" type="thymeleaf">course/grades</result>
         </action>
 
     </package>

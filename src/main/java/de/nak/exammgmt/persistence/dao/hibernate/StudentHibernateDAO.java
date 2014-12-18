@@ -7,6 +7,7 @@ package de.nak.exammgmt.persistence.dao.hibernate;
 
 import de.nak.exammgmt.persistence.dao.StudentDAO;
 import de.nak.exammgmt.persistence.entity.Exam;
+import de.nak.exammgmt.persistence.entity.Maniple;
 import de.nak.exammgmt.persistence.entity.Student;
 
 import java.util.List;
@@ -41,7 +42,7 @@ public class StudentHibernateDAO extends HibernateDAO<Student> implements Studen
                         "AND attempt = 3)")
                 .setParameter("maniple", exam.getCourse().getManiple())
                 .setParameter("course", exam.getCourse())
-                .list();*/
+                .listByManiple();*/
         // Optimized query
         // Reasons: No subselect in HQL-FROM; No limit in HQL
         // Gain: Just one subselect; subselect just executed once and not for every row
@@ -70,9 +71,35 @@ public class StudentHibernateDAO extends HibernateDAO<Student> implements Studen
     @Override
     @SuppressWarnings("unchecked")
     public List<Student> findPossibleReexaminationAttendees(Exam exam) {
-        // TODO only twice!
-        return getCurrentSession().createQuery("SELECT ep.student FROM ExamPerformance ep WHERE ep.exam = :exam AND ep.reexaminationPossible")
-                .setParameter("exam", exam)
+        // TODO: comment
+        return getCurrentSession().createSQLQuery(
+                "SELECT s.* " +
+                        "FROM STUDENT s " +
+                        "  JOIN EXAM_PERFORMANCE ep1 ON (" +
+                        "    ep1.STUDENT = s.ID " +
+                        "    AND NOT ep1.REVERSED " +
+                        "    AND ep1.EXAM = :exam_id " +
+                        "    AND ep1.REEXAMINATION_POSSIBLE " +
+                        "  )" +
+                        "  LEFT JOIN (" +
+                        "    SELECT ep2.STUDENT, SUM(CASE WHEN EXAM = :exam_id THEN 1 ELSE 0 END) EXAM_REEX_COUNT, COUNT(ep2.STUDENT) COURSE_REEX_COUNT" +
+                        "    FROM EXAM_PERFORMANCE ep2" +
+                        "      JOIN EXAM e ON e.ID = ep2.EXAM" +
+                        "    WHERE NOT ep2.REVERSED AND e.COURSE = :course_id AND ep2.REEXAMINATION" +
+                        "    GROUP BY ep2.STUDENT" +
+                        "  ) rc ON rc.STUDENT = s.ID " +
+                        "WHERE rc.STUDENT IS NULL OR (rc.EXAM_REEX_COUNT = 0 AND COURSE_REEX_COUNT < 2)")
+                .addEntity(Student.class)
+                .setLong("exam_id", exam.getId())
+                .setLong("course_id", exam.getCourse().getId())
+                .list();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Student> findByManiple(Maniple maniple) {
+        return getCurrentSession().createQuery("FROM Student WHERE maniple = :maniple")
+                .setParameter("maniple", maniple)
                 .list();
     }
 
