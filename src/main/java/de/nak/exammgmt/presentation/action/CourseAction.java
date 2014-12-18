@@ -9,6 +9,7 @@ import de.nak.exammgmt.persistence.entity.Course;
 import de.nak.exammgmt.presentation.GradePresenter;
 import de.nak.exammgmt.presentation.model.CourseActionModel;
 import de.nak.exammgmt.service.CourseService;
+import de.nak.exammgmt.service.EnrollmentService;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
 /**
@@ -19,6 +20,7 @@ public class CourseAction extends BaseAction {
     private Long courseId;
 
     private CourseService courseService;
+    private EnrollmentService enrollmentService;
 
     private CourseActionModel courseActionModel = new CourseActionModel();
 
@@ -29,7 +31,7 @@ public class CourseAction extends BaseAction {
 
         Course course = courseService.get(courseId);
         courseActionModel.setCourse(course);
-        courseActionModel.setCurrentPerformances(courseService.listCurrentPerformancePerStudent(course));
+        courseActionModel.setEnrollments(enrollmentService.listByCourse(course));
 
         return SHOW;
     }
@@ -52,5 +54,9 @@ public class CourseAction extends BaseAction {
 
     public CourseActionModel getCourseActionModel() {
         return courseActionModel;
+    }
+
+    public void setEnrollmentService(EnrollmentService enrollmentService) {
+        this.enrollmentService = enrollmentService;
     }
 }

@@ -22,26 +22,34 @@
 
             <dl class="dl-horizontal">
                 <dt th:text="#{txt.course}">Course</dt>
-                <dd th:text="${action.courseActionModel.course.title}">IAA</dd>
+                <dd th:text="${action.batchActionModel.exam.course.title}">IAA</dd>
                 <dt th:text="#{txt.maniple}">Manipel</dt>
-                <dd th:text="${action.courseActionModel.course.maniple}">I11</dd>
+                <dd th:text="${action.batchActionModel.exam.course.maniple}">I11</dd>
                 <dt th:text="#{txt.lecturers}">Lecturers</dt>
-                <dd th:text="${#strings.listJoin(action.courseActionModel.course.lecturers.{name}, ', ')}">Anft, Reichert</dd>
+                <dd th:text="${#strings.listJoin(action.batchActionModel.exam.lecturers.{name}, ', ')}">Anft, Reichert</dd>
+                <dt th:text="#{txt.date}">Date</dt>
+                <dd th:text="${#temporals.format(action.batchActionModel.exam.date)}">2014-10-10</dd>
             </dl>
 
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Student</th>
-                        <th>Versuch</th>
+                        <th>#</th>
+                        <th>Matrikelnummer</th>
+                        <th>Name</th>
+                        <th>Vorname</th>
                         <th>Note</th>
+                        <th>Nachprüfung möglich</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="enrollment : ${action.courseActionModel.enrollments}">
-                        <td th:text="|${enrollment.student.name} (${enrollment.student.studentId})|">Hans Müllerchen</td>
-                        <td th:text="${enrollment.attempt}">1</td>
-                        <td th:text="${#numbers.formatDecimal(enrollment.grade,1,1)}" th:class="${action.toCssClass(enrollment.grade)}">1.0</td>
+                    <tr th:each="examPerformance,iterStat : ${action.batchActionModel.examPerformances}">
+                        <td th:text="${iterStat.index + 1}">1</td>
+                        <td th:text="${examPerformance.student.studentId}">5043</td>
+                        <td th:text="${examPerformance.student.lastName}">Muskulus</td>
+                        <td th:text="${examPerformance.student.firstName}">Domenic</td>
+                        <td th:text="${#numbers.formatDecimal(examPerformance.grade,1,1)}" th:class="${action.toCssClass(examPerformance.grade)}">1.0</td>
+                        <td th:text="${examPerformance.reexaminationPossible ? '✖'}">x</td>
                     </tr>
                 </tbody>
             </table>

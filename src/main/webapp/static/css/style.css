@@ -325,7 +325,7 @@ li.session-device.session-current .mega-octicon {
 }
 
 .grade-d {
-    background-color: #FF5;
+    background-color: #FFE355;
 }
 
 .grade-f {
@@ -335,7 +335,15 @@ li.session-device.session-current .mega-octicon {
 label.btn.active {
     opacity: 1;
     position: relative;
+    z-index: 13 !important;
     transform: scale(1.1);
     font-weight: bold;
     box-shadow: 0 0 6px 3px rgba(0, 0, 0, 0.06); /*grayscale 30*/
+}
+
+/*
+ * Batch grade form
+ */
+#form-exam-grades tr.has-error {
+    background-color: #F2DEDE;
 }

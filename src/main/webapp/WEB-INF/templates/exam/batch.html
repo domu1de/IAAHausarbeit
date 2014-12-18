@@ -80,6 +80,11 @@
                                     <input th:unless="${action.reexamination}" type="hidden" class="reexamination-possible" th:name="'batchActionModel.examPerformances[' + ${iterStat.index} + '].reexaminationPossible'" />
                                 </div>
                             </td>
+                            <td>
+                                <button type="button" class="btn btn-default unattended-button" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                    Nicht teilgenommen
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -89,16 +94,63 @@
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="../../../static/js/vendor/bootstrap.min.js" th:src="@{/static/js/vendor/bootstrap.min.js}"></script>
+        <script src="../../../static/js/vendor/bootstrap.min.js" th:src="@{/static/js/vendor/bootstrap.js}"></script>
         <script src="../../../static/js/script.js" th:src="@{/static/js/script.js}"></script>
         <script th:unless="${action.reexamination}">
             $(function() {
-                $('#form-exam-grades').on('change.reexamination-possible', '[type="radio"]', function(event) {
+                var $form = $('#form-exam-grades');
+
+                $form.on('change.reexamination-possible', '[type="radio"]', function(event) {
                     var $radio = $(event.target);
+                    var $entry = $radio.closest('tr');
                     var reexaminationPossible = $radio.prop('checked') && $radio.hasClass('reexamination-radio');
                     $radio.closest('[data-toggle="buttons"]').find('.reexamination-possible').val(reexaminationPossible).trigger('change');
+                    $entry.find('.unattended-button.active').button('toggle');
+
+                    validateEntry.call($entry);
+
                     event.preventDefault();
+                }).on('click.unattended', '.unattended-button', function(event) {
+                    var $btn = $(event.target);
+                    var unattended = !$btn.hasClass('active');
+                    var $entry = $btn.closest('tr');
+                    if (unattended) {
+                        $entry.find('.btn.active').removeClass('active').find('input').prop('checked', false);
+                    }
+
+                    validateEntry.call($entry);
+
+                    event.preventDefault();
+                }).on('submit', function(event) {
+                    var $this = $(this);
+                    var $entries = $this.find('tbody tr');
+
+                    $entries.each(validateEntry);
+
+                    if ($entries.is('.has-error')) {
+                        $entries.each(function() {
+                            var $entry = $(this);
+                            var unattended = $entry.find('.unattended-button').hasClass('active');
+                            unattended && $entry.remove();
+                        });
+                        return true;
+                    } else {
+                        return false;
+                    }
                 });
+
+                function validateEntry() {
+                    var $entry = $(this);
+                    var unattended = $entry.find('.unattended-button').hasClass('active');
+
+                    $entry.removeClass('has-error');
+                    if (!unattended && $entry.find('[type="radio"]:checked').length === 0) {
+                        $entry.addClass('has-error');
+                        return false;
+                    }
+
+                    return true;
+                }
             });
         </script>
     </body>

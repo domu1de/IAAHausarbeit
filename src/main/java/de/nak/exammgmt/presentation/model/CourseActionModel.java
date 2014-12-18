@@ -6,7 +6,7 @@
 package de.nak.exammgmt.presentation.model;
 
 import de.nak.exammgmt.persistence.entity.Course;
-import de.nak.exammgmt.persistence.entity.ExamPerformance;
+import de.nak.exammgmt.service.Enrollment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +17,7 @@ import java.util.List;
 public class CourseActionModel {
 
     private Course course;
-    private List<ExamPerformance> currentPerformances = new ArrayList<>();
-
-    public List<ExamPerformance> getCurrentPerformances() {
-        return currentPerformances;
-    }
-
-    public void setCurrentPerformances(List<ExamPerformance> currentPerformances) {
-        this.currentPerformances = currentPerformances;
-    }
+    private List<Enrollment> enrollments = new ArrayList<>();
 
     public Course getCourse() {
         return course;
@@ -33,5 +25,13 @@ public class CourseActionModel {
 
     public void setCourse(Course course) {
         this.course = course;
+    }
+
+    public List<Enrollment> getEnrollments() {
+        return enrollments;
+    }
+
+    public void setEnrollments(List<Enrollment> enrollments) {
+        this.enrollments = enrollments;
     }
 }

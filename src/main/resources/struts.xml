@@ -58,10 +58,14 @@
                 <param name="error">404</param>
             </result>
             <result name="redirect_welcome" type="redirect">/</result>
+            <!-- TODO: Remove for production -->
+            <result name="redirect_reset_database" type="redirectAction">reset_database</result>
         </global-results>
 
         <global-exception-mappings>
             <exception-mapping exception="de.nak.exammgmt.service.exception.NotFoundException" result="404" />
+            <!-- TODO: Remove for production -->
+            <exception-mapping exception="de.nak.exammgmt.service.exception.DatabaseInvalidException" result="redirect_reset_database" />
         </global-exception-mappings>
 
     </package>
@@ -149,7 +153,7 @@
 
     </package>
 
-    <!-- DANGEROUS!!! Remove package for production -->
+    <!-- TODO: DANGEROUS!!! Remove package for production -->
     <package name="reset" extends="default">
         <default-interceptor-ref name="defaultStack" />
 
@@ -158,6 +162,7 @@
             <param name="post">reset</param>
 
             <param name="password">resetDB</param>
+
             <result name="success" type="thymeleaf">reset_database</result>
         </action>
     </package>

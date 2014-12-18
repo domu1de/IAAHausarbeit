@@ -394,10 +394,10 @@
       <index name="FK_T68Y4TM652CGWJ58B3H88LJBU_INDEX_B" unique="false" columns="EXAM"/>
     </table>
     <table name="EXAM_PERFORMANCE" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfOEYxQjFGMThfMEVGRV80M0M1Xzk0RjVfOEYyM0I2NURCMTJBKQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfMzFBMTMyOTJfRDNCMF80NUEzX0EzOEFfMkVBRkEzMTBCRDk4KQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
-      <column name="ATTEMPT" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="ATTEMPT" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="GRADE" sqlType="DECIMAL" precision="2" scale="1" nullable="false" jdbcType="3"/>
       <column name="REEXAMINATION" sqlType="BOOLEAN" precision="1" scale="0" nullable="false" jdbcType="16"/>
       <column name="REEXAMINATION_POSSIBLE" sqlType="BOOLEAN" precision="1" scale="0" nullable="false" jdbcType="16"/>
@@ -411,9 +411,9 @@
       <foreign-key name="FK_6C0PY1FSGEPQND81VH9758X91" columns="STUDENT" ref-table="STUDENT" ref-schema="PUBLIC" ref-catalog="NAKEXAMMGMT" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <exported-key name="FK_HWGUA6ATHCVN0FQCC2F1UM61U" table="EXAM_PERFORMANCE_PROTOCOL_ITEM" schema="PUBLIC" catalog="NAKEXAMMGMT" columns="NEW_EXAM_PERFORMANCE"/>
       <exported-key name="FK_L6HWOF9BQ03WJO323NJXOQ4KW" table="EXAM_PERFORMANCE_PROTOCOL_ITEM" schema="PUBLIC" catalog="NAKEXAMMGMT" columns="OLD_EXAM_PERFORMANCE"/>
-      <index name="FK_1LEONYE8W2D7I0EPNN3QMCP62_INDEX_3" unique="false" columns="EXAM"/>
-      <index name="FK_6C0PY1FSGEPQND81VH9758X91_INDEX_3" unique="false" columns="STUDENT"/>
-      <index name="FK_EI0N130S0TGGAJFG9UE7111UK_INDEX_3" unique="false" columns="CREATOR"/>
+      <index name="FK_1LEONYE8W2D7I0EPNN3QMCP62_INDEX_C" unique="false" columns="EXAM"/>
+      <index name="FK_6C0PY1FSGEPQND81VH9758X91_INDEX_C" unique="false" columns="STUDENT"/>
+      <index name="FK_EI0N130S0TGGAJFG9UE7111UK_INDEX_C" unique="false" columns="CREATOR"/>
     </table>
     <table name="EXAM_PERFORMANCE_PROTOCOL_ITEM" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
       <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfM0E1NDcxREZfNDNEOV80OTlBXzgyQUZfQUNGRjgzM0QxMzgxKQ==" autoIncrement="true"/>

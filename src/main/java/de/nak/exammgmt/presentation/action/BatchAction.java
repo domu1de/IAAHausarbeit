@@ -29,7 +29,9 @@ public class BatchAction extends BaseAction {
 
         Exam exam = examService.get(examId);
 
-        batchActionModel.setPossibleAttendees(examService.listPossibleAttendees(exam));
+        batchActionModel.setPossibleAttendees(reexamination
+                ? examService.listPossibleReexaminationAttendees(exam)
+                : examService.listPossibleAttendees(exam));
 
         return NEW;
     }

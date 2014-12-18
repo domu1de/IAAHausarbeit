@@ -37,9 +37,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="attempt : ${action.studentActionModel.lastAttempts}">
-                        <td th:text="${attempt.exam.course.title}">Modul 1</td>
-                        <td th:text="${#numbers.formatDecimal(attempt.reexaminationattempt.grade,1,1)}" th:class="${action.toCssClass(attempt.grade)}">1.0</td>
+                    <tr th:each="enrollment : ${action.studentActionModel.enrollments}" th:if="${enrollment.grade}">
+                        <td th:text="${enrollment.course.title}">Modul 1</td>
+                        <td th:text="${#numbers.formatDecimal(enrollment.grade,1,1)}" th:class="${action.toCssClass(enrollment.grade)}">1.0</td>
                     </tr>
                 </tbody>
             </table>
