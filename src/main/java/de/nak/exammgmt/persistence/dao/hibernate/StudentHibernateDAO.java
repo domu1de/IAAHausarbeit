@@ -47,17 +47,17 @@ public class StudentHibernateDAO extends HibernateDAO<Student> implements Studen
         // Reasons: No subselect in HQL-FROM; No limit in HQL
         // Gain: Just one subselect; subselect just executed once and not for every row
         return getCurrentSession().createSQLQuery(
+                // TODO fix same attempt not passed but still allowed
                 "SELECT s.*, last_attempt.PASSED, last_attempt.ATTEMPT " +
                 "FROM STUDENT s " +
                     "LEFT JOIN (" +
-                        "SELECT ep1.STUDENT, ep1.ATTEMPT, ep1.EXAM, ((ep1.GRADE <= 4 AND NOT ep1.REEXAMINATION) OR (ep1.GRADE <= 3 AND ep1.REEXAMINATION)) PASSED " +
+                        "SELECT ep1.STUDENT, ep1.ATTEMPT, ((ep1.GRADE <= 4 AND NOT ep1.REEXAMINATION) OR (ep1.GRADE <= 3 AND ep1.REEXAMINATION)) PASSED " +
                         "FROM EXAM_PERFORMANCE ep1 " +
                             "LEFT JOIN EXAM_PERFORMANCE ep2 ON (ep1.STUDENT = ep2.STUDENT AND ep1.UPDATED_AT < ep2.UPDATED_AT) " +
                             "JOIN EXAM e ON e.ID = ep1.EXAM " +
                         "WHERE ep2.ID IS NULL AND e.COURSE = :course_id AND NOT ep1.REVERSED " +
                     ") last_attempt ON last_attempt.STUDENT = s.ID " +
                 "WHERE s.MANIPLE = :maniple_id " +
-                    "AND NOT last_attempt.EXAM = :exam_id " +
                     "AND (last_attempt.PASSED IS NULL " +
                         "OR (NOT last_attempt.PASSED " +
                         "AND last_attempt.ATTEMPT IS NOT NULL " +
@@ -65,7 +65,6 @@ public class StudentHibernateDAO extends HibernateDAO<Student> implements Studen
                 .addEntity(Student.class)
                 .setLong("maniple_id", exam.getCourse().getManiple().getId())
                 .setLong("course_id", exam.getCourse().getId())
-                .setLong("exam_id", exam.getId())
                 .list();
         // TODO: criteria api?
     }
