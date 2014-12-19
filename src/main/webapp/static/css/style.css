@@ -4,6 +4,21 @@
  */
 
 /*
+ * select2 adjustments
+ */
+.select2-container .select2-choice > .select2-chosen {
+    line-height: 1.42857143;
+}
+
+.select2-search-choice-close {
+    background-position-y: 1px;
+}
+
+.select2-container .select2-choice .select2-arrow b, .select2-container .select2-choice div b {
+    background-position-y: 4px;
+}
+
+/*
  * Horizontal button groups
  */
 .horizontal-button-group > .form-control:not(:first-child):not(:last-child) {

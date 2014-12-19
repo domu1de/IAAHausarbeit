@@ -10,36 +10,38 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>NAK Exam Management</title>
+        <title th:text="#{txt.pageTitle}">NAK Exam Management</title>
 
         <link href="../../../static/css/vendor/bootstrap.min.css" th:href="@{/static/css/vendor/bootstrap.min.css}" rel="stylesheet" />
         <link href="../../../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet" />
     </head>
     <body>
-        <th:block th:replace="layout :: layout-header"></th:block>
+        <th:block th:replace="layout :: layout-header (subTitle=#{txt.title.exam.batch.protocol})"></th:block>
 
         <div class="container">
 
             <dl class="dl-horizontal">
                 <dt th:text="#{txt.course}">Course</dt>
-                <dd th:text="${action.batchActionModel.exam.course.title}">IAA</dd>
+                <dd th:text="${action.batchActionModel.exam.course.title}">Internet Anwendungsarchitekturen</dd>
                 <dt th:text="#{txt.maniple}">Manipel</dt>
-                <dd th:text="${action.batchActionModel.exam.course.maniple}">I11</dd>
+                <dd th:text="${action.batchActionModel.exam.course.maniple}">Wirtschaftsinformatik 2011</dd>
                 <dt th:text="#{txt.lecturers}">Lecturers</dt>
                 <dd th:text="${#strings.listJoin(action.batchActionModel.exam.lecturers.{name}, ', ')}">Anft, Reichert</dd>
                 <dt th:text="#{txt.date}">Date</dt>
                 <dd th:text="${#temporals.format(action.batchActionModel.exam.date)}">2014-10-10</dd>
             </dl>
 
+            <div th:text="#{txt.batchProtocol(${#temporals.format(action.batchActionModel.exam.date)}, ${action.batchActionModel.creator.name})}">Entered 12-14-2014 10:04 by Hans Müllerchen</div>
+
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Matrikelnummer</th>
-                        <th>Name</th>
-                        <th>Vorname</th>
-                        <th>Note</th>
-                        <th>Nachprüfung möglich</th>
+                        <th th:text="#{txt.studentId}">StudentId</th>
+                        <th>Last name</th>
+                        <th>First name</th>
+                        <th th:text="#{txt.grade}">Grade</th>
+                        <th>Reexamination possible</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -48,8 +50,8 @@
                         <td th:text="${examPerformance.student.studentId}">5043</td>
                         <td th:text="${examPerformance.student.lastName}">Muskulus</td>
                         <td th:text="${examPerformance.student.firstName}">Domenic</td>
-                        <td th:text="${#numbers.formatDecimal(examPerformance.grade,1,1)}" th:class="${action.toCssClass(examPerformance.grade)}">1.0</td>
-                        <td th:text="${examPerformance.reexaminationPossible ? '✖'}">x</td>
+                        <td th:text="${#numbers.formatDecimal(examPerformance.grade,1,1)}">1.0</td>
+                        <td th:text="${examPerformance.reexaminationPossible ? 'x' : ''}">x</td>
                     </tr>
                 </tbody>
             </table>

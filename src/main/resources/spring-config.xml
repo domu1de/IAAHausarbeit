@@ -63,7 +63,8 @@
     <!-- The advice -->
     <tx:advice id="txAdvice" transaction-manager="txManager">
         <tx:attributes>
-            <tx:method name="*" propagation="REQUIRED"/>
+            <!-- TODO subclass and use @Transactional? -->
+            <tx:method name="*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
         </tx:attributes>
     </tx:advice>
 

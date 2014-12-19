@@ -196,6 +196,4 @@ if (!document.querySelector) {
 		
 	});
 
-	//$('.selectpicker').selectpicker();
-
 })(jQuery);

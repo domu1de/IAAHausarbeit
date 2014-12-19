@@ -52,6 +52,7 @@
             <result name="login" type="redirectAction">
                 <param name="actionName">login/</param>
                 <param name="returnTo">${returnTo}</param>
+                <param name="suppressEmptyParameters">true</param>
             </result>
             <result name="error" type="thymeleaf">error</result>
             <result name="404" type="httpheader">
@@ -122,7 +123,7 @@
             <param name="post">create</param>
 
             <result name="new" type="thymeleaf">exam/batch</result>
-            <result name="create" type="redirectAction">${"exam/" + examId}</result>
+            <result name="create" type="thymeleaf">exam/batch_protocol</result>
         </action>
 
         <action name="exam/{examId}/reexamination" class="de.nak.exammgmt.presentation.action.BatchAction">

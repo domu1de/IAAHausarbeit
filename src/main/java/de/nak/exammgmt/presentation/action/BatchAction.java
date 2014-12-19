@@ -10,6 +10,8 @@ import de.nak.exammgmt.presentation.model.BatchActionModel;
 import de.nak.exammgmt.service.ExamService;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
+import java.util.Collections;
+
 /**
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
@@ -41,13 +43,21 @@ public class BatchAction extends BaseAction {
             return NOT_FOUND;
         }
 
+        filterExamPerformances();
+
         if (batchActionModel.getExamPerformances().isEmpty()) {
             // TODO: error
         }
 
-        examService.saveExamPerformances(examId, batchActionModel.getExamPerformances(), false);
+        examService.saveExamPerformances(examId, batchActionModel.getExamPerformances(), reexamination);
+        batchActionModel.setCreator(batchActionModel.getExamPerformances().get(0).getCreator());
+        batchActionModel.setExam(batchActionModel.getExamPerformances().get(0).getExam()); // FIXME
 
         return CREATE;
+    }
+
+    private void filterExamPerformances() {
+        batchActionModel.getExamPerformances().removeAll(Collections.singleton(null)); // TODO: oder streaming api?
     }
 
     public Long getExamId() {

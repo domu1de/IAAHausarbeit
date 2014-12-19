@@ -10,33 +10,41 @@
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <title>NAK Exam Management</title>
+        <title th:text="#{txt.pageTitle}">NAK Exam Management</title>
 
         <link href="../../../static/css/vendor/bootstrap.min.css" th:href="@{/static/css/vendor/bootstrap.min.css}" rel="stylesheet"/>
+        <link href="../../../static/css/vendor/pikaday.css" th:href="@{/static/css/vendor/pikaday.css}" rel="stylesheet"/>
+        <link href="../../../static/css/vendor/select2/select2.min.css" th:href="@{/static/css/vendor/select2/select2.min.css}" rel="stylesheet"/>
+        <link href="../../../static/css/vendor/select2/select2-bootstrap.css" th:href="@{/static/css/vendor/select2/select2-bootstrap.css}" rel="stylesheet"/>
         <link href="../../../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet"/>
 
     </head>
     <body>
 
-        <th:block th:replace="layout :: layout-header"></th:block>
+        <th:block th:replace="layout :: layout-header (subTitle=#{txt.title.exam.new})"></th:block>
 
         <div class="container">
             <form id="form-create-exam" th:action="@{/exam/}" role="form" accept-charset="UTF-8" method="post">
                 <div class="form-group">
-                    <label th:text="#{input.email}">Course</label>
-                    <select class="selectpicker step1">
-                        <option>Please select...</option>
-                    </select>
-                    <select class="selectpicker step2" name="examModel.exam.course.id">
-                        <option>Please select...</option>
-                    </select>
-                    <select class="selectpicker step3" name="examModel.lecturers.id" multiple>
-                        <option>Please select...</option>
+                    <label class="control-label" for="maniple-input" th:text="#{txt.maniple}">Maniple</label>
+                    <select id="maniple-input" class="form-control advanced-select step1" th:attr="data-placeholder=#{input.maniple}">
+                        <option></option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="date" th:text="#{input.date}">Date</label>
-                    <input id="date" type="text" name="examModel.exam.date" class="form-control" th:placeholder="#{input.date}" placeholder="Date" required>
+                    <label class="control-label" for="course-input" th:text="#{txt.course}">Course</label>
+                    <select id="course-input" class="form-control advanced-select step2" th:attr="data-placeholder=#{input.course}" name="examModel.exam.course.id">
+                        <option></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="lecturers-input" th:text="#{txt.lecturers}">Lecturers</label>
+                    <select id="lecturers-input" class="form-control advanced-select step3" th:attr="data-placeholder=#{input.lecturers}" name="examModel.lecturers.id" multiple>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="date-input" th:text="#{input.date}">Date</label>
+                    <input id="date-input" type="text" name="examModel.exam.date" class="form-control" th:placeholder="#{input.date}" placeholder="Date" required>
                 </div>
                 <button class="btn btn-primary btn-block" type="submit">Create exam</button>
             </form>
@@ -44,7 +52,10 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="../../../static/js/vendor/bootstrap.min.js" th:src="@{/static/js/vendor/bootstrap.min.js}"></script>
+        <script src="../../../static/js/vendor/select2.min.js" th:src="@{/static/js/vendor/select2.min.js}"></script>
         <script src="../../../static/js/vendor/jquery.cascadingdropdown.js" th:src="@{/static/js/vendor/jquery.cascadingdropdown.js}"></script>
+        <script src="../../../static/js/vendor/moment.min.js" th:src="@{/static/js/vendor/moment.min.js}"></script>
+        <script src="../../../static/js/vendor/pikaday.js" th:src="@{/static/js/vendor/pikaday.js}"></script>
         <script src="../../../static/js/script.js" th:src="@{/static/js/script.js}"></script>
         <script th:inline="javascript">
             var maniples = /*[[${action.examModel.maniples}]]*/ null;
@@ -55,6 +66,12 @@
 
             $(function () {
                 var $dropdowns = $('.selectpicker');
+
+                var serverDateFormat = 'YYYY-MM-DD';
+                var picker = new Pikaday({
+                    field: document.getElementById('date-input'),
+                    format: /*[[#{format.date.short}]]*/ serverDateFormat
+                });
 
                 $('#form-create-exam').cascadingDropdown({
                     selectBoxes: [
@@ -85,7 +102,6 @@
                                         selected: false
                                     };
                                 }));
-                                //$dropdowns.selectpicker('refresh');
                             }
                         },
                         {
@@ -109,10 +125,28 @@
                                         selected: false
                                     };
                                 }));
-                                //$dropdowns.selectpicker('refresh');
                             }
                         }
                     ]
+                }).submit(function(event) {
+                    $('#date-input').val(picker.toString(serverDateFormat));
+
+                    var hasErrors = false;
+                    $('#form-create-exam').find('.form-control').each(function() {
+                        var $select = $(this);
+
+                        $select.closest('.form-group').removeClass('has-error');
+                        if (!$select.val()) {
+                            $select.closest('.form-group').addClass('has-error');
+                            hasErrors = true;
+                        }
+                    });
+
+                    return !hasErrors;
+                });
+
+                $('.advanced-select').select2({
+                    minimumResultsForSearch: -1 // disables search box
                 });
             });
         </script>
