@@ -108,4 +108,6 @@ public class ExamPerformance extends AbstractEntity {
         return (!reexamination && grade <= 4) || (reexamination && grade <= 3);
     }
 
+
+
 }

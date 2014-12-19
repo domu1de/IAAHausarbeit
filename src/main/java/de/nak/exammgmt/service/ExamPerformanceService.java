@@ -6,6 +6,7 @@
 package de.nak.exammgmt.service;
 
 import de.nak.exammgmt.persistence.entity.ExamPerformance;
+import de.nak.exammgmt.persistence.entity.ExamPerformanceProtocolItem;
 import de.nak.exammgmt.service.exception.ExamPerformanceValidationException;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
@@ -33,5 +34,21 @@ public interface ExamPerformanceService {
      * @param examPerformances list of exam performances
      */
     void initializeStudents(List<ExamPerformance> examPerformances);
+
+    /**
+     * Reverses the given exam performance and returns the corresponding protocol item.
+     *
+     * @param examPerformance the exam performance to reverse
+     * @return the corresponding protocol item
+     */
+    ExamPerformanceProtocolItem reverse(ExamPerformance examPerformance) throws NotFoundException;
+
+    /**
+     * Updates the given exam performance to persist the new grade and returns the corresponding protocol item.
+     *
+     * @param examPerformance the exam performance to update the grade for
+     * @return the corresponding protocol item
+     */
+    ExamPerformanceProtocolItem updateGrade(ExamPerformance examPerformance) throws NotFoundException;
 
 }

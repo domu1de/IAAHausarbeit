@@ -82,4 +82,23 @@ public class ExamPerformanceHibernateDAO extends HibernateDAO<ExamPerformance> i
                 .list();
     }
 
+    @Override
+    public ExamPerformance findLastEntryByCourseAndStudent(Course course, Student student) {
+        return (ExamPerformance) getCurrentSession().createQuery("FROM ExamPerformance WHERE exam.course = :course AND student = :student ORDER BY updatedAt DESC")
+                .setParameter("course", course)
+                .setParameter("student", student)
+                .setMaxResults(1)
+                .uniqueResult();
+    }
+
+    @Override
+    public void reverse(ExamPerformance examPerformance) {
+        if (getCurrentSession().createQuery("UPDATE ExamPerformance ep SET reversed = TRUE WHERE ep = :exam_performance")
+                .setParameter("exam_performance", examPerformance)
+                .executeUpdate() != 1) {
+            // TODO exception?
+        }
+        examPerformance.setReversed(true);
+    }
+
 }

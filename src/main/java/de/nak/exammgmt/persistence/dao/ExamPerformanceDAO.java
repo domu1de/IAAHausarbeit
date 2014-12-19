@@ -45,6 +45,28 @@ public interface ExamPerformanceDAO extends DAO<ExamPerformance> {
      */
     List<ExamPerformance> findLastAttemptsByStudent(Student student);
 
+    /**
+     * Finds the last unreversed attempts of the course for each student.
+     *
+     * @param course the course to look for
+     * @return list of last attempts
+     */
     List<ExamPerformance> findCurrentByCourse(Course course);
+
+    /**
+     * Finds the last exam performance for the given course and student regardless of the reversal state.
+     *
+     * @param course the course to look for
+     * @param student the student to look for
+     * @return the last exam performance (may be reversed) or null
+     */
+    ExamPerformance findLastEntryByCourseAndStudent(Course course, Student student);
+
+    /**
+     * Updates the given exam performance to reverse it.
+     *
+     * @param examPerformance the exam performance to reverse
+     */
+    void reverse(ExamPerformance examPerformance);
 
 }
