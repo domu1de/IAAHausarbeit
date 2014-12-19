@@ -21,7 +21,7 @@
         </div>
 
         <div class="alert alert-danger" role="alert" th:if="${#lists.isEmpty(action.actionErrors)}">
-            <span>An unexpected error occurred</span>
+            <span th:text="#{txt.unexpectedError}">An unexpected error occurred</span>
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

@@ -10,7 +10,7 @@ package de.nak.exammgmt.service.exception;
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
-public class NotFoundException extends Exception {
+public class NotFoundException extends Exception implements TransactionSensitiveException {
 
     public NotFoundException(Class entityClazz) {
         super("The " + entityClazz.getSimpleName() + " entity could not be found.");

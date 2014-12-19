@@ -10,7 +10,7 @@ package de.nak.exammgmt.service.exception;
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
-public class MissingIdException extends RuntimeException {
+public class MissingIdException extends RuntimeException implements TransactionSensitiveException {
 
     public MissingIdException() {
         super("The provided entity must have an ID.");

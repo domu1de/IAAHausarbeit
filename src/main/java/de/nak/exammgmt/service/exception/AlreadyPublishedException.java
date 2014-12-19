@@ -10,5 +10,5 @@ package de.nak.exammgmt.service.exception;
  *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
-public class AlreadyPublishedException extends Exception {
+public class AlreadyPublishedException extends Exception implements TransactionSensitiveException {
 }

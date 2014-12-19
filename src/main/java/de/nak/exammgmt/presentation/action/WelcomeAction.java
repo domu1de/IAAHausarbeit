@@ -5,8 +5,8 @@
 
 package de.nak.exammgmt.presentation.action;
 
-import de.nak.exammgmt.presentation.model.WelcomeAdminModel;
-import de.nak.exammgmt.presentation.model.WelcomeManagementModel;
+import de.nak.exammgmt.presentation.model.WelcomeAdminActionModel;
+import de.nak.exammgmt.presentation.model.WelcomeManagementActionModel;
 import de.nak.exammgmt.service.ExamService;
 import de.nak.exammgmt.service.home.AdminService;
 
@@ -26,8 +26,8 @@ public class WelcomeAction extends BaseAction {
     private AdminService adminService;
     private ExamService examService;
 
-    private WelcomeAdminModel welcomeAdminModel;
-    private WelcomeManagementModel welcomeManagementModel;
+    private WelcomeAdminActionModel welcomeAdminActionModel;
+    private WelcomeManagementActionModel welcomeManagementActionModel;
 
     @Override
     public String execute() throws Exception {
@@ -45,7 +45,7 @@ public class WelcomeAction extends BaseAction {
                 executeManagement();
                 return MANAGEMENT;
             default:
-                return LOGIN;
+                return LOGIN; // TODO permission for login  and here exception
         }
     }
 
@@ -58,12 +58,12 @@ public class WelcomeAction extends BaseAction {
     }
 
     private void executeStudent() {
-        //TODO implement.
+        //TODO check if student assigned.
     }
 
     private void executeAdmin() {
-        welcomeAdminModel = new WelcomeAdminModel();
-        welcomeAdminModel.setUsers(adminService.listUsers());
+        welcomeAdminActionModel = new WelcomeAdminActionModel();
+        welcomeAdminActionModel.setUsers(adminService.listUsers());
     }
 
     public void setAdminService(AdminService adminService) {
@@ -74,20 +74,20 @@ public class WelcomeAction extends BaseAction {
         this.examService = examService;
     }
 
-    public WelcomeAdminModel getWelcomeAdminModel() {
-        return welcomeAdminModel;
+    public WelcomeAdminActionModel getWelcomeAdminActionModel() {
+        return welcomeAdminActionModel;
     }
 
-    public void setWelcomeAdminModel(WelcomeAdminModel welcomeAdminModel) {
-        this.welcomeAdminModel = welcomeAdminModel;
+    public void setWelcomeAdminActionModel(WelcomeAdminActionModel welcomeAdminActionModel) {
+        this.welcomeAdminActionModel = welcomeAdminActionModel;
     }
 
-    public WelcomeManagementModel getWelcomeManagementModel() {
-        return welcomeManagementModel;
+    public WelcomeManagementActionModel getWelcomeManagementActionModel() {
+        return welcomeManagementActionModel;
     }
 
-    public void setWelcomeManagementModel(WelcomeManagementModel welcomeManagementModel) {
-        this.welcomeManagementModel = welcomeManagementModel;
+    public void setWelcomeManagementActionModel(WelcomeManagementActionModel welcomeManagementActionModel) {
+        this.welcomeManagementActionModel = welcomeManagementActionModel;
     }
 
 }

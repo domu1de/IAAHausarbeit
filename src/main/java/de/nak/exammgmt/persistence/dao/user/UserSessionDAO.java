@@ -21,20 +21,25 @@ public interface UserSessionDAO extends DAO<UserSession> {
     /**
      * Finds the UserSession for the given user and token.
      *
-     * @param token the token to look for.
-     * @param userId    the id of the user to look for.
-     * @return  the UserSession.
+     * @param token the token to look for
+     * @param userId the id of the user to look for
+     * @return  the UserSession, or {@code null}
      */
     UserSession findByTokenAndUser(String token, Long userId);
 
     /**
      * Finds a list of all UserSessions for the given user.
      *
-     * @param user  the user whose UserSessions will be searched.
-     * @return  List of all UserSessions of the user.
+     * @param user the user whose UserSessions will be searched
+     * @return list of all UserSessions of the user
      */
     List<UserSession> findByUser(User user);
 
+    /**
+     * Deletes all user sessions for the given user.
+     *
+     * @param user the user to delete user sessions for
+     */
     void deleteByUser(User user);
 
 }

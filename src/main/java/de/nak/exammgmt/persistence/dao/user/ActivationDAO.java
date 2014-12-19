@@ -19,23 +19,23 @@ public interface ActivationDAO extends DAO<Activation> {
     /**
      * Finds the Activation for the given token.
      *
-     * @param token the token for the activation.
-     * @return the activation.
+     * @param token the token for the activation
+     * @return the activation, or {@code null}
      */
     Activation findByToken(String token);
 
     /**
      * Checks whether or not the user has an ongoing activation.
      *
-     * @param user the user to check for.
-     * @return true if the user has an ongoing activation or false if not.
+     * @param user the user to check for
+     * @return true if the user has an ongoing activation or false if not
      */
     boolean has(User user);
 
     /**
      * Deletes the activation for the given user.
      *
-     * @param user the user whose activation should be deleted.
+     * @param user the user whose activation should be deleted
      */
     void deleteByUser(User user);
 

@@ -20,22 +20,22 @@ public interface UserDAO extends DAO<User> {
     /**
      * Finds the user by one of its unique fields username or email.
      *
-     * @param usernameOrEmail   the username or email to search for.
-     * @return  the user.
+     * @param usernameOrEmail the username or email to search for
+     * @return the user, or {@code null}
      */
     User findByUsernameOrEmail(String usernameOrEmail);
 
     /**
      * Finds a list of all inative users.
      *
-     * @return List of all inactive users.
+     * @return list of all inactive users
      */
     List<User> findInactiveUsers();
 
     /**
      * Finds a list of all active users.
      *
-     * @return  List of all active users.
+     * @return list of all active users
      */
     List<User> findActiveUsers();
 

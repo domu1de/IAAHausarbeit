@@ -54,7 +54,7 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
             examPerformance.setReexaminationPossible(false);
         }
 
-        examPerformance.setCreator(employeeService.get(authenticationService.getCurrentUser()));
+        examPerformance.setCreator(employeeService.getByUser(authenticationService.getCurrentUser()));
 
         examPerformanceDAO.save(examPerformance);
     }
@@ -74,7 +74,7 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
 
         protocolItem.setType(REVERSAL);
         protocolItem.setOldExamPerformance(examPerformance);
-        protocolItem.setEditor(employeeService.get(authenticationService.getCurrentUser()));
+        protocolItem.setEditor(employeeService.getByUser(authenticationService.getCurrentUser()));
 
         examPerformanceProtocolItemDAO.save(protocolItem);
 
@@ -134,7 +134,7 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
         newExamPerformance.setReexaminationPossible(oldExamPerformance.isReexaminationPossible());
 
         newExamPerformance.setReversed(false);
-        newExamPerformance.setCreator(employeeService.get(authenticationService.getCurrentUser()));
+        newExamPerformance.setCreator(employeeService.getByUser(authenticationService.getCurrentUser()));
 
         return newExamPerformance;
     }

@@ -8,7 +8,7 @@ package de.nak.exammgmt.presentation.model;
 /**
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
-public class ResetDatabaseModel {
+public class ResetDatabaseActionModel {
 
     private String password;
 

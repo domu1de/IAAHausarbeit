@@ -18,17 +18,18 @@ import java.util.List;
 public interface RoleDAO extends DAO<Role> {
 
     /**
-     * Finds the Role entity with the given name.
+     * Finds the role entity with the given name.
      *
      * @param name name of the role
-     * @return Role with the given name or null if not present.
+     * @return role with the given name, or {@code null}
      */
     Role findByName(String name);
 
     /**
      * Finds a list of all Roles except the guest role.
      *
-     * @return List of all roles without guest.
+     * @return list of all roles without guest
      */
     List<Role> findAllWithoutGuest();
+
 }

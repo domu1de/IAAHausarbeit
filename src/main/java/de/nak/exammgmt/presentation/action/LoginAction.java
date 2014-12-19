@@ -50,11 +50,9 @@ public class LoginAction extends BaseAction {
     public String logout() {
         try {
             loginService.logout(getCurrentUser());
-            LOGGER.info(getCurrentUser().getUsername() + " logged out.");
             return REDIRECT_WELCOME;
         } catch (Exception e) {  // TODO specify
             addActionError("Logout failed.");
-            e.printStackTrace();
             return ERROR;
         }
     }

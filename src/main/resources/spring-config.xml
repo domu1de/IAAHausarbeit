@@ -64,7 +64,7 @@
     <tx:advice id="txAdvice" transaction-manager="txManager">
         <tx:attributes>
             <!-- TODO subclass and use @Transactional? -->
-            <tx:method name="*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+            <tx:method name="*" propagation="REQUIRED" rollback-for="de.nak.exammgmt.service.exception.TransactionSensitiveException" />
         </tx:attributes>
     </tx:advice>
 

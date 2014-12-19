@@ -30,7 +30,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="user,iterStat : ${action.userModel.users}">
+    <tr th:each="user,iterStat : ${action.userActionModel.users}">
         <td th:text="${iterStat.index + 1}">2</td>
         <td th:text="${user.FullName}">John Doe</td>
         <td th:text="${user.username}">@mdo</td>

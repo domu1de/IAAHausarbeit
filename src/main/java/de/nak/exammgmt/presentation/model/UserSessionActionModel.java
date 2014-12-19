@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
-public class UserSessionModel {
+public class UserSessionActionModel {
 
     private List<UserSession> userSessions;
 

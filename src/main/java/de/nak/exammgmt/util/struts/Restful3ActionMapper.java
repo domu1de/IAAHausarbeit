@@ -70,7 +70,7 @@ public class Restful3ActionMapper extends DefaultActionMapper {
             // TODO gut so, oder lieber inside.out?
             if (mapping.getMethod() == null) {
                 String method = null;
-                if (id == null) {
+                if (id == null) { // TODO ends with slash
                     // Index e.g. foo/
                     if (isGet(request)) {
                         method = getMethod(actionConfig, "get", "index");

@@ -9,11 +9,12 @@ import de.nak.exammgmt.persistence.dao.StudentDAO;
 import de.nak.exammgmt.persistence.entity.Exam;
 import de.nak.exammgmt.persistence.entity.Maniple;
 import de.nak.exammgmt.persistence.entity.Student;
+import de.nak.exammgmt.persistence.entity.user.User;
 
 import java.util.List;
 
 /**
- * Hibernate specific implementation of the {@link StudentDAO}
+ * Hibernate specific implementation of the {@link StudentDAO}.
  *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
@@ -110,6 +111,13 @@ public class StudentHibernateDAO extends HibernateDAO<Student> implements Studen
         return getCurrentSession().createQuery("FROM Student WHERE maniple = :maniple")
                 .setParameter("maniple", maniple)
                 .list();
+    }
+
+    @Override
+    public Student findByUser(User user) {
+        return (Student) getCurrentSession().createQuery("FROM Student WHERE user = :user")
+                .setParameter("user", user)
+                .uniqueResult();
     }
 
 }

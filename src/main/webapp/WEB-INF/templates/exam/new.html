@@ -33,18 +33,18 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="course-input" th:text="#{txt.course}">Course</label>
-                    <select id="course-input" class="form-control advanced-select step2" th:attr="data-placeholder=#{input.course}" name="examModel.exam.course.id">
+                    <select id="course-input" class="form-control advanced-select step2" th:attr="data-placeholder=#{input.course}" name="examActionModel.exam.course.id">
                         <option></option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="lecturers-input" th:text="#{txt.lecturers}">Lecturers</label>
-                    <select id="lecturers-input" class="form-control advanced-select step3" th:attr="data-placeholder=#{input.lecturers}" name="examModel.lecturers.id" multiple>
+                    <select id="lecturers-input" class="form-control advanced-select step3" th:attr="data-placeholder=#{input.lecturers}" name="examActionModel.lecturers.id" multiple>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="date-input" th:text="#{input.date}">Date</label>
-                    <input id="date-input" type="text" name="examModel.exam.date" class="form-control" th:placeholder="#{input.date}" placeholder="Date" required>
+                    <input id="date-input" type="text" name="examActionModel.exam.date" class="form-control" th:placeholder="#{input.date}" placeholder="Date" required>
                 </div>
                 <button class="btn btn-primary btn-block" type="submit">Create exam</button>
             </form>
@@ -58,9 +58,9 @@
         <script src="../../../static/js/vendor/pikaday.js" th:src="@{/static/js/vendor/pikaday.js}"></script>
         <script src="../../../static/js/script.js" th:src="@{/static/js/script.js}"></script>
         <script th:inline="javascript">
-            var maniples = /*[[${action.examModel.maniples}]]*/ null;
-            var manipleCourses = /*[[${action.examModel.manipleCourses}]]*/ null;
-            var course = null;
+            var maniples = /*[[${action.examActionModel.maniples}]]*/ null;
+            var coursesPerManiple = /*[[${action.examActionModel.coursesPerManiple}]]*/ null;
+            var lecturersPerCourse = /*[[${action.examActionModel.lecturersPerCourse}]]*/ null;
 
             // TODO remove dropdowns from post
 
@@ -82,8 +82,8 @@
                             requireAll: true,
                             source: maniples.map(function(maniple, index) {
                                 return {
-                                    label: maniple.abbreviation,
-                                    value: maniple.id,
+                                    label: maniple,
+                                    value: maniple,
                                     selected: false
                                 };
                             })
@@ -94,11 +94,11 @@
                             paramName: 'course',
                             requireAll: true,
                             source: function(request, response) {
-                                if (!manipleCourses[request.maniple]) return;
-                                response(manipleCourses[request.maniple].map(function(course, index) {
+                                if (!coursesPerManiple[request.maniple]) return;
+                                response($.map(coursesPerManiple[request.maniple], function(course, key) {
                                     return {
-                                        label: course.title,
-                                        value: course.id,
+                                        label: course,
+                                        value: key,
                                         selected: false
                                     };
                                 }));
@@ -112,16 +112,12 @@
                             source: function(request, response) {
                                 if (!request.maniple || !request.course) return;
 
-                                course = manipleCourses[request.maniple].find(function(course, index) {
-                                    return course.id == request.course;
-                                });
+                                if (!lecturersPerCourse[request.course]) return;
 
-                                if (!course) return;
-
-                                response(course.lecturers.map(function(lecturer, index) {
+                                response($.map(lecturersPerCourse[request.course], function(lecturer, key) {
                                     return {
-                                        label: lecturer.name,
-                                        value: lecturer.id,
+                                        label: lecturer,
+                                        value: key,
                                         selected: false
                                     };
                                 }));

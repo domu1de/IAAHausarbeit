@@ -25,7 +25,7 @@
 
             <div>
                 <ul class="boxed-group-list">
-                    <li class="session-device session-current" th:each="userSession : ${action.userSessionModel.userSessions}"  th:with="locatedIp=${action.locateIp(userSession.ip)}">
+                    <li class="session-device session-current" th:each="userSession : ${action.userSessionActionModel.userSessions}"  th:with="locatedIp=${action.locateIp(userSession.ip)}">
 
                         <!-- Activity indicator -->
                         <span class="session-state-indicator recent" th:if="${userSession.id.equals(action.currentUser.currentUserSession.id)}"></span>

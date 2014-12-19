@@ -12,7 +12,7 @@ import de.nak.exammgmt.persistence.entity.ExamPerformance;
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
-public class ExamPerformanceValidationException extends Exception {
+public class ExamPerformanceValidationException extends Exception implements TransactionSensitiveException {
 
     private ExamPerformance examPerformance;
 

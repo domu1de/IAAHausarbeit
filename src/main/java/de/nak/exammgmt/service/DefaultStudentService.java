@@ -9,6 +9,7 @@ import de.nak.exammgmt.persistence.dao.ExamPerformanceDAO;
 import de.nak.exammgmt.persistence.dao.StudentDAO;
 import de.nak.exammgmt.persistence.entity.ExamPerformance;
 import de.nak.exammgmt.persistence.entity.Student;
+import de.nak.exammgmt.persistence.entity.user.User;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
 import java.util.List;
@@ -26,6 +27,16 @@ public class DefaultStudentService implements StudentService {
     @Override
     public Student get(long studentId) throws NotFoundException {
         Student student = studentDAO.findById(studentId);
+        if (student == null) {
+            throw new NotFoundException(Student.class);
+        }
+        return student;
+    }
+
+    @Override
+    public Student getByUser(User user) throws NotFoundException {
+        // TODO not null
+        Student student = studentDAO.findByUser(user);
         if (student == null) {
             throw new NotFoundException(Student.class);
         }

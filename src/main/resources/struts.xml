@@ -19,7 +19,7 @@
     <package name="default" extends="struts-default">
 
         <result-types>
-            <result-type name="thymeleaf" class="de.nak.exammgmt.util.struts.thymeleaf.ThymeleafResult"/>
+            <result-type name="thymeleaf" class="de.nak.exammgmt.util.struts.thymeleaf.ThymeleafResult" />
         </result-types>
 
         <interceptors>
@@ -50,7 +50,7 @@
 
         <global-results>
             <result name="login" type="redirectAction">
-                <param name="actionName">login/</param>
+                <param name="actionName">login</param>
                 <param name="returnTo">${returnTo}</param>
                 <param name="suppressEmptyParameters">true</param>
             </result>
@@ -67,6 +67,7 @@
             <exception-mapping exception="de.nak.exammgmt.service.exception.NotFoundException" result="404" />
             <!-- TODO: Remove for production -->
             <exception-mapping exception="de.nak.exammgmt.service.exception.DatabaseInvalidException" result="redirect_reset_database" />
+            <exception-mapping exception="java.lang.Exception" result="error" />
         </global-exception-mappings>
 
     </package>
@@ -75,16 +76,19 @@
 
         <action name="welcome" class="de.nak.exammgmt.presentation.action.WelcomeAction" method="execute">
             <result name="admin" type="thymeleaf">welcome/admin</result>
-            <result name="student" type="thymeleaf">welcome/student</result>
+            <result name="student" type="chain">
+                <param name="actionName">student/</param>
+                <param name="method">personalGrades</param>
+            </result>
             <result name="lecturer" type="thymeleaf">welcome/lecturer</result>
             <result name="management" type="thymeleaf">welcome/management</result>
         </action>
 
-        <action name="error404">
+        <action name="error404" method="execute">
             <result type="thymeleaf">404</result>
         </action>
 
-        <action name="login/" class="de.nak.exammgmt.presentation.action.LoginAction">
+        <action name="login" class="de.nak.exammgmt.presentation.action.LoginAction">
             <param name="get">show</param>
             <param name="post">login</param>
 
@@ -138,10 +142,6 @@
 
         <action name="exam/{examId}?" class="de.nak.exammgmt.presentation.action.ExamAction">
             <result name="new" type="thymeleaf">exam/new</result>
-        </action>
-
-        <action name="grades" class="de.nak.exammgmt.presentation.action.StudentAction" method="personalGrades">
-
         </action>
 
         <action name="student/{studentId}?" class="de.nak.exammgmt.presentation.action.StudentAction">

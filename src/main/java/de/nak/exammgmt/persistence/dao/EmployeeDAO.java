@@ -19,7 +19,7 @@ public interface EmployeeDAO extends DAO<Employee> {
      * Finds the corresponding employee for the given user
      *
      * @param user the corresponding user
-     * @return the employee, or null
+     * @return the employee, or {@code null}
      */
     Employee findByUser(User user);
 

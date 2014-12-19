@@ -45,7 +45,7 @@ public class GuestProvider {
         guest.setRole(roleDAO.findByName(ROLE_NAME));
 
         //Fallback for not initialized database
-        if(guest.getRole() == null) {
+        if (guest.getRole() == null) {
             guest = null;
             throw new DatabaseInvalidException();
         }

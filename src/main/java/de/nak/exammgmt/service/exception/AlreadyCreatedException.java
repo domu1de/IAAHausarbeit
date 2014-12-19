@@ -10,7 +10,7 @@ package de.nak.exammgmt.service.exception;
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
-public class AlreadyCreatedException extends Exception {
+public class AlreadyCreatedException extends Exception implements TransactionSensitiveException {
 
     public AlreadyCreatedException() {
         super("The provided entity has already been created.");

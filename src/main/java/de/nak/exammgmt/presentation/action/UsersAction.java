@@ -5,7 +5,7 @@
 
 package de.nak.exammgmt.presentation.action;
 
-import de.nak.exammgmt.presentation.model.UserModel;
+import de.nak.exammgmt.presentation.model.UserActionModel;
 import de.nak.exammgmt.service.exception.NotFoundException;
 import de.nak.exammgmt.service.home.AdminService;
 
@@ -19,48 +19,48 @@ public class UsersAction extends BaseAction {
     private AdminService adminService;
 
     private Long userId;
-    private UserModel userModel;
+    private UserActionModel userActionModel;
 
     public String index() {
-        userModel = new UserModel();
-        userModel.setUsers(adminService.listUsers());
+        userActionModel = new UserActionModel();
+        userActionModel.setUsers(adminService.listUsers());
         return INDEX;
     }
 
     public String show() throws NotFoundException {
-        userModel = new UserModel();
-        userModel.setUser(adminService.getUser(userId));
+        userActionModel = new UserActionModel();
+        userActionModel.setUser(adminService.getUser(userId));
         return SHOW;
     }
 
     public String editNew() {
-        userModel = new UserModel();
-        userModel.setRoles(adminService.getRoles());
+        userActionModel = new UserActionModel();
+        userActionModel.setRoles(adminService.getRoles());
         return NEW;
     }
 
     public String edit() throws NotFoundException {
-        userModel = new UserModel();
-        userModel.setUser(adminService.getUser(userId));
+        userActionModel = new UserActionModel();
+        userActionModel.setUser(adminService.getUser(userId));
         return EDIT;
     }
 
     public String update() throws Exception {
-        if (userModel == null || userModel.getUser() == null) {
+        if (userActionModel == null || userActionModel.getUser() == null) {
             addActionError("no user data submitted");
             return ERROR;
         }
-        adminService.updateUser(userModel.getUser());
+        adminService.updateUser(userActionModel.getUser());
         return SHOW;
     }
 
     public String create() throws Exception {
-        if (userModel == null || userModel.getUser() == null) {
+        if (userActionModel == null || userActionModel.getUser() == null) {
             addActionError("no user data submitted");
             return ERROR;
         }
-        adminService.createUser(userModel.getUser());
-        userId = userModel.getUser().getId();
+        adminService.createUser(userActionModel.getUser());
+        userId = userActionModel.getUser().getId();
         return CREATE;
     }
 
@@ -91,12 +91,12 @@ public class UsersAction extends BaseAction {
         this.adminService = adminService;
     }
 
-    public UserModel getUserModel() {
-        return userModel;
+    public UserActionModel getUserActionModel() {
+        return userActionModel;
     }
 
-    public void setUserModel(UserModel userModel) {
-        this.userModel = userModel;
+    public void setUserActionModel(UserActionModel userActionModel) {
+        this.userActionModel = userActionModel;
     }
 
     public Long getUserId() {

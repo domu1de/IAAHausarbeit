@@ -5,21 +5,26 @@
 
 package de.nak.exammgmt.presentation.action;
 
+import de.nak.exammgmt.persistence.entity.Course;
+import de.nak.exammgmt.persistence.entity.Employee;
 import de.nak.exammgmt.persistence.entity.Exam;
 import de.nak.exammgmt.persistence.entity.Maniple;
-import de.nak.exammgmt.presentation.model.ExamModel;
+import de.nak.exammgmt.presentation.model.ExamActionModel;
 import de.nak.exammgmt.service.ExamService;
 import de.nak.exammgmt.service.ManipleService;
 import de.nak.exammgmt.service.exception.AlreadyCreatedException;
 
 import java.util.HashSet;
+import java.util.List;
+
+import static java.util.stream.Collectors.toMap;
 
 /**
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
 public class ExamAction extends BaseAction {
 
-    private ExamModel examModel = new ExamModel();
+    private ExamActionModel examActionModel = new ExamActionModel();
 
     private Long examId;
 
@@ -28,25 +33,32 @@ public class ExamAction extends BaseAction {
 
 
     public String editNew() {
-        examModel.setManiples(manipleService.list());
-        for (Maniple maniple : examModel.getManiples()) {
-            examModel.putManipleCourse(maniple.getId(), manipleService.listCourses(maniple));
+        for (Maniple maniple : manipleService.list()) {
+            List<Course> courses = manipleService.listCourses(maniple);
+            examActionModel.getManiples().add(maniple.getAbbreviation());
+            examActionModel.putCourses(maniple.getAbbreviation(),
+                    courses.stream().collect(toMap(Course::getId, Course::getTitle)));
+
+            for (Course course : courses) {
+                examActionModel.putLecturers(course.getId(), course.getLecturers().stream()
+                                .collect(toMap(Employee::getId, Employee::getName)));
+            }
         }
         return NEW;
     }
 
     public String create() {
-        Exam exam = examModel.getExam();
+        Exam exam = examActionModel.getExam();
 
         if (exam == null) {
             addActionError("bg"); // FIXME
             return ERROR;
         }
 
-        exam.setLecturers(new HashSet<>(examModel.getLecturers()));
+        exam.setLecturers(new HashSet<>(examActionModel.getLecturers()));
 
         try {
-            examService.create(examModel.getExam());
+            examService.create(examActionModel.getExam());
         } catch (AlreadyCreatedException e) {
             addActionError("bla2");
             return ERROR; // FIXME
@@ -55,12 +67,12 @@ public class ExamAction extends BaseAction {
         return SHOW;
     }
 
-    public ExamModel getExamModel() {
-        return examModel;
+    public ExamActionModel getExamActionModel() {
+        return examActionModel;
     }
 
-    public void setExamModel(ExamModel examModel) {
-        this.examModel = examModel;
+    public void setExamActionModel(ExamActionModel examActionModel) {
+        this.examActionModel = examActionModel;
     }
 
     public Long getExamId() {

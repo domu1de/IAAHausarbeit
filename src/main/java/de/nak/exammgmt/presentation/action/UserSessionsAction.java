@@ -8,7 +8,7 @@ package de.nak.exammgmt.presentation.action;
 import com.maxmind.geoip2.GeoIp2Provider;
 import com.maxmind.geoip2.exception.AddressNotFoundException;
 import com.maxmind.geoip2.model.CityResponse;
-import de.nak.exammgmt.presentation.model.UserSessionModel;
+import de.nak.exammgmt.presentation.model.UserSessionActionModel;
 import de.nak.exammgmt.service.authentication.AuthenticationService;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
@@ -24,12 +24,12 @@ public class UserSessionsAction extends BaseAction {
     private AuthenticationService authenticationService;
     private GeoIp2Provider geoIp2Provider;
 
-    private UserSessionModel userSessionModel = new UserSessionModel();
+    private UserSessionActionModel userSessionActionModel = new UserSessionActionModel();
     private Long userSessionId;
 
     public String index() {
         try {
-            userSessionModel.setUserSessions(authenticationService.listUserSessions(getCurrentUser()));
+            userSessionActionModel.setUserSessions(authenticationService.listUserSessions(getCurrentUser()));
         } catch (NotFoundException e) {
             // TODO: loggen? Dieser fehler dürfte niemals auftreten
             return ERROR;
@@ -69,12 +69,12 @@ public class UserSessionsAction extends BaseAction {
         this.authenticationService = authenticationService;
     }
 
-    public UserSessionModel getUserSessionModel() {
-        return userSessionModel;
+    public UserSessionActionModel getUserSessionActionModel() {
+        return userSessionActionModel;
     }
 
-    public void setUserSessionModel(UserSessionModel userSessionModel) {
-        this.userSessionModel = userSessionModel;
+    public void setUserSessionActionModel(UserSessionActionModel userSessionActionModel) {
+        this.userSessionActionModel = userSessionActionModel;
     }
 
     public Long getUserSessionId() {

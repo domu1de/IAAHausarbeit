@@ -39,7 +39,7 @@
                 <tbody>
                     <tr th:each="enrollment : ${action.studentActionModel.enrollments}" th:if="${enrollment.grade}">
                         <td th:text="${enrollment.course.title}">Modul 1</td>
-                        <td th:text="${#numbers.formatDecimal(enrollment.grade,1,1)}" th:class="${action.toCssClass(enrollment.grade)}">1.0</td>
+                        <td><span th:text="${#numbers.formatDecimal(enrollment.grade,1,1)}" class="label grade-label " th:attrappend="class=${action.toCssClass(enrollment.grade)}">1.0</span></td>
                     </tr>
                 </tbody>
             </table>

@@ -5,7 +5,7 @@
 
 package de.nak.exammgmt.presentation.action;
 
-import de.nak.exammgmt.presentation.model.ResetDatabaseModel;
+import de.nak.exammgmt.presentation.model.ResetDatabaseActionModel;
 import de.nak.exammgmt.service.common.ResetDatabaseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ public class ResetDatabaseAction extends BaseAction {
     private static final Logger LOGGER = LoggerFactory.getLogger(ResetDatabaseAction.class);
 
     private String password;
-    private ResetDatabaseModel resetDatabaseModel = new ResetDatabaseModel();
+    private ResetDatabaseActionModel resetDatabaseActionModel = new ResetDatabaseActionModel();
     private ResetDatabaseService resetDatabaseService;
 
     public String show() {
@@ -29,7 +29,7 @@ public class ResetDatabaseAction extends BaseAction {
     }
 
     public String reset() throws Exception {
-        if (password != null && password.equals(resetDatabaseModel.getPassword())) {
+        if (password != null && password.equals(resetDatabaseActionModel.getPassword())) {
             resetDatabaseService.resetDatabase();
             addActionMessage(getText("txt.resetDatabase.success"));
             LOGGER.info("Database reset");
@@ -37,12 +37,12 @@ public class ResetDatabaseAction extends BaseAction {
         return SUCCESS;
     }
 
-    public ResetDatabaseModel getResetDatabaseModel() {
-        return resetDatabaseModel;
+    public ResetDatabaseActionModel getResetDatabaseActionModel() {
+        return resetDatabaseActionModel;
     }
 
-    public void setResetDatabaseModel(ResetDatabaseModel resetDatabaseModel) {
-        this.resetDatabaseModel = resetDatabaseModel;
+    public void setResetDatabaseActionModel(ResetDatabaseActionModel resetDatabaseActionModel) {
+        this.resetDatabaseActionModel = resetDatabaseActionModel;
     }
 
     public String getPassword() {

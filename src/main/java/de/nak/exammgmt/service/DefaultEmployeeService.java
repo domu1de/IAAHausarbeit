@@ -11,6 +11,8 @@ import de.nak.exammgmt.persistence.entity.user.User;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
 /**
+ * Default implementation of {@link EmployeeService}.
+ *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
 public class DefaultEmployeeService implements EmployeeService {
@@ -27,7 +29,7 @@ public class DefaultEmployeeService implements EmployeeService {
     }
 
     @Override
-    public Employee get(User user) throws NotFoundException {
+    public Employee getByUser(User user) throws NotFoundException {
         // TODO: check for null
         Employee employee = employeeDAO.findByUser(user);
         if (employee == null) {

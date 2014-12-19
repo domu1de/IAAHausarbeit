@@ -23,7 +23,7 @@ public interface ExamPerformanceDAO extends DAO<ExamPerformance> {
      *
      * @param course the course to look for
      * @param student the student to look for
-     * @return the last attempt, or null
+     * @return the last attempt, or {@code null}
      */
     ExamPerformance findLastAttemptByCourseAndStudent(Course course, Student student);
 
@@ -46,10 +46,10 @@ public interface ExamPerformanceDAO extends DAO<ExamPerformance> {
     List<ExamPerformance> findLastAttemptsByStudent(Student student);
 
     /**
-     * Finds the last unreversed attempts of the course for each student.
+     * Finds the current performances per student for the given course.
      *
      * @param course the course to look for
-     * @return list of last attempts
+     * @return list of current performances
      */
     List<ExamPerformance> findCurrentByCourse(Course course);
 

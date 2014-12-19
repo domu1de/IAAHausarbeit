@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
-public class WelcomeAdminModel {
+public class WelcomeAdminActionModel {
 
     private List<User> users = new ArrayList<>();
 

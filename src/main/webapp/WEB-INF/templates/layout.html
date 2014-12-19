@@ -34,9 +34,9 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="navbar-text" th:if="${action.currentUser.loggedIn}" th:text="#{txt.welcomeUser(${action.currentUser.fullName})}">Profile</li>
-                            <li><a th:href="@{/profile/}" th:if="${action.currentUser.loggedIn}" th:text="#{txt.profile}">Profile</a></li>
-                            <li><a th:href="@{/logout}" th:if="${action.currentUser.loggedIn}" th:text="#{txt.logout}">Log out</a></li>
-                            <li><a th:href="@{/login/}" th:unless="${action.currentUser.loggedIn}" th:text="#{txt.signIn}">Sign in</a></li>
+                            <li th:if="${action.currentUser.loggedIn}"><a th:href="@{/profile/}" th:text="#{txt.profile}">Profile</a></li>
+                            <li th:if="${action.currentUser.loggedIn}"><a th:href="@{/logout}" th:text="#{txt.logout}">Log out</a></li>
+                            <li th:unless="${action.currentUser.loggedIn}"><a th:href="@{/login/}" th:text="#{txt.signIn}">Sign in</a></li>
                         </ul>
                     </nav>
                 </div>

@@ -8,5 +8,5 @@ package de.nak.exammgmt.presentation.model;
 /**
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
-public class WelcomeManagementModel {
+public class WelcomeManagementActionModel {
 }

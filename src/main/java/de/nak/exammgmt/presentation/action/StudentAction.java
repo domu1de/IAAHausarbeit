@@ -37,8 +37,9 @@ public class StudentAction extends BaseAction {
         return SHOW;
     }
 
-    public String personalGrades() {
-        return "";
+    public String personalGrades() throws Exception {
+        studentId = studentService.getByUser(getCurrentUser()).getId(); // FIXME duplicate
+        return show();
     }
 
     // TODO: direct call in thyemleaf?!
@@ -81,4 +82,5 @@ public class StudentAction extends BaseAction {
     public void setEnrollmentService(EnrollmentService enrollmentService) {
         this.enrollmentService = enrollmentService;
     }
+
 }

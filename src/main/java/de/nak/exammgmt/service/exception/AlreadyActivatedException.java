@@ -10,7 +10,7 @@ package de.nak.exammgmt.service.exception;
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
-public class AlreadyActivatedException extends Exception {
+public class AlreadyActivatedException extends Exception implements TransactionSensitiveException {
 
     public AlreadyActivatedException() {
         super("The given user has already been activated.");

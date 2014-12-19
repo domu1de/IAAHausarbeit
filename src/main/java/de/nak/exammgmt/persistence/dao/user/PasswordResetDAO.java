@@ -19,23 +19,23 @@ public interface PasswordResetDAO extends DAO<PasswordReset> {
     /**
      * Finds the password reset for the given token.
      *
-     * @param token the token for the password reset.
-     * @return the password reset for the token or null.
+     * @param token the token for the password reset
+     * @return the password reset for the token, or {@code null}
      */
     PasswordReset findByToken(String token);
 
     /**
      * Checks whether or not the given user has an active password reset.
      *
-     * @param user the user to check for.
-     * @return  true if a password reset is present or false if not.
+     * @param user the user to check for
+     * @return true if a password reset is present or false if not
      */
     boolean has(User user);
 
     /**
      * Deletes the password reset for the given user.
      *
-     * @param user the user whose password reset should be deleted.
+     * @param user the user whose password reset should be deleted
      */
     void deleteByUser(User user);
 

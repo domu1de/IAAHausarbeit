@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
-public class UserModel {
+public class UserActionModel {
 
     private User user;
     private List<User> users = new ArrayList<>();

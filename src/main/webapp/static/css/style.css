@@ -328,7 +328,7 @@ li.session-device.session-current .mega-octicon {
  * Grade colors
  */
 .grade-a {
-    background-color: #33FF33;
+    background-color: #2fff37;
 }
 
 .grade-b {
@@ -345,6 +345,12 @@ li.session-device.session-current .mega-octicon {
 
 .grade-f {
     background-color: #FF6666;
+}
+
+.grade-label {
+    font-size: 100%;
+    color: #333;
+    font-weight: normal;
 }
 
 label.btn.active {

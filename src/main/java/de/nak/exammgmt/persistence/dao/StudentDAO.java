@@ -8,6 +8,7 @@ package de.nak.exammgmt.persistence.dao;
 import de.nak.exammgmt.persistence.entity.Exam;
 import de.nak.exammgmt.persistence.entity.Maniple;
 import de.nak.exammgmt.persistence.entity.Student;
+import de.nak.exammgmt.persistence.entity.user.User;
 
 import java.util.List;
 
@@ -44,4 +45,13 @@ public interface StudentDAO extends DAO<Student> {
      * @return list of students of the given maniple
      */
     List<Student> findByManiple(Maniple maniple);
+
+    /**
+     * Finds the associated student for the given user.
+     *
+     * @param user the associated user
+     * @return the student, or {@code null}
+     */
+    Student findByUser(User user);
+
 }

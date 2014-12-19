@@ -32,7 +32,7 @@ public interface DAO<T> {
      * Finds the generic entity by its id.
      *
      * @param id the id of the entity.
-     * @return  the generic entity.
+     * @return the generic entity, or {@code null}
      */
     public T findById(Long id);
 

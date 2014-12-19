@@ -6,9 +6,9 @@
 package de.nak.exammgmt.service.exception;
 
 /**
- * Exception to indicate that someone tried to use an invalid token.
+ * Interface to mark that an exception should cause a transaction rollback.
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
-public class InvalidTokenException extends Exception implements TransactionSensitiveException {
+public interface TransactionSensitiveException {
 }
