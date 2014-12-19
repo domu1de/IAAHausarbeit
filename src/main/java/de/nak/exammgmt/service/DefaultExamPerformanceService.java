@@ -109,6 +109,12 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
         return examPerformanceDAO.findAllEntriesByCourseAndStudent(course, student);
     }
 
+    @Override
+    public ExamPerformanceProtocolItem getProtocolForPerformance(ExamPerformance examPerformance) {
+        // TODO not null
+        return examPerformanceProtocolItemDAO.findByOldExamPerformance(examPerformance);
+    }
+
     /**
      * Returns a clone of the given exam performance with all for an update relevant data.
      * (no id, new creator, not reversed, no updatedAt, no createdAt)

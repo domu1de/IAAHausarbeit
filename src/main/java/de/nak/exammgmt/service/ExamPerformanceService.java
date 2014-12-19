@@ -63,4 +63,12 @@ public interface ExamPerformanceService {
      */
     List<ExamPerformance> listFullHistory(Course course, Student student);
 
+    /**
+     * Gets the protocol item for the given exam performance
+     *
+     * @param examPerformance the old exam performance in the protocol item
+     * @return the protocol item or null
+     */
+    ExamPerformanceProtocolItem getProtocolForPerformance(ExamPerformance examPerformance);
+
 }
