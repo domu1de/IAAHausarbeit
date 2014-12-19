@@ -9,8 +9,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.core.io.Resource;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * Default implementation of the ResetDatabaseService.
@@ -27,7 +27,7 @@ public class DefaultResetDatabaseService implements ResetDatabaseService {
     @Override
     public void resetDatabase() {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(resource.getFile()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getInputStream(), "UTF8"));
             reader.lines().forEach(this::appendLine);
             sessionFactory.getCurrentSession().createSQLQuery(stringBuffer.toString()).executeUpdate();
         } catch (IOException e) {
