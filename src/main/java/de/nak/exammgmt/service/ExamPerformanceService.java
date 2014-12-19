@@ -9,6 +9,8 @@ import de.nak.exammgmt.persistence.entity.ExamPerformance;
 import de.nak.exammgmt.service.exception.ExamPerformanceValidationException;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
+import java.util.List;
+
 /**
  * Contract for a service to manage ExamPerformances.
  *
@@ -24,5 +26,12 @@ public interface ExamPerformanceService {
      * @throws ExamPerformanceValidationException if the given exam performance is invalid
      */
     void create(ExamPerformance examPerformance) throws NotFoundException, ExamPerformanceValidationException;
+
+    /**
+     * Initializes the Students of the given exam performances.
+     *
+     * @param examPerformances list of exam performances
+     */
+    void initializeStudents(List<ExamPerformance> examPerformances);
 
 }

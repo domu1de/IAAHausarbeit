@@ -52,6 +52,7 @@
         <property name="employeeService" ref="employeeService" />
         <property name="examPerformanceDAO" ref="examPerformanceDAO" />
         <property name="examPerformanceValidator" ref="examPerformanceValidator" />
+        <property name="studentDAO" ref="studentDAO" />
     </bean>
 
     <bean name="examPerformanceValidator" class="de.nak.exammgmt.service.validation.DefaultExamPerformanceValidator" />

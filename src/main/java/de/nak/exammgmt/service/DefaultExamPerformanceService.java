@@ -6,6 +6,7 @@
 package de.nak.exammgmt.service;
 
 import de.nak.exammgmt.persistence.dao.ExamPerformanceDAO;
+import de.nak.exammgmt.persistence.dao.StudentDAO;
 import de.nak.exammgmt.persistence.entity.ExamPerformance;
 import de.nak.exammgmt.service.authentication.AuthenticationService;
 import de.nak.exammgmt.service.exception.ExamPerformanceValidationException;
@@ -23,6 +24,7 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
 
     private ExamPerformanceDAO examPerformanceDAO;
     private ExamPerformanceValidator examPerformanceValidator;
+    private StudentDAO studentDAO;
 
     private AuthenticationService authenticationService;
     private EmployeeService employeeService;
@@ -47,6 +49,11 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
         examPerformance.setCreator(employeeService.get(authenticationService.getCurrentUser()));
 
         examPerformanceDAO.save(examPerformance);
+    }
+
+    @Override
+    public void initializeStudents(List<ExamPerformance> examPerformances) {
+        examPerformances.forEach(ep -> ep.setStudent(studentDAO.findById(ep.getStudent().getId())));
     }
 
     private void setAttempt(ExamPerformance examPerformance, ExamPerformance lastAttempt) {
@@ -76,5 +83,9 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
 
     public void setExamPerformanceValidator(ExamPerformanceValidator examPerformanceValidator) {
         this.examPerformanceValidator = examPerformanceValidator;
+    }
+
+    public void setStudentDAO(StudentDAO studentDAO) {
+        this.studentDAO = studentDAO;
     }
 }
