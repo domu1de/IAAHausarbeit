@@ -13,7 +13,9 @@ import de.nak.exammgmt.persistence.entity.Maniple;
 import de.nak.exammgmt.persistence.entity.Student;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Default implementation of the {@link ManipleService}.
@@ -25,6 +27,8 @@ public class DefaultManipleService implements ManipleService {
     private ManipleDAO manipleDAO;
     private CourseDAO courseDAO;
     private StudentDAO studentDAO;
+
+    private EnrollmentService enrollmentService;
 
     @Override
     public Maniple get(long manipleId) throws NotFoundException {
@@ -63,6 +67,17 @@ public class DefaultManipleService implements ManipleService {
         return studentDAO.findByManiple(maniple);
     }
 
+    @Override
+    public Map<Course, List<Enrollment>> gradeOverview(Maniple maniple) {
+        // TODO: not null
+        List<Course> courses = courseDAO.findByManiple(maniple);
+        Map<Course, List<Enrollment>> gradeOverview = new HashMap<>(courses.size());
+        for (Course course: courses) {
+            gradeOverview.put(course, enrollmentService.listByCourse(course));
+        }
+        return gradeOverview;
+    }
+
     public void setManipleDAO(ManipleDAO manipleDAO) {
         this.manipleDAO = manipleDAO;
     }
@@ -73,5 +88,9 @@ public class DefaultManipleService implements ManipleService {
 
     public void setStudentDAO(StudentDAO studentDAO) {
         this.studentDAO = studentDAO;
+    }
+
+    public void setEnrollmentService(EnrollmentService enrollmentService) {
+        this.enrollmentService = enrollmentService;
     }
 }
