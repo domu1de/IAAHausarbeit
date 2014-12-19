@@ -5,7 +5,7 @@
   ~ Licensed under the MIT License.
   -->
 
-<html xmlns:th="http://www.thymeleaf.org" ng-app>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="utf-8"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -129,10 +129,8 @@
                         }
                     ]
                 }).submit(function(event) {
-                    $('#date-input').val(picker.toString(serverDateFormat));
-
                     var hasErrors = false;
-                    $('#form-create-exam').find('.form-control').each(function() {
+                    $('#maniple-input, #course-input, #lecturers-input, #date-input').each(function() {
                         var $select = $(this);
 
                         $select.closest('.form-group').removeClass('has-error');
@@ -141,6 +139,10 @@
                             hasErrors = true;
                         }
                     });
+
+                    if (!hasErrors) {
+                        $('#date-input').val(picker.toString(serverDateFormat));
+                    }
 
                     return !hasErrors;
                 });

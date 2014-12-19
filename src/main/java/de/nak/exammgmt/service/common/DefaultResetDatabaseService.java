@@ -22,11 +22,12 @@ public class DefaultResetDatabaseService implements ResetDatabaseService {
 
     private SessionFactory sessionFactory;
     private Resource resource;
-    private StringBuffer stringBuffer = new StringBuffer();
+    private StringBuffer stringBuffer;
 
     @Override
     public void resetDatabase() {
         try {
+            stringBuffer = new StringBuffer();
             BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getInputStream(), "UTF8"));
             reader.lines().forEach(this::appendLine);
             sessionFactory.getCurrentSession().createSQLQuery(stringBuffer.toString()).executeUpdate();
