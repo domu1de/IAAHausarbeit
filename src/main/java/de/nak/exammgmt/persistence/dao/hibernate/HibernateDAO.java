@@ -57,6 +57,9 @@ public abstract class HibernateDAO<T> implements DAO<T> {
         return sessionFactory.getCurrentSession();
     }
 
+    /**
+     * Gets the lazy loaded model class of the generic type.
+     */
     @SuppressWarnings("unchecked")
     protected final Class<T> getModelClass() {
         if (modelClass == null) {

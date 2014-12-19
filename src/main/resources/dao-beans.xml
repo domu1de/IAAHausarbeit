@@ -33,10 +33,6 @@
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
 
-    <bean name="fieldOfStudyDAO" class="de.nak.exammgmt.persistence.dao.hibernate.FieldOfStudyHibernateDAO">
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
-
     <bean name="manipleDAO" class="de.nak.exammgmt.persistence.dao.hibernate.ManipleHibernateDAO">
         <property name="sessionFactory" ref="sessionFactory" />
     </bean>
