@@ -8,8 +8,10 @@ package de.nak.exammgmt.service;
 import de.nak.exammgmt.persistence.dao.ExamPerformanceDAO;
 import de.nak.exammgmt.persistence.dao.ExamPerformanceProtocolItemDAO;
 import de.nak.exammgmt.persistence.dao.StudentDAO;
+import de.nak.exammgmt.persistence.entity.Course;
 import de.nak.exammgmt.persistence.entity.ExamPerformance;
 import de.nak.exammgmt.persistence.entity.ExamPerformanceProtocolItem;
+import de.nak.exammgmt.persistence.entity.Student;
 import de.nak.exammgmt.service.authentication.AuthenticationService;
 import de.nak.exammgmt.service.exception.ExamPerformanceValidationException;
 import de.nak.exammgmt.service.exception.NotFoundException;
@@ -97,6 +99,14 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
         examPerformanceProtocolItemDAO.save(protocolItem);
 
         return protocolItem;
+    }
+
+    @Override
+    public List<ExamPerformance> listFullHistory(Course course, Student student) {
+        if (course == null || course.getId() == null || student == null || student.getId() == null) {
+            // TODO throw exception
+        }
+        return examPerformanceDAO.findAllEntriesByCourseAndStudent(course, student);
     }
 
     /**

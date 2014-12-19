@@ -93,12 +93,22 @@ public class ExamPerformanceHibernateDAO extends HibernateDAO<ExamPerformance> i
 
     @Override
     public void reverse(ExamPerformance examPerformance) {
+        // Does not save but update to ensure that nothing else will be changed.
         if (getCurrentSession().createQuery("UPDATE ExamPerformance ep SET reversed = TRUE WHERE ep = :exam_performance")
                 .setParameter("exam_performance", examPerformance)
                 .executeUpdate() != 1) {
             // TODO exception?
         }
         examPerformance.setReversed(true);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<ExamPerformance> findAllEntriesByCourseAndStudent(Course course, Student student) {
+        return getCurrentSession().createQuery("FROM ExamPerformance WHERE exam.course = :course AND student = :student ORDER BY updatedAt ASC")
+                .setParameter("course", course)
+                .setParameter("student", student)
+                .list();
     }
 
 }

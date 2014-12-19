@@ -69,4 +69,13 @@ public interface ExamPerformanceDAO extends DAO<ExamPerformance> {
      */
     void reverse(ExamPerformance examPerformance);
 
+    /**
+     * Lists the full history of exam performances for the given course and student.
+     * Reversed performances will be included!
+     *
+     * @param course the course to look for
+     * @param student the student to look for
+     * @return list of all exam performances (including reversed ones)
+     */
+    List<ExamPerformance> findAllEntriesByCourseAndStudent(Course course, Student student);
 }

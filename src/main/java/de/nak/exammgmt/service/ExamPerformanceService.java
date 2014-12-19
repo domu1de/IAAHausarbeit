@@ -5,8 +5,10 @@
 
 package de.nak.exammgmt.service;
 
+import de.nak.exammgmt.persistence.entity.Course;
 import de.nak.exammgmt.persistence.entity.ExamPerformance;
 import de.nak.exammgmt.persistence.entity.ExamPerformanceProtocolItem;
+import de.nak.exammgmt.persistence.entity.Student;
 import de.nak.exammgmt.service.exception.ExamPerformanceValidationException;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
@@ -50,5 +52,15 @@ public interface ExamPerformanceService {
      * @return the corresponding protocol item
      */
     ExamPerformanceProtocolItem updateGrade(ExamPerformance examPerformance) throws NotFoundException;
+
+    /**
+     * Lists the full history of exam performances for the given course and student.
+     * Reversed performances will be included! Sorted from first to last.
+     *
+     * @param course the course to look for
+     * @param student the student to look for
+     * @return list of all exam performances (including reversed ones)
+     */
+    List<ExamPerformance> listFullHistory(Course course, Student student);
 
 }
