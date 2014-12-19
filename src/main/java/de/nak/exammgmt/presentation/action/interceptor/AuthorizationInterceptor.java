@@ -7,7 +7,7 @@ package de.nak.exammgmt.presentation.action.interceptor;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
-import com.opensymphony.xwork2.interceptor.Interceptor;
+import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import de.nak.exammgmt.persistence.entity.user.Permission;
 import de.nak.exammgmt.persistence.entity.user.User;
 import de.nak.exammgmt.presentation.action.BaseAction;
@@ -29,21 +29,13 @@ import java.util.Set;
  *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
-public class AuthorizationInterceptor implements Interceptor {
+public class AuthorizationInterceptor extends AbstractInterceptor {
 
     private static final String DENIED = "denied";
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthorizationInterceptor.class);
 
     private AuthorizationService authorizationService;
     private UrlProvider urlProvider;
-
-    @Override
-    public void destroy() {
-    }
-
-    @Override
-    public void init() {
-    }
 
     @Override
     public String intercept(ActionInvocation actionInvocation) throws Exception {
