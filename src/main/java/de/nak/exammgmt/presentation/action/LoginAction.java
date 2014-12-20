@@ -6,8 +6,6 @@
 package de.nak.exammgmt.presentation.action;
 
 import de.nak.exammgmt.service.common.LoginService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * RESTful action to manage logins as resources.
@@ -17,7 +15,6 @@ import org.slf4j.LoggerFactory;
 public class LoginAction extends BaseAction {
 
     private static final String RETURN_TO = "return_to";
-    private static final Logger LOGGER = LoggerFactory.getLogger(LoginAction.class);
 
     private LoginService loginService;
 
@@ -25,6 +22,7 @@ public class LoginAction extends BaseAction {
     private String password;
     private boolean rememberMe;
 
+    @Override
     public String show() {
         if (!getCurrentUser().isLoggedIn()) {
             return INPUT;

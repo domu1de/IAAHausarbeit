@@ -67,7 +67,7 @@
             <exception-mapping exception="de.nak.exammgmt.service.exception.NotFoundException" result="404" />
             <!-- TODO: Remove for production -->
             <exception-mapping exception="de.nak.exammgmt.service.exception.DatabaseInvalidException" result="redirect_reset_database" />
-            <exception-mapping exception="java.lang.Exception" result="error" />
+            <!-- todo insert <exception-mapping exception="java.lang.Exception" result="error" /> -->
         </global-exception-mappings>
 
     </package>
@@ -103,14 +103,14 @@
             <result name="input" type="thymeleaf">activation/change_pw</result>
         </action>
 
-        <action name="users/{userId}?" class="de.nak.exammgmt.presentation.action.UsersAction">
+        <action name="user/{userId}?" class="de.nak.exammgmt.presentation.action.UserAction">
             <result name="create" type="redirectAction">${"users/" + userId}</result>
-            <result name="new" type="thymeleaf">users/new :: #form-create-user</result>
-            <result name="index" type="thymeleaf">users/index</result>
+            <result name="new" type="thymeleaf">user/new :: #form-create-user</result>
+            <result name="index" type="thymeleaf">user/index</result>
         </action>
 
-        <action name="profile/" class="de.nak.exammgmt.presentation.action.UsersAction" method="profile">
-            <result name="index" type="thymeleaf">user/user_sessions</result>
+        <action name="profile/" class="de.nak.exammgmt.presentation.action.UserAction" method="profile">
+            <result name="show" type="thymeleaf">user/show</result>
         </action>
 
         <action name="profile/security/{userSessionId}?" class="de.nak.exammgmt.presentation.action.UserSessionsAction">

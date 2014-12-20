@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<!--
+  ~ Copyright (c) 2014 Domenic Muskulus, Alexander Mersmann.
+  ~ Licensed under the MIT License.
+  -->
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title th:text="#{txt.pageTitle}">NAK Exam Management</title>
+
+        <link href="../../../static/css/vendor/bootstrap.min.css" th:href="@{/static/css/vendor/bootstrap.min.css}" rel="stylesheet" />
+        <link href="../../../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet" />
+
+    </head>
+    <body>
+        <th:block th:replace="layout :: layout-header (subTitle=#{txt.title.profile})" />
+
+        <div class="container">
+            <form id="form-create-user" th:action="@{/user/{userId}(userId=${action.userId})}" role="form" accept-charset="UTF-8" method="post">
+                <div class="boxed-group">
+                    <h3>User info</h3>
+                    <div class="boxed-group-inner">
+                        <div class="form-group">
+                            <label for="fullName" th:text="#{input.fullName}">Full name</label>
+                            <input id="fullName" type="text" class="form-control" readonly th:value="${action.userActionModel.user.fullName}">
+                        </div>
+                        <div class="form-group">
+                            <label for="username" th:text="#{input.username}">Username</label>
+                            <input id="username" type="text" class="form-control" readonly th:value="${action.userActionModel.user.username}">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" th:text="#{input.email}">Email</label>
+                            <input id="email" type="email" class="form-control" readonly th:value="${action.userActionModel.user.email}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="boxed-group">
+                    <h3 th:text="#{txt.changePassword}">Change password</h3>
+                    <div class="boxed-group-inner">
+                        <div class="form-group">
+                            <label for="current-password-input" th:text="#{input.currentPassword}">Current password</label>
+                            <input id="current-password-input" type="password" class="form-control" th:placeholder="#{input.currentPassword}" placeholder="Current password">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-password-input" th:text="#{input.newPassword}">New password</label>
+                            <input id="new-password-input" type="password" class="form-control" th:placeholder="#{input.newPassword}" placeholder="New password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-new-password-input" th:text="#{input.confirmPassword}">Confirm new password</label>
+                            <input id="confirm-new-password-input" type="password" class="form-control" required th:placeholder="#{input.confirmPassword}" placeholder="Confirm new password">
+                        </div>
+                        <button class="btn btn-primary" type="submit" th:text="#{btn.changePassword}">Change password</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="../../../static/js/vendor/bootstrap.min.js" th:src="@{/static/js/vendor/bootstrap.min.js}"></script>
+        <script src="../../../static/js/script.js" th:src="@{/static/js/script.js}"></script>
+    </body>
+</html>

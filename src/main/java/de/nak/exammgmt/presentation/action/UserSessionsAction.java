@@ -27,6 +27,7 @@ public class UserSessionsAction extends BaseAction {
     private UserSessionActionModel userSessionActionModel = new UserSessionActionModel();
     private Long userSessionId;
 
+    @Override
     public String index() {
         try {
             userSessionActionModel.setUserSessions(authenticationService.listUserSessions(getCurrentUser()));
@@ -37,6 +38,7 @@ public class UserSessionsAction extends BaseAction {
         return INDEX;
     }
 
+    @Override
     public String remove() {
         if (userSessionId == null) {
             return NOT_FOUND;

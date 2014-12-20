@@ -7,13 +7,20 @@ package de.nak.exammgmt.service;
 
 import de.nak.exammgmt.persistence.entity.Course;
 import de.nak.exammgmt.persistence.entity.ExamPerformance;
+import de.nak.exammgmt.persistence.entity.Maniple;
 import de.nak.exammgmt.persistence.entity.Student;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+
+import static java.util.stream.Collectors.toMap;
 
 /**
+ * Default implementation of {@link EnrollmentService}.
+ *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
 public class DefaultEnrollmentService implements EnrollmentService {
@@ -94,6 +101,25 @@ public class DefaultEnrollmentService implements EnrollmentService {
         }
 
         return enrollments;
+    }
+
+    @Override
+    public Map<Course, Map<Student, Enrollment>> listByManiple(long manipleId) throws NotFoundException {
+        Maniple maniple = manipleService.get(manipleId); // FIXME: nur wrappen? Query unnötig. Frage stellt sich für alle service aufrufe
+        return listByManiple(maniple);
+    }
+
+    @Override
+    public Map<Course, Map<Student, Enrollment>> listByManiple(Maniple maniple) {
+        Comparator<Enrollment> studentComparator = Comparator.comparing((Enrollment e) -> e.getStudent().getLastName())
+                .thenComparing((Enrollment e) -> e.getStudent().getFirstName());
+        Comparator<Course> courseComparator = Comparator.comparing(Course::getTitle);
+
+        return manipleService.listCourses(maniple).stream()
+                .sorted(courseComparator)
+                .collect(toMap(c -> c, c -> listByCourse(c).stream()
+                        .sorted(studentComparator)
+                        .collect(toMap(Enrollment::getStudent, e -> e))));
     }
 
     private float getGrade(ExamPerformance examPerformance) {

@@ -6,7 +6,6 @@
 package de.nak.exammgmt.presentation.action;
 
 import de.nak.exammgmt.presentation.model.UserActionModel;
-import de.nak.exammgmt.service.exception.NotFoundException;
 import de.nak.exammgmt.service.home.AdminService;
 
 /**
@@ -14,37 +13,42 @@ import de.nak.exammgmt.service.home.AdminService;
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
-public class UsersAction extends BaseAction {
+public class UserAction extends BaseAction {
 
     private AdminService adminService;
 
     private Long userId;
     private UserActionModel userActionModel;
 
+    @Override
     public String index() {
         userActionModel = new UserActionModel();
         userActionModel.setUsers(adminService.listUsers());
         return INDEX;
     }
 
-    public String show() throws NotFoundException {
+    @Override
+    public String show() throws Exception {
         userActionModel = new UserActionModel();
         userActionModel.setUser(adminService.getUser(userId));
         return SHOW;
     }
 
+    @Override
     public String editNew() {
         userActionModel = new UserActionModel();
         userActionModel.setRoles(adminService.getRoles());
         return NEW;
     }
 
-    public String edit() throws NotFoundException {
+    @Override
+    public String edit() throws Exception {
         userActionModel = new UserActionModel();
         userActionModel.setUser(adminService.getUser(userId));
         return EDIT;
     }
 
+    @Override
     public String update() throws Exception {
         if (userActionModel == null || userActionModel.getUser() == null) {
             addActionError("no user data submitted");
@@ -54,6 +58,7 @@ public class UsersAction extends BaseAction {
         return SHOW;
     }
 
+    @Override
     public String create() throws Exception {
         if (userActionModel == null || userActionModel.getUser() == null) {
             addActionError("no user data submitted");
@@ -82,7 +87,7 @@ public class UsersAction extends BaseAction {
         return INDEX;
     }
 
-    public String profile() throws NotFoundException {
+    public String profile() throws Exception {
         userId = getCurrentUser().getId();
         return show();
     }

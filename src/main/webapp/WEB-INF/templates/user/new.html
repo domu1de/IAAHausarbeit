@@ -17,7 +17,7 @@
 
     </head>
     <body>
-        <form id="form-create-user" class="form-new-user" th:action="@{/users/}" role="form" accept-charset="UTF-8" method="post">
+        <form id="form-create-user" class="form-new-user" th:action="@{/user/}" role="form" accept-charset="UTF-8" method="post">
             <div class="form-group">
                 <label for="fullName" th:text="#{input.fullName}">Full name</label>
                 <input id="fullName" type="text" name="userActionModel.user.fullName" class="form-control" th:placeholder="#{input.fullName}" placeholder="Full name" required autofocus>

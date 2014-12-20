@@ -10,7 +10,6 @@ import de.nak.exammgmt.presentation.model.StudentActionModel;
 import de.nak.exammgmt.service.EnrollmentService;
 import de.nak.exammgmt.service.ExamPerformanceService;
 import de.nak.exammgmt.service.StudentService;
-import de.nak.exammgmt.service.exception.NotFoundException;
 
 /**
  * @author Domenic Muskulus <domenic@muskulus.eu>
@@ -26,7 +25,8 @@ public class StudentAction extends BaseAction {
 
     private StudentActionModel studentActionModel = new StudentActionModel();
 
-    public String show() throws NotFoundException {
+    @Override
+    public String show() throws Exception {
         if (studentId == null) {
             return ERROR; //FIXME
         }

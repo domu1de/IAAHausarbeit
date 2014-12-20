@@ -9,6 +9,8 @@ import de.nak.exammgmt.persistence.entity.Course;
 import de.nak.exammgmt.persistence.entity.Student;
 
 /**
+ * Enrollments are used to represent a {@link Student}'s current performance (grade) in a certain {@link Course}.
+ *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
 public class Enrollment {

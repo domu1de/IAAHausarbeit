@@ -19,53 +19,56 @@
     <body>
         <th:block th:replace="layout :: layout-header (subTitle=#{txt.title.profile.userSessions})" />
 
-        <div class="container">
+        <div class="container" th:with="dateFormatLong=#{format.date.long}">
 
             This is a list of devices that have logged into your account. Revoke any sessions that you do not recognize.
 
-            <div>
+            <div id="sessions">
                 <ul class="boxed-group-list">
-                    <li class="session-device session-current" th:each="userSession : ${action.userSessionActionModel.userSessions}"  th:with="locatedIp=${action.locateIp(userSession.ip)}">
+                    <li class="session-device" th:with="locatedIp=${action.locateIp(userSession.ip)},isCurrent=${userSession.id.equals(action.currentUser.currentUserSession.id)}" th:classappend="${isCurrent} ? 'session-current'" th:each="userSession : ${action.userSessionActionModel.userSessions}">
 
                         <!-- Activity indicator -->
-                        <span class="session-state-indicator recent" th:if="${userSession.id.equals(action.currentUser.currentUserSession.id)}"></span>
+                        <span class="session-state-indicator" th:classappend="${isCurrent} ? 'recent' : 'not-recent'"></span>
 
                         <!-- Revoke that session -->
+                        <a th:unless="${isCurrent}" th:href="@{{sessionId}/revoke(sessionId=${userSession.id})}" class="btn btn-danger btn-sm minibutton" th:text="#{btn.revokeSession}">Revoke</a>
 
                         <!-- Device type (Desktop/Mobile) -->
-                        <span class="session-icon tooltipped tooltipped-s" th:attr="aria-label=${userSession.userAgent}"><span class="mega-octicon octicon-device-desktop"></span></span>
+                        <span class="session-icon tooltipped tooltipped-e" th:attr="aria-label=${userSession.userAgent}">
+                            <span class="mega-octicon octicon-device-desktop"></span>
+                        </span>
 
-                        <div class="session-details js-details-container open">
+                        <div class="session-details js-details-container" th:classappend="${isCurrent} ? 'open'">
 
                             <!-- Location -->
                             <strong class="session-title">
-                                Krummesse
+                                <span th:text="${locatedIp and locatedIp.city.name} ? ${locatedIp.city.name}">Krummesse</span>
                                 <span th:text="${userSession.ip}">91.106.134.15</span>
                             </strong>
 
                             <!-- Gimme those dates TODO equals in usersession -->
-                            <small class="session-last-accessed" th:if="${userSession.id.equals(action.currentUser.currentUserSession.id)}">
+                            <small class="session-last-accessed" th:text="${isCurrent} ? #{txt.yourCurrentSession} : #{txt.lastAccessed(${#temporals.format(userSession.updatedAt, dateFormatLong)})}">
                                 Your current session
                             </small>
 
-                            <span class="hidden-text-expander inline" th:unless="${userSession.id.equals(action.currentUser.currentUserSession.id)}">
+                            <span class="hidden-text-expander inline" th:unless="${isCurrent}">
                                 <a href="#" class="js-details-target">…</a>
                             </span>
 
                             <div class="sessions-more-info">
-                                <p>
-                                    <strong>Safari</strong>
-                                    on OS X 10.10
+                                <p th:with="uaClient=${action.userSessionActionModel.parseUserAgent(userSession.userAgent)}">
+                                    <strong th:text="${uaClient.userAgent.family}">Opera</strong>
+                                    <span th:text="#{txt.uaOnOS(${uaClient.os.family}, ${uaClient.os.major}, ${uaClient.os.minor})}">on OS X 10.09</span>
                                 </p>
 
                                 <p>
-                                    <strong>Location:</strong><br>
-                                    <span th:text="${locatedIp} ? ${locatedIp.city.name + ', ' + locatedIp.mostSpecificSubdivision.name + ', ' + locatedIp.country.name} : 'unknown'">Krummesse, Schleswig-Holstein, Germany</span>
+                                    <strong th:text="#{txt.location} + ':'">Location:</strong><br>
+                                    <span th:text="${action.userSessionActionModel.formatIp(locatedIp)} ?: #{txt.unknown}">Krummesse, Schleswig-Holstein, Germany</span>
                                 </p>
                                 <p></p>
                                 <p>
-                                    <strong>Signed in:</strong><br>
-                                    <time>November 15, 2014</time>
+                                    <strong th:text="#{txt.signedIn} + ':'">Signed in:</strong><br>
+                                    <time th:text="${#temporals.format(userSession.createdAt, dateFormatLong)}">November 15, 2014</time>
                                 </p>
                             </div>
 
@@ -77,5 +80,14 @@
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="../../../static/js/vendor/bootstrap.min.js" th:src="@{/static/js/vendor/bootstrap.min.js}"></script>
+        <script>
+            $(function() {
+                $('#sessions').on('click', '.js-details-target', function(event) {
+                    $(event.target).closest('.js-details-container').toggleClass('open');
+                    event.preventDefault();
+                });
+            });
+        </script>
+
     </body>
 </html>

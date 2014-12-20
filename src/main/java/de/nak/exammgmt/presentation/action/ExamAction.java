@@ -31,8 +31,8 @@ public class ExamAction extends BaseAction {
     private ExamService examService;
     private ManipleService manipleService;
 
-
-    public String editNew() {
+    @Override
+    public String editNew() throws Exception {
         for (Maniple maniple : manipleService.list()) {
             List<Course> courses = manipleService.listCourses(maniple);
             examActionModel.getManiples().add(maniple.getAbbreviation());
@@ -47,7 +47,8 @@ public class ExamAction extends BaseAction {
         return NEW;
     }
 
-    public String create() {
+    @Override
+    public String create() throws Exception {
         Exam exam = examActionModel.getExam();
 
         if (exam == null) {

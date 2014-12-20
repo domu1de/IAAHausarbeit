@@ -27,10 +27,12 @@ public class PasswordResetAction extends BaseAction {
     private String password;
     private String confirmPassword;
 
+    @Override
     public String index() {
         return INDEX;
     }
 
+    @Override
     public String show() {
         if (!passwordResetService.validateResetRequest(token)) {
             addActionError(getText("txt.passwordReset.invalid"));
@@ -39,6 +41,7 @@ public class PasswordResetAction extends BaseAction {
         return INPUT;
     }
 
+    @Override
     public String create() {
         if (usernameOrEmail == null) {
             addActionError("No username or email.");
@@ -54,6 +57,7 @@ public class PasswordResetAction extends BaseAction {
         return REDIRECT_WELCOME;
     }
 
+    @Override
     public String update() {
         if (password != null && !password.equals(confirmPassword)) {
             addActionError(getText("txt.passwordsDoNotMatch"));

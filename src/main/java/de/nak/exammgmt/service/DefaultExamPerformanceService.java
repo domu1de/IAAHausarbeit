@@ -23,7 +23,7 @@ import static de.nak.exammgmt.persistence.entity.ExamPerformanceProtocolItem.Typ
 import static de.nak.exammgmt.persistence.entity.ExamPerformanceProtocolItem.Type.REVERSAL;
 
 /**
- * Default implementation of the {@link ExamPerformanceService}.
+ * Default implementation of {@link ExamPerformanceService}.
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
@@ -144,7 +144,7 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
      *
      * @param examPerformance the exam performance to validate as last entry
      */
-    void validateLastEntry(ExamPerformance examPerformance) {
+    private void validateLastEntry(ExamPerformance examPerformance) {
         ExamPerformance lastEntry = examPerformanceDAO.findLastEntryByCourseAndStudent(examPerformance.getExam().getCourse(), examPerformance.getStudent());
 
         if (!lastEntry.getId().equals(examPerformance.getId())) {

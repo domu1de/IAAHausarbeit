@@ -4,6 +4,28 @@
  */
 
 /*
+ * Jumbotron
+ */
+.jumbotron p {
+    color: #D3E3F0;
+    margin-bottom: 0;
+    font-weight: 300;
+    line-height: 1.4;
+}
+
+@media (min-width: 992px) {
+    .jumbotron p {
+        margin-right: 380px;
+    }
+}
+
+@media (min-width: 768px) {
+    .jumbotron p {
+        font-size: 24px;
+    }
+}
+
+/*
  * select2 adjustments
  */
 .select2-container .select2-choice > .select2-chosen {
@@ -41,7 +63,32 @@
 /*
  * Boxed group lists
  */
+.boxed-group {
+    margin-bottom: 30px;
+}
 
+.boxed-group > h3, .boxed-group .heading {
+    background-color: #f9f9f9;
+    margin: 0;
+    border-radius: 4px 4px 0 0;
+    border: 1px solid #ddd;
+    border-bottom: 0;
+    padding: 9px 10px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 17px;
+    display: block;
+}
+
+.boxed-group-inner {
+    padding: 10px 10px 1px;
+    border: 1px solid #ddd;
+    border-radius: 0 0 4px 4px;
+}
+
+/*
+ * Boxed group lists
+ */
 .boxed-group-list {
     list-style: none;
     margin: 0;
@@ -50,11 +97,22 @@
 
 .boxed-group-list > li {
     display: block;
-    margin-left: -10px;
-    margin-right: -10px;
     padding: 5px 10px;
     line-height: 23px;
-    border-bottom: 1px solid #e5e5e5;
+    border: 1px solid #ddd;
+}
+
+.boxed-group-list > li:first-child {
+    border-radius: 4px 4px 0 0;
+    border-bottom: none;
+}
+
+.boxed-group-list > li:last-child {
+    border-radius: 0 0 4px 4px;
+}
+
+.boxed-group-list > li .minibutton {
+    float: right;
 }
 
 /*
@@ -234,6 +292,16 @@
 /*
  * Textexpander
  */
+.hidden-text-expander {
+    display: block;
+}
+
+.hidden-text-expander.inline {
+    display: inline-block;
+    margin-left: 5px;
+    line-height: 0;
+}
+
 .hidden-text-expander a {
     display: inline-block;
     height: 12px;
@@ -281,7 +349,12 @@ li.session-device {
     position: relative;
     line-height: 18px;
     padding: 15px;
-    background-color: #fafafa;
+    background-color: #f9f9f9;
+    /*color: #999;*/
+}
+
+li.session-device.session-current {
+    background-color: #fff;
 }
 
 li.session-device .session-icon {
@@ -312,6 +385,11 @@ li.session-device .session-state-indicator.recent {
     box-shadow: 0 0 10px rgba(108,198,68,0.5);
 }
 
+li.session-device .session-state-indicator.not-recent {
+    box-shadow: 0 1px 0 #fff;
+    background-color: #ccc;
+}
+
 li.session-device .session-state-indicator {
     float: left;
     width: 8px;
@@ -322,6 +400,20 @@ li.session-device .session-state-indicator {
 
 li.session-device.session-current .mega-octicon {
     color: #777;
+}
+
+li.session-device .sessions-more-info {
+    position: relative;
+    display: none;
+    margin-top: 10px;
+}
+
+.session-details.open .sessions-more-info {
+    display: block;
+}
+
+li.session-device .minibutton {
+    margin-left: 10px;
 }
 
 /*

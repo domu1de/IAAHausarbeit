@@ -9,7 +9,6 @@ import de.nak.exammgmt.persistence.entity.Exam;
 import de.nak.exammgmt.presentation.model.BatchActionModel;
 import de.nak.exammgmt.service.ExamPerformanceService;
 import de.nak.exammgmt.service.ExamService;
-import de.nak.exammgmt.service.exception.NotFoundException;
 
 import java.util.Collections;
 
@@ -26,7 +25,8 @@ public class BatchAction extends BaseAction {
 
     private BatchActionModel batchActionModel = new BatchActionModel();
 
-    public String show() throws NotFoundException {
+    @Override
+    public String show() throws Exception {
         if (examId == null) {
             return NOT_FOUND;
         }
@@ -40,6 +40,7 @@ public class BatchAction extends BaseAction {
         return NEW;
     }
 
+    @Override
     public String create() throws Exception {
         if (examId == null) {
             return NOT_FOUND;

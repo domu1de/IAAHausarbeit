@@ -24,6 +24,7 @@ public class ResetDatabaseAction extends BaseAction {
     private ResetDatabaseActionModel resetDatabaseActionModel = new ResetDatabaseActionModel();
     private ResetDatabaseService resetDatabaseService;
 
+    @Override
     public String show() {
         return SUCCESS;
     }

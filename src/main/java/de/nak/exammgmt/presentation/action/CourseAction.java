@@ -10,7 +10,6 @@ import de.nak.exammgmt.presentation.GradePresenter;
 import de.nak.exammgmt.presentation.model.CourseActionModel;
 import de.nak.exammgmt.service.CourseService;
 import de.nak.exammgmt.service.EnrollmentService;
-import de.nak.exammgmt.service.exception.NotFoundException;
 
 /**
  * @author Domenic Muskulus <domenic@muskulus.eu>
@@ -24,7 +23,8 @@ public class CourseAction extends BaseAction {
 
     private CourseActionModel courseActionModel = new CourseActionModel();
 
-    public String show() throws NotFoundException {
+    @Override
+    public String show() throws Exception {
         if (courseId == null) {
             return ERROR;
         }

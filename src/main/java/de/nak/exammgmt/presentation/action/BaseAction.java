@@ -30,18 +30,45 @@ public abstract class BaseAction extends ActionSupport {
     protected User currentUser;
     protected String returnTo;
 
+    @Override
+    public String execute() throws Exception {
+        return NOT_FOUND;
+    }
+
+    public String index() throws Exception {
+        return NOT_FOUND;
+    }
+
+    public String create() throws Exception {
+        return NOT_FOUND;
+    }
+
+    public String editNew() throws Exception {
+        return NOT_FOUND;
+    }
+
+    public String edit() throws Exception {
+        return NOT_FOUND;
+    }
+
+    public String show() throws Exception {
+        return NOT_FOUND;
+    }
+
+    public String update() throws Exception {
+        return NOT_FOUND;
+    }
+
+    public String remove() throws Exception {
+        return NOT_FOUND;
+    }
+
     public User getCurrentUser() {
         return currentUser;
     }
 
     public void setCurrentUser(User currentUser) {
         this.currentUser = currentUser;
-    }
-
-    @Override
-    public String execute() throws Exception {
-
-        return NOT_FOUND;
     }
 
     public String getReturnTo() {
