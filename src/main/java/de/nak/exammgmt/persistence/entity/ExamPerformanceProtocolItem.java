@@ -60,6 +60,23 @@ public class ExamPerformanceProtocolItem extends AbstractEntity{
         this.type = type;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ExamPerformanceProtocolItem that = (ExamPerformanceProtocolItem) o;
+
+        if (!oldExamPerformance.equals(that.oldExamPerformance)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return oldExamPerformance.hashCode();
+    }
+
     public static enum Type {
 
         EDIT,

@@ -95,4 +95,24 @@ public class UserSession extends AbstractEntity {
     public LocalDateTime getAccessedAt() {
         return getUpdatedAt();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserSession that = (UserSession) o;
+
+        if (!token.equals(that.token)) return false;
+        if (!user.equals(that.user)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = token.hashCode();
+        result = 31 * result + user.hashCode();
+        return result;
+    }
 }

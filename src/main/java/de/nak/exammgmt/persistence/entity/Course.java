@@ -59,4 +59,23 @@ public class Course extends AbstractEntity {
         this.lecturers = lecturers;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Course course = (Course) o;
+
+        if (!maniple.equals(course.maniple)) return false;
+        if (!title.equals(course.title)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = title.hashCode();
+        result = 31 * result + maniple.hashCode();
+        return result;
+    }
 }

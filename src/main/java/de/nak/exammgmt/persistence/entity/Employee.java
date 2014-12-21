@@ -37,4 +37,21 @@ public class Employee extends Person {
     public void setEmployeeNumber(long employeeNumber) {
         this.employeeNumber = employeeNumber;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        if (employeeNumber != employee.employeeNumber) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (employeeNumber ^ (employeeNumber >>> 32));
+    }
 }

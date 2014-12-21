@@ -51,4 +51,24 @@ public class Maniple extends AbstractEntity {
     public String toString() {
         return fieldOfStudy.getName() + " " + year.format(DateTimeFormatter.ofPattern(("yyyy")));
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Maniple maniple = (Maniple) o;
+
+        if (!fieldOfStudy.equals(maniple.fieldOfStudy)) return false;
+        if (!year.equals(maniple.year)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = year.hashCode();
+        result = 31 * result + fieldOfStudy.hashCode();
+        return result;
+    }
 }

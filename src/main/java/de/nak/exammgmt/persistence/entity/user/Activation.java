@@ -48,4 +48,25 @@ public class Activation extends AbstractEntity {
         this.expiresAt = expiresAt;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Activation that = (Activation) o;
+
+        if (!expiresAt.equals(that.expiresAt)) return false;
+        if (!token.equals(that.token)) return false;
+        if (!user.equals(that.user)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = user.hashCode();
+        result = 31 * result + token.hashCode();
+        result = 31 * result + expiresAt.hashCode();
+        return result;
+    }
 }

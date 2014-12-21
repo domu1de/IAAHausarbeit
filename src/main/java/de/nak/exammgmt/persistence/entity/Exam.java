@@ -52,4 +52,25 @@ public class Exam extends AbstractEntity {
         this.course = course;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Exam exam = (Exam) o;
+
+        if (!course.equals(exam.course)) return false;
+        if (!date.equals(exam.date)) return false;
+        if (!lecturers.equals(exam.lecturers)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = date.hashCode();
+        result = 31 * result + course.hashCode();
+        result = 31 * result + lecturers.hashCode();
+        return result;
+    }
 }

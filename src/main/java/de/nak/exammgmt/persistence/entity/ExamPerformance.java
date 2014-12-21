@@ -108,6 +108,29 @@ public class ExamPerformance extends AbstractEntity {
         return (!reexamination && grade <= 4) || (reexamination && grade <= 3);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
+        ExamPerformance that = (ExamPerformance) o;
 
+        if (attempt != that.attempt) return false;
+        if (reexamination != that.reexamination) return false;
+        if (reversed != that.reversed) return false;
+        if (!exam.equals(that.exam)) return false;
+        if (!student.equals(that.student)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = exam.hashCode();
+        result = 31 * result + student.hashCode();
+        result = 31 * result + attempt;
+        result = 31 * result + (reversed ? 1 : 0);
+        result = 31 * result + (reexamination ? 1 : 0);
+        return result;
+    }
 }
