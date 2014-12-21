@@ -47,6 +47,9 @@ public class Student extends Person {
         }
     }
 
+    /**
+     * Equals by: studentId.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

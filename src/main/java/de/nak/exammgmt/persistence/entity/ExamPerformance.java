@@ -108,6 +108,9 @@ public class ExamPerformance extends AbstractEntity {
         return (!reexamination && grade <= 4) || (reexamination && grade <= 3);
     }
 
+    /**
+     * Equals by: attempt, reexamination, reversed, exam and student.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

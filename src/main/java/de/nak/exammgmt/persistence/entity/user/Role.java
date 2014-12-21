@@ -51,6 +51,9 @@ public class Role extends AbstractEntity {
         this.permissions = permissions;
     }
 
+    /**
+     * Equals by: name.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -37,6 +37,9 @@ public class FieldOfStudy extends AbstractEntity{
         this.abbreviation = abbreviation;
     }
 
+    /**
+     * Equals by: name.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

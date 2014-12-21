@@ -52,6 +52,9 @@ public class Exam extends AbstractEntity {
         this.course = course;
     }
 
+    /**
+     * Equals by: course, date and lecturers.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

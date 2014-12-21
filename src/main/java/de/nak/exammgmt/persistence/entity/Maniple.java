@@ -52,6 +52,9 @@ public class Maniple extends AbstractEntity {
         return fieldOfStudy.getName() + " " + year.format(DateTimeFormatter.ofPattern(("yyyy")));
     }
 
+    /**
+     * Equals by: fieldOfStudy and year.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

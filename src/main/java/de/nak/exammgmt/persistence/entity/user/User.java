@@ -92,6 +92,9 @@ public class User extends AbstractEntity {
         return role.hasRights(rights);
     }
 
+    /**
+     * Equals by: username.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

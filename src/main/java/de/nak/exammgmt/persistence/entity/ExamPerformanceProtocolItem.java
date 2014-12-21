@@ -60,6 +60,9 @@ public class ExamPerformanceProtocolItem extends AbstractEntity{
         this.type = type;
     }
 
+    /**
+     * Equals by: oldExamPerformance.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

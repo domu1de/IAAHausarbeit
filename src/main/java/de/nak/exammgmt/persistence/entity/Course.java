@@ -59,6 +59,9 @@ public class Course extends AbstractEntity {
         this.lecturers = lecturers;
     }
 
+    /**
+     * Equals by: maniple and title.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

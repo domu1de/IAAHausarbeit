@@ -48,6 +48,9 @@ public class Activation extends AbstractEntity {
         this.expiresAt = expiresAt;
     }
 
+    /**
+     * Equals by: expiresAt, token and user.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

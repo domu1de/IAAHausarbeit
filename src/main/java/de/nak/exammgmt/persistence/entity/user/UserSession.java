@@ -96,6 +96,9 @@ public class UserSession extends AbstractEntity {
         return getUpdatedAt();
     }
 
+    /**
+     * Equals by: token and user.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

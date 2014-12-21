@@ -38,6 +38,9 @@ public class Employee extends Person {
         this.employeeNumber = employeeNumber;
     }
 
+    /**
+     * Equals by: employeeNumber.
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
