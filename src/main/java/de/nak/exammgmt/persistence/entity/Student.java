@@ -54,13 +54,13 @@ public class Student extends Person {
 
         Student student = (Student) o;
 
-        if (!studentId.equals(student.studentId)) return false;
+        if (studentId != null ? !studentId.equals(student.studentId) : student.studentId != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return studentId.hashCode();
+        return studentId != null ? studentId.hashCode() : 0;
     }
 }

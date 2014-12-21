@@ -44,13 +44,13 @@ public class FieldOfStudy extends AbstractEntity{
 
         FieldOfStudy that = (FieldOfStudy) o;
 
-        if (!name.equals(that.name)) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return name != null ? name.hashCode() : 0;
     }
 }

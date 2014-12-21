@@ -147,6 +147,7 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
     private void validateLastEntry(ExamPerformance examPerformance) {
         ExamPerformance lastEntry = examPerformanceDAO.findLastEntryByCourseAndStudent(examPerformance.getExam().getCourse(), examPerformance.getStudent());
 
+        // Intentionally by Id and not via equals() to validate the persisted match
         if (!lastEntry.getId().equals(examPerformance.getId())) {
             // TODO throw exception
         }

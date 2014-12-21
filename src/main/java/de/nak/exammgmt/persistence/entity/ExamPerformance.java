@@ -118,16 +118,16 @@ public class ExamPerformance extends AbstractEntity {
         if (attempt != that.attempt) return false;
         if (reexamination != that.reexamination) return false;
         if (reversed != that.reversed) return false;
-        if (!exam.equals(that.exam)) return false;
-        if (!student.equals(that.student)) return false;
+        if (exam != null ? !exam.equals(that.exam) : that.exam != null) return false;
+        if (student != null ? !student.equals(that.student) : that.student != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = exam.hashCode();
-        result = 31 * result + student.hashCode();
+        int result = exam != null ? exam.hashCode() : 0;
+        result = 31 * result + (student != null ? student.hashCode() : 0);
         result = 31 * result + attempt;
         result = 31 * result + (reversed ? 1 : 0);
         result = 31 * result + (reexamination ? 1 : 0);

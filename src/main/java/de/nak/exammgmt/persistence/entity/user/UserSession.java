@@ -103,16 +103,16 @@ public class UserSession extends AbstractEntity {
 
         UserSession that = (UserSession) o;
 
-        if (!token.equals(that.token)) return false;
-        if (!user.equals(that.user)) return false;
+        if (token != null ? !token.equals(that.token) : that.token != null) return false;
+        if (user != null ? !user.equals(that.user) : that.user != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = token.hashCode();
-        result = 31 * result + user.hashCode();
+        int result = token != null ? token.hashCode() : 0;
+        result = 31 * result + (user != null ? user.hashCode() : 0);
         return result;
     }
 }

@@ -92,27 +92,29 @@ public class User extends AbstractEntity {
         return role.hasRights(rights);
     }
 
-    // TODO angucken
-    @Transient
-    public boolean hasRights(Set<Permission> rights) {
-        System.out.println(username);
-        return role.hasRights(rights);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof User)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
 
         User user = (User) o;
 
-        return username.equals(user.username);
+        if (username != null ? !username.equals(user.username) : user.username != null) return false;
 
+        return true;
     }
 
     @Override
     public int hashCode() {
-        return username.hashCode();
+        return username != null ? username.hashCode() : 0;
+    }
+
+    // TODO angucken
+    @Transient
+    public boolean hasRights(Set<Permission> rights) {
+
+        System.out.println(username);
+        return role.hasRights(rights);
     }
 
     @Override

@@ -59,18 +59,18 @@ public class Exam extends AbstractEntity {
 
         Exam exam = (Exam) o;
 
-        if (!course.equals(exam.course)) return false;
-        if (!date.equals(exam.date)) return false;
-        if (!lecturers.equals(exam.lecturers)) return false;
+        if (course != null ? !course.equals(exam.course) : exam.course != null) return false;
+        if (date != null ? !date.equals(exam.date) : exam.date != null) return false;
+        if (lecturers != null ? !lecturers.equals(exam.lecturers) : exam.lecturers != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = date.hashCode();
-        result = 31 * result + course.hashCode();
-        result = 31 * result + lecturers.hashCode();
+        int result = date != null ? date.hashCode() : 0;
+        result = 31 * result + (course != null ? course.hashCode() : 0);
+        result = 31 * result + (lecturers != null ? lecturers.hashCode() : 0);
         return result;
     }
 }

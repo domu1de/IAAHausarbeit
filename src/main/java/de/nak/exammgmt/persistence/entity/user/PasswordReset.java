@@ -55,18 +55,18 @@ public class PasswordReset extends AbstractEntity {
 
         PasswordReset that = (PasswordReset) o;
 
-        if (!expiresAt.equals(that.expiresAt)) return false;
-        if (!token.equals(that.token)) return false;
-        if (!user.equals(that.user)) return false;
+        if (expiresAt != null ? !expiresAt.equals(that.expiresAt) : that.expiresAt != null) return false;
+        if (token != null ? !token.equals(that.token) : that.token != null) return false;
+        if (user != null ? !user.equals(that.user) : that.user != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = user.hashCode();
-        result = 31 * result + token.hashCode();
-        result = 31 * result + expiresAt.hashCode();
+        int result = user != null ? user.hashCode() : 0;
+        result = 31 * result + (token != null ? token.hashCode() : 0);
+        result = 31 * result + (expiresAt != null ? expiresAt.hashCode() : 0);
         return result;
     }
 }

@@ -59,16 +59,17 @@ public class Maniple extends AbstractEntity {
 
         Maniple maniple = (Maniple) o;
 
-        if (!fieldOfStudy.equals(maniple.fieldOfStudy)) return false;
-        if (!year.equals(maniple.year)) return false;
+        if (fieldOfStudy != null ? !fieldOfStudy.equals(maniple.fieldOfStudy) : maniple.fieldOfStudy != null)
+            return false;
+        if (year != null ? !year.equals(maniple.year) : maniple.year != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = year.hashCode();
-        result = 31 * result + fieldOfStudy.hashCode();
+        int result = year != null ? year.hashCode() : 0;
+        result = 31 * result + (fieldOfStudy != null ? fieldOfStudy.hashCode() : 0);
         return result;
     }
 }

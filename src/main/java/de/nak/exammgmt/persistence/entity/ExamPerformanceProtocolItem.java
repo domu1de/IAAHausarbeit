@@ -67,20 +67,21 @@ public class ExamPerformanceProtocolItem extends AbstractEntity{
 
         ExamPerformanceProtocolItem that = (ExamPerformanceProtocolItem) o;
 
-        if (!oldExamPerformance.equals(that.oldExamPerformance)) return false;
+        if (oldExamPerformance != null ? !oldExamPerformance.equals(that.oldExamPerformance) : that.oldExamPerformance != null)
+            return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return oldExamPerformance.hashCode();
+        return oldExamPerformance != null ? oldExamPerformance.hashCode() : 0;
     }
 
     public static enum Type {
 
         EDIT,
-        REVERSAL
+        REVERSAL;
 
     }
 }

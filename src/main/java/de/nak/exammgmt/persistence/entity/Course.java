@@ -66,16 +66,16 @@ public class Course extends AbstractEntity {
 
         Course course = (Course) o;
 
-        if (!maniple.equals(course.maniple)) return false;
-        if (!title.equals(course.title)) return false;
+        if (maniple != null ? !maniple.equals(course.maniple) : course.maniple != null) return false;
+        if (title != null ? !title.equals(course.title) : course.title != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = title.hashCode();
-        result = 31 * result + maniple.hashCode();
+        int result = title != null ? title.hashCode() : 0;
+        result = 31 * result + (maniple != null ? maniple.hashCode() : 0);
         return result;
     }
 }

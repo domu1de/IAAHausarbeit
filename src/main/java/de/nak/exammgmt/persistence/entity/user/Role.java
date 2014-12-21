@@ -58,13 +58,13 @@ public class Role extends AbstractEntity {
 
         Role role = (Role) o;
 
-        if (!name.equals(role.name)) return false;
+        if (name != null ? !name.equals(role.name) : role.name != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return name != null ? name.hashCode() : 0;
     }
 }
