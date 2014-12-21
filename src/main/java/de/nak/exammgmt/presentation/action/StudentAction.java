@@ -6,6 +6,7 @@
 package de.nak.exammgmt.presentation.action;
 
 import de.nak.exammgmt.presentation.GradePresenter;
+import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.presentation.model.StudentActionModel;
 import de.nak.exammgmt.service.EnrollmentService;
 import de.nak.exammgmt.service.ExamPerformanceService;
@@ -14,6 +15,7 @@ import de.nak.exammgmt.service.StudentService;
 /**
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
+@Protected(login = true)
 public class StudentAction extends BaseAction {
 
     private Long studentId;

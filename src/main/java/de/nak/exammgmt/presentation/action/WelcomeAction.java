@@ -5,6 +5,7 @@
 
 package de.nak.exammgmt.presentation.action;
 
+import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.presentation.model.WelcomeAdminActionModel;
 import de.nak.exammgmt.presentation.model.WelcomeManagementActionModel;
 import de.nak.exammgmt.service.ExamService;
@@ -16,6 +17,7 @@ import de.nak.exammgmt.service.home.AdminService;
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
+@Protected(login = true)
 public class WelcomeAction extends BaseAction {
 
     private static final String ADMIN = "admin";

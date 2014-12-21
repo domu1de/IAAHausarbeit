@@ -5,6 +5,7 @@
 
 package de.nak.exammgmt.presentation.action;
 
+import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.service.exception.InvalidTokenException;
 import de.nak.exammgmt.service.exception.NotFoundException;
 import de.nak.exammgmt.service.user.PasswordResetService;
@@ -16,6 +17,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
+@Protected(login = true)
 public class PasswordResetAction extends BaseAction {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PasswordResetAction.class);

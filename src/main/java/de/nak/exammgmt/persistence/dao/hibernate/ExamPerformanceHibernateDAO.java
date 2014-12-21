@@ -47,6 +47,7 @@ public class ExamPerformanceHibernateDAO extends HibernateDAO<ExamPerformance> i
                 "SELECT ep1.* " +
                 "FROM EXAM_PERFORMANCE ep1 " +
                     "JOIN EXAM e1 ON (e1.ID = ep1.EXAM) " +
+                    "JOIN COURSE c ON (c.ID = e1.COURSE) " +
                     "LEFT JOIN (" +
                         "SELECT ep2.ID, ep2.STUDENT, ep2.UPDATED_AT, e2.COURSE " +
                         "FROM EXAM_PERFORMANCE ep2 " +
@@ -55,7 +56,8 @@ public class ExamPerformanceHibernateDAO extends HibernateDAO<ExamPerformance> i
                         ") ep3 ON (ep1.STUDENT = ep3.STUDENT AND ep1.UPDATED_AT < ep3.UPDATED_AT AND e1.COURSE = ep3.COURSE) " +
                 "WHERE NOT ep1.REVERSED " +
                     "AND ep3.ID IS NULL " +
-                    "AND ep1.STUDENT = :student_id")
+                    "AND ep1.STUDENT = :student_id " +
+                "ORDER BY c.TITLE")
                 .addEntity(ExamPerformance.class)
                 .setLong("student_id", student.getId())
                 .list();
@@ -68,6 +70,7 @@ public class ExamPerformanceHibernateDAO extends HibernateDAO<ExamPerformance> i
                 "SELECT ep1.* " +
                 "FROM EXAM_PERFORMANCE ep1 " +
                     "JOIN EXAM e1 ON (e1.ID = ep1.EXAM) " +
+                    "JOIN STUDENT s ON (s.ID = ep1.STUDENT) " +
                     "LEFT JOIN (" +
                         "SELECT ep2.ID, ep2.STUDENT, ep2.UPDATED_AT, e2.COURSE " +
                         "FROM EXAM_PERFORMANCE ep2 " +
@@ -76,7 +79,8 @@ public class ExamPerformanceHibernateDAO extends HibernateDAO<ExamPerformance> i
                     ") ep3 ON (ep1.STUDENT = ep3.STUDENT AND ep1.UPDATED_AT < ep3.UPDATED_AT AND e1.COURSE = ep3.COURSE) " +
                 "WHERE NOT ep1.REVERSED " +
                     "AND ep3.ID IS NULL " +
-                    "AND e1.COURSE = :course_id")
+                    "AND e1.COURSE = :course_id " +
+                "ORDER BY s.LAST_NAME, s.FIRST_NAME")
                 .addEntity(ExamPerformance.class)
                 .setLong("course_id", course.getId())
                 .list();

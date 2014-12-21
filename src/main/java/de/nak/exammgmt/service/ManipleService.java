@@ -11,7 +11,6 @@ import de.nak.exammgmt.persistence.entity.Student;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Contract for a service to manage everything concerning a {@link Maniple}.
@@ -70,12 +69,5 @@ public interface ManipleService {
      */
     List<Student> listStudents(Maniple maniple);
 
-    /**
-     * Gets an overview over all current grades in the given maniple.
-     *
-     * @param maniple the maniple to search with
-     * @return a map of all courses mapped to a list of all their enrollments
-     */
-    Map<Course, List<Enrollment>> gradeOverview(Maniple maniple);
 
 }

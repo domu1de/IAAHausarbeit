@@ -39,6 +39,7 @@ public interface ExamPerformanceDAO extends DAO<ExamPerformance> {
 
     /**
      * Finds the last unreversed attempts of the student for each course.
+     * ORDERED BY course.title
      *
      * @param student the student to look for
      * @return list of last attempts
@@ -47,6 +48,7 @@ public interface ExamPerformanceDAO extends DAO<ExamPerformance> {
 
     /**
      * Finds the current performances per student for the given course.
+     * ORDERED BY student.lastName, student.firstName
      *
      * @param course the course to look for
      * @return list of current performances

@@ -28,11 +28,6 @@ public class Role extends AbstractEntity {
         return permissions.containsAll(Arrays.asList(rights));
     }
 
-    @Transient
-    public boolean hasRights(Set<Permission> rights) {
-        return permissions.containsAll(rights);
-    }
-
     public String getName() {
         return name;
     }

@@ -15,6 +15,6 @@ public enum Permission {
     CREATE_USER,
     SHOW_USER,
     EDIT_USER,
-    DELETE_USER
+    DELETE_USER,
 
 }
