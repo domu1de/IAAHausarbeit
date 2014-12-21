@@ -43,9 +43,11 @@
                 <div class="alert alert-success" role="alert" th:each="message : ${action.actionMessages}">
                     <span th:text="${message}">Action message 1</span>
                 </div>
+                <div class="form-group">
+                    <input type="password" name="resetDatabaseActionModel.password" class="form-control" th:placeholder="#{input.password}" placeholder="Password" required>
+                </div>
 
-                <input type="password" name="resetDatabaseActionModel.password" class="form-control" th:placeholder="#{input.password}" placeholder="Password" required>
-                <button class="btn btn-lg btn-danger btn-block" type="submit" th:text="#{btn.resetDatabase}">Reset database</button>
+                <button class="btn btn-danger btn-block" type="submit" th:text="#{btn.resetDatabase}">Reset database</button>
 
             </form>
 

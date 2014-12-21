@@ -73,4 +73,5 @@ public class Exam extends AbstractEntity {
         result = 31 * result + (lecturers != null ? lecturers.hashCode() : 0);
         return result;
     }
+
 }

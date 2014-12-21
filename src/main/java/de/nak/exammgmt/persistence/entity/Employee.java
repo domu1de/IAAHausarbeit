@@ -54,4 +54,5 @@ public class Employee extends Person {
     public int hashCode() {
         return (int) (employeeNumber ^ (employeeNumber >>> 32));
     }
+
 }

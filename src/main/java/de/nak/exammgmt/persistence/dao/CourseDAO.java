@@ -18,10 +18,11 @@ import java.util.List;
 public interface CourseDAO extends DAO<Course> {
 
     /**
-     * Finds a list of all Courses in the given Maniple
+     * Finds a list of all courses in the given maniple.
+     * ORDERED BY title
      *
-     * @param maniple the Maniple whose Courses will be searched
-     * @return List of all Courses in the Maniple
+     * @param maniple the maniple whose Courses will be searched
+     * @return List of all courses in the maniple
      */
     List<Course> findByManiple(Maniple maniple);
 

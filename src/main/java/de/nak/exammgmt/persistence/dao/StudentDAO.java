@@ -22,6 +22,7 @@ public interface StudentDAO extends DAO<Student> {
     /**
      * Finds a list of all students who can attend the given exam.
      * A student is a possible attendee if he has not passed the course yet or failed it.
+     * ORDERED BY lastName, firstName
      *
      * @param exam the exam to find possible attendees for
      * @return list of students who are possible attendees
@@ -32,6 +33,7 @@ public interface StudentDAO extends DAO<Student> {
      * Finds a list of all students who are allowed to take a reexamination in the given exam.
      * A student is a possible attendee if he failed the exam with the possibility of a reexamination and if he
      * did not attempt two reexaminations before for the course of the exam.
+     * ORDERED BY lastName, firstName
      *
      * @param exam the exam that shall be reexamined
      * @return list of students that are allowed to reexamine the exam
@@ -40,6 +42,7 @@ public interface StudentDAO extends DAO<Student> {
 
     /**
      * Finds a list of all students for the given maniple.
+     * ORDERED BY lastName, firstName
      *
      * @param maniple the maniple query with
      * @return list of students of the given maniple

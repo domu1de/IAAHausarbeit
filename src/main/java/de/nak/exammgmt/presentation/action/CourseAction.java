@@ -12,15 +12,17 @@ import de.nak.exammgmt.service.CourseService;
 import de.nak.exammgmt.service.Enrollment;
 import de.nak.exammgmt.service.EnrollmentService;
 
-import java.util.Comparator;
-import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 /**
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
 public class CourseAction extends BaseAction {
+
+    private static final float[] GRADES_IN_VIEW = {1.0f, 1.3f, 1.7f, 2.0f, 2.3f, 2.7f, 3.0f, 3.3f, 3.7f, 4.0f, 5.0f, 6.0f};
 
     private Long courseId;
 
@@ -39,18 +41,27 @@ public class CourseAction extends BaseAction {
         List<Enrollment> enrollments = enrollmentService.listByCourse(course);
         courseActionModel.setCourse(course);
         courseActionModel.setEnrollments(enrollments);
-        courseActionModel.setGradeCount(enrollments.stream()
+        courseActionModel.setGradeCount(putMissingGrades(enrollments.stream()
                 .filter(e -> e.getGrade() != null)
-                .sorted(Comparator.comparing(Enrollment::getGrade)) // TODO nicht vorhande grades trotzdem anzeigen
-                .collect(Collectors.groupingBy(Enrollment::getGrade, LinkedHashMap::new, Collectors.counting()))); // TODO reeaxamination possible mit zählen, geht mit enrollment aber nicht -.-
+                .collect(Collectors.groupingBy(
+                        e -> e.isReexaminationPossible() ? 6.0F : e.getGrade(),
+                        TreeMap::new,
+                        Collectors.counting()))));
 
-                // TODO eigene note in liste und auswertung markieren
+        // TODO eigene note in liste und auswertung markieren
         courseActionModel.setAverageGrade(enrollments.stream()
                 .filter(e -> e.getGrade() != null)
                 .mapToDouble(Enrollment::getGrade)
                 .average().orElse(0));
 
         return SHOW;
+    }
+
+    private SortedMap<Float, Long> putMissingGrades(SortedMap<Float, Long> map) {
+        for (float grade : GRADES_IN_VIEW) {
+           map.putIfAbsent(grade, 0L);
+        }
+        return map;
     }
 
     public String toCssClass(float grade) {

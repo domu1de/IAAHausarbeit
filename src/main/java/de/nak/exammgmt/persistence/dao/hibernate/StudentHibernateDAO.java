@@ -67,7 +67,8 @@ public class StudentHibernateDAO extends HibernateDAO<Student> implements Studen
                         "AND NOT last_attempt.EXAM = :exam_id " +
                         // Max of three attempts
                         "AND last_attempt.ATTEMPT IS NOT NULL " +
-                        "AND last_attempt.ATTEMPT < 3))")
+                        "AND last_attempt.ATTEMPT < 3)) " +
+                "ORDER BY s.LAST_NAME, s.FIRST_NAME")
                 .addEntity(Student.class)
                 .setLong("maniple_id", exam.getCourse().getManiple().getId())
                 .setLong("course_id", exam.getCourse().getId())
@@ -98,7 +99,8 @@ public class StudentHibernateDAO extends HibernateDAO<Student> implements Studen
                         "  ) rc ON rc.STUDENT = s.ID " +
                         "WHERE rc.STUDENT IS NULL " +
                         // Only students allowed who didn't reexamine this exam before and who didn't reexamine the course twice already
-                        "  OR (rc.EXAM_REEX_COUNT = 0 AND COURSE_REEX_COUNT < 2)")
+                        "  OR (rc.EXAM_REEX_COUNT = 0 AND COURSE_REEX_COUNT < 2) " +
+                        "ORDER BY s.LAST_NAME, s.FIRST_NAME")
                 .addEntity(Student.class)
                 .setLong("exam_id", exam.getId())
                 .setLong("course_id", exam.getCourse().getId())
@@ -108,7 +110,7 @@ public class StudentHibernateDAO extends HibernateDAO<Student> implements Studen
     @Override
     @SuppressWarnings("unchecked")
     public List<Student> findByManiple(Maniple maniple) {
-        return getCurrentSession().createQuery("FROM Student WHERE maniple = :maniple")
+        return getCurrentSession().createQuery("FROM Student WHERE maniple = :maniple ORDER BY lastName, firstName")
                 .setParameter("maniple", maniple)
                 .list();
     }

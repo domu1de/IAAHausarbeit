@@ -75,7 +75,7 @@
 }
 
 .boxed-group > h3, .boxed-group .heading {
-    background-color: #f9f9f9;
+    background-color: #f5f5f55;
     margin: 0;
     border-radius: 4px 4px 0 0;
     border: 1px solid #ddd;
@@ -444,6 +444,10 @@ li.session-device .minibutton {
 
 .grade-f {
     background-color: #FF6666;
+}
+
+.grade-none {
+    background-color: #f5f5f5;
 }
 
 .grade-label {

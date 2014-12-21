@@ -56,9 +56,9 @@
                 </thead>
                 <tbody>
                     <tr th:each="enrollment : ${action.courseActionModel.enrollments}">
-                        <td th:text="|${enrollment.student.name} (${enrollment.student.studentId})|">Hans Müllerchen</td>
+                        <td th:text="|${enrollment.student.lastName}, ${enrollment.student.firstName} (${enrollment.student.studentId})|">Hans Müllerchen</td>
                         <td th:text="${enrollment.attempt}">1</td>
-                        <td th:text="${#numbers.formatDecimal(enrollment.grade, 1, 1)}" th:class="${action.toCssClass(enrollment.grade)}">1.0</td>
+                        <td th:text="${enrollment.grade ? #numbers.formatDecimal(enrollment.grade, 1, 1) : 'x'}" th:class="${enrollment.grade ? action.toCssClass(enrollment.grade) : 'grade-none'}">1.0</td>
                     </tr>
                 </tbody>
             </table>
