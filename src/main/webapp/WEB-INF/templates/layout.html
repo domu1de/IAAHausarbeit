@@ -27,11 +27,6 @@
                         <a th:href="@{/}" class="navbar-brand" th:text="#{txt.pageTitle}">NAK Exam Management</a>
                     </div>
                     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-                        <ul class="nav navbar-nav">
-                            <li class="active">
-                                <a th:href="@{/}" th:text="#{txt.home}">Home</a>
-                            </li>
-                        </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="navbar-text" th:if="${action.currentUser.loggedIn}" th:text="#{txt.welcomeUser(${action.currentUser.fullName})}">Profile</li>
                             <li th:if="${action.currentUser.loggedIn}"><a th:href="@{/profile/}" th:text="#{txt.profile}">Profile</a></li>
