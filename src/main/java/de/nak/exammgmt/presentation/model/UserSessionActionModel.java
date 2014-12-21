@@ -73,4 +73,15 @@ public class UserSessionActionModel {
         return !formattedString.isEmpty() ? formattedString : null;
     }
 
+    public String formatOSVersion(String major, String minor) {
+        String osVersion = "";
+        if (major != null) {
+            osVersion = major;
+            if (minor != null) {
+                osVersion += "." + minor;
+            }
+        }
+        return osVersion; // TODO review function
+    }
+
 }

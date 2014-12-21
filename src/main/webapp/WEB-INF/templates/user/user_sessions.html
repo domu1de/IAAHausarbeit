@@ -62,7 +62,7 @@
                             <div class="sessions-more-info">
                                 <p th:with="uaClient=${action.userSessionActionModel.parseUserAgent(userSession.userAgent)}">
                                     <strong th:text="${uaClient.userAgent.family}">Opera</strong>
-                                    <span th:text="#{txt.uaOnOS(${uaClient.os.family}, ${uaClient.os.major}, ${uaClient.os.minor})}">on OS X 10.09</span>
+                                    <span th:text="#{txt.uaOnOS(${uaClient.os.family}, ${action.userSessionActionModel.formatOSVersion(uaClient.os.major, uaClient.os.minor)})}">on OS X 10.09</span>
                                 </p>
 
                                 <p>
