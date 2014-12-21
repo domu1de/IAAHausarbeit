@@ -19,7 +19,7 @@
     <body>
         <th:block th:replace="layout :: layout-header (subTitle=#{txt.title.profile}, subText=${action.currentUser.fullName})" />
 
-        <div class="container">
+        <div class="content container">
             <ul class="nav nav-pills"> <!-- TODO eigener view für profile? -->
                 <li role="presentation" class="active"><a href="#" th:text="#{txt.profile}">Profile</a></li>
                 <li role="presentation"><a th:href="@{security/}" th:text="#{txt.security}">Security</a></li>
