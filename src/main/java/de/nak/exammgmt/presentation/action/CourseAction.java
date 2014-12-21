@@ -7,6 +7,7 @@ package de.nak.exammgmt.presentation.action;
 
 import de.nak.exammgmt.persistence.entity.Course;
 import de.nak.exammgmt.presentation.GradePresenter;
+import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.presentation.model.CourseActionModel;
 import de.nak.exammgmt.service.CourseService;
 import de.nak.exammgmt.service.Enrollment;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 /**
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
+@Protected(login = true)
 public class CourseAction extends BaseAction {
 
     private static final float[] GRADES_IN_VIEW = {1.0f, 1.3f, 1.7f, 2.0f, 2.3f, 2.7f, 3.0f, 3.3f, 3.7f, 4.0f, 5.0f, 6.0f};

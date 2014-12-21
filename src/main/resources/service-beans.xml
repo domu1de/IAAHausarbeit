@@ -30,8 +30,6 @@
         <property name="guestProvider" ref="guestProvider"/>
     </bean>
 
-    <bean name="authorizationService" class="de.nak.exammgmt.service.authorization.DefaultAuthorizationService"/>
-
     <bean name="courseService" class="de.nak.exammgmt.service.DefaultCourseService">
         <property name="courseDAO" ref="courseDAO"/>
         <property name="examPerformanceDAO" ref="examPerformanceDAO" />

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<!--
+  ~ Copyright (c) 2014 Domenic Muskulus, Alexander Mersmann.
+  ~ Licensed under the MIT License.
+  -->
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title th:text="#{txt.pageTitle}">NAK Exam Management</title>
+
+        <link href="../../../static/css/vendor/bootstrap.min.css" th:href="@{/static/css/vendor/bootstrap.min.css}" rel="stylesheet" />
+        <link href="../../../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet" />
+    </head>
+    <body>
+        <th:block th:replace="layout :: layout-header (subTitle=#{txt.title.course.grades})"></th:block>
+
+        <div class="container">
+
+            <dl class="dl-horizontal">
+                <dt th:text="#{txt.maniple}">Maniple</dt>
+                <dd th:text="${action.manipleActionModel.maniple}">IAA</dd>
+            </dl>
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th th:each="course : ${action.manipleActionModel.manipleCourses}" th:text="${course.title}">Course 1</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="enrollment : ${action.manipleActionModel.manipleEnrollments}">
+                        <th th:text="|${enrollment.key.lastName}, ${enrollment.key.firstName} (${enrollment.key.studentId})|">Hans Müllerchen (1001)</th>
+                        <td th:each="courseEnrollment : ${enrollment.value}">
+                            <span th:text="${courseEnrollment.value.grade ? #numbers.formatDecimal(courseEnrollment.value.grade, 1, 1) : 'x'}" th:class="${courseEnrollment.value.grade ? action.manipleActionModel.gradeToCssClass(courseEnrollment.value.grade) : 'grade-none'}">1.0</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="../../../static/js/vendor/bootstrap.min.js" th:src="@{/static/js/vendor/bootstrap.min.js}"></script>
+        <script src="../../../static/js/script.js" th:src="@{/static/js/script.js}"></script>
+    </body>
+</html>

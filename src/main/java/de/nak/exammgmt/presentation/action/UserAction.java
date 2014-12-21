@@ -5,6 +5,7 @@
 
 package de.nak.exammgmt.presentation.action;
 
+import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.presentation.model.UserActionModel;
 import de.nak.exammgmt.service.home.AdminService;
 
@@ -13,6 +14,7 @@ import de.nak.exammgmt.service.home.AdminService;
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
+@Protected(login = true)
 public class UserAction extends BaseAction {
 
     private AdminService adminService;

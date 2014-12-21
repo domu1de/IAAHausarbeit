@@ -54,11 +54,15 @@
                 <param name="returnTo">${returnTo}</param>
                 <param name="suppressEmptyParameters">true</param>
             </result>
+
             <result name="error" type="thymeleaf">error</result>
+
             <result name="404" type="httpheader">
                 <param name="error">404</param>
             </result>
+
             <result name="redirect_welcome" type="redirect">/</result>
+
             <!-- TODO: Remove for production -->
             <result name="redirect_reset_database" type="redirectAction">reset_database</result>
         </global-results>
@@ -150,6 +154,11 @@
         
         <action name="course/{courseId}?" class="de.nak.exammgmt.presentation.action.CourseAction">
             <result name="show" type="thymeleaf">course/grades</result>
+        </action>
+
+        <action name="maniple/{manipleId}?" class="de.nak.exammgmt.presentation.action.ManipleAction">
+            <result name="index" type="thymeleaf">maniple/index</result>
+            <result name="show" type="thymeleaf">maniple/grades</result>
         </action>
 
     </package>

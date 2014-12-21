@@ -11,8 +11,8 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import de.nak.exammgmt.persistence.entity.user.Permission;
 import de.nak.exammgmt.persistence.entity.user.User;
 import de.nak.exammgmt.presentation.action.BaseAction;
-import de.nak.exammgmt.service.authorization.AuthorizationService;
 import de.nak.exammgmt.service.common.UrlProvider;
+import org.apache.struts2.ServletActionContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,70 +31,87 @@ import java.util.Set;
  */
 public class AuthorizationInterceptor extends AbstractInterceptor {
 
-    private static final String DENIED = "denied";
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthorizationInterceptor.class);
 
-    private AuthorizationService authorizationService;
     private UrlProvider urlProvider;
 
     @Override
+    // TODO zu lang!
     public String intercept(ActionInvocation actionInvocation) throws Exception {
-        Object action = actionInvocation.getAction();
-        Set<Permission> permissions = getPermissions(actionInvocation);
-        if (!(action instanceof BaseAction)) {
-            if (permissions.size() > 0) {
-                // TODO: check this
-                LOGGER.warn(String.format(
-                        "%s#%s is annotated with Protected, but the action is not of type [%s] as it's required",
-                        action.getClass().getName(),
-                        actionInvocation.getProxy().getMethod(),
-                        BaseAction.class.getName()
-                        )
-                );
-            }
+        Protected methodAnnotation = getMethodAnnotation(actionInvocation);
+        Protected classAnnotation = actionInvocation.getAction().getClass().getAnnotation(Protected.class);
+
+        if (methodAnnotation == null && classAnnotation == null) {
             return actionInvocation.invoke();
         }
 
-        User user = ((BaseAction) action).getCurrentUser();
-        switch (authorizationService.accessGranted(permissions, user)) {
-            case ACCESS_DENIED:
-                return DENIED;
-            case ACCESS_GRANTED:
-                return actionInvocation.invoke();
-            case LOGIN_NEEDED:
-                ((BaseAction) action).setReturnTo(urlProvider.requestUrl());
-                return Action.LOGIN;
-            default:
-                return Action.ERROR;
+        if (!(actionInvocation.getAction() instanceof BaseAction)) {
+            // TODO: check this
+            LOGGER.warn(String.format(
+                            "%s#%s is annotated with @Protected, but the action is not of type [%s] as it's required",
+                            actionInvocation.getAction().getClass().getName(),
+                            actionInvocation.getProxy().getMethod(),
+                            BaseAction.class.getName()
+                    )
+            );
+            return actionInvocation.invoke();
         }
+
+        BaseAction action = (BaseAction) actionInvocation.getAction();
+        User user = action.getCurrentUser();
+
+        boolean requireLogin = false;
+        Set<Permission> permissions = new HashSet<>();
+
+        if (classAnnotation != null) {
+            requireLogin = classAnnotation.login();
+            mergePermissions(permissions, classAnnotation.value());
+        }
+
+        if (methodAnnotation != null) {
+            requireLogin = methodAnnotation.login();
+            mergePermissions(permissions, methodAnnotation.value());
+        }
+
+        // If the user is not logged in as required, show login
+        if (requireLogin && !user.isLoggedIn()) {
+            action.setReturnTo(urlProvider.requestUrl());
+            return Action.LOGIN;
+        }
+
+        // ACCESS DENIED? Show error and set 403 status
+        if (!user.hasRights(permissions.toArray(new Permission[permissions.size()]))) {
+            action.addActionError(action.getText("txt.accessDenied"));
+            ServletActionContext.getResponse().setStatus(403); // TODO: test, maybe sendError
+            return BaseAction.ERROR;
+        }
+
+        return actionInvocation.invoke();
     }
 
     /**
-     * Gets a set of need permissions as defined by the action method.
+     * Returns the {@link Protected} annotation if present, or null.
      *
      * @param actionInvocation the calling action invocation
-     * @return a set of needed permissions
+     * @return annotation, or {@code null}
      */
-    private Set<Permission> getPermissions(ActionInvocation actionInvocation) {
+    private Protected getMethodAnnotation(ActionInvocation actionInvocation) {
         Class<?> actionClass = actionInvocation.getAction().getClass();
         String methodName = actionInvocation.getProxy().getMethod();
-        Set<Permission> permissions = new HashSet<>();
 
         try {
             Method method = actionClass.getMethod(methodName);
-            if (method.isAnnotationPresent(Protected.class)) {
-                permissions.addAll(Arrays.asList(method.getAnnotation(Protected.class).value()));
-            }
+            return method.getAnnotation(Protected.class);
         } catch (NoSuchMethodException e) {
             // ignoring this allows us to not implement all rest methods in an action if not needed
             LOGGER.info("Skip method [{}] in class [{}]", methodName, actionClass.getName());
         }
 
-        return permissions;
+        return null;
     }
 
-    public void setAuthorizationService(AuthorizationService authorizationService) {
-        this.authorizationService = authorizationService;
+    private void mergePermissions(Set<Permission> permissions, Permission[] additionPermissions) {
+        permissions.addAll(Arrays.asList(additionPermissions));
     }
 
     public void setUrlProvider(UrlProvider urlProvider) {

@@ -5,6 +5,7 @@
 
 package de.nak.exammgmt.presentation.action;
 
+import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.service.common.LoginService;
 
 /**
@@ -45,6 +46,7 @@ public class LoginAction extends BaseAction {
      *
      * @return Redirect to welcome or error if failed.
      */
+    @Protected(login = true)
     public String logout() {
         try {
             loginService.logout(getCurrentUser());

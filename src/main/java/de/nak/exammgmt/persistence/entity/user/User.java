@@ -11,7 +11,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
-import java.util.Set;
 
 /**
  * Entity to store the Users of the application. The system will differentiate between students, lecturers, etc.
@@ -107,14 +106,6 @@ public class User extends AbstractEntity {
     @Override
     public int hashCode() {
         return username != null ? username.hashCode() : 0;
-    }
-
-    // TODO angucken
-    @Transient
-    public boolean hasRights(Set<Permission> rights) {
-
-        System.out.println(username);
-        return role.hasRights(rights);
     }
 
     @Override

@@ -64,20 +64,20 @@ public interface EnrollmentService {
     List<Enrollment> listByCourse(Course course);
 
     /**
-     * Lists enrollments indexed by course and student.
+     * Lists enrollments indexed by student and course.
      *
      * @param manipleId id of the maniple to look for
      * @return enrollments indexed by course and student
      * @throws NotFoundException if no entity could be found
      */
-    Map<Course, Map<Student, Enrollment>> listByManiple(long manipleId) throws NotFoundException;
+    Map<Student, Map<Course, Enrollment>> listByManiple(long manipleId) throws NotFoundException;
 
     /**
-     * Lists enrollments indexed by course and student.
+     * Lists enrollments indexed by student and course.
      *
      * @param maniple the maniple to look for
      * @return enrollments indexed by course and student
      */
-    Map<Course, Map<Student, Enrollment>> listByManiple(Maniple maniple);
+    Map<Student, Map<Course, Enrollment>> listByManiple(Maniple maniple);
 
 }

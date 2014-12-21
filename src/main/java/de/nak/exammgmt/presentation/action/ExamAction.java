@@ -9,6 +9,7 @@ import de.nak.exammgmt.persistence.entity.Course;
 import de.nak.exammgmt.persistence.entity.Employee;
 import de.nak.exammgmt.persistence.entity.Exam;
 import de.nak.exammgmt.persistence.entity.Maniple;
+import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.presentation.model.ExamActionModel;
 import de.nak.exammgmt.service.ExamService;
 import de.nak.exammgmt.service.ManipleService;
@@ -22,6 +23,7 @@ import static java.util.stream.Collectors.toMap;
 /**
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
+@Protected(login = true)
 public class ExamAction extends BaseAction {
 
     private ExamActionModel examActionModel = new ExamActionModel();
