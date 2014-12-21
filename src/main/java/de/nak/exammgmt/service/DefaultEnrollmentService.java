@@ -48,16 +48,12 @@ public class DefaultEnrollmentService implements EnrollmentService {
 
         List<Enrollment> enrollments = new ArrayList<>(courses.size());
         for (Course course : courses) {
-            Enrollment enrollment = new Enrollment();
-            enrollment.setStudent(student);
-            enrollment.setCourse(course);
+            Enrollment enrollment = new Enrollment(student, course);
 
-            // TODO: equals
             for (int index = 0; index < lastAttempts.size(); index++) {
                 ExamPerformance examPerformance = lastAttempts.get(index);
-                if (examPerformance.getExam().getCourse().getId().equals(course.getId())) {
-                    enrollment.setGrade(getGrade(examPerformance));
-                    enrollment.setAttempt(examPerformance.getAttempt());
+                if (examPerformance.getExam().getCourse().equals(course)) {
+                    applyExamPerformance(enrollment, examPerformance);
                     lastAttempts.remove(index);
                     break;
                 }
@@ -82,16 +78,12 @@ public class DefaultEnrollmentService implements EnrollmentService {
 
         List<Enrollment> enrollments = new ArrayList<>(students.size());
         for (Student student : students) {
-            Enrollment enrollment = new Enrollment();
-            enrollment.setStudent(student);
-            enrollment.setCourse(course);
+            Enrollment enrollment = new Enrollment(student, course);
 
-            // TODO: equals
             for (int index = 0; index < examPerformances.size(); index++) {
                 ExamPerformance examPerformance = examPerformances.get(index);
-                if (examPerformance.getStudent().getId().equals(student.getId())) {
-                    enrollment.setGrade(getGrade(examPerformance));
-                    enrollment.setAttempt(examPerformance.getAttempt());
+                if (examPerformance.getStudent().equals(student)) {
+                    applyExamPerformance(enrollment, examPerformance);
                     examPerformances.remove(index);
                     break;
                 }
@@ -128,6 +120,12 @@ public class DefaultEnrollmentService implements EnrollmentService {
         } else {
             return examPerformance.getGrade();
         }
+    }
+
+    private void applyExamPerformance(Enrollment enrollment, ExamPerformance examPerformanceToApply) {
+        enrollment.setGrade(getGrade(examPerformanceToApply));
+        enrollment.setAttempt(examPerformanceToApply.getAttempt());
+        enrollment.setReexaminationPossible(examPerformanceToApply.isReexaminationPossible());
     }
 
     public void setCourseService(CourseService courseService) {
