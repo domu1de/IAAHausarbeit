@@ -82,7 +82,7 @@ public class AuthorizationInterceptor extends AbstractInterceptor {
         // ACCESS DENIED? Show error and set 403 status
         if (!user.hasRights(permissions.toArray(new Permission[permissions.size()]))) {
             action.addActionError(action.getText("txt.accessDenied"));
-            ServletActionContext.getResponse().setStatus(403); // TODO: test, maybe sendError
+            ServletActionContext.getResponse().setStatus(403);
             return BaseAction.ERROR;
         }
 

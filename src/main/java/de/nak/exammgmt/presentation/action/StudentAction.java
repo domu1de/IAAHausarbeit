@@ -5,6 +5,7 @@
 
 package de.nak.exammgmt.presentation.action;
 
+import de.nak.exammgmt.persistence.entity.ExamPerformance;
 import de.nak.exammgmt.presentation.GradePresenter;
 import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.presentation.model.StudentActionModel;
@@ -18,8 +19,11 @@ import de.nak.exammgmt.service.StudentService;
 @Protected(login = true)
 public class StudentAction extends BaseAction {
 
+    private static final String SHOW_GRADES = "show_grades";
+    private static final String SHOW_COURSE_GRADE = "show_course_grade";
+
     private Long studentId;
-    private Long courseId;
+    private Long course;
 
     private StudentService studentService;
     private ExamPerformanceService examPerformanceService;
@@ -34,9 +38,20 @@ public class StudentAction extends BaseAction {
         }
 
         studentActionModel.setStudent(studentService.get(studentId));
+
+        if (course != null) {
+            studentActionModel.setEnrollment(enrollmentService.getByStudentAndCourse(studentId, course));
+
+            for (ExamPerformance ep : examPerformanceService.listFullHistory(course, studentId)) {
+                studentActionModel.getFullHistory().put(ep, examPerformanceService.getProtocolForPerformance(ep));
+            }
+
+            return SHOW_COURSE_GRADE;
+        }
+
         studentActionModel.setEnrollments(enrollmentService.listByStudent(studentId));
 
-        return SHOW;
+        return SHOW_GRADES;
     }
 
     public String personalGrades() throws Exception {
@@ -61,12 +76,12 @@ public class StudentAction extends BaseAction {
         this.studentService = studentService;
     }
 
-    public Long getCourseId() {
-        return courseId;
+    public Long getCourse() {
+        return course;
     }
 
-    public void setCourseId(Long courseId) {
-        this.courseId = courseId;
+    public void setCourse(Long course) {
+        this.course = course;
     }
 
     public void setExamPerformanceService(ExamPerformanceService examPerformanceService) {

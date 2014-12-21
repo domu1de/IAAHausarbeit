@@ -7,6 +7,7 @@ package de.nak.exammgmt.persistence.entity.user;
 
 /**
  * Enum to provide all possible Permissions of the application.
+ * TODO check usage
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
@@ -16,5 +17,11 @@ public enum Permission {
     SHOW_USER,
     EDIT_USER,
     DELETE_USER,
+
+    RECORD_GRADE,
+    EDIT_GRADE,
+    REVERSE_GRADE,
+
+    SHOW_GRADE_PROTOCOL,
 
 }

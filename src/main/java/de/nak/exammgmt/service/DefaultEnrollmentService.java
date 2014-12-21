@@ -28,11 +28,21 @@ public class DefaultEnrollmentService implements EnrollmentService {
     private StudentService studentService;
     private CourseService courseService;
     private ManipleService manipleService;
+    private ExamPerformanceService examPerformanceService;
 
     @Override
-    public Enrollment getByStudentAndCourse(long studentId, long courseId) {
-        // TODO
-        return null;
+    public Enrollment getByStudentAndCourse(long studentId, long courseId) throws NotFoundException {
+        Student student = studentService.get(studentId);
+        Course course = courseService.get(courseId);
+
+        Enrollment enrollment = new Enrollment(student, course);
+        try {
+            ExamPerformance currentPerformance = examPerformanceService.getCurrentPerformance(course, student);
+            applyExamPerformance(enrollment, currentPerformance);
+        } catch (NotFoundException ignored) {
+        }
+
+        return enrollment;
     }
 
     @Override
@@ -132,5 +142,9 @@ public class DefaultEnrollmentService implements EnrollmentService {
 
     public void setManipleService(ManipleService manipleService) {
         this.manipleService = manipleService;
+    }
+
+    public void setExamPerformanceService(ExamPerformanceService examPerformanceService) {
+        this.examPerformanceService = examPerformanceService;
     }
 }

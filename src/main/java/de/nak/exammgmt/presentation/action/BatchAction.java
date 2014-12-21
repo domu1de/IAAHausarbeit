@@ -6,6 +6,8 @@
 package de.nak.exammgmt.presentation.action;
 
 import de.nak.exammgmt.persistence.entity.Exam;
+import de.nak.exammgmt.persistence.entity.user.Permission;
+import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.presentation.model.BatchActionModel;
 import de.nak.exammgmt.service.ExamPerformanceService;
 import de.nak.exammgmt.service.ExamService;
@@ -15,6 +17,7 @@ import java.util.Collections;
 /**
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
+@Protected(login = true, value = Permission.RECORD_GRADE)
 public class BatchAction extends BaseAction {
 
     private Long examId;

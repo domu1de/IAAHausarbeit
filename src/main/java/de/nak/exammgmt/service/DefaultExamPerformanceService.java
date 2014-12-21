@@ -8,10 +8,7 @@ package de.nak.exammgmt.service;
 import de.nak.exammgmt.persistence.dao.ExamPerformanceDAO;
 import de.nak.exammgmt.persistence.dao.ExamPerformanceProtocolItemDAO;
 import de.nak.exammgmt.persistence.dao.StudentDAO;
-import de.nak.exammgmt.persistence.entity.Course;
-import de.nak.exammgmt.persistence.entity.ExamPerformance;
-import de.nak.exammgmt.persistence.entity.ExamPerformanceProtocolItem;
-import de.nak.exammgmt.persistence.entity.Student;
+import de.nak.exammgmt.persistence.entity.*;
 import de.nak.exammgmt.service.authentication.AuthenticationService;
 import de.nak.exammgmt.service.exception.ExamPerformanceValidationException;
 import de.nak.exammgmt.service.exception.NotFoundException;
@@ -102,6 +99,12 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
     }
 
     @Override
+    public List<ExamPerformance> listFullHistory(long courseId, long studentId) throws NotFoundException {
+        //FIXME
+        return listFullHistory(AbstractEntity.withId(courseId, Course.class), AbstractEntity.withId(studentId, Student.class));
+    }
+
+    @Override
     public List<ExamPerformance> listFullHistory(Course course, Student student) {
         if (course == null || course.getId() == null || student == null || student.getId() == null) {
             // TODO throw exception
@@ -113,6 +116,15 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
     public ExamPerformanceProtocolItem getProtocolForPerformance(ExamPerformance examPerformance) {
         // TODO not null
         return examPerformanceProtocolItemDAO.findByOldExamPerformance(examPerformance);
+    }
+
+    @Override
+    public ExamPerformance getCurrentPerformance(Course course, Student student) throws NotFoundException {
+        ExamPerformance examPerformance = examPerformanceDAO.findLastAttemptByCourseAndStudent(course, student);
+        if (examPerformance == null) {
+            throw new NotFoundException(ExamPerformance.class);
+        }
+        return examPerformance;
     }
 
     /**
@@ -195,4 +207,5 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
     public void setExamPerformanceProtocolItemDAO(ExamPerformanceProtocolItemDAO examPerformanceProtocolItemDAO) {
         this.examPerformanceProtocolItemDAO = examPerformanceProtocolItemDAO;
     }
+
 }

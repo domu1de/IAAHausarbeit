@@ -16,12 +16,16 @@
 
     </head>
     <body>
-        <div class="alert alert-danger" role="alert" th:each="error : ${action.actionErrors}">
-            <span th:text="${error}">Error 1 in list</span>
-        </div>
+        <th:block th:replace="layout :: layout-header (subTitle='Oops!', subText=#{txt.title.error})"></th:block>
 
-        <div class="alert alert-danger" role="alert" th:if="${#lists.isEmpty(action.actionErrors)}">
-            <span th:text="#{txt.unexpectedError}">An unexpected error occurred</span>
+        <div class="container">
+            <div class="alert alert-danger" role="alert" th:each="error : ${action.actionErrors}">
+                <span th:text="${error}">Error 1 in list</span>
+            </div>
+
+            <div class="alert alert-danger" role="alert" th:if="${#lists.isEmpty(action.actionErrors)}">
+                <span th:text="#{txt.unexpectedError}">An unexpected error occurred</span>
+            </div>
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

@@ -43,6 +43,7 @@
         <property name="studentService" ref="studentService" />
         <property name="courseService" ref="courseService" />
         <property name="manipleService" ref="manipleService" />
+        <property name="examPerformanceService" ref="examPerformanceService" />
     </bean>
 
     <bean name="examPerformanceService" class="de.nak.exammgmt.service.DefaultExamPerformanceService">

@@ -149,7 +149,10 @@
         </action>
 
         <action name="student/{studentId}?" class="de.nak.exammgmt.presentation.action.StudentAction">
-            <result name="show" type="thymeleaf">student/grades</result>
+            <param name="nested">true</param>
+
+            <result name="show_grades" type="thymeleaf">student/grades</result>
+            <result name="show_course_grade" type="thymeleaf">student/course_grade</result>
         </action>
         
         <action name="course/{courseId}?" class="de.nak.exammgmt.presentation.action.CourseAction">
@@ -158,7 +161,7 @@
 
         <action name="maniple/{manipleId}?" class="de.nak.exammgmt.presentation.action.ManipleAction">
             <result name="index" type="thymeleaf">maniple/index</result>
-            <result name="show" type="thymeleaf">maniple/grades</result>
+            <result name="show" type="thymeleaf">maniple/grades :: grade-overview</result>
         </action>
 
     </package>

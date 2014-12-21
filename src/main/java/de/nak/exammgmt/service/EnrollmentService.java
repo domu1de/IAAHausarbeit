@@ -27,7 +27,7 @@ public interface EnrollmentService {
      * @param courseId id of the course to look for
      * @return the enrollment
      */
-    Enrollment getByStudentAndCourse(long studentId, long courseId);
+    Enrollment getByStudentAndCourse(long studentId, long courseId) throws NotFoundException;
 
     /**
      * Lists all enrollments of the given student.

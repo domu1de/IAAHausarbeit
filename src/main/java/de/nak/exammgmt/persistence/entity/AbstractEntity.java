@@ -49,4 +49,23 @@ public abstract class AbstractEntity {
         this.updatedAt = updatedAt;
     }
 
+    /**
+     * Return an instance of the given entity class with the given id.
+     *
+     * @param id identifier to set on the entity
+     * @param entityClass class of the entity to create an instance of
+     * @return an instance of the given class
+     */
+    @SuppressWarnings("unchecked")
+    public static <T extends AbstractEntity> T withId(long id, Class<T> entityClass) {
+        try {
+            AbstractEntity entity = entityClass.newInstance();
+            entity.setId(id);
+
+            return (T) entity;
+        } catch (InstantiationException | IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

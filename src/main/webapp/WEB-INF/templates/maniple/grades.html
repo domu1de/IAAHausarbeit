@@ -16,7 +16,7 @@
         <link href="../../../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet" />
     </head>
     <body>
-        <th:block th:replace="layout :: layout-header (subTitle=#{txt.title.course.grades})"></th:block>
+        <th:block th:replace="layout :: layout-header (subTitle=#{txt.title.maniple.grades})"></th:block>
 
         <div class="container">
 
@@ -25,16 +25,20 @@
                 <dd th:text="${action.manipleActionModel.maniple}">IAA</dd>
             </dl>
 
-            <table class="table table-hover">
+            <table class="table table-hover" th:fragment="grade-overview">
                 <thead>
                     <tr>
                         <th></th>
-                        <th th:each="course : ${action.manipleActionModel.manipleCourses}" th:text="${course.title}">Course 1</th>
+                        <th th:each="course : ${action.manipleActionModel.manipleCourses}">
+                            <a th:href="@{/course/{courseId}(courseId=${course.id})}" th:text="${course.title}">Course 1</a>
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="enrollment : ${action.manipleActionModel.manipleEnrollments}">
-                        <th th:text="|${enrollment.key.lastName}, ${enrollment.key.firstName} (${enrollment.key.studentId})|">Hans Müllerchen (1001)</th>
+                        <th>
+                            <a th:href="@{/student/{studentId}(studentId=${enrollment.key.id})}" th:text="|${enrollment.key.lastName}, ${enrollment.key.firstName} (${enrollment.key.studentId})|">Hans Müllerchen (1001)</a>
+                        </th>
                         <td th:each="courseEnrollment : ${enrollment.value}">
                             <span th:text="${courseEnrollment.value.grade ? #numbers.formatDecimal(courseEnrollment.value.grade, 1, 1) : 'x'}" th:class="${courseEnrollment.value.grade ? action.manipleActionModel.gradeToCssClass(courseEnrollment.value.grade) : 'grade-none'}">1.0</span>
                         </td>

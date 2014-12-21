@@ -52,18 +52,23 @@ public class Restful3ActionMapper extends DefaultActionMapper {
             String id = null;
             boolean nested = false;
 
-            // TODO: strip parameters
-            ActionConfig actionConfig = configuration.getActionConfig(mapping.getNamespace(), mapping.getName());
+
+            int lastSlashPos = actionName.lastIndexOf('/');
+            int actionSlashPos = actionName.lastIndexOf('/', lastSlashPos - 1);
+            if (lastSlashPos > -1 && lastSlashPos < actionName.length() - 1) {
+                id = actionName.substring(lastSlashPos + 1);
+            }
+
+            if ("edit".equals(id)) {
+                actionSlashPos = actionName.lastIndexOf('/', actionSlashPos - 1);
+            }
+
+            ActionConfig actionConfig = configuration.getActionConfig(mapping.getNamespace(), actionName.substring(actionSlashPos + 1));
 
             // Apply settings from action config
             if (actionConfig != null) {
                 mapping.setMethod(actionConfig.getMethodName());
                 nested = "true".equalsIgnoreCase(actionConfig.getParams().get(NESTED_CONFIG_PARAM_NAME));
-            }
-
-            int lastSlashPos = actionName.lastIndexOf('/');
-            if (lastSlashPos > -1 && lastSlashPos < actionName.length() - 1) {
-                id = actionName.substring(lastSlashPos + 1);
             }
 
             // If a method hasn't been explicitly named, try to guess using ReST-style patterns
@@ -105,15 +110,13 @@ public class Restful3ActionMapper extends DefaultActionMapper {
                 }
                 mapping.setMethod(method);
 
-                if (method != null && (method.equals("editNew") || method.equals("edit"))) {
-                    actionName = actionName.substring(0, lastSlashPos + 1);
-                    mapping.setName(actionName);
-                    lastSlashPos = actionName.length() - 1;
+                // Remove "new" from action so it is later not parsed as id
+                if (method != null && method.equals("editNew")) {
+                    mapping.setName(actionName.substring(0, lastSlashPos + 1));
                 }
             }
 
             // Try to determine parameters from the url before the action name
-            int actionSlashPos = actionName.lastIndexOf('/', lastSlashPos - 1);
             if (nested && actionSlashPos > 0 && actionSlashPos < lastSlashPos) {
                 String params = actionName.substring(0, actionSlashPos);
                 HashMap<String,String> parameters = new HashMap<String,String>();
