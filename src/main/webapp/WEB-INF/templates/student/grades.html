@@ -32,14 +32,14 @@
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Modul</th>
-                        <th>Note</th>
+                        <th th:text="#{txt.course}">Course</th>
+                        <th th:text="#{txt.grade}">Grade</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="enrollment : ${action.studentActionModel.enrollments}" th:if="${enrollment.grade}">
-                        <td th:text="${enrollment.course.title}">Modul 1</td>
-                        <td><span th:text="${#numbers.formatDecimal(enrollment.grade,1,1)}" class="label grade-label " th:attrappend="class=${action.toCssClass(enrollment.grade)}">1.0</span></td>
+                        <td><a th:href="@{/course/{courseId}(courseId=${enrollment.course.id})}"  th:text="${enrollment.course.title}">Modul 1</a></td>
+                        <td><span th:text="${#numbers.formatDecimal(enrollment.grade, 1, 1)}" class="label grade-label " th:attrappend="class=${action.toCssClass(enrollment.grade)}">1.0</span></td>
                     </tr>
                 </tbody>
             </table>

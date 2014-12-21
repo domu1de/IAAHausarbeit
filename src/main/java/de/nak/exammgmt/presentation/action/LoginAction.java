@@ -31,7 +31,7 @@ public class LoginAction extends BaseAction {
     }
 
     public String login() {
-        if (loginService.validateLogin(username, password, rememberMe)) {
+        if (loginService.login(username, password, rememberMe)) {
             if (returnTo != null && !returnTo.isEmpty()) {
                 return RETURN_TO;
             }

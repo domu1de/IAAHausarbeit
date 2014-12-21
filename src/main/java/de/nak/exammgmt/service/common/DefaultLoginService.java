@@ -25,7 +25,7 @@ public class DefaultLoginService implements LoginService {
 
     @Override
     // TODO: boolean -> exception
-    public boolean validateLogin(String usernameOrEmail, String password, boolean rememberMe) {
+    public boolean login(String usernameOrEmail, String password, boolean rememberMe) {
         User user = userDAO.findByUsernameOrEmail(usernameOrEmail);
 
         if (user == null) {

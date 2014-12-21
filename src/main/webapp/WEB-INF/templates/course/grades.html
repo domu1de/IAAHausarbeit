@@ -29,19 +29,36 @@
                 <dd th:text="${#strings.listJoin(action.courseActionModel.course.lecturers.{name}, ', ')}">Anft, Reichert</dd>
             </dl>
 
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th th:text="#{txt.grade}">Grade</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="entry : ${action.courseActionModel.gradeCount}">
+                        <td th:text="${#numbers.formatDecimal(entry.key, 1, 1)}" th:class="${action.toCssClass(entry.key)}">1.0</td>
+                        <td th:text="${entry.value}">5</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            Durchschnitt: <span th:text="${#numbers.formatDecimal(action.courseActionModel.averageGrade, 1, 2)}">3.87</span>
+
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <th>Student</th>
-                        <th>Versuch</th>
-                        <th>Note</th>
+                        <th th:text="#{txt.student}">Student</th>
+                        <th>Attempt</th>
+                        <th th:text="#{txt.grade}">Grade</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="enrollment : ${action.courseActionModel.enrollments}">
                         <td th:text="|${enrollment.student.name} (${enrollment.student.studentId})|">Hans Müllerchen</td>
                         <td th:text="${enrollment.attempt}">1</td>
-                        <td th:text="${#numbers.formatDecimal(enrollment.grade,1,1)}" th:class="${action.toCssClass(enrollment.grade)}">1.0</td>
+                        <td th:text="${#numbers.formatDecimal(enrollment.grade, 1, 1)}" th:class="${action.toCssClass(enrollment.grade)}">1.0</td>
                     </tr>
                 </tbody>
             </table>

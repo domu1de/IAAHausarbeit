@@ -17,12 +17,16 @@
 
     </head>
     <body>
-        <th:block th:replace="layout :: layout-header (subTitle=#{txt.title.profile})" />
+        <th:block th:replace="layout :: layout-header (subTitle=#{txt.title.profile}, subText=${action.currentUser.fullName})" />
 
         <div class="container">
+            <ul class="nav nav-pills"> <!-- TODO eigener view für profile? -->
+                <li role="presentation" class="active"><a href="#" th:text="#{txt.profile}">Profile</a></li>
+                <li role="presentation"><a th:href="@{security/}" th:text="#{txt.security}">Security</a></li>
+            </ul>
             <form id="form-create-user" th:action="@{/user/{userId}(userId=${action.userId})}" role="form" accept-charset="UTF-8" method="post">
                 <div class="boxed-group">
-                    <h3>User info</h3>
+                    <h3 th:text="#{txt.userInfo}">User info</h3>
                     <div class="boxed-group-inner">
                         <div class="form-group">
                             <label for="fullName" th:text="#{input.fullName}">Full name</label>
@@ -54,6 +58,7 @@
                             <label for="confirm-new-password-input" th:text="#{input.confirmPassword}">Confirm new password</label>
                             <input id="confirm-new-password-input" type="password" class="form-control" required th:placeholder="#{input.confirmPassword}" placeholder="Confirm new password">
                         </div>
+                        <input type="hidden" name="_method" value="put" />
                         <button class="btn btn-primary" type="submit" th:text="#{btn.changePassword}">Change password</button>
                     </div>
                 </div>

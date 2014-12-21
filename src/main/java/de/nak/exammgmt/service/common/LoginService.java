@@ -16,6 +16,7 @@ import de.nak.exammgmt.service.exception.NotFoundException;
 public interface LoginService {
 
     /**
+     * TODO comment
      * Validates the attempt of a user to login. Creates a new UserSession if successful.
      *
      * @param usernameOrEmail the username or email address the user tries to login with.
@@ -23,7 +24,7 @@ public interface LoginService {
      * @param rememberMe      flag to indicate if the user wishes the system to remember his session.
      * @return whether or not the login was valid.
      */
-    boolean validateLogin(String usernameOrEmail, String password, boolean rememberMe);
+    boolean login(String usernameOrEmail, String password, boolean rememberMe);
 
     /**
      * Logs out the given user.

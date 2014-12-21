@@ -50,6 +50,7 @@ public class UserAction extends BaseAction {
 
     @Override
     public String update() throws Exception {
+        // TODO change password
         if (userActionModel == null || userActionModel.getUser() == null) {
             addActionError("no user data submitted");
             return ERROR;

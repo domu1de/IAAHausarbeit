@@ -11,7 +11,9 @@
        <bean name="baseNotificationMail" abstract="true" class="de.nak.exammgmt.service.common.mail.DefaultNotificationMail" scope="prototype">
               <property name="mailSender" ref="mailSender" />
               <property name="messageSource" ref="messageSource" />
-              <property name="from" value="noreply@nordakademie.de" />
+              <property name="from">
+                     <value><![CDATA[Nordakademie <noreply@nordakademie.de>]]></value> <!-- TODO  uppercase?-->
+              </property>
        </bean>
 
        <bean name="activationNotificationMail" parent="baseNotificationMail">
@@ -26,7 +28,7 @@
 
        <bean name="gradeNotificationMail" parent="baseNotificationMail">
               <property name="messageKey" value="mail.grade.message" />
-              <property name="subjectKey" value="mail.grade.subject" /> <!-- TODO: messages -->
+              <property name="subjectKey" value="mail.grade.subject" />
        </bean>
 
        <bean name="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
@@ -39,7 +41,7 @@
                      <props>
                             <prop key="mail.smtp.auth">true</prop>
                             <prop key="mail.smtp.starttls.enable">true</prop>
-                            <!-- should be used, but in this case it's to complicated to install the certificate on all PCs -->
+                            <!-- shouldn't be used, but in this case it's to complicated to install the certificate on all PCs -->
                             <prop key="mail.smtp.ssl.trust">smtp.mandrillapp.com</prop>
                      </props>
               </property>

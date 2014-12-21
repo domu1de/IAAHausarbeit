@@ -9,7 +9,13 @@ import de.nak.exammgmt.persistence.entity.Course;
 import de.nak.exammgmt.presentation.GradePresenter;
 import de.nak.exammgmt.presentation.model.CourseActionModel;
 import de.nak.exammgmt.service.CourseService;
+import de.nak.exammgmt.service.Enrollment;
 import de.nak.exammgmt.service.EnrollmentService;
+
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author Domenic Muskulus <domenic@muskulus.eu>
@@ -30,8 +36,19 @@ public class CourseAction extends BaseAction {
         }
 
         Course course = courseService.get(courseId);
+        List<Enrollment> enrollments = enrollmentService.listByCourse(course);
         courseActionModel.setCourse(course);
-        courseActionModel.setEnrollments(enrollmentService.listByCourse(course));
+        courseActionModel.setEnrollments(enrollments);
+        courseActionModel.setGradeCount(enrollments.stream()
+                .filter(e -> e.getGrade() != null)
+                .sorted(Comparator.comparing(Enrollment::getGrade)) // TODO nicht vorhande grades trotzdem anzeigen
+                .collect(Collectors.groupingBy(Enrollment::getGrade, LinkedHashMap::new, Collectors.counting()))); // TODO reeaxamination possible mit zählen, geht mit enrollment aber nicht -.-
+
+                // TODO eigene note in liste und auswertung markieren
+        courseActionModel.setAverageGrade(enrollments.stream()
+                .filter(e -> e.getGrade() != null)
+                .mapToDouble(Enrollment::getGrade)
+                .average().orElse(0));
 
         return SHOW;
     }

@@ -26,6 +26,13 @@
 }
 
 /*
+ * Navigation
+ */
+.content .nav {
+    margin-bottom: 15px;
+}
+
+/*
  * select2 adjustments
  */
 .select2-container .select2-choice > .select2-chosen {

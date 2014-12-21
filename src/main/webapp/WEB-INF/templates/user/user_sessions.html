@@ -19,7 +19,11 @@
     <body>
         <th:block th:replace="layout :: layout-header (subTitle=#{txt.title.profile.userSessions})" />
 
-        <div class="container" th:with="dateFormatLong=#{format.date.long}">
+        <div class="content container" th:with="dateFormatLong=#{format.date.long}">
+            <ul class="nav nav-pills"> <!-- TODO eigener view für profile? -->
+                <li role="presentation"><a th:href="@{..}" th:text="#{txt.profile}">Profile</a></li>
+                <li role="presentation" class="active"><a th:text="#{txt.security}">Security</a></li>
+            </ul>
 
             This is a list of devices that have logged into your account. Revoke any sessions that you do not recognize.
 
