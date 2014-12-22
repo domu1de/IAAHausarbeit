@@ -16,7 +16,7 @@
         <link href="../../../static/css/vendor/select2/select2-bootstrap.css" th:href="@{/static/css/vendor/select2/select2-bootstrap.css}" rel="stylesheet"/>
         <link href="../../../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet"/>
     </head>
-    <body>
+    <body th:with="model=${action.welcomeManagementActionModel}">
         <th:block th:replace="layout :: layout-header (subTitle=#{txt.title.welcome.mgmt})"></th:block>
 
         <div class="container" th:with="dateFormatLong=#{format.date.long}">
@@ -25,22 +25,50 @@
                     <h3>Noten erfassen</h3>
                     <div class="boxed-group-inner">
                         <div class="form-group">
-                            <button id="main-exam-grades" type="button" class="btn btn-primary" data-toggle="modal" data-target="#select-exam-modal" th:text="#{txt.mainExam}">Hauptprüfung</button>
-                            <button id="reexam-grades" type="button" class="btn btn-primary" data-reex="true" data-toggle="modal" data-target="#select-exam-modal" th:text="#{txt.reexamination}">Nachprüfung</button>
+                            <button id="main-exam-grades" type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#select-exam-modal" th:text="#{txt.mainExam}">Hauptprüfung</button>
+                            <button id="reexam-grades" type="button" class="btn btn-primary btn-block" data-reex="true" data-toggle="modal" data-target="#select-exam-modal" th:text="#{txt.reexamination}">Nachprüfung</button>
                         </div>
                     </div>
                 </div>
-                <div class="boxed-group col-md-6">
+                <div id="search" class="boxed-group col-md-6">
                     <h3>Suche</h3>
                     <div class="boxed-group-inner">
                         <div class="form-group">
-                            <button type="button" class="btn btn-primary">Hauptprüfung</button>
-                            <button type="button" class="btn btn-primary">Nachprüfung</button>
+                            <div class="input-group select2-bootstrap-append select2-bootstrap-prepend">
+                                <span style="width: 75px" class="input-group-addon">Student</span>
+                                <select id="student-input" class="form-control advanced-select" th:attr="data-placeholder=#{input.student}">
+                                    <option></option>
+                                    <option th:each="student : ${model.students}" th:value="${student.id}"
+                                            th:text="|${student.name} (${student.studentId})|">Student 1</option>
+                                </select>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group select2-bootstrap-append select2-bootstrap-prepend">
+                                <span style="width: 75px" class="input-group-addon">Maniple</span>
+                                <select id="maniple-input" class="form-control advanced-select" th:attr="data-placeholder=#{input.maniple}">
+                                    <option></option>
+                                    <option th:each="maniple : ${model.maniples}" th:value="${maniple.id}"
+                                            th:text="${maniple}">Maniple 1</option>
+                                </select>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group select2-bootstrap-append select2-bootstrap-prepend">
+                                <span style="width: 75px" class="input-group-addon">Course</span>
+                                <select id="course-input" class="form-control advanced-select" th:attr="data-placeholder=#{input.course}">
+                                    <option></option>
+                                    <option th:each="course : ${model.courses}" th:value="${course.id}"
+                                            th:text="|${course} (${course.maniple.abbreviation})|">Course 1</option>
+                                </select>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
 
             <div id="select-exam-modal" class="modal fade">
                 <div class="modal-dialog">
@@ -51,10 +79,10 @@
                                 <h4 class="modal-title" th:text="#{txt.selectExam}">Select exam</h4>
                             </div>
                             <div class="modal-body">
-                                <div class="input-group">
+                                <div class="input-group select2-bootstrap-append">
                                     <select id="exam-input" class="form-control advanced-select" th:attr="data-placeholder=#{txt.selectExam}">
                                         <option></option>
-                                        <optgroup th:each="entry : ${action.welcomeManagementActionModel.exams}" th:label="${#temporals.format(entry.key, dateFormatLong)}">
+                                        <optgroup th:each="entry : ${model.exams}" th:label="${#temporals.format(entry.key, dateFormatLong)}">
                                             <option th:each="exam : ${entry.value}" th:value="${exam.id}"
                                                     th:text="|${exam.course} (${#strings.listJoin(exam.course.lecturers.{name}, ', ')})|">Exam 1</option>
                                         </optgroup>
@@ -77,6 +105,18 @@
         <script src="../../../static/js/script.js" th:src="@{/static/js/script.js}"></script>
         <script th:inline="javascript">
             $(function() {
+
+                $('#student-input').on('change', function(event) {
+                    window.location.href = 'student/' + $(this).val();
+                });
+
+                $('#maniple-input').on('change', function(event) {
+                    window.location.href = 'maniple/' + $(this).val();
+                });
+
+                $('#course-input').on('change', function(event) {
+                    window.location.href = 'course/' + $(this).val();
+                });
 
                 $('#select-exam-modal').on('show.bs.modal', function (event) {
                     var $button = $(event.relatedTarget);

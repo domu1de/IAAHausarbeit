@@ -44,6 +44,11 @@ public class DefaultStudentService implements StudentService {
     }
 
     @Override
+    public List<Student> list() {
+        return studentDAO.findAll();
+    }
+
+    @Override
     public List<ExamPerformance> listCurrentPerformancePerCourse(long studentId) throws NotFoundException {
         Student student = get(studentId);
         return listCurrentPerformancePerCourse(student);

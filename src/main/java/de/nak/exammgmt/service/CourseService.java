@@ -28,6 +28,13 @@ public interface CourseService {
     Course get(long courseId) throws NotFoundException;
 
     /**
+     * Lists all courses.
+     *
+     * @return list of courses
+     */
+    List<Course> list();
+
+    /**
      * Lists the current performance per student for the given course.
      *
      * @param courseId the course id to get the performances for

@@ -573,8 +573,3 @@ label.btn.active {
 .table-clickable tbody tr:active {
     background-color: #ddd;
 }
-
-.input-group > .select2-container > .select2-choice {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-}

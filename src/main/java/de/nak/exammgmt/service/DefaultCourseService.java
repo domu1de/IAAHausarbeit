@@ -33,6 +33,11 @@ public class DefaultCourseService implements CourseService {
     }
 
     @Override
+    public List<Course> list() {
+        return courseDAO.findAll();
+    }
+
+    @Override
     public List<ExamPerformance> listCurrentPerformancePerStudent(long courseId) throws NotFoundException {
         Course course = get(courseId);
         return listCurrentPerformancePerStudent(course);

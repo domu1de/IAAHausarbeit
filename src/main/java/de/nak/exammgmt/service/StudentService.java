@@ -38,6 +38,13 @@ public interface StudentService {
     Student getByUser(User user) throws NotFoundException;
 
     /**
+     * Lists all students.
+     *
+     * @return list of all students
+     */
+    List<Student> list();
+
+    /**
      * Lists the current performance per course for the given student.
      *
      * @param studentId the student's id to receive the current performance for

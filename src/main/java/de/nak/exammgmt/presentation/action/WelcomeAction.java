@@ -9,8 +9,10 @@ import de.nak.exammgmt.persistence.entity.Exam;
 import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.presentation.model.WelcomeAdminActionModel;
 import de.nak.exammgmt.presentation.model.WelcomeManagementActionModel;
+import de.nak.exammgmt.service.CourseService;
 import de.nak.exammgmt.service.ExamService;
 import de.nak.exammgmt.service.ManipleService;
+import de.nak.exammgmt.service.StudentService;
 import de.nak.exammgmt.service.home.AdminService;
 
 import java.time.LocalDate;
@@ -29,13 +31,15 @@ import java.util.SortedMap;
 public class WelcomeAction extends BaseAction {
 
     private static final String ADMIN = "admin";
-    private static final String STUDENT = "student";
+    private static final String STUDENT = "input.student";
     private static final String LECTURER = "lecturer";
     private static final String MANAGEMENT = "management";
 
     private AdminService adminService;
     private ExamService examService;
     private ManipleService manipleService;
+    private StudentService studentService;
+    private CourseService courseService;
 
     private WelcomeAdminActionModel welcomeAdminActionModel;
     private WelcomeManagementActionModel welcomeManagementActionModel;
@@ -70,6 +74,10 @@ public class WelcomeAction extends BaseAction {
             List<Exam> list = map.computeIfAbsent(exam.getDate(), (key) -> new ArrayList<>());
             list.add(exam);
         }
+
+        welcomeManagementActionModel.setStudents(studentService.list());
+        welcomeManagementActionModel.setManiples(manipleService.list());
+        welcomeManagementActionModel.setCourses(courseService.list());
     }
 
     private void executeLecturer() {
@@ -111,5 +119,13 @@ public class WelcomeAction extends BaseAction {
 
     public void setManipleService(ManipleService manipleService) {
         this.manipleService = manipleService;
+    }
+
+    public void setStudentService(StudentService studentService) {
+        this.studentService = studentService;
+    }
+
+    public void setCourseService(CourseService courseService) {
+        this.courseService = courseService;
     }
 }
