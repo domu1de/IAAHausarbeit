@@ -83,7 +83,7 @@ public class DefaultAuthenticationService implements AuthenticationService {
     }
 
     @Override
-    public void revokeUserSession(long id, User user) throws Exception {
+    public void revokeUserSession(long id, User user) throws NotFoundException {
         Objects.requireNonNull(user);
         Objects.requireNonNull(user.getId());
 
@@ -94,7 +94,7 @@ public class DefaultAuthenticationService implements AuthenticationService {
         }
 
         if (!userSession.getUser().equals(user)) {
-            throw new Exception(); // FIXME
+            throw new RuntimeException("You cannot revoke another user's sessions.");
         }
 
         userSessionDAO.delete(userSession);
@@ -239,7 +239,7 @@ public class DefaultAuthenticationService implements AuthenticationService {
             Cookie cookieToDelete = new Cookie(COOKIE_NAME, "");
             cookieToDelete.setHttpOnly(true);
             cookieToDelete.setMaxAge(0);
-            return cookieToDelete; // TODO: vielleicht doch user session cookie contructor nutzen, da redundant
+            return cookieToDelete;
         }
 
         /**

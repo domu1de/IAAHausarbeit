@@ -20,7 +20,6 @@ import java.util.List;
 public class ExamPerformanceHibernateDAO extends HibernateDAO<ExamPerformance> implements ExamPerformanceDAO {
 
     @Override
-    // TODO nötig?
     public ExamPerformance findLastAttemptByCourseAndStudent(Course course, Student student) {
         return (ExamPerformance) getCurrentSession()
                 .createQuery("FROM ExamPerformance WHERE reversed = false AND exam.course = :course AND student = :student ORDER BY updatedAt DESC")
@@ -101,7 +100,7 @@ public class ExamPerformanceHibernateDAO extends HibernateDAO<ExamPerformance> i
         if (getCurrentSession().createQuery("UPDATE ExamPerformance ep SET reversed = TRUE WHERE ep = :exam_performance")
                 .setParameter("exam_performance", examPerformance)
                 .executeUpdate() != 1) {
-            // TODO exception?
+            throw new RuntimeException("Could not reverse exam performance.");
         }
         examPerformance.setReversed(true);
     }

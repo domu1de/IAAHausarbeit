@@ -10,11 +10,12 @@ import org.apache.struts2.dispatcher.SessionMap;
 
 /**
  * Default implementation of the SessionService.
- * Session scoped. // TODO: session scope!
+ * Prototype scoped.
  *
  * @author Alexander Mersmann <alexander.mersmann@nordakademie.de>
  */
 public class DefaultSessionService implements SessionService {
+
     @Override
     public void invalidateSession() {
         SessionMap session = (SessionMap) ActionContext.getContext().getSession();
@@ -27,4 +28,5 @@ public class DefaultSessionService implements SessionService {
             session.remove("renewServletSession");
         }
     }
+
 }

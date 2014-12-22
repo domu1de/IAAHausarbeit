@@ -103,7 +103,6 @@ public class ExamPerformance extends AbstractEntity {
     }
 
     @Transient
-    // TODO: service?!
     public boolean isPassed() {
         return (!reexamination && grade <= 4) || (reexamination && grade <= 3);
     }

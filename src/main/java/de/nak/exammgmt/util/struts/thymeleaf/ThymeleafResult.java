@@ -9,7 +9,6 @@ import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.Result;
 import com.opensymphony.xwork2.inject.Inject;
 import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.StrutsConstants;
 import org.thymeleaf.Configuration;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.ProcessingContext;
@@ -39,7 +38,6 @@ public class ThymeleafResult implements Result {
      */
     public static final String DEFAULT_PARAM = "templateName";
 
-    private String defaultEncoding = "UTF-8";  //TODO use
     private TemplateEngineProvider templateEngineProvider;
     private String templateName;
     private IFragmentSpec fragmentSpec;
@@ -86,11 +84,6 @@ public class ThymeleafResult implements Result {
 
         templateName = fragment.getTemplateName();
         fragmentSpec = fragment.getFragmentSpec();
-    }
-
-    @Inject(StrutsConstants.STRUTS_I18N_ENCODING)
-    public void setDefaultEncoding(String defaultEncoding) {
-        this.defaultEncoding = defaultEncoding;
     }
 
     @Inject

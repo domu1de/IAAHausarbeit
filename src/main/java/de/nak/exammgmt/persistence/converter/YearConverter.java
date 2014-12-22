@@ -20,7 +20,7 @@ public class YearConverter implements AttributeConverter<Year, Date> {
 
     @Override
     public Date convertToDatabaseColumn(Year value) {
-        return value == null ? null : Date.valueOf(value.toString()); // FIXME
+        return value == null ? null : Date.valueOf(value.toString());
     }
 
     @Override

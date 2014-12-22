@@ -131,7 +131,6 @@ if (!document.querySelector) {
 					}
 				} else if (Object.prototype.toString.call(value) === '[object Object]') {
 					for ( var prop in value) {
-						// TODO check with hasOwnProperty?!
 						var p = path !== '' ? path + '.' + prop : prop;
 						elements = elements.concat(iterator(p, value[prop]));
 					}

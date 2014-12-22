@@ -12,7 +12,7 @@
               <property name="mailSender" ref="mailSender" />
               <property name="messageSource" ref="messageSource" />
               <property name="from">
-                     <value><![CDATA[Nordakademie <noreply@nordakademie.de>]]></value> <!-- TODO  uppercase?-->
+                     <value><![CDATA[Nordakademie <noreply@nordakademie.de>]]></value>
               </property>
        </bean>
 

@@ -22,6 +22,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
+ * Used to serialize javascript.
+ *
+ * COPYRIGHT: Based on {@link org.thymeleaf.util.JavaScriptUtils}.
+ *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
 public class AdvancedJavaScriptUtils {
@@ -192,7 +196,6 @@ public class AdvancedJavaScriptUtils {
         output.append('\'');
     }
 
-    // TODO: check ISO based
     private static void printTemporalAmount(final StringBuilder output, final TemporalAmount temporalAmount) {
         output.append('\'');
         output.append(temporalAmount.toString());
@@ -361,11 +364,6 @@ public class AdvancedJavaScriptUtils {
         printMap(output, properties);
     }
 
-    /**
-     * TODO: copyright
-     * @param target
-     * @return
-     */
     private static TemporalAccessor zonedTime(TemporalAccessor target) {
         if(target instanceof ChronoZonedDateTime) {
             return target;

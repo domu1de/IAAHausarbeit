@@ -102,7 +102,7 @@
         <property name="resource" value="classpath:init.sql" />
     </bean>
 
-    <bean name="sessionService" class="de.nak.exammgmt.service.common.DefaultSessionService"/>
+    <bean name="sessionService" class="de.nak.exammgmt.service.common.DefaultSessionService" scope="prototype" />
 
     <bean name="studentService" class="de.nak.exammgmt.service.DefaultStudentService">
         <property name="studentDAO" ref="studentDAO"/>

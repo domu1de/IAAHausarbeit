@@ -27,8 +27,7 @@ public class UserSessionActionModel {
         try {
             userAgentParser = new Parser();
         } catch (IOException e) {
-            e.printStackTrace();
-            // FIXME
+            throw new RuntimeException("Could not initialize user agent parser", e);
         }
     }
 
@@ -45,7 +44,6 @@ public class UserSessionActionModel {
     }
 
     public String formatIp(CityResponse cityResponse) {
-        // FIXME bessere implementierung?
         String formattedString = "";
 
         if (cityResponse == null) {
@@ -81,7 +79,7 @@ public class UserSessionActionModel {
                 osVersion += "." + minor;
             }
         }
-        return osVersion; // TODO review function
+        return osVersion;
     }
 
 }

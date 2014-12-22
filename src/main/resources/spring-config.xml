@@ -43,18 +43,6 @@
         </property>
     </bean>
 
-<!--    TODO: remove ?
-    <bean id="loggingAspect" class="de.nak.exammgmt.util.LoggingAspect" />
-
-    <aop:aspectj-autoproxy proxy-target-class="true" />
-
-    <aop:config>
-        <aop:aspect id="loggingAspect" ref="loggingAspect">
-            <aop:pointcut expression="execution(* de.nak.exammgmt.presentation.action..*.*(..))" id="actionPackagePointcut" />
-            <aop:around method="logAround" pointcut-ref="actionPackagePointcut" />
-        </aop:aspect>
-    </aop:config>-->
-
     <!-- The transaction manager -->
     <bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>

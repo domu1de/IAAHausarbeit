@@ -29,6 +29,14 @@
                     <span th:text="${message}">Message 1</span>
                 </div>
 
+                <div class="alert alert-danger alert-dismissible fade in" role="alert" th:each="error : ${action.actionErrors}">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <span th:text="${error}">Error 1</span>
+                </div>
+
                 <h2 class="form-signin-heading" th:text="#{txt.signIn.heading}">Please sign in</h2>
                 <div class="horizontal-button-group">
                     <input type="text" name="username" class="form-control" th:placeholder="#{input.usernameOrEmail}" placeholder="Username or Email" required autofocus>

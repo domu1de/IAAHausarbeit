@@ -32,7 +32,7 @@ public interface ExamPerformanceService {
 
     /**
      * Initializes the Students of the given exam performances.
-     * TODO NÖTIG?
+     *
      * @param examPerformances list of exam performances
      */
     void initializeStudents(List<ExamPerformance> examPerformances);

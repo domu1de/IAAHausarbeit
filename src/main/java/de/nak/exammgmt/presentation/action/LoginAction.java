@@ -9,7 +9,7 @@ import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.service.common.LoginService;
 
 /**
- * RESTful action to manage logins as resources.
+ * RESTful action to manage logins.
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
@@ -38,6 +38,8 @@ public class LoginAction extends BaseAction {
             }
             return REDIRECT_WELCOME;
         }
+
+        addActionError(getText("txt.loginWrongCredentials"));
         return INPUT;
     }
 
@@ -47,14 +49,9 @@ public class LoginAction extends BaseAction {
      * @return Redirect to welcome or error if failed.
      */
     @Protected(login = true)
-    public String logout() {
-        try {
-            loginService.logout(getCurrentUser());
-            return REDIRECT_WELCOME;
-        } catch (Exception e) {  // TODO specify
-            addActionError("Logout failed.");
-            return ERROR;
-        }
+    public String logout() throws Exception {
+        loginService.logout(getCurrentUser());
+        return REDIRECT_WELCOME;
     }
 
     public void setLoginService(LoginService loginService) {

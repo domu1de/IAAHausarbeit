@@ -79,7 +79,6 @@ public class StudentHibernateDAO extends HibernateDAO<Student> implements Studen
     @Override
     @SuppressWarnings("unchecked")
     public List<Student> findPossibleReexaminationAttendees(Exam exam) {
-        // TODO: comment
         return getCurrentSession().createSQLQuery(
                 "SELECT s.* " +
                         "FROM STUDENT s " +

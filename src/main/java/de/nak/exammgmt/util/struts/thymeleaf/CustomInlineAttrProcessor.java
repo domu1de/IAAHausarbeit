@@ -22,7 +22,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * TODO: copyright thymeleaf
+ * Own inline attr processor version, as thymeleaf allows no modification.
+ *
+ * COPYRIGHT: Based on {@link org.thymeleaf.standard.processor.attr.StandardInlineAttrProcessor}.
+ *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
 public class CustomInlineAttrProcessor extends AbstractAttrProcessor {

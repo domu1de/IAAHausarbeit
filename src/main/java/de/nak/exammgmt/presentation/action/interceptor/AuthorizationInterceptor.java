@@ -36,7 +36,6 @@ public class AuthorizationInterceptor extends AbstractInterceptor {
     private UrlProvider urlProvider;
 
     @Override
-    // TODO zu lang!
     public String intercept(ActionInvocation actionInvocation) throws Exception {
         Protected methodAnnotation = getMethodAnnotation(actionInvocation);
         Protected classAnnotation = actionInvocation.getAction().getClass().getAnnotation(Protected.class);
@@ -46,7 +45,6 @@ public class AuthorizationInterceptor extends AbstractInterceptor {
         }
 
         if (!(actionInvocation.getAction() instanceof BaseAction)) {
-            // TODO: check this
             LOGGER.warn(String.format(
                             "%s#%s is annotated with @Protected, but the action is not of type [%s] as it's required",
                             actionInvocation.getAction().getClass().getName(),
@@ -81,12 +79,22 @@ public class AuthorizationInterceptor extends AbstractInterceptor {
 
         // ACCESS DENIED? Show error and set 403 status
         if (!user.hasRights(permissions.toArray(new Permission[permissions.size()]))) {
-            action.addActionError(action.getText("txt.accessDenied"));
-            ServletActionContext.getResponse().setStatus(403);
-            return BaseAction.ERROR;
+            return sendAccessDenied(action);
         }
 
         return actionInvocation.invoke();
+    }
+
+    /**
+     * Send an access denied error.
+     *
+     * @param action the calling aciton
+     * @return result code
+     */
+    public String sendAccessDenied(BaseAction action) {
+        action.addActionError(action.getText("txt.accessDenied"));
+        ServletActionContext.getResponse().setStatus(403);
+        return BaseAction.ERROR;
     }
 
     /**

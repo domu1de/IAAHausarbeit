@@ -8,10 +8,9 @@ package de.nak.exammgmt.service.exception;
 /**
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
-// TODO name?
 public class BaseException extends Exception {
 
-    private int code; // FIXME nullable?
+    private int code;
 
     public BaseException(int code) {
         this.code = code;

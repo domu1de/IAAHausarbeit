@@ -17,7 +17,6 @@ import java.util.regex.Pattern;
 public class RestfulPatternMatcher extends NamedVariablePatternMatcher {
 
     @Override
-    // TODO: gut so oder lieber kopieren?
     public CompiledPattern compilePattern(String data) {
         CompiledPattern compiledPattern = super.compilePattern(data);
         if (compiledPattern == null) {

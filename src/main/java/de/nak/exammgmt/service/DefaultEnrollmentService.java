@@ -110,7 +110,7 @@ public class DefaultEnrollmentService implements EnrollmentService {
 
     @Override
     public Map<Student, Map<Course, Enrollment>> listByManiple(long manipleId) throws NotFoundException {
-        Maniple maniple = manipleService.get(manipleId); // FIXME: nur wrappen? Query unnötig. Frage stellt sich für alle service aufrufe
+        Maniple maniple = manipleService.get(manipleId);
         return listByManiple(maniple);
     }
 

@@ -54,7 +54,6 @@ public class UserAction extends BaseAction {
     public String update() throws Exception {
         // TODO change password
         if (userActionModel == null || userActionModel.getUser() == null) {
-            addActionError("no user data submitted");
             return ERROR;
         }
         adminService.updateUser(userActionModel.getUser());

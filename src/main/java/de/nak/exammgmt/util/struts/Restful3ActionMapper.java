@@ -20,8 +20,7 @@ import java.util.StringTokenizer;
  * An custom ActionMapper that is heavily based on {@link org.apache.struts2.dispatcher.mapper.Restful2ActionMapper}.
  * It allow to define actions as restful resources and alternatively to map action methods to http methods (GET, POST, PUT; DELETE).
  *
- * TODO: copyright
- * TODO: handle null action config
+ * COPYRIGHT: Based on {@link org.apache.struts2.dispatcher.mapper.Restful2ActionMapper}
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
@@ -77,10 +76,9 @@ public class Restful3ActionMapper extends DefaultActionMapper {
             }
 
             // If a method hasn't been explicitly named, try to guess using ReST-style patterns
-            // TODO gut so, oder lieber inside.out?
             if (mapping.getMethod() == null) {
                 String method = null;
-                if (id == null) { // TODO ends with slash
+                if (id == null) {
                     // Index e.g. foo/
                     if (isGet(request)) {
                         method = getMethod(actionConfig, "get", "index");
@@ -97,7 +95,6 @@ public class Restful3ActionMapper extends DefaultActionMapper {
                         // Viewing the form the edit
                     } else if (isGet(request) && "edit".equals(id)) {
                         method = getMethod(actionConfig, "get", "edit");
-                        // TODO: testen!
                         // Viewing an item e.g. foo/1
                     } else if (isGet(request)) {
                         method = getMethod(actionConfig, "get", "show");

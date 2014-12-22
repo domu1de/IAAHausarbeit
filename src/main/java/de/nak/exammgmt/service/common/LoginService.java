@@ -16,7 +16,6 @@ import de.nak.exammgmt.service.exception.NotFoundException;
 public interface LoginService {
 
     /**
-     * TODO comment
      * Validates the attempt of a user to login. Creates a new UserSession if successful.
      *
      * @param usernameOrEmail the username or email address the user tries to login with.

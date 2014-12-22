@@ -21,7 +21,6 @@ public class GradePresenter {
     public static String toCssClass(float grade) {
         String cssClass = "grade-";
 
-        // TODO: schönere möglichkeit?
         if (grade < 1.7) {
             cssClass += "a";
         } else if (grade < 2.7) {

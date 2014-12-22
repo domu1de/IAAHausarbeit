@@ -7,7 +7,6 @@ package de.nak.exammgmt.persistence.entity.user;
 
 /**
  * Enum to provide all possible Permissions of the application.
- * TODO check usage
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */

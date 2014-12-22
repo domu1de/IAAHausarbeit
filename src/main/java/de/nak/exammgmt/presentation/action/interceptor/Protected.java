@@ -14,7 +14,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Custom annotation to annotate an action method as protected with its required permissions. TODO default? optional?
+ * Custom annotation to annotate an action method as protected with its required permissions.
  *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
@@ -27,7 +27,7 @@ public @interface Protected {
      *
      * @return required permissions
      */
-    Permission[] value() default {}; // TODO: rename?
+    Permission[] value() default {};
 
     /**
      * (Optional) Whether the user need to be logged in.
