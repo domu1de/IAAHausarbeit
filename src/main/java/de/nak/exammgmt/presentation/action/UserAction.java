@@ -34,6 +34,7 @@ public class UserAction extends BaseAction {
     public String show() throws Exception {
         userActionModel = new UserActionModel();
         userActionModel.setUser(adminService.getUser(userId));
+
         return SHOW;
     }
 
@@ -41,6 +42,7 @@ public class UserAction extends BaseAction {
     public String editNew() {
         userActionModel = new UserActionModel();
         userActionModel.setRoles(adminService.getRoles());
+
         return NEW;
     }
 
@@ -48,25 +50,26 @@ public class UserAction extends BaseAction {
     public String edit() throws Exception {
         userActionModel = new UserActionModel();
         userActionModel.setUser(adminService.getUser(userId));
+
         return EDIT;
     }
 
     @Override
     public String update() throws Exception {
-        // TODO change password
         if (userActionModel == null || userActionModel.getUser() == null) {
             return ERROR;
         }
         adminService.updateUser(userActionModel.getUser());
+
         return SHOW;
     }
 
     @Override
     public String create() throws Exception {
         if (userActionModel == null || userActionModel.getUser() == null) {
-            addActionError("no user data submitted");
             return ERROR;
         }
+
         adminService.createUser(userActionModel.getUser());
         userId = userActionModel.getUser().getId();
         return CREATE;
@@ -74,18 +77,18 @@ public class UserAction extends BaseAction {
 
     public String deactivate() throws Exception {
         if (userId.equals(getCurrentUser().getId())) {
-            addActionError("you cannot deactivate yourself");
             return ERROR;
         }
+
         adminService.deactivateUser(userId);
         return INDEX;
     }
 
     public String reactivate() throws Exception {
         if (userId.equals(getCurrentUser().getId())) {
-            addActionError("you cannot reactivate yourself");
             return ERROR;
         }
+
         adminService.deactivateUser(userId);
         return INDEX;
     }
