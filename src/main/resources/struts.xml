@@ -26,6 +26,7 @@
 
             <interceptor name="authorization" class="de.nak.exammgmt.presentation.action.interceptor.AuthorizationInterceptor" />
             <interceptor name="authentication" class="de.nak.exammgmt.presentation.action.interceptor.AuthenticationInterceptor" />
+            <interceptor name="pjax" class="de.nak.exammgmt.presentation.action.interceptor.PjaxInterceptor" />
 
             <interceptor-stack name="authStack">
                 <interceptor-ref name="defaultStack">
@@ -40,6 +41,7 @@
                 <interceptor-ref name="store">
                     <param name="operationMode">AUTOMATIC</param>
                 </interceptor-ref>
+                <interceptor-ref name="pjax" />
                 <interceptor-ref name="authentication" />
                 <interceptor-ref name="authorization" />
             </interceptor-stack>
@@ -161,7 +163,8 @@
 
         <action name="maniple/{manipleId}?" class="de.nak.exammgmt.presentation.action.ManipleAction">
             <result name="index" type="thymeleaf">maniple/index</result>
-            <result name="show" type="thymeleaf">maniple/grades :: grade-overview</result>
+            <result name="show" type="thymeleaf">maniple/grades</result>
+            <result name="show_pjax" type="thymeleaf">maniple/grades :: grade-overview</result>
         </action>
 
         <action name="performance/{examPerformanceId}?" class="de.nak.exammgmt.presentation.action.ExamPerformanceAction">

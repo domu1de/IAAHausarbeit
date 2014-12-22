@@ -45,8 +45,14 @@
                     var baseUrl = $(event.target).data('remote-url');
                     var value = $(event.target).val();
                     if (value) {
-                        $.get(baseUrl + value, function(data) {
-                            $('#grade-overview').html(data);
+                        $.ajax(baseUrl + value, {
+                            type: 'GET',
+                            success: function(data) {
+                                $('#grade-overview').html(data);
+                            },
+                            headers: {
+                                'X-PJAX': true
+                            }
                         });
                     }
                 });
