@@ -30,7 +30,7 @@
             </dl>
 
             <div class="boxed-group" th:if="${model.averageGrade > 0}">
-                <h3>Grade count</h3>
+                <h3 th:text="#{txt.gradeCount}">Grade count</h3>
                 <div id="grade-count-chart" class="boxed-group-inner">
                 </div>
             </div>
