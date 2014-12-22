@@ -31,28 +31,109 @@
 
             <div th:text="${model.enrollment.grade ? #numbers.formatDecimal(model.enrollment.grade, 1, 1) : 'x'}">1.0</div>
 
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th th:text="#{txt.attempt}">Attempt</th>
-                        <th th:text="#{txt.date}">Date</th>
-                        <th th:text="#{txt.grade}">Grade</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="entry : ${model.fullHistory}">
-                        <td th:text="${entry.key.attempt}">1</td>
-                        <td th:text="${#temporals.format(entry.key.exam.date, dateFormatLong)}">1</td>
-                        <td>
-                            <span th:text="${entry.key.grade ? #numbers.formatDecimal(entry.key.grade, 1, 1) : 'x'}" class="label grade-label " th:attrappend="class=${entry.key.grade ? model.gradeToCssClass(entry.key.grade) : 'grade-none'}">1.0</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+
+            <div class="boxed-group">
+                <h3 th:text="#{txt.history}">History</h3>
+                <div class="boxed-group-inner">
+                    <ul class="boxed-group-list">
+                        <li class="ep-item" th:each="entry,iterStat : ${model.fullHistory}" th:classappend="${iterStat.last} ? 'latest'">
+                            <strong class="ep-title" th:text="${#temporals.format(entry.key.exam.date, dateFormatLong)}">12. Dezember 2020</strong>
+
+                            <small>
+                                <strong th:text="#{txt.attempt} + ': '">Attempt</strong>
+                                <span th:text="${entry.key.attempt}">1</span>,
+                                <strong th:text="#{txt.grade} + ': '">Grade</strong>
+                                <span th:text="${entry.key.grade ? #numbers.formatDecimal(entry.key.grade, 1, 1) : 'x'}">1.0</span>
+                            </small>
+
+                            <div class="btn-group minibutton" role="group" th:if="${iterStat.last}">
+                                <a id="change-grade-btn" data-toggle="modal" data-target="#change-grade-modal" class="btn btn-danger btn-sm" th:text="#{btn.changeGrade}">Change grade</a>
+                                <a id="reverse-grade-btn" class="btn btn-danger btn-sm" th:text="#{btn.reverse}">Reverse</a>
+                                <form id="form-reverse-ep" th:action="@{/performance/{id}(id=${entry.key.id})}" role="form" accept-charset="UTF-8" method="post">
+                                    <input type="hidden" name="_method" value="delete" />
+                                </form>
+                            </div>
+
+                            <div class="ep-history" th:if="${entry.value}">
+                                <span th:text="${entry.value.editor.name}">Ulrike Heinrich</span>
+                                <span th:text="${#temporals.format(entry.value.createdAt, dateFormatLong)}">12. December 2014</span>
+                                <span th:if="${entry.value.type == EDIT}" th:text="${entry.value.oldExamPerformance.grade + ' -> ' +  entry.value.newExamPerformance.grade}">3.0 -> 1.0</span>
+                                <span class="label label-default" th:text="#{${'txt.protocolItemType.' + entry.value.type}}">EDIT</span>
+                            </div>
+
+                            <div id="change-grade-modal" class="modal fade">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title" th:text="#{btn.changeGrade}">Change grade</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="text-center" th:action="@{/performance/{id}(id=${entry.key.id})}" role="form" accept-charset="UTF-8" method="post">
+                                                <input type="hidden" name="_method" value="put" />
+                                                <div class="btn-group" data-toggle="buttons">
+                                                    <label class="btn grade-a" th:classappend="${entry.key.grade == 1.0f} ? 'active'">
+                                                        <input type="radio" name="examPerformanceActionModel.examPerformance.grade" value="1.0" autocomplete="off" th:checked="${entry.key.grade == 1.0f}" /> 1,0
+                                                    </label>
+                                                    <label class="btn grade-a" th:classappend="${entry.key.grade == 1.3f} ? 'active'">
+                                                        <input type="radio" name="examPerformanceActionModel.examPerformance.grade" value="1.3" autocomplete="off" th:checked="${entry.key.grade == 1.3f}" /> 1,3
+                                                    </label>
+                                                    <label class="btn grade-b" th:classappend="${entry.key.grade == 1.7f} ? 'active'">
+                                                        <input type="radio" name="examPerformanceActionModel.examPerformance.grade" value="1.7" autocomplete="off" th:checked="${entry.key.grade == 1.7f}" /> 1,7
+                                                    </label>
+                                                    <label class="btn grade-b" th:classappend="${entry.key.grade == 2.0f} ? 'active'">
+                                                        <input type="radio" name="examPerformanceActionModel.examPerformance.grade" value="2.0" autocomplete="off" th:checked="${entry.key.grade == 2.0f}" /> 2,0
+                                                    </label>
+                                                    <label class="btn grade-b" th:classappend="${entry.key.grade == 2.3f} ? 'active'">
+                                                        <input type="radio" name="examPerformanceActionModel.examPerformance.grade" value="2.3" autocomplete="off" th:checked="${entry.key.grade == 2.3f}"/> 2,3
+                                                    </label>
+                                                    <label class="btn grade-c" th:classappend="${entry.key.grade == 2.7f} ? 'active'">
+                                                        <input type="radio" name="examPerformanceActionModel.examPerformance.grade" value="2.7" autocomplete="off" th:checked="${entry.key.grade == 2.7f}"/> 2,7
+                                                    </label>
+                                                    <label class="btn grade-c" th:classappend="${entry.key.grade == 3.0f} ? 'active'">
+                                                        <input type="radio" name="examPerformanceActionModel.examPerformance.grade" value="3.0" autocomplete="off" th:checked="${entry.key.grade == 3.0f}"/> 3,0
+                                                    </label>
+                                                    <label class="btn grade-c" th:classappend="${entry.key.grade == 3.3f} ? 'active'">
+                                                        <input type="radio" name="examPerformanceActionModel.examPerformance.grade" value="3.3" autocomplete="off" th:checked="${entry.key.grade == 3.3f}"/> 3,3
+                                                    </label>
+                                                    <label class="btn grade-d" th:classappend="${entry.key.grade == 3.7f} ? 'active'">
+                                                        <input type="radio" name="examPerformanceActionModel.examPerformance.grade" value="3.7" autocomplete="off" th:checked="${entry.key.grade == 3.7f}"/> 3,7
+                                                    </label>
+                                                    <label class="btn grade-d" th:classappend="${entry.key.grade == 4.0f} ? 'active'">
+                                                        <input type="radio" name="examPerformanceActionModel.examPerformance.grade" value="4.0" autocomplete="off" th:checked="${entry.key.grade == 4.0f}"/> 4,0
+                                                    </label>
+                                                    <label class="btn grade-f" th:classappend="${entry.key.grade == 5.0f and entry.key.reexaminationPossible} ? 'active'">
+                                                        <input type="radio" class="reexamination-radio" name="examPerformanceActionModel.examPerformance.grade" value="5.0" autocomplete="off" th:checked="${entry.key.grade == 5.0f and entry.key.reexaminationPossible}" /> 5,0
+                                                    </label>
+                                                    <label class="btn grade-f" th:unless="${entry.key.reexamination}" th:classappend="${entry.key.grade == 5.0f and !entry.key.reexaminationPossible} ? 'active'">
+                                                        <input type="radio" name="examPerformanceActionModel.examPerformance.grade" value="5.0" autocomplete="off" th:checked="${entry.key.grade == 5.0f and !entry.key.reexaminationPossible}"> 6,0
+                                                    </label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="../../../static/js/vendor/bootstrap.min.js" th:src="@{/static/js/vendor/bootstrap.min.js}"></script>
         <script src="../../../static/js/script.js" th:src="@{/static/js/script.js}"></script>
+        <script>
+            $(function() {
+                $('#reverse-grade-btn').on('click', function(event) {
+                    $('#form-reverse-ep').submit();
+                });
+            });
+        </script>
     </body>
 </html>

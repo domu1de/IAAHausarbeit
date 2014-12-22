@@ -164,6 +164,10 @@
             <result name="show" type="thymeleaf">maniple/grades :: grade-overview</result>
         </action>
 
+        <action name="performance/{examPerformanceId}?" class="de.nak.exammgmt.presentation.action.ExamPerformanceAction">
+            <result name="remove" type="redirect">${returnTo}</result>
+        </action>
+
     </package>
 
     <!-- TODO: DANGEROUS!!! Remove package for production -->
