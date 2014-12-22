@@ -322,7 +322,7 @@
       <column name="ID" sqlType="INTEGER" precision="10" scale="0" nullable="true" jdbcType="4"/>
     </table>
     <table name="ACTIVATION" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNDdENTE0QzNfQ0IxOF80OTdBXzlEQkNfRTZGODQwRjlEMDNDKQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfREZCNkQzQTNfMTZBQV80QjYzX0JFMjlfMDZFQ0NBRjg4NjVEKQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="EXPIRES_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
@@ -333,9 +333,10 @@
       <index name="FK_D9L3BQTU0GA85GT36QOPC372T_INDEX_9" unique="false" columns="USER"/>
     </table>
     <table name="COURSE" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRURFNkE4NjZfNUM5M180NjczX0JFNzNfODdFRDIxMzA4QjI0KQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfMEY0NDg5OTRfRTAxQV80M0M5X0E4QzBfMzMzRjUxMzQ4RjNGKQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
+      <column name="COURSE_ID" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="DESCRIPTION" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
       <column name="TITLE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="MANIPLE" sqlType="BIGINT" precision="19" scale="0" nullable="true" jdbcType="-5"/>
@@ -355,7 +356,7 @@
       <index name="FK_Q8C5P1N1E62TLA6T57T537TH1_INDEX_E" unique="false" columns="LECTURERS"/>
     </table>
     <table name="EMPLOYEE" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRDZEMTRCMTJfODEzM180QzU2X0E5QTdfMUJFQThDNkQxNkM0KQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNzkzRUFERDJfRjJCQl80MTQwXzk0RUNfMUNENDBGN0I2MTIwKQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="FIRST_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
@@ -373,7 +374,7 @@
       <index name="FK_B1OD27KMKS86DW2JPM4KWDRYK_INDEX_7" unique="false" columns="USER"/>
     </table>
     <table name="EXAM" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfMDRGMDNDQjlfQkI5QV80QzdCXzlGQjFfQkREM0IyMTJDNkQxKQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRkE2NkYyNURfQkY2OF80QThDX0EwMDNfMUQzNEYwQzkyRDlCKQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="DATE" sqlType="DATE" precision="8" scale="0" nullable="true" jdbcType="91"/>
@@ -394,7 +395,7 @@
       <index name="FK_T68Y4TM652CGWJ58B3H88LJBU_INDEX_B" unique="false" columns="EXAM"/>
     </table>
     <table name="EXAM_PERFORMANCE" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfN0UxQ0U0ODRfQ0ZGQl80NzY2Xzg3RDVfNkU5MDIzNEU4NjhDKQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRTlGNDNBODVfMUJCOV80NzlGX0EyMjFfRDM3RjZGQjZBRjAyKQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="ATTEMPT" sqlType="INTEGER" precision="10" scale="0" nullable="false" jdbcType="4"/>
@@ -416,7 +417,7 @@
       <index name="FK_EI0N130S0TGGAJFG9UE7111UK_INDEX_C" unique="false" columns="CREATOR"/>
     </table>
     <table name="EXAM_PERFORMANCE_PROTOCOL_ITEM" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfQUJBOEU3QTJfMjM0RV80Q0M5X0JGOTdfNUQ3RTRGMTI3OTFCKQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNkNENzUyMDFfMjY2Nl80MTk4X0I1MTZfNTNCNEEyQTNDRUE3KQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="TYPE" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
@@ -427,12 +428,12 @@
       <foreign-key name="FK_9T6Y8RLVNFXY9ISWVIJOCLEYJ" columns="EDITOR" ref-table="EMPLOYEE" ref-schema="PUBLIC" ref-catalog="NAKEXAMMGMT" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <foreign-key name="FK_HWGUA6ATHCVN0FQCC2F1UM61U" columns="NEW_EXAM_PERFORMANCE" ref-table="EXAM_PERFORMANCE" ref-schema="PUBLIC" ref-catalog="NAKEXAMMGMT" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
       <foreign-key name="FK_L6HWOF9BQ03WJO323NJXOQ4KW" columns="OLD_EXAM_PERFORMANCE" ref-table="EXAM_PERFORMANCE" ref-schema="PUBLIC" ref-catalog="NAKEXAMMGMT" ref-columns="ID" update-rule="1" delete-rule="1" deferrability="2"/>
+      <index name="UK_HWGUA6ATHCVN0FQCC2F1UM61U_INDEX_A" unique="true" columns="NEW_EXAM_PERFORMANCE"/>
       <index name="UK_L6HWOF9BQ03WJO323NJXOQ4KW_INDEX_A" unique="true" columns="OLD_EXAM_PERFORMANCE"/>
       <index name="FK_9T6Y8RLVNFXY9ISWVIJOCLEYJ_INDEX_A" unique="false" columns="EDITOR"/>
-      <index name="FK_HWGUA6ATHCVN0FQCC2F1UM61U_INDEX_A" unique="false" columns="NEW_EXAM_PERFORMANCE"/>
     </table>
     <table name="FIELD_OF_STUDY" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRDNCRTJGRkNfRDRDRV80RkNCXzkyOUFfNjg5QzQxM0RCNTU4KQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfMjRFNURGMDBfODVEQl80QUFBXzkzMjNfMkVBQTZBNTJCQjQyKQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="ABBREVIATION" sqlType="VARCHAR" precision="1" scale="0" nullable="false" jdbcType="12"/>
@@ -443,7 +444,7 @@
       <index name="UK_HGI2ROSAA4GTRNJOLJ2YJNCOH_INDEX_2" unique="true" columns="NAME"/>
     </table>
     <table name="MANIPLE" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNzU3QTIwRTlfRjk2MV80OTM4Xzg2ODRfRjFDMzk1MzFGMUQ5KQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfM0REQ0UwOTFfQkNEMV80MjU2XzlDNTVfRjE0NkM5MDYxRDJBKQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="YEAR" sqlType="DATE" precision="8" scale="0" nullable="false" jdbcType="91"/>
@@ -455,7 +456,7 @@
       <index name="FK_JI0CCJKDGCYIXJ9QG0GUAAOVS_INDEX_5" unique="false" columns="FIELD_OF_STUDY"/>
     </table>
     <table name="PASSWORD_RESET" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfMkRERUU5OTNfRDlGQ180RTUzX0IyQUFfMzU3RDc1RjMyNTQ1KQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfMTQwNDc5QTVfMjk1Rl80RUY5XzhFNzdfQTc1MTEwMjExQUExKQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="EXPIRES_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="true" jdbcType="93"/>
@@ -466,7 +467,7 @@
       <index name="FK_6SNRIQRFMP8FD9L2XW7Y6IE9V_INDEX_A" unique="false" columns="USER"/>
     </table>
     <table name="ROLE" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfRUUxOTEyMzRfODZCOV80RkNDXzlGRjBfODg3NDk4RjRCMUNEKQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfMDhGOTA1RjJfODFCRF80QUY1XzlEOERfMzNFQTdFNzY5RkVCKQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
@@ -481,7 +482,7 @@
       <index name="FK_D64NNSMFMR8CSIBCDGG29WC5T_INDEX_F" unique="false" columns="ROLE"/>
     </table>
     <table name="STUDENT" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfQzk5REE5MzJfQzZGMl80RDczXzgxMjdfMTQwNERFRjVGRDdEKQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNkUxNURGRjRfMzQyRF80ODczXzg3RDFfNUU3NjQ0QjY1MDkxKQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="FIRST_NAME" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
@@ -499,7 +500,7 @@
       <index name="FK_P5859BJD373A39QK74JFC95Y6_INDEX_B" unique="false" columns="MANIPLE"/>
     </table>
     <table name="USER" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfQ0JGOTcwODFfMTFFNl80OTdDX0E4NzlfMzAzNTA3NEM5ODY5KQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfOUVDMTI4RTdfRjg2Ml80RTYwX0IzNENfOUJGNTIxN0RCMjQ4KQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="ACTIVATED" sqlType="BOOLEAN" precision="1" scale="0" nullable="false" jdbcType="16"/>
@@ -520,7 +521,7 @@
       <index name="FK_DL7G53F7LPMORJC24KX74APX8_INDEX_2" unique="false" columns="ROLE"/>
     </table>
     <table name="USER_SESSION" schema="PUBLIC" catalog="NAKEXAMMGMT" type="TABLE">
-      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNjJDRUMyMjNfRUY2Ml80NDdGX0E2NDlfMUY1MkM3QzhBMzc3KQ==" autoIncrement="true"/>
+      <column name="ID" sqlType="BIGINT" precision="19" scale="0" nullable="false" jdbcType="-5" def="KE5FWFQgVkFMVUUgRk9SIFBVQkxJQy5TWVNURU1fU0VRVUVOQ0VfNjhFMTQ4RDRfNzA4Ml80NTJGXzg5RDRfQTYxRDBEMzBBNjNGKQ==" autoIncrement="true"/>
       <column name="CREATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="UPDATED_AT" sqlType="TIMESTAMP" precision="23" scale="10" nullable="false" jdbcType="93"/>
       <column name="IP" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>

@@ -48,8 +48,10 @@ INSERT INTO USER (ID, CREATED_AT, UPDATED_AT, ACTIVATED, EMAIL, FULL_NAME, PASSW
    '$2a$10$.p3HZN.0FySMsam8Yz7er.2NlbBzQPXQYUCt.karL3F6ycXSvAaBy', 'anft', 3),
   (5, NOW(), NOW(), TRUE, 'stefan.reichert@nordakademie.de', 'Stefan Reichert',
    '$2a$10$.p3HZN.0FySMsam8Yz7er.2NlbBzQPXQYUCt.karL3F6ycXSvAaBy', 'reichert', 3),
-  (6, NOW(), NOW(), TRUE, 'management@iaahausarbeit.de', 'Prüfungsamt',
-   '$2a$10$.p3HZN.0FySMsam8Yz7er.2NlbBzQPXQYUCt.karL3F6ycXSvAaBy', 'mgmt', 5);
+  (6, NOW(), NOW(), TRUE, 'management@iaahausarbeit.de', 'Ulrike Heinrich',
+   '$2a$10$.p3HZN.0FySMsam8Yz7er.2NlbBzQPXQYUCt.karL3F6ycXSvAaBy', 'mgmt', 5),
+  (7, NOW(), NOW(), TRUE, 'management2@iaahausarbeit.de', 'Cornelia Gladiator',
+   '$2a$10$.p3HZN.0FySMsam8Yz7er.2NlbBzQPXQYUCt.karL3F6ycXSvAaBy', 'mgmt2', 5);
 
 // Insert fields of studies
 INSERT INTO FIELD_OF_STUDY (ID, CREATED_AT, UPDATED_AT, ABBREVIATION, NAME) VALUES
@@ -155,20 +157,20 @@ INSERT INTO STUDENT (ID, CREATED_AT, UPDATED_AT, TITLE, FIRST_NAME, LAST_NAME, S
   (82, NOW(), NOW(), '', 'DummyStudentB15', '10', 1080, 8, NULL);
 
 // Insert courses
-INSERT INTO COURSE (ID, CREATED_AT, UPDATED_AT, DESCRIPTION, TITLE, MANIPLE) VALUES
-  (1, NOW(), NOW(), 'Beschreibungstext IAA 2011', 'Internet Anwendungsarchitekturen', 1),
-  (2, NOW(), NOW(), 'Beschreibungstext IAA 2015', 'Internet Anwendungsarchitekturen', 7),
-  (3, NOW(), NOW(), 'Beschreibungstext Prog 1 2011', 'Programmierung 1', 1),
-  (4, NOW(), NOW(), 'Beschreibungstext Prog 2 2011', 'Programmierung 2', 1),
-  (5, NOW(), NOW(), 'Beschreibungstext Prog 1 2015', 'Programmierung 1', 7),
-  (6, NOW(), NOW(), 'Dummy Kurs I11', 'Dummy Kurs I11', 1),
-  (7, NOW(), NOW(), 'Dummy Kurs W11', 'Dummy Kurs W11', 2),
-  (8, NOW(), NOW(), 'Dummy Kurs B11', 'Dummy Kurs B11', 3),
-  (9, NOW(), NOW(), 'Dummy Kurs I12', 'Dummy Kurs I12', 4),
-  (10, NOW(), NOW(), 'Dummy Kurs I15', 'Dummy Kurs I15', 5),
-  (11, NOW(), NOW(), 'Dummy Kurs W15', 'Dummy Kurs W15', 6),
-  (12, NOW(), NOW(), 'Dummy Kurs A15', 'Dummy Kurs A15', 7),
-  (13, NOW(), NOW(), 'Dummy Kurs B15', 'Dummy Kurs B15', 8);
+INSERT INTO COURSE (ID, CREATED_AT, UPDATED_AT, COURSE_ID, DESCRIPTION, TITLE, MANIPLE) VALUES
+  (1, NOW(), NOW(), 'I148', 'Beschreibungstext IAA 2011', 'Internet Anwendungsarchitekturen', 1),
+  (2, NOW(), NOW(), 'I148', 'Beschreibungstext IAA 2015', 'Internet Anwendungsarchitekturen', 7),
+  (3, NOW(), NOW(), 'I141', 'Beschreibungstext Prog 1 2011', 'Programmierung 1', 1),
+  (4, NOW(), NOW(), 'I142', 'Beschreibungstext Prog 2 2011', 'Programmierung 2', 1),
+  (5, NOW(), NOW(), 'I141', 'Beschreibungstext Prog 1 2015', 'Programmierung 1', 7),
+  (6, NOW(), NOW(), 'I000', 'Dummy Kurs I11', 'Dummy Kurs I11', 1),
+  (7, NOW(), NOW(), 'W000', 'Dummy Kurs W11', 'Dummy Kurs W11', 2),
+  (8, NOW(), NOW(), 'B000', 'Dummy Kurs B11', 'Dummy Kurs B11', 3),
+  (9, NOW(), NOW(), 'I000', 'Dummy Kurs I12', 'Dummy Kurs I12', 4),
+  (10, NOW(), NOW(), 'I000', 'Dummy Kurs I15', 'Dummy Kurs I15', 5),
+  (11, NOW(), NOW(), 'W000', 'Dummy Kurs W15', 'Dummy Kurs W15', 6),
+  (12, NOW(), NOW(), 'A000', 'Dummy Kurs A15', 'Dummy Kurs A15', 7),
+  (13, NOW(), NOW(), 'B000', 'Dummy Kurs B15', 'Dummy Kurs B15', 8);
 
 // Insert employees
 INSERT INTO EMPLOYEE (ID, CREATED_AT, UPDATED_AT, FIRST_NAME, LAST_NAME, TITLE, USER, EMPLOYEE_NUMBER) VALUES
@@ -176,7 +178,8 @@ INSERT INTO EMPLOYEE (ID, CREATED_AT, UPDATED_AT, FIRST_NAME, LAST_NAME, TITLE, 
   (2, NOW(), NOW(), 'Stefan', 'Reichert', '', 5, 1002),
   (3, NOW(), NOW(), 'Ulrike', 'Heinrich', '', 6, 1003),
   (4, NOW(), NOW(), 'Johannes', 'Brauer', 'Prof. Dr.-Ing.', NULL, 1004),
-  (5, NOW(), NOW(), 'Dummy', 'Dozent', '', NULL, 1005);
+  (5, NOW(), NOW(), 'Dummy', 'Dozent', '', NULL, 1005),
+  (6, NOW(), NOW(), 'Cornelia', 'Gladiator', '', 7, 1006);
 
 // Insert employee-course-mapping
 INSERT INTO COURSE_LECTURERS (COURSE, LECTURERS) VALUES

@@ -18,6 +18,7 @@ import java.util.Set;
 @Entity
 public class Course extends AbstractEntity {
 
+    private String courseId;
     private String title;
     private String description;
     private Maniple maniple;
@@ -80,5 +81,14 @@ public class Course extends AbstractEntity {
         int result = title != null ? title.hashCode() : 0;
         result = 31 * result + (maniple != null ? maniple.hashCode() : 0);
         return result;
+    }
+
+    @Column(nullable = false)
+    public String getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
     }
 }
