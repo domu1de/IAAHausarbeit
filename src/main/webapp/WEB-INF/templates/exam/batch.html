@@ -102,6 +102,9 @@
                                 </button>
                             </td>
                         </tr>
+                        <tr th:if="${#lists.isEmpty(model.possibleAttendees)}" >
+                            <td colspan="6" th:text="#{txt.noEntries}" class="text-center">No entries</td>
+                        </tr>
                     </tbody>
                 </table>
 

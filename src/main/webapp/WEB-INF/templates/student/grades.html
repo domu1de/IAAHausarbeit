@@ -40,11 +40,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="enrollment : ${model.enrollments}" th:if="${enrollment.grade}">
+                            <tr th:each="enrollment : ${model.enrollments}">
                                 <td><a th:href="@{/course/{courseId}(courseId=${enrollment.course.id})}"  th:text="${enrollment.course}">Modul 1</a></td>
                                 <td>
                                     <span th:text="${#numbers.formatDecimal(enrollment.grade, 1, 1)}" class="grade-label grade-label-lg" th:classappend="${action.toCssClass(enrollment.grade)}">1.0</span>
                                 </td>
+                            </tr>
+                            <tr th:if="${#lists.isEmpty(model.enrollments)}">
+                                <td colspan="2" th:text="#{txt.noEntries}" class="text-center">No entries</td>
                             </tr>
                         </tbody>
                     </table>

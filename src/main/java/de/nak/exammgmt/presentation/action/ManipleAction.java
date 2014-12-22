@@ -33,7 +33,7 @@ public class ManipleAction extends BatchAction {
     @Override
     public String show() throws Exception {
         if (manipleId == null) {
-            return ERROR; // FIXME
+            return NOT_FOUND;
         }
 
         Maniple maniple = manipleService.get(manipleId);

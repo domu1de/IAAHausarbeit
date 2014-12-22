@@ -53,19 +53,19 @@ public class BatchAction extends BaseAction {
         filterExamPerformances();
 
         if (batchActionModel.getExamPerformances().isEmpty()) {
-            // TODO: error
+            return ERROR;
         }
 
         examService.saveExamPerformances(examId, batchActionModel.getExamPerformances(), reexamination);
         examPerformanceService.initializeStudents(batchActionModel.getExamPerformances());
         batchActionModel.setCreator(batchActionModel.getExamPerformances().get(0).getCreator());
-        batchActionModel.setExam(batchActionModel.getExamPerformances().get(0).getExam()); // FIXME
+        batchActionModel.setExam(batchActionModel.getExamPerformances().get(0).getExam());
 
         return CREATE;
     }
 
     private void filterExamPerformances() {
-        batchActionModel.getExamPerformances().removeAll(Collections.singleton(null)); // TODO: oder streaming api?
+        batchActionModel.getExamPerformances().removeAll(Collections.singleton(null));
     }
 
     public Long getExamId() {

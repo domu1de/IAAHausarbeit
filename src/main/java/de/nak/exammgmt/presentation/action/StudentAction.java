@@ -18,7 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedMap;
 
+import static java.util.stream.Collectors.toList;
+
 /**
+ * RESTful action to manage student grades
+ *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
 @Protected(login = true)
@@ -39,7 +43,7 @@ public class StudentAction extends BaseAction {
     @Override
     public String show() throws Exception {
         if (studentId == null) {
-            return ERROR; //FIXME
+            return NOT_FOUND;
         }
 
         studentActionModel.setStudent(studentService.get(studentId));
@@ -47,7 +51,6 @@ public class StudentAction extends BaseAction {
         if (course != null) {
             studentActionModel.setEnrollment(enrollmentService.getByStudentAndCourse(studentId, course));
 
-            // TODO stream api?
             SortedMap<Integer, List<ExamPerformanceWithProtocolItem>> map = studentActionModel.getFullHistory();
             for (ExamPerformance ep : examPerformanceService.listFullHistory(course, studentId)) {
                 List<ExamPerformanceWithProtocolItem> list = map.computeIfAbsent(ep.getAttempt(), ArrayList::new);
@@ -57,17 +60,18 @@ public class StudentAction extends BaseAction {
             return SHOW_COURSE_GRADE;
         }
 
-        studentActionModel.setEnrollments(enrollmentService.listByStudent(studentId));
+        studentActionModel.setEnrollments(enrollmentService.listByStudent(studentId).stream()
+                .filter(e -> e.getGrade() != null)
+                .collect(toList()));
 
         return SHOW_GRADES;
     }
 
     public String personalGrades() throws Exception {
-        studentId = studentService.getByUser(getCurrentUser()).getId(); // FIXME duplicate
+        studentId = studentService.getByUser(getCurrentUser()).getId();
         return show();
     }
 
-    // TODO: direct call in thyemleaf?!
     public String toCssClass(float grade) {
         return GradePresenter.toCssClass(grade);
     }

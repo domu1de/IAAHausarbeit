@@ -144,6 +144,7 @@
                                 </div>
                             </div>
                         </li>
+                        <li th:if="${#maps.isEmpty(model.fullHistory)}" th:text="#{txt.noEntries}" class="text-center">No entries</li>
                     </ul>
                 </div>
             </div>

@@ -6,10 +6,7 @@
 package de.nak.exammgmt.presentation.action;
 
 import de.nak.exammgmt.service.exception.InvalidTokenException;
-import de.nak.exammgmt.service.exception.NotFoundException;
 import de.nak.exammgmt.service.user.PasswordResetService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * RESTful action to manage PasswordReset resources.
@@ -17,8 +14,6 @@ import org.slf4j.LoggerFactory;
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
 public class PasswordResetAction extends BaseAction {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(PasswordResetAction.class);
 
     private PasswordResetService passwordResetService;
 
@@ -42,23 +37,17 @@ public class PasswordResetAction extends BaseAction {
     }
 
     @Override
-    public String create() {
+    public String create() throws Exception {
         if (usernameOrEmail == null) {
-            addActionError("No username or email.");
             return ERROR;
         }
-        try {
-            passwordResetService.initResetProcess(usernameOrEmail);
-            LOGGER.info("Password reset send to " + usernameOrEmail + ".");
-        } catch (NotFoundException e) {
-            addActionError(getText("txt.userNotFound"));
-            return ERROR;
-        }
+
+        passwordResetService.initResetProcess(usernameOrEmail);
         return REDIRECT_WELCOME;
     }
 
     @Override
-    public String update() {
+    public String update() throws Exception {
         if (password != null && !password.equals(confirmPassword)) {
             addActionError(getText("txt.passwordsDoNotMatch"));
             return INPUT;
@@ -69,8 +58,6 @@ public class PasswordResetAction extends BaseAction {
         } catch (InvalidTokenException e) {
             addActionError(getText("txt.passwordReset.invalid"));
             return INDEX;
-        } catch (NotFoundException e) {
-            e.printStackTrace();
         }
 
         addActionMessage(getText("txt.passwordReset.successful"));
