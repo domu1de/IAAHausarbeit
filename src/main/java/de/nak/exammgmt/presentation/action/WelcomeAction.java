@@ -31,7 +31,7 @@ import java.util.SortedMap;
 public class WelcomeAction extends BaseAction {
 
     private static final String ADMIN = "admin";
-    private static final String STUDENT = "input.student";
+    private static final String STUDENT = "student";
     private static final String LECTURER = "lecturer";
     private static final String MANAGEMENT = "management";
 
