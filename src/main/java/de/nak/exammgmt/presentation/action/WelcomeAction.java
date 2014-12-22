@@ -5,11 +5,19 @@
 
 package de.nak.exammgmt.presentation.action;
 
+import de.nak.exammgmt.persistence.entity.Exam;
 import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.presentation.model.WelcomeAdminActionModel;
 import de.nak.exammgmt.presentation.model.WelcomeManagementActionModel;
 import de.nak.exammgmt.service.ExamService;
+import de.nak.exammgmt.service.ManipleService;
 import de.nak.exammgmt.service.home.AdminService;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.SortedMap;
 
 /**
  * Action that is mapped to the root URL of the application and provides different landing pages for the three roles
@@ -27,6 +35,7 @@ public class WelcomeAction extends BaseAction {
 
     private AdminService adminService;
     private ExamService examService;
+    private ManipleService manipleService;
 
     private WelcomeAdminActionModel welcomeAdminActionModel;
     private WelcomeManagementActionModel welcomeManagementActionModel;
@@ -52,7 +61,15 @@ public class WelcomeAction extends BaseAction {
     }
 
     private void executeManagement() {
+        welcomeManagementActionModel = new WelcomeManagementActionModel();
 
+        SortedMap<LocalDate, List<Exam>> map = welcomeManagementActionModel.getExams();
+        List<Exam> exams = examService.list();
+        exams.sort(Comparator.comparing(e -> e.getCourse().getCourseId()));
+        for (Exam exam : exams) {
+            List<Exam> list = map.computeIfAbsent(exam.getDate(), (key) -> new ArrayList<>());
+            list.add(exam);
+        }
     }
 
     private void executeLecturer() {
@@ -92,4 +109,7 @@ public class WelcomeAction extends BaseAction {
         this.welcomeManagementActionModel = welcomeManagementActionModel;
     }
 
+    public void setManipleService(ManipleService manipleService) {
+        this.manipleService = manipleService;
+    }
 }
