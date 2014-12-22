@@ -6,6 +6,7 @@
 package de.nak.exammgmt.presentation.action;
 
 import de.nak.exammgmt.persistence.entity.ExamPerformance;
+import de.nak.exammgmt.persistence.entity.user.Permission;
 import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.presentation.model.ExamPerformanceActionModel;
 import de.nak.exammgmt.service.ExamPerformanceService;
@@ -23,6 +24,7 @@ public class ExamPerformanceAction extends BaseAction {
     private ExamPerformanceService examPerformanceService;
 
     @Override
+    @Protected(Permission.EDIT_GRADE)
     public String update() throws Exception {
         if (examPerformanceId == null) {
             return NOT_FOUND;
@@ -37,6 +39,7 @@ public class ExamPerformanceAction extends BaseAction {
     }
 
     @Override
+    @Protected(Permission.REVERSE_GRADE)
     public String remove() throws Exception {
         if (examPerformanceId == null) {
             return ERROR; //FIXME

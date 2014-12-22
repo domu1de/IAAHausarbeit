@@ -67,7 +67,7 @@
 
                             <small>
                                 <strong th:text="#{txt.grade} + ': '">Grade</strong>
-                                <span th:text="${model.enrollment.grade ? #numbers.formatDecimal(model.enrollment.grade, 1, 1) : 'x'}">1.0</span>
+                                <span th:text="${model.enrollment.grade ? #numbers.formatDecimal(model.enrollment.grade , 1, 1) : 'x'}">1.0</span>
                                 <strong th:text="#{txt.date} + ': '">Date</strong>
                                 <span th:text="${#temporals.format(latestItem.examPerformance.createdAt, dateFormatLong)}">12. December 2015</span>
                             </small>
@@ -75,10 +75,10 @@
                             <ul class="ep-history">
                                 <li th:each="historyItem : ${entry.value}">
                                     <span th:text="${#temporals.format(historyItem.examPerformance.updatedAt, dateFormatLong)}">12. December 2014</span>
-                                    <span th:text="${historyItem.protocolItem ? historyItem.protocolItem.editor.name : historyItem.examPerformance.creator.name}">Ulrike Heinrich</span>
+                                    <span th:text="', ' + ${historyItem.protocolItem ? historyItem.protocolItem.editor.name : historyItem.examPerformance.creator.name}">Ulrike Heinrich</span>
                                     <span class="label"
                                           th:text="${#numbers.formatDecimal(historyItem.examPerformance.grade, 1, 1)}"
-                                          th:classappend="${model.gradeToCssClass(historyItem.examPerformance.grade)}" >1.0</span>
+                                          th:classappend="${model.gradeToCssClass(historyItem.examPerformance.grade)}">1.0</span>
                                     <span class="label label-default" th:if="${historyItem.protocolItem}"
                                           th:text="#{${'txt.protocolItemType.' + historyItem.protocolItem.type}}">EDIT</span>
                                 </li>

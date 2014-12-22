@@ -6,7 +6,9 @@
 package de.nak.exammgmt.presentation.action;
 
 import de.nak.exammgmt.persistence.entity.ExamPerformance;
+import de.nak.exammgmt.persistence.entity.user.Permission;
 import de.nak.exammgmt.presentation.GradePresenter;
+import de.nak.exammgmt.presentation.action.interceptor.AuthorizationInterceptor;
 import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.presentation.model.StudentActionModel;
 import de.nak.exammgmt.presentation.model.StudentActionModel.ExamPerformanceWithProtocolItem;
@@ -17,8 +19,6 @@ import de.nak.exammgmt.service.StudentService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.SortedMap;
-
-import static java.util.stream.Collectors.toList;
 
 /**
  * RESTful action to manage student grades
@@ -37,6 +37,7 @@ public class StudentAction extends BaseAction {
     private StudentService studentService;
     private ExamPerformanceService examPerformanceService;
     private EnrollmentService enrollmentService;
+    private AuthorizationInterceptor authorizationInterceptor;
 
     private StudentActionModel studentActionModel = new StudentActionModel();
 
@@ -49,6 +50,10 @@ public class StudentAction extends BaseAction {
         studentActionModel.setStudent(studentService.get(studentId));
 
         if (course != null) {
+            if (!getCurrentUser().hasRights(Permission.SHOW_GRADE_PROTOCOL)) {
+                return authorizationInterceptor.sendAccessDenied(this);
+            }
+
             studentActionModel.setEnrollment(enrollmentService.getByStudentAndCourse(studentId, course));
 
             SortedMap<Integer, List<ExamPerformanceWithProtocolItem>> map = studentActionModel.getFullHistory();
@@ -60,9 +65,7 @@ public class StudentAction extends BaseAction {
             return SHOW_COURSE_GRADE;
         }
 
-        studentActionModel.setEnrollments(enrollmentService.listByStudent(studentId).stream()
-                .filter(e -> e.getGrade() != null)
-                .collect(toList()));
+        studentActionModel.setEnrollments(enrollmentService.listByStudent(studentId));
 
         return SHOW_GRADES;
     }
@@ -112,4 +115,7 @@ public class StudentAction extends BaseAction {
         this.enrollmentService = enrollmentService;
     }
 
+    public void setAuthorizationInterceptor(AuthorizationInterceptor authorizationInterceptor) {
+        this.authorizationInterceptor = authorizationInterceptor;
+    }
 }

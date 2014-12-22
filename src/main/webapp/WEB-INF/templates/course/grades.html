@@ -51,6 +51,7 @@
             </table>
 
             Durchschnitt: <span th:text="${#numbers.formatDecimal(model.averageGrade, 1, 2)}">3.87</span>
+            <br>
 
             <div id="students-table" class="boxed-group" th:if="${model.showStudents}">
                 <h3 th:text="#{txt.performancePerStudent}">Performance per Student</h3>
