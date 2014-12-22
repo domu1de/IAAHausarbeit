@@ -76,7 +76,7 @@
                                         <input type="radio" th:name="'batchActionModel.examPerformances[' + ${iterStat.index} + '].grade'" value="4.0" autocomplete="off" /> 4,0
                                     </label>
                                     <label class="btn grade-f">
-                                        <input type="radio" class="reexamination-radio" th:name="'batchActionModel.examPerformances[' + ${iterStat.index} + '].grade'" value="5.0" autocomplete="off" /> 5,0
+                                        <input type="radio" th:class="${!action.reexamination} ? 'reexamination-radio'" th:name="'batchActionModel.examPerformances[' + ${iterStat.index} + '].grade'" value="5.0" autocomplete="off" /> 5,0
                                     </label>
                                     <label class="btn grade-f" th:unless="${action.reexamination}">
                                         <input type="radio" th:name="'batchActionModel.examPerformances[' + ${iterStat.index} + '].grade'" value="5.0" autocomplete="off"> 6,0
@@ -85,7 +85,7 @@
                             </td>
                             <td>
                                 <button type="button" class="btn btn-default unattended-button" data-toggle="button" aria-pressed="false" autocomplete="off">
-                                    Nicht teilgenommen
+                                    Not attended
                                 </button>
                             </td>
                         </tr>
@@ -99,8 +99,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="../../../static/js/vendor/bootstrap.min.js" th:src="@{/static/js/vendor/bootstrap.min.js}"></script>
         <script src="../../../static/js/script.js" th:src="@{/static/js/script.js}"></script>
-        <script th:unless="${action.reexamination}">
-            // TODO check empty list
+        <script>
             $(function() {
                 var $form = $('#form-exam-grades');
 
