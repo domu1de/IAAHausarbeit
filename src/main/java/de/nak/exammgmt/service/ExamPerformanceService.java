@@ -40,11 +40,11 @@ public interface ExamPerformanceService {
     /**
      * Reverses the given exam performance and returns the corresponding protocol item.
      *
-     * @param examPerformance the exam performance to reverse
+     * @param examPerformanceId the exam performance id to reverse
      * @return the corresponding protocol item
      * @throws NotFoundException if no entity could be found
      */
-    ExamPerformanceProtocolItem reverse(ExamPerformance examPerformance) throws NotFoundException;
+    ExamPerformanceProtocolItem reverse(long examPerformanceId) throws NotFoundException;
 
     /**
      * Updates the given exam performance to persist the new grade and returns the corresponding protocol item.

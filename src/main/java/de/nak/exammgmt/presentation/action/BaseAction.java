@@ -25,7 +25,7 @@ public abstract class BaseAction extends ActionSupport {
     protected static final String NEW = "new";
     protected static final String CREATE = "create";
     protected static final String UPDATE = "update";
-    protected static final String DELETE = "delete";
+    protected static final String REMOVE = "remove";
 
     protected User currentUser;
     protected String returnTo;

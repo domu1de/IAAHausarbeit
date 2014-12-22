@@ -87,7 +87,7 @@ public class ExamPerformanceProtocolItem extends AbstractEntity{
     public static enum Type {
 
         EDIT,
-        REVERSAL;
+        REVERSAL
 
     }
 }

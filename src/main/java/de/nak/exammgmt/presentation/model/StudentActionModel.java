@@ -61,4 +61,5 @@ public class StudentActionModel {
     public String gradeToCssClass(float grade) {
         return GradePresenter.toCssClass(grade);
     }
+
 }

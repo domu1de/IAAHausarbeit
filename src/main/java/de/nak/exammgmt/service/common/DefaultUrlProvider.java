@@ -19,6 +19,7 @@ public class DefaultUrlProvider implements UrlProvider {
 
     private static final String ACTIVATION_PATH = "activate/";
     private static final String PASSWORD_REST_PATH = "password_reset/";
+    private static final String STUDENT_PATH = "student/";
 
     private HttpServletRequest request;
 
@@ -44,6 +45,11 @@ public class DefaultUrlProvider implements UrlProvider {
     @Override
     public String urlForPasswordReset(String token) {
         return baseUrl() + PASSWORD_REST_PATH + nullSafe(token);
+    }
+
+    @Override
+    public String urlForStudentAndCourse(long studentId, long courseId) {
+        return baseUrl() + "course/" + courseId + "/" + STUDENT_PATH + studentId;
     }
 
     private String urlSafePathSegment(String string) {

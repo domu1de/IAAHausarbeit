@@ -16,31 +16,40 @@ public interface UrlProvider {
     /**
      * Returns the base URL of the application.
      *
-     * @return the base URL.
+     * @return the base URL
      */
     String baseUrl();
 
     /**
      * Returns the absolute request URL.
      *
-     * @return the request URL.
+     * @return the request URL
      */
     String requestUrl();
 
     /**
-     * Returns the Activation URL for the given token.
+     * Returns the ActivationAction URL for the given token.
      *
-     * @param token the token for the Activation.
-     * @return the URL of the Activation.
+     * @param token the token for the ActivationAction
+     * @return the URL of the ActivationAction
      */
     String urlForActivation(String token);
 
     /**
-     * Returns the PasswordReset URL for the given token.
+     * Returns the PasswordResetAction URL for the given token.
      *
-     * @param token the token for the PasswordReset.
-     * @return the URL of the PasswordReset.
+     * @param token the token for the PasswordResetAction
+     * @return the URL of the PasswordResetAction
      */
     String urlForPasswordReset(String token);
+
+    /**
+     * Returns the StudentAction URL for the given student and course.
+     *
+     * @param studentId the student
+     * @param courseId the course
+     * @return the URL for the StudentAction
+     */
+    String urlForStudentAndCourse(long studentId, long courseId);
 
 }

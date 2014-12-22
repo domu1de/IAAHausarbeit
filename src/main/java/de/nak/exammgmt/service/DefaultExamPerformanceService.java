@@ -62,7 +62,12 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
     }
 
     @Override
-    public ExamPerformanceProtocolItem reverse(ExamPerformance examPerformance) throws NotFoundException {
+    public ExamPerformanceProtocolItem reverse(long examPerformanceId) throws NotFoundException {
+        ExamPerformance examPerformance = examPerformanceDAO.findById(examPerformanceId);
+        if (examPerformance == null) {
+            throw new NotFoundException(ExamPerformance.class);
+        }
+
         ExamPerformanceProtocolItem protocolItem = new ExamPerformanceProtocolItem();
 
         validateLastEntry(examPerformance);
