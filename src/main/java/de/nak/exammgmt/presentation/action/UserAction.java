@@ -26,6 +26,7 @@ public class UserAction extends BaseAction {
     public String index() {
         userActionModel = new UserActionModel();
         userActionModel.setUsers(adminService.listUsers());
+
         return INDEX;
     }
 
