@@ -17,34 +17,25 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Student extends Person {
 
-    private Integer studentId;
+    private int studentId;
     private Maniple maniple;
 
-    @Column(unique = true)
-    public Integer getStudentId() {
+    @Column(unique = true, nullable = false)
+    public int getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(Integer studentId) {
+    public void setStudentId(int studentId) {
         this.studentId = studentId;
     }
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     public Maniple getManiple() {
         return maniple;
     }
 
     public void setManiple(Maniple maniple) {
         this.maniple = maniple;
-    }
-
-    //TODO extract to service.
-    public void setName(String firstName, String lastName) {
-        setFirstName(firstName);
-        setLastName(lastName);
-        if (getUser() != null) {
-            getUser().setFullName(firstName + " " + lastName);
-        }
     }
 
     /**
@@ -57,13 +48,13 @@ public class Student extends Person {
 
         Student student = (Student) o;
 
-        if (studentId != null ? !studentId.equals(student.studentId) : student.studentId != null) return false;
+        if (studentId != student.studentId) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return studentId != null ? studentId.hashCode() : 0;
+        return studentId;
     }
 }

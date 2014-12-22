@@ -7,11 +7,11 @@ package de.nak.exammgmt.persistence.entity.user;
 
 import de.nak.exammgmt.persistence.entity.AbstractEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 /**
  * Entity to store a UserSession.
@@ -25,23 +25,9 @@ public class UserSession extends AbstractEntity {
     private User user;
     private String ip;
     private String userAgent;
-    private LocalDateTime sudoEnabledAt;
     private boolean rememberMe = false;
 
-    // TODO do
-    public UserSession() {
-    }
-
-    @Transient
-    public boolean isSudoNeeded() {
-        long timeBetweenSudo = ChronoUnit.MINUTES.between(sudoEnabledAt, LocalDateTime.now());
-        return timeBetweenSudo > 30;
-    }
-
-    public void sudo() {
-        setSudoEnabledAt(LocalDateTime.now());
-    }
-
+    @Column(nullable = false)
     public String getToken() {
         return token;
     }
@@ -50,7 +36,7 @@ public class UserSession extends AbstractEntity {
         this.token = token;
     }
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     public User getUser() {
         return user;
     }
@@ -59,6 +45,7 @@ public class UserSession extends AbstractEntity {
         this.user = user;
     }
 
+    @Column(nullable = false)
     public String getUserAgent() {
         return userAgent;
     }
@@ -67,6 +54,7 @@ public class UserSession extends AbstractEntity {
         this.userAgent = userAgent;
     }
 
+    @Column(nullable = false)
     public String getIp() {
         return ip;
     }
@@ -75,14 +63,7 @@ public class UserSession extends AbstractEntity {
         this.ip = ip;
     }
 
-    public LocalDateTime getSudoEnabledAt() {
-        return sudoEnabledAt;
-    }
-
-    private void setSudoEnabledAt(LocalDateTime sudoEnabledAt) {
-        this.sudoEnabledAt = sudoEnabledAt;
-    }
-
+    @Column(nullable = false)
     public boolean isRememberMe() {
         return rememberMe;
     }

@@ -7,6 +7,7 @@ package de.nak.exammgmt.persistence.entity.user;
 
 import de.nak.exammgmt.persistence.entity.AbstractEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
@@ -23,7 +24,7 @@ public class Activation extends AbstractEntity {
     private String token;
     private LocalDateTime expiresAt;
 
-    @OneToOne
+    @OneToOne(optional = false)
     public User getUser() {
         return user;
     }
@@ -32,6 +33,7 @@ public class Activation extends AbstractEntity {
         this.user = user;
     }
 
+    @Column(nullable = false)
     public String getToken() {
         return token;
     }
@@ -40,6 +42,7 @@ public class Activation extends AbstractEntity {
         this.token = token;
     }
 
+    @Column(nullable = false)
     public LocalDateTime getExpiresAt() {
         return expiresAt;
     }

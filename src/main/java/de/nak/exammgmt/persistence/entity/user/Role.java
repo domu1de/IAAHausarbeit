@@ -28,6 +28,7 @@ public class Role extends AbstractEntity {
         return permissions.containsAll(Arrays.asList(rights));
     }
 
+    @Column(nullable = false)
     public String getName() {
         return name;
     }

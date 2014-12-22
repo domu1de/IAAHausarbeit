@@ -5,10 +5,7 @@
 
 package de.nak.exammgmt.persistence.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +23,7 @@ public class Exam extends AbstractEntity {
     private Course course;
     private Set<Employee> lecturers = new HashSet<>();
 
+    @Column(nullable = false)
     public LocalDate getDate() {
         return date;
     }

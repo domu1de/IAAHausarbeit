@@ -19,16 +19,6 @@ public class Employee extends Person {
 
     private long employeeNumber;
 
-    //TODO extract to service.
-    public void setName(String title, String firstName, String lastName) {
-        setTitle(title);
-        setFirstName(firstName);
-        setLastName(lastName);
-        if (getUser() != null) {
-            getUser().setFullName(title + " " + firstName + " " + lastName);
-        }
-    }
-
     @Column(nullable = false, unique = true)
     public long getEmployeeNumber() {
         return employeeNumber;

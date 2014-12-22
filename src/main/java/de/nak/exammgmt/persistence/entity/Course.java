@@ -33,6 +33,7 @@ public class Course extends AbstractEntity {
         this.title = title;
     }
 
+    @Column(nullable = false)
     public String getDescription() {
         return description;
     }

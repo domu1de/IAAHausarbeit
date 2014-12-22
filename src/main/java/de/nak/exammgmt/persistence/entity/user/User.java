@@ -38,7 +38,7 @@ public class User extends AbstractEntity {
         this.username = username;
     }
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     public String getEmail() {
         return email;
     }
@@ -47,6 +47,7 @@ public class User extends AbstractEntity {
         this.email = email;
     }
 
+    @Column(nullable = false)
     public String getPassword() {
         return password;
     }
@@ -55,6 +56,16 @@ public class User extends AbstractEntity {
         this.password = password;
     }
 
+    @Column(nullable = false)
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    @Column(nullable = false)
     public boolean isActivated() {
         return activated;
     }
@@ -116,11 +127,4 @@ public class User extends AbstractEntity {
         return fullName;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
 }

@@ -26,7 +26,6 @@ public abstract class AbstractEntity {
         return id;
     }
 
-    // TODO test protected or private.
     public void setId(Long id) {
         this.id = id;
     }

@@ -7,6 +7,7 @@ package de.nak.exammgmt.persistence.entity;
 
 import de.nak.exammgmt.persistence.entity.user.User;
 
+import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
@@ -26,6 +27,7 @@ public abstract class Person extends AbstractEntity {
     private String firstName;
     private String lastName;
 
+    @Column(nullable = false)
     public String getFirstName() {
         return firstName;
     }
@@ -34,6 +36,7 @@ public abstract class Person extends AbstractEntity {
         this.firstName = firstName;
     }
 
+    @Column(nullable = false)
     public String getLastName() {
         return lastName;
     }
@@ -51,6 +54,7 @@ public abstract class Person extends AbstractEntity {
         this.user = user;
     }
 
+    @Column(nullable = false)
     public String getTitle() {
         return title;
     }
