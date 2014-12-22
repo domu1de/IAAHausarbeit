@@ -63,7 +63,7 @@ public interface UserService {
      * @return the user.
      * @throws de.nak.exammgmt.service.exception.NotFoundException
      */
-    User get(Long id) throws NotFoundException;
+    User get(long id) throws NotFoundException;
 
     /**
      * Gets the user for the given credentials.

@@ -46,13 +46,6 @@ public interface ExamService {
     void create(Exam exam) throws AlreadyCreatedException;
 
     /**
-     * Updates the given exam.
-     *
-     * @param exam the exam to update
-     */
-    void save(Exam exam);
-
-    /**
      * Saves the given exam performances for the given exam.
      *
      * @param examId the related exam

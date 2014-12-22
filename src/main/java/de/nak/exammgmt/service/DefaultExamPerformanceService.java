@@ -15,6 +15,7 @@ import de.nak.exammgmt.service.exception.NotFoundException;
 import de.nak.exammgmt.service.validation.ExamPerformanceValidator;
 
 import java.util.List;
+import java.util.Objects;
 
 import static de.nak.exammgmt.persistence.entity.ExamPerformanceProtocolItem.Type.EDIT;
 import static de.nak.exammgmt.persistence.entity.ExamPerformanceProtocolItem.Type.REVERSAL;
@@ -36,6 +37,8 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
 
     @Override
     public void create(ExamPerformance examPerformance) throws NotFoundException, ExamPerformanceValidationException {
+        Objects.requireNonNull(examPerformance);
+
         List<ExamPerformance> previousAttempts = examPerformanceDAO.findAttemptsByCourseAndStudent(examPerformance.getExam().getCourse(), examPerformance.getStudent());
         ExamPerformance lastAttempt = !previousAttempts.isEmpty() ? previousAttempts.get(0) : null;
 
@@ -46,7 +49,7 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
         if (examPerformance.isReexamination()) {
             examPerformance.setReexaminationPossible(false);
         }
-        // TODO: exception?
+
         if (examPerformance.getGrade() != 5.0f) {
             examPerformance.setReexaminationPossible(false);
         }
@@ -62,7 +65,7 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
     }
 
     @Override
-    public ExamPerformanceProtocolItem reverse(long examPerformanceId) throws NotFoundException {
+    public ExamPerformanceProtocolItem reverse(long examPerformanceId) throws NotFoundException, ExamPerformanceValidationException {
         ExamPerformance examPerformance = examPerformanceDAO.findById(examPerformanceId);
         if (examPerformance == null) {
             throw new NotFoundException(ExamPerformance.class);
@@ -118,26 +121,34 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
 
     @Override
     public List<ExamPerformance> listFullHistory(long courseId, long studentId) throws NotFoundException {
-        //FIXME
         return listFullHistory(AbstractEntity.withId(courseId, Course.class), AbstractEntity.withId(studentId, Student.class));
     }
 
     @Override
     public List<ExamPerformance> listFullHistory(Course course, Student student) {
-        if (course == null || course.getId() == null || student == null || student.getId() == null) {
-            // TODO throw exception
-        }
+        Objects.requireNonNull(course);
+        Objects.requireNonNull(course.getId());
+        Objects.requireNonNull(student);
+        Objects.requireNonNull(student.getId());
+
         return examPerformanceDAO.findAllEntriesByCourseAndStudent(course, student);
     }
 
     @Override
     public ExamPerformanceProtocolItem getProtocolForPerformance(ExamPerformance examPerformance) {
-        // TODO not null
+        Objects.requireNonNull(examPerformance);
+        Objects.requireNonNull(examPerformance.getId());
+
         return examPerformanceProtocolItemDAO.findByOldExamPerformance(examPerformance);
     }
 
     @Override
     public ExamPerformance getCurrentPerformance(Course course, Student student) throws NotFoundException {
+        Objects.requireNonNull(course);
+        Objects.requireNonNull(course.getId());
+        Objects.requireNonNull(student);
+        Objects.requireNonNull(student.getId());
+
         ExamPerformance examPerformance = examPerformanceDAO.findLastAttemptByCourseAndStudent(course, student);
         if (examPerformance == null) {
             throw new NotFoundException(ExamPerformance.class);
@@ -172,12 +183,12 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
      *
      * @param examPerformance the exam performance to validate as last entry
      */
-    private void validateLastEntry(ExamPerformance examPerformance) {
+    private void validateLastEntry(ExamPerformance examPerformance) throws ExamPerformanceValidationException {
         ExamPerformance lastEntry = examPerformanceDAO.findLastEntryByCourseAndStudent(examPerformance.getExam().getCourse(), examPerformance.getStudent());
 
         // Intentionally by Id and not via equals() to validate the persisted match
         if (!lastEntry.getId().equals(examPerformance.getId())) {
-            // TODO throw exception
+            throw new ExamPerformanceValidationException(examPerformance, "exception.examPerformance.notLastEntry");
         }
     }
 
@@ -188,7 +199,6 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
      * @param lastAttempt the last attempt or null
      */
     private void setAttempt(ExamPerformance examPerformance, ExamPerformance lastAttempt) {
-        // FIXME, mach mich hübsch!
         if (lastAttempt != null) {
             if (examPerformance.isReexamination()) {
                 examPerformance.setAttempt(lastAttempt.getAttempt());

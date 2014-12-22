@@ -10,6 +10,8 @@ import de.nak.exammgmt.persistence.entity.Employee;
 import de.nak.exammgmt.persistence.entity.user.User;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
+import java.util.Objects;
+
 /**
  * Default implementation of {@link EmployeeService}.
  *
@@ -30,7 +32,9 @@ public class DefaultEmployeeService implements EmployeeService {
 
     @Override
     public Employee getByUser(User user) throws NotFoundException {
-        // TODO: check for null
+        Objects.requireNonNull(user);
+        Objects.requireNonNull(user.getId());
+
         Employee employee = employeeDAO.findByUser(user);
         if (employee == null) {
             throw new NotFoundException(Employee.class);

@@ -14,6 +14,7 @@ import de.nak.exammgmt.persistence.entity.Student;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Default implementation of the {@link ManipleService}.
@@ -25,8 +26,6 @@ public class DefaultManipleService implements ManipleService {
     private ManipleDAO manipleDAO;
     private CourseDAO courseDAO;
     private StudentDAO studentDAO;
-
-    private EnrollmentService enrollmentService;
 
     @Override
     public Maniple get(long manipleId) throws NotFoundException {
@@ -50,7 +49,9 @@ public class DefaultManipleService implements ManipleService {
 
     @Override
     public List<Course> listCourses(Maniple maniple) {
-        // TODO: not null
+        Objects.requireNonNull(maniple);
+        Objects.requireNonNull(maniple.getId());
+
         return courseDAO.findByManiple(maniple);
     }
 
@@ -62,6 +63,9 @@ public class DefaultManipleService implements ManipleService {
 
     @Override
     public List<Student> listStudents(Maniple maniple) {
+        Objects.requireNonNull(maniple);
+        Objects.requireNonNull(maniple.getId());
+
         return studentDAO.findByManiple(maniple);
     }
 
@@ -77,7 +81,4 @@ public class DefaultManipleService implements ManipleService {
         this.studentDAO = studentDAO;
     }
 
-    public void setEnrollmentService(EnrollmentService enrollmentService) {
-        this.enrollmentService = enrollmentService;
-    }
 }

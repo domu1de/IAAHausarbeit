@@ -11,10 +11,7 @@ import de.nak.exammgmt.persistence.entity.Maniple;
 import de.nak.exammgmt.persistence.entity.Student;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static java.util.stream.Collectors.toMap;
 
@@ -53,6 +50,9 @@ public class DefaultEnrollmentService implements EnrollmentService {
 
     @Override
     public List<Enrollment> listByStudent(Student student) {
+        Objects.requireNonNull(student);
+        Objects.requireNonNull(student.getId());
+
         List<Course> courses = manipleService.listCourses(student.getManiple());
         List<ExamPerformance> lastAttempts = studentService.listCurrentPerformancePerCourse(student);
 
@@ -83,6 +83,9 @@ public class DefaultEnrollmentService implements EnrollmentService {
 
     @Override
     public List<Enrollment> listByCourse(Course course) {
+        Objects.requireNonNull(course);
+        Objects.requireNonNull(course.getId());
+
         List<Student> students = manipleService.listStudents(course.getManiple());
         List<ExamPerformance> examPerformances = courseService.listCurrentPerformancePerStudent(course);
 
@@ -113,11 +116,20 @@ public class DefaultEnrollmentService implements EnrollmentService {
 
     @Override
     public Map<Student, Map<Course, Enrollment>> listByManiple(Maniple maniple) {
+        Objects.requireNonNull(maniple);
+        Objects.requireNonNull(maniple.getId());
+
         return manipleService.listStudents(maniple).stream()
                 .collect(toMap(s -> s, (Student s) -> listByStudent(s).stream()
                         .collect(toMap(Enrollment::getCourse, e -> e, (u, v) -> null, LinkedHashMap::new)), (u, v) -> null, LinkedHashMap::new));
     }
 
+    /**
+     * Gets the grade for the given exam performance.
+     *
+     * @param examPerformance the exam performance
+     * @return the grade
+     */
     private float getGrade(ExamPerformance examPerformance) {
         if (examPerformance.isReexamination()) {
             return (examPerformance.getGrade() <= 3) ? 4 : 5;
@@ -126,6 +138,12 @@ public class DefaultEnrollmentService implements EnrollmentService {
         }
     }
 
+    /**
+     * Copies properties from examperformance to enrollment.
+     *
+     * @param enrollment the receiver
+     * @param examPerformanceToApply the source
+     */
     private void applyExamPerformance(Enrollment enrollment, ExamPerformance examPerformanceToApply) {
         enrollment.setGrade(getGrade(examPerformanceToApply));
         enrollment.setAttempt(examPerformanceToApply.getAttempt());

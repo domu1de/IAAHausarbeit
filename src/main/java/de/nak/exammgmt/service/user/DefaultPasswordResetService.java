@@ -19,6 +19,7 @@ import org.springframework.security.crypto.keygen.KeyGenerators;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * Default implementation of the PasswordReset.
@@ -37,6 +38,8 @@ public class DefaultPasswordResetService implements PasswordResetService {
 
     @Override
     public void initResetProcess(String usernameOrEmail) throws NotFoundException {
+        Objects.requireNonNull(usernameOrEmail);
+
         // Invalidate other password reset requests first
         User user = userService.get(usernameOrEmail);
         if (passwordResetDAO.has(user)) {
@@ -57,6 +60,8 @@ public class DefaultPasswordResetService implements PasswordResetService {
 
     @Override
     public boolean validateResetRequest(String token) {
+        Objects.requireNonNull(token);
+
         PasswordReset passwordReset = passwordResetDAO.findByToken(hash(token));
 
         if (passwordReset == null) {
@@ -73,6 +78,9 @@ public class DefaultPasswordResetService implements PasswordResetService {
 
     @Override
     public void finishPasswordReset(String token, String password) throws InvalidTokenException, NotFoundException {
+        Objects.requireNonNull(token);
+        Objects.requireNonNull(password);
+
         if (!validateResetRequest(token)) {
             throw new InvalidTokenException();
         }
@@ -87,6 +95,9 @@ public class DefaultPasswordResetService implements PasswordResetService {
 
     @Override
     public void cancelResetProcess(User user) {
+        Objects.requireNonNull(user);
+        Objects.requireNonNull(user.getId());
+
         passwordResetDAO.deleteByUser(user);
     }
 

@@ -8,11 +8,11 @@ package de.nak.exammgmt.service.user;
 import de.nak.exammgmt.persistence.dao.user.UserDAO;
 import de.nak.exammgmt.persistence.entity.user.User;
 import de.nak.exammgmt.service.exception.AlreadyCreatedException;
-import de.nak.exammgmt.service.exception.MissingIdException;
 import de.nak.exammgmt.service.exception.NotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Default implementation of the UserService.
@@ -26,9 +26,7 @@ public class DefaultUserService implements UserService {
 
     @Override
     public void create(User user) throws AlreadyCreatedException {
-        if (user.getId() != null) {
-            throw new AlreadyCreatedException();
-        }
+        Objects.requireNonNull(user);
 
         if (userDAO.findByUsernameOrEmail(user.getUsername()) != null) {
             throw new AlreadyCreatedException(String.format("The username [%s] is already taken.", user.getUsername()));
@@ -49,9 +47,8 @@ public class DefaultUserService implements UserService {
 
     @Override
     public void update(User user) {
-        if (user.getId() == null) {
-            throw new MissingIdException();
-        }
+        Objects.requireNonNull(user);
+        Objects.requireNonNull(user.getId());
 
         userDAO.save(user);
     }
@@ -63,18 +60,18 @@ public class DefaultUserService implements UserService {
 
     @Override
     public void activate(User user) {
-        if (user.getId() == null) {
-            throw new MissingIdException();
-        }
+        Objects.requireNonNull(user);
+        Objects.requireNonNull(user.getId());
+
         user.setActivated(true);
         userDAO.save(user);
     }
 
     @Override
     public void deactivate(User user) {
-        if (user.getId() == null) {
-            throw new MissingIdException();
-        }
+        Objects.requireNonNull(user);
+        Objects.requireNonNull(user.getId());
+
         user.setActivated(false);
         user.setPassword(null);
         user.setCurrentUserSession(null);
@@ -82,7 +79,7 @@ public class DefaultUserService implements UserService {
     }
 
     @Override
-    public User get(Long id) throws NotFoundException {
+    public User get(long id) throws NotFoundException {
         User user = userDAO.findById(id);
         if (user == null) {
             throw new NotFoundException(User.class);

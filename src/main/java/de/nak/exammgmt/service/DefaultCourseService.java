@@ -12,6 +12,7 @@ import de.nak.exammgmt.persistence.entity.ExamPerformance;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Default implementation of the {@link CourseService}.
@@ -45,7 +46,9 @@ public class DefaultCourseService implements CourseService {
 
     @Override
     public List<ExamPerformance> listCurrentPerformancePerStudent(Course course) {
-        // TODO not null
+        Objects.requireNonNull(course);
+        Objects.requireNonNull(course.getId());
+
         return examPerformanceDAO.findCurrentByCourse(course);
     }
 

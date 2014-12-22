@@ -13,6 +13,7 @@ import de.nak.exammgmt.persistence.entity.user.User;
 import de.nak.exammgmt.service.exception.NotFoundException;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Default implementation of the {@link StudentService}.
@@ -35,7 +36,9 @@ public class DefaultStudentService implements StudentService {
 
     @Override
     public Student getByUser(User user) throws NotFoundException {
-        // TODO not null
+        Objects.requireNonNull(user);
+        Objects.requireNonNull(user.getId());
+
         Student student = studentDAO.findByUser(user);
         if (student == null) {
             throw new NotFoundException(Student.class);
@@ -56,7 +59,9 @@ public class DefaultStudentService implements StudentService {
 
     @Override
     public List<ExamPerformance> listCurrentPerformancePerCourse(Student student) {
-        // TODO not null
+        Objects.requireNonNull(student);
+        Objects.requireNonNull(student.getId());
+
         return examPerformanceDAO.findLastAttemptsByStudent(student);
     }
 
@@ -67,4 +72,5 @@ public class DefaultStudentService implements StudentService {
     public void setExamPerformanceDAO(ExamPerformanceDAO examPerformanceDAO) {
         this.examPerformanceDAO = examPerformanceDAO;
     }
+
 }

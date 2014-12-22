@@ -44,7 +44,7 @@ public interface ExamPerformanceService {
      * @return the corresponding protocol item
      * @throws NotFoundException if no entity could be found
      */
-    ExamPerformanceProtocolItem reverse(long examPerformanceId) throws NotFoundException;
+    ExamPerformanceProtocolItem reverse(long examPerformanceId) throws NotFoundException, ExamPerformanceValidationException;
 
     /**
      * Updates the given exam performance to persist the new grade and returns the corresponding protocol item.

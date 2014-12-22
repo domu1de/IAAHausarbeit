@@ -18,6 +18,7 @@ import org.springframework.transaction.support.TransactionSynchronizationAdapter
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Default implementation of the {@link ExamService}.
@@ -47,20 +48,16 @@ public class DefaultExamService implements ExamService {
 
     @Override
     public void create(Exam exam) throws AlreadyCreatedException {
-        if (exam.getId() != null) {
-            throw new AlreadyCreatedException();
-        }
+        Objects.requireNonNull(exam);
+
         // TODO: fachlicher test
         examDAO.save(exam);
     }
 
     @Override
-    public void save(Exam exam) {
-        // TODO
-    }
-
-    @Override
     public void saveExamPerformances(long examId, List<ExamPerformance> examPerformances, boolean isReexamination) throws NotFoundException, ExamPerformanceValidationException {
+        Objects.requireNonNull(examPerformances);
+
         Exam exam = get(examId);
 
         List<Student> possibleAttendees = !isReexamination
@@ -76,15 +73,13 @@ public class DefaultExamService implements ExamService {
 
             // Check if student is among possible attendees
             if (student == null) {
-                // TODO: throw exception
-                throw new RuntimeException();
+                throw new ExamPerformanceValidationException(examPerformance, "txt.examPerformance.userNotAllowed");
             }
 
             examPerformance.setExam(exam);
             examPerformance.setReexamination(isReexamination);
             examPerformanceService.create(examPerformance);
 
-            // FIXME komisch?! exception?
             if (student.getUser() != null) {
                 notificationMail.generate(student.getUser().getEmail(), student.getUser().getFullName(), exam.getCourse().getTitle());
             }
@@ -107,7 +102,9 @@ public class DefaultExamService implements ExamService {
 
     @Override
     public List<Student> listPossibleAttendees(Exam exam) {
-        // TODO not null
+        Objects.requireNonNull(exam);
+        Objects.requireNonNull(exam.getId());
+
         return studentDAO.findPossibleAttendees(exam);
     }
 
@@ -119,7 +116,9 @@ public class DefaultExamService implements ExamService {
 
     @Override
     public List<Student> listPossibleReexaminationAttendees(Exam exam) {
-        // TODO not null
+        Objects.requireNonNull(exam);
+        Objects.requireNonNull(exam.getId());
+
         return studentDAO.findPossibleReexaminationAttendees(exam);
     }
 

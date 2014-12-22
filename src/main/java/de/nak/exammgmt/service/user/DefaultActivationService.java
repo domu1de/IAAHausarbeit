@@ -19,6 +19,7 @@ import org.springframework.security.crypto.keygen.KeyGenerators;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * Default implementation of the ActivationService.
@@ -36,6 +37,8 @@ public class DefaultActivationService implements ActivationService {
 
     @Override
     public void create(User user) throws AlreadyActivatedException {
+        Objects.requireNonNull(user);
+
         // Invalidate other activations first
         if (activationDAO.has(user)) {
             activationDAO.deleteByUser(user);
@@ -59,6 +62,8 @@ public class DefaultActivationService implements ActivationService {
 
     @Override
     public boolean validate(String token) {
+        Objects.requireNonNull(token);
+
         Activation activation = activationDAO.findByToken(hash(token));
 
         if (activation == null) {
@@ -75,6 +80,9 @@ public class DefaultActivationService implements ActivationService {
 
     @Override
     public void finish(String token, String password) throws InvalidTokenException, NotFoundException {
+        Objects.requireNonNull(token);
+        Objects.requireNonNull(password);
+
         if (!validate(token)) {
             throw new InvalidTokenException();
         }
@@ -89,6 +97,9 @@ public class DefaultActivationService implements ActivationService {
 
     @Override
     public void cancel(User user) {
+        Objects.requireNonNull(user);
+        Objects.requireNonNull(user.getId());
+
         activationDAO.deleteByUser(user);
     }
 

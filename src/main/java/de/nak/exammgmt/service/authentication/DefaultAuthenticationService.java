@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
 
 import static java.util.Arrays.stream;
 
@@ -63,6 +64,9 @@ public class DefaultAuthenticationService implements AuthenticationService {
 
     @Override
     public void createUserSession(User user, boolean rememberMe) {
+        Objects.requireNonNull(user);
+        Objects.requireNonNull(user.getId());
+
         UserSession userSession = new UserSession();
         userSession.setUser(user);
         userSession.setRememberMe(rememberMe);
@@ -72,11 +76,17 @@ public class DefaultAuthenticationService implements AuthenticationService {
 
     @Override
     public List<UserSession> listUserSessions(User user) throws NotFoundException {
+        Objects.requireNonNull(user);
+        Objects.requireNonNull(user.getId());
+
         return userSessionDAO.findByUser(user);
     }
 
     @Override
-    public void revokeUserSession(Long id, User user) throws Exception {
+    public void revokeUserSession(long id, User user) throws Exception {
+        Objects.requireNonNull(user);
+        Objects.requireNonNull(user.getId());
+
         UserSession userSession = userSessionDAO.findById(id);
 
         if (userSession == null) {
@@ -92,11 +102,17 @@ public class DefaultAuthenticationService implements AuthenticationService {
 
     @Override
     public void revokeUserSessions(User user) {
+        Objects.requireNonNull(user);
+        Objects.requireNonNull(user.getId());
+
         userSessionDAO.deleteByUser(user);
     }
 
     @Override
     public void revokeCurrentUserSession(User user) throws NotFoundException {
+        Objects.requireNonNull(user);
+        Objects.requireNonNull(user.getId());
+
         UserSession currentUserSession = user.getCurrentUserSession();
 
         if (currentUserSession == null) {

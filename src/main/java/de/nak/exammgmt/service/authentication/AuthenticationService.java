@@ -50,7 +50,7 @@ public interface AuthenticationService {
      * @throws NotFoundException if the user is not in the system
      * @throws Exception´if the user tries to revoke someone else's session
      */
-    void revokeUserSession(Long id, User user) throws NotFoundException, Exception; //TODO specify exception
+    void revokeUserSession(long id, User user) throws NotFoundException, Exception; //TODO specify exception
 
     /**
      * Revokes all UserSessions of the given user.

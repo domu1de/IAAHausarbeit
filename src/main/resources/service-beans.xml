@@ -85,7 +85,6 @@
         <property name="manipleDAO" ref="manipleDAO" />
         <property name="courseDAO" ref="courseDAO" />
         <property name="studentDAO" ref="studentDAO" />
-        <property name="enrollmentService" ref="enrollmentService" />
     </bean>
 
     <bean name="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
