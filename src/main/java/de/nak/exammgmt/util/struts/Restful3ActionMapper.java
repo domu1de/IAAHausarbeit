@@ -63,7 +63,12 @@ public class Restful3ActionMapper extends DefaultActionMapper {
                 actionSlashPos = actionName.lastIndexOf('/', actionSlashPos - 1);
             }
 
-            ActionConfig actionConfig = configuration.getActionConfig(mapping.getNamespace(), actionName.substring(actionSlashPos + 1));
+            ActionConfig actionConfig = configuration.getActionConfig(mapping.getNamespace(), actionName);
+
+            // Try stripping params
+            if (actionConfig == null) {
+                actionConfig = configuration.getActionConfig(mapping.getNamespace(), actionName.substring(actionSlashPos + 1));
+            }
 
             // Apply settings from action config
             if (actionConfig != null) {
