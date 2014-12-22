@@ -44,7 +44,8 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="date-input" th:text="#{input.date}">Date</label>
-                    <input id="date-input" type="text" name="examActionModel.exam.date" class="form-control" th:placeholder="#{input.date}" placeholder="Date" required>
+                    <input id="date-input" type="text" class="form-control" th:placeholder="#{input.date}" placeholder="Date" required>
+                    <input id="hidden-date-input" name="examActionModel.exam.date" type="hidden" />
                 </div>
                 <button class="btn btn-primary btn-block" type="submit">Create exam</button>
             </form>
@@ -135,7 +136,7 @@
                     });
 
                     if (!hasErrors) {
-                        $('#date-input').val(picker.toString(serverDateFormat));
+                        $('#hidden-date-input').val(picker.toString(serverDateFormat));
                     }
 
                     return !hasErrors;
