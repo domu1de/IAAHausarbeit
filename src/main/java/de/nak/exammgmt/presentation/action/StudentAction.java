@@ -8,13 +8,13 @@ package de.nak.exammgmt.presentation.action;
 import de.nak.exammgmt.persistence.entity.ExamPerformance;
 import de.nak.exammgmt.persistence.entity.user.Permission;
 import de.nak.exammgmt.presentation.GradePresenter;
-import de.nak.exammgmt.presentation.action.interceptor.AuthorizationInterceptor;
 import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.presentation.model.StudentActionModel;
 import de.nak.exammgmt.presentation.model.StudentActionModel.ExamPerformanceWithProtocolItem;
 import de.nak.exammgmt.service.EnrollmentService;
 import de.nak.exammgmt.service.ExamPerformanceService;
 import de.nak.exammgmt.service.StudentService;
+import org.apache.struts2.ServletActionContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,6 @@ public class StudentAction extends BaseAction {
     private StudentService studentService;
     private ExamPerformanceService examPerformanceService;
     private EnrollmentService enrollmentService;
-    private AuthorizationInterceptor authorizationInterceptor;
 
     private StudentActionModel studentActionModel = new StudentActionModel();
 
@@ -51,7 +50,9 @@ public class StudentAction extends BaseAction {
 
         if (course != null) {
             if (!getCurrentUser().hasRights(Permission.SHOW_GRADE_PROTOCOL)) {
-                return authorizationInterceptor.sendAccessDenied(this);
+                addActionError(getText("txt.accessDenied"));
+                ServletActionContext.getResponse().setStatus(403);
+                return BaseAction.ERROR;
             }
 
             studentActionModel.setEnrollment(enrollmentService.getByStudentAndCourse(studentId, course));
@@ -115,7 +116,4 @@ public class StudentAction extends BaseAction {
         this.enrollmentService = enrollmentService;
     }
 
-    public void setAuthorizationInterceptor(AuthorizationInterceptor authorizationInterceptor) {
-        this.authorizationInterceptor = authorizationInterceptor;
-    }
 }

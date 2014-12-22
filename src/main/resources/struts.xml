@@ -73,7 +73,7 @@
             <exception-mapping exception="de.nak.exammgmt.service.exception.NotFoundException" result="404" />
             <!-- TODO: Remove for production -->
             <exception-mapping exception="de.nak.exammgmt.service.exception.DatabaseInvalidException" result="redirect_reset_database" />
-            <!-- todo insert <exception-mapping exception="java.lang.Exception" result="error" /> -->
+            <exception-mapping exception="java.lang.Exception" result="error" />
         </global-exception-mappings>
 
     </package>

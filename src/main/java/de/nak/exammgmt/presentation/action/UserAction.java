@@ -5,6 +5,7 @@
 
 package de.nak.exammgmt.presentation.action;
 
+import de.nak.exammgmt.persistence.entity.user.Permission;
 import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.presentation.model.UserActionModel;
 import de.nak.exammgmt.service.home.AdminService;
@@ -39,6 +40,7 @@ public class UserAction extends BaseAction {
     }
 
     @Override
+    @Protected(Permission.CREATE_USER)
     public String editNew() {
         userActionModel = new UserActionModel();
         userActionModel.setRoles(adminService.getRoles());
@@ -47,6 +49,7 @@ public class UserAction extends BaseAction {
     }
 
     @Override
+    @Protected(Permission.EDIT_USER)
     public String edit() throws Exception {
         userActionModel = new UserActionModel();
         userActionModel.setUser(adminService.getUser(userId));
@@ -55,6 +58,7 @@ public class UserAction extends BaseAction {
     }
 
     @Override
+    @Protected(Permission.EDIT_USER)
     public String update() throws Exception {
         if (userActionModel == null || userActionModel.getUser() == null) {
             return ERROR;
@@ -65,6 +69,7 @@ public class UserAction extends BaseAction {
     }
 
     @Override
+    @Protected(Permission.CREATE_USER)
     public String create() throws Exception {
         if (userActionModel == null || userActionModel.getUser() == null) {
             return ERROR;
@@ -75,6 +80,7 @@ public class UserAction extends BaseAction {
         return CREATE;
     }
 
+    @Protected(Permission.EDIT_USER)
     public String deactivate() throws Exception {
         if (userId.equals(getCurrentUser().getId())) {
             return ERROR;
@@ -84,6 +90,7 @@ public class UserAction extends BaseAction {
         return INDEX;
     }
 
+    @Protected(Permission.EDIT_USER)
     public String reactivate() throws Exception {
         if (userId.equals(getCurrentUser().getId())) {
             return ERROR;
