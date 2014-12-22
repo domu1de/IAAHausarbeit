@@ -49,11 +49,13 @@ public interface ExamPerformanceService {
     /**
      * Updates the given exam performance to persist the new grade and returns the corresponding protocol item.
      *
-     * @param examPerformance the exam performance to update the grade for
+     * @param examPerformanceId the exam performance id to update the grade for
+     * @param newGrade the new grade
+     * @param reexaminationPossible if reexamination is possible for the new grade
      * @return the corresponding protocol item
      * @throws NotFoundException if no entity could be found
      */
-    ExamPerformanceProtocolItem updateGrade(ExamPerformance examPerformance) throws NotFoundException;
+    ExamPerformanceProtocolItem updateGrade(long examPerformanceId, float newGrade, boolean reexaminationPossible) throws NotFoundException, ExamPerformanceValidationException;
 
     /**
      * Lists the full history of exam performances for the given course and student.

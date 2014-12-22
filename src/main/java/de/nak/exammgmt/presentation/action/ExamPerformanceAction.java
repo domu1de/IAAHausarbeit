@@ -5,11 +5,10 @@
 
 package de.nak.exammgmt.presentation.action;
 
-import de.nak.exammgmt.persistence.entity.ExamPerformanceProtocolItem;
+import de.nak.exammgmt.persistence.entity.ExamPerformance;
 import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.presentation.model.ExamPerformanceActionModel;
 import de.nak.exammgmt.service.ExamPerformanceService;
-import de.nak.exammgmt.service.common.UrlProvider;
 
 /**
  * @author Domenic Muskulus <domenic@muskulus.eu>
@@ -22,11 +21,18 @@ public class ExamPerformanceAction extends BaseAction {
     private ExamPerformanceActionModel examPerformanceActionModel;
 
     private ExamPerformanceService examPerformanceService;
-    private UrlProvider urlProvider;
 
     @Override
     public String update() throws Exception {
-        return super.update();
+        if (examPerformanceId == null) {
+            return ERROR; //FIXME
+        }
+
+        ExamPerformance examPerformance = examPerformanceActionModel.getExamPerformance();
+        examPerformanceService.updateGrade(examPerformanceId, examPerformance.getGrade(), examPerformance.isReexaminationPossible());
+
+        examPerformanceId = null; // Avoid examPerformanceId in query string
+        return UPDATE;
     }
 
     @Override
@@ -35,12 +41,9 @@ public class ExamPerformanceAction extends BaseAction {
             return ERROR; //FIXME
         }
 
-        ExamPerformanceProtocolItem protocolItem = examPerformanceService.reverse(examPerformanceId);
+        examPerformanceService.reverse(examPerformanceId);
 
-        returnTo = urlProvider.urlForStudentAndCourse(
-                protocolItem.getOldExamPerformance().getExam().getCourse().getId(),
-                protocolItem.getOldExamPerformance().getStudent().getId());
-
+        examPerformanceId = null; // Avoid examPerformanceId in query string
         return REMOVE;
     }
 
@@ -50,10 +53,6 @@ public class ExamPerformanceAction extends BaseAction {
 
     public void setExamPerformanceId(Long examPerformanceId) {
         this.examPerformanceId = examPerformanceId;
-    }
-
-    public void setUrlProvider(UrlProvider urlProvider) {
-        this.urlProvider = urlProvider;
     }
 
     public void setExamPerformanceService(ExamPerformanceService examPerformanceService) {

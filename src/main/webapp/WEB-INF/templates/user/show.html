@@ -45,6 +45,9 @@
 
                 <div class="boxed-group">
                     <h3 th:text="#{txt.changePassword}">Change password</h3>
+
+                    <input type="hidden" name="_method" value="put" />
+
                     <div class="boxed-group-inner">
                         <div class="form-group">
                             <label for="current-password-input" th:text="#{input.currentPassword}">Current password</label>
@@ -58,8 +61,9 @@
                             <label for="confirm-new-password-input" th:text="#{input.confirmPassword}">Confirm new password</label>
                             <input id="confirm-new-password-input" type="password" class="form-control" required th:placeholder="#{input.confirmPassword}" placeholder="Confirm new password">
                         </div>
-                        <input type="hidden" name="_method" value="put" />
-                        <button class="btn btn-primary" type="submit" th:text="#{btn.changePassword}">Change password</button>
+                        <div class="form-group">
+                            <button class="btn btn-primary" type="submit" th:text="#{btn.changePassword}">Change password</button>
+                        </div>
                     </div>
                 </div>
 

@@ -9,9 +9,14 @@ import de.nak.exammgmt.persistence.entity.ExamPerformance;
 import de.nak.exammgmt.presentation.GradePresenter;
 import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.presentation.model.StudentActionModel;
+import de.nak.exammgmt.presentation.model.StudentActionModel.ExamPerformanceWithProtocolItem;
 import de.nak.exammgmt.service.EnrollmentService;
 import de.nak.exammgmt.service.ExamPerformanceService;
 import de.nak.exammgmt.service.StudentService;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.SortedMap;
 
 /**
  * @author Domenic Muskulus <domenic@muskulus.eu>
@@ -42,8 +47,11 @@ public class StudentAction extends BaseAction {
         if (course != null) {
             studentActionModel.setEnrollment(enrollmentService.getByStudentAndCourse(studentId, course));
 
+            // TODO stream api?
+            SortedMap<Integer, List<ExamPerformanceWithProtocolItem>> map = studentActionModel.getFullHistory();
             for (ExamPerformance ep : examPerformanceService.listFullHistory(course, studentId)) {
-                studentActionModel.getFullHistory().put(ep, examPerformanceService.getProtocolForPerformance(ep));
+                List<ExamPerformanceWithProtocolItem> list = map.computeIfAbsent(ep.getAttempt(), ArrayList::new);
+                list.add(new ExamPerformanceWithProtocolItem(ep, examPerformanceService.getProtocolForPerformance(ep)));
             }
 
             return SHOW_COURSE_GRADE;

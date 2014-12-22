@@ -38,8 +38,10 @@
                 </thead>
                 <tbody>
                     <tr th:each="enrollment : ${action.studentActionModel.enrollments}" th:if="${enrollment.grade}">
-                        <td><a th:href="@{/course/{courseId}(courseId=${enrollment.course.id})}"  th:text="${enrollment.course.title}">Modul 1</a></td>
-                        <td><span th:text="${#numbers.formatDecimal(enrollment.grade, 1, 1)}" class="label grade-label " th:attrappend="class=${action.toCssClass(enrollment.grade)}">1.0</span></td>
+                        <td><a th:href="@{/course/{courseId}(courseId=${enrollment.course.id})}"  th:text="${enrollment.course}">Modul 1</a></td>
+                        <td>
+                            <span th:text="${#numbers.formatDecimal(enrollment.grade, 1, 1)}" class="grade-label-lg" th:classappend="${action.toCssClass(enrollment.grade)}">1.0</span>
+                        </td>
                     </tr>
                 </tbody>
             </table>

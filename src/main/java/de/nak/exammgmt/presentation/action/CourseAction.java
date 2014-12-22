@@ -6,6 +6,7 @@
 package de.nak.exammgmt.presentation.action;
 
 import de.nak.exammgmt.persistence.entity.Course;
+import de.nak.exammgmt.persistence.entity.user.Permission;
 import de.nak.exammgmt.presentation.GradePresenter;
 import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.presentation.model.CourseActionModel;
@@ -39,6 +40,8 @@ public class CourseAction extends BaseAction {
             return ERROR;
         }
 
+
+        // TODO nur berechtigte studenten
         Course course = courseService.get(courseId);
         List<Enrollment> enrollments = enrollmentService.listByCourse(course);
         courseActionModel.setCourse(course);
@@ -55,6 +58,8 @@ public class CourseAction extends BaseAction {
                 .filter(e -> e.getGrade() != null)
                 .mapToDouble(Enrollment::getGrade)
                 .average().orElse(0));
+
+        courseActionModel.setShowStudents(getCurrentUser().hasRights(Permission.SHOW_STUDENT_GRADES));
 
         return SHOW;
     }

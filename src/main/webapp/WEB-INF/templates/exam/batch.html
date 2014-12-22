@@ -15,10 +15,20 @@
         <link href="../../../static/css/vendor/bootstrap.min.css" th:href="@{/static/css/vendor/bootstrap.min.css}" rel="stylesheet" />
         <link href="../../../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet" />
     </head>
-    <body th:>
-        <th:block th:replace="layout :: layout-header (subTitle=#{txt.title.exam.batch})"></th:block>
+    <body th:with="model=${action.batchActionModel}">
+        <th:block th:replace="layout :: layout-header (subTitle=#{txt.title.exam.batch},subText=#{${action.reexamination} ? 'txt.reexamination' : 'txt.mainExam'})"></th:block>
 
         <div class="container">
+
+            <dl class="dl-horizontal">
+                <dt th:text="#{txt.course}">Course</dt>
+                <dd th:text="${model.exam.course}">IAA</dd>
+                <dt th:text="#{txt.maniple}">Maniple</dt>
+                <dd th:text="${model.exam.course.maniple}">I11</dd>
+                <dt th:text="#{txt.lecturers}">Lecturers</dt>
+                <dd th:text="${#strings.listJoin(model.exam.course.lecturers.{name}, ', ')}">Anft, Reichert</dd>
+            </dl>
+
             <form id="form-exam-grades" role="form" accept-charset="UTF-8" method="post">
 
                 <div id="alert-ungraded-students" class="alert alert-danger hidden" role="alert" th:text="#{txt.ungradedStutents}">ERROR: Ungraded students!</div>
@@ -28,14 +38,14 @@
                         <tr>
                             <th>#</th>
                             <th th:text="#{txt.studentId}">StudentId</th>
-                            <th>Last name</th>
-                            <th>First name</th>
+                            <th th:text="#{txt.name}">Last Name</th>
+                            <th th:text="#{txt.firstName}">First name</th>
                             <th th:text="#{txt.grade}">Grade</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="student,iterStat : ${action.batchActionModel.possibleAttendees}">
+                        <tr th:each="student,iterStat : ${model.possibleAttendees}">
                             <input type="hidden" th:name="'batchActionModel.examPerformances[' + ${iterStat.index} + '].reexamination'" th:value="${action.reexamination}" />
                             <input type="hidden" th:name="'batchActionModel.examPerformances[' + ${iterStat.index} + '].student.id'" th:value="${student.id}" />
                             <input th:unless="${action.reexamination}" type="hidden" class="reexamination-possible" th:name="'batchActionModel.examPerformances[' + ${iterStat.index} + '].reexaminationPossible'" />
@@ -87,7 +97,7 @@
                                 </div>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-default unattended-button" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                <button type="button" class="btn btn-default unattended-button" data-toggle="button" aria-pressed="false" autocomplete="off" th:text="#{btn.notAttended}">
                                     Not attended
                                 </button>
                             </td>
@@ -95,7 +105,7 @@
                     </tbody>
                 </table>
 
-                <button class="btn btn-primary btn-block" type="submit">Push grades</button>
+                <button class="btn btn-primary btn-block" type="submit" th:text="#{btn.save}">Save</button>
             </form>
         </div>
 

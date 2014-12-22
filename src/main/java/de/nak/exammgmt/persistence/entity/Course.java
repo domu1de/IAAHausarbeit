@@ -91,4 +91,9 @@ public class Course extends AbstractEntity {
     public void setCourseId(String courseId) {
         this.courseId = courseId;
     }
+
+    @Override
+    public String toString() {
+        return courseId + " " + title;
+    }
 }

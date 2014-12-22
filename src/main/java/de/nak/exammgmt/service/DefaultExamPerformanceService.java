@@ -84,17 +84,30 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
     }
 
     @Override
-    public ExamPerformanceProtocolItem updateGrade(ExamPerformance examPerformance) throws NotFoundException {
-        ExamPerformanceProtocolItem protocolItem = new ExamPerformanceProtocolItem();
-        ExamPerformance newExamPerformance = null;
+    public ExamPerformanceProtocolItem updateGrade(long examPerformanceId, float newGrade, boolean reexaminationPossible) throws NotFoundException, ExamPerformanceValidationException {
+        ExamPerformance oldExamPerformance = examPerformanceDAO.findById(examPerformanceId);
+        if (oldExamPerformance == null) {
+            throw new NotFoundException(ExamPerformance.class);
+        }
 
-        validateLastEntry(examPerformance);
-        examPerformanceDAO.reverse(examPerformance);
-        newExamPerformance = cloneExamPerformance(examPerformance);
-        examPerformanceDAO.save(newExamPerformance);
+        ExamPerformanceProtocolItem protocolItem = new ExamPerformanceProtocolItem();
+
+        validateLastEntry(oldExamPerformance);
+        if (oldExamPerformance.getGrade() == newGrade && oldExamPerformance.isReexaminationPossible() == reexaminationPossible) {
+            throw new ExamPerformanceValidationException(oldExamPerformance, "exception.examPerformance.unchangedGrade");
+        }
+
+        examPerformanceDAO.reverse(oldExamPerformance);
+
+        ExamPerformance newExamPerformance = cloneExamPerformance(oldExamPerformance);
+        newExamPerformance.setGrade(newGrade);
+        newExamPerformance.setReexaminationPossible(reexaminationPossible);
+
+        // TODO extra validate
+        create(newExamPerformance);
 
         protocolItem.setType(EDIT);
-        protocolItem.setOldExamPerformance(examPerformanceDAO.findById(examPerformance.getId()));
+        protocolItem.setOldExamPerformance(oldExamPerformance);
         protocolItem.setNewExamPerformance(newExamPerformance);
         protocolItem.setEditor(newExamPerformance.getCreator());
 
@@ -146,9 +159,7 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
         newExamPerformance.setStudent(oldExamPerformance.getStudent());
         newExamPerformance.setExam(oldExamPerformance.getExam());
         newExamPerformance.setAttempt(oldExamPerformance.getAttempt());
-        newExamPerformance.setGrade(oldExamPerformance.getGrade());
         newExamPerformance.setReexamination(oldExamPerformance.isReexamination());
-        newExamPerformance.setReexaminationPossible(oldExamPerformance.isReexaminationPossible());
 
         newExamPerformance.setReversed(false);
         newExamPerformance.setCreator(employeeService.getByUser(authenticationService.getCurrentUser()));

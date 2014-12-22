@@ -489,10 +489,17 @@ li.session-device .minibutton {
     background-color: #f5f5f5;
 }
 
-.grade-label {
-    font-size: 100%;
-    color: #333;
+.grade-label-lg {
+    display: inline-block;
+    margin-bottom: 0;
     font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    width: 43px;
 }
 
 label.btn.active {
@@ -546,4 +553,15 @@ label.btn.active {
 .grade-indicator .passed-label {
     border-top: 1px solid rgba(0, 0, 0, 0.6);
     padding: 10px 15px;
+}
+
+/*
+ * Table
+ */
+.table-clickable tbody tr {
+    cursor: pointer;
+}
+
+.table-clickable tbody tr:active {
+    background-color: #ddd;
 }

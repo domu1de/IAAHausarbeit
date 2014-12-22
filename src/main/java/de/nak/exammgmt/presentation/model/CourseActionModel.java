@@ -22,6 +22,7 @@ public class CourseActionModel {
     private List<Enrollment> enrollments = new ArrayList<>();
     private Map<Float, Long> gradeCount = new LinkedHashMap<>();
     private double averageGrade;
+    private boolean showStudents;
 
     public Course getCourse() {
         return course;
@@ -53,5 +54,13 @@ public class CourseActionModel {
 
     public void setAverageGrade(double averageGrade) {
         this.averageGrade = averageGrade;
+    }
+
+    public boolean isShowStudents() {
+        return showStudents;
+    }
+
+    public void setShowStudents(boolean showStudents) {
+        this.showStudents = showStudents;
     }
 }

@@ -30,7 +30,7 @@
                     <tr>
                         <th></th>
                         <th th:each="course : ${action.manipleActionModel.manipleCourses}">
-                            <a th:href="@{/course/{courseId}(courseId=${course.id})}" th:text="${course.title}">Course 1</a>
+                            <a th:href="@{/course/{courseId}(courseId=${course.id})}" th:text="${course}">Course 1</a>
                         </th>
                     </tr>
                 </thead>

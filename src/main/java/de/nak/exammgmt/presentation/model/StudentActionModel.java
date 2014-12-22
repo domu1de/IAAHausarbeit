@@ -11,10 +11,7 @@ import de.nak.exammgmt.persistence.entity.Student;
 import de.nak.exammgmt.presentation.GradePresenter;
 import de.nak.exammgmt.service.Enrollment;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Domenic Muskulus <domenic@muskulus.eu>
@@ -24,7 +21,7 @@ public class StudentActionModel {
     private Student student;
     private Enrollment enrollment;
     private List<Enrollment> enrollments = new ArrayList<>();
-    private Map<ExamPerformance, ExamPerformanceProtocolItem> fullHistory = new LinkedHashMap<>();
+    private SortedMap<Integer, List<ExamPerformanceWithProtocolItem>> fullHistory = new TreeMap<>(Comparator.reverseOrder());
 
     public Student getStudent() {
         return student;
@@ -50,16 +47,37 @@ public class StudentActionModel {
         this.enrollment = enrollment;
     }
 
-    public Map<ExamPerformance, ExamPerformanceProtocolItem> getFullHistory() {
+    public SortedMap<Integer, List<ExamPerformanceWithProtocolItem>> getFullHistory() {
         return fullHistory;
     }
 
-    public void setFullHistory(Map<ExamPerformance, ExamPerformanceProtocolItem> fullHistory) {
+    public void setFullHistory(SortedMap<Integer, List<ExamPerformanceWithProtocolItem>> fullHistory) {
         this.fullHistory = fullHistory;
     }
 
     public String gradeToCssClass(float grade) {
         return GradePresenter.toCssClass(grade);
+    }
+
+    public static class ExamPerformanceWithProtocolItem {
+
+        private ExamPerformance examPerformance;
+        private ExamPerformanceProtocolItem protocolItem;
+
+        public ExamPerformanceWithProtocolItem(ExamPerformance examPerformance, ExamPerformanceProtocolItem protocolItem) {
+            this.examPerformance = examPerformance;
+            this.protocolItem = protocolItem;
+        }
+
+        public ExamPerformance getExamPerformance() {
+            return examPerformance;
+        }
+
+
+        public ExamPerformanceProtocolItem getProtocolItem() {
+            return protocolItem;
+        }
+
     }
 
 }

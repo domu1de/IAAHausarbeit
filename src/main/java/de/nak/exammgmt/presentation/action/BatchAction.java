@@ -35,6 +35,7 @@ public class BatchAction extends BaseAction {
         }
 
         Exam exam = examService.get(examId);
+        batchActionModel.setExam(exam);
 
         batchActionModel.setPossibleAttendees(reexamination
                 ? examService.listPossibleReexaminationAttendees(exam)

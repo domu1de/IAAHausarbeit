@@ -37,9 +37,9 @@ public class ExamAction extends BaseAction {
     public String editNew() throws Exception {
         for (Maniple maniple : manipleService.list()) {
             List<Course> courses = manipleService.listCourses(maniple);
-            examActionModel.getManiples().add(maniple.getAbbreviation());
-            examActionModel.putCourses(maniple.getAbbreviation(),
-                    courses.stream().collect(toMap(Course::getId, Course::getTitle)));
+            examActionModel.getManiples().add(maniple.toString());
+            examActionModel.putCourses(maniple.toString(),
+                    courses.stream().collect(toMap(Course::getId, Course::toString)));
 
             for (Course course : courses) {
                 examActionModel.putLecturers(course.getId(), course.getLecturers().stream()
@@ -67,7 +67,7 @@ public class ExamAction extends BaseAction {
             return ERROR; // FIXME
         }
 
-        return SHOW;
+        return REDIRECT_WELCOME;
     }
 
     public ExamActionModel getExamActionModel() {

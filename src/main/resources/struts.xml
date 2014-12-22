@@ -165,7 +165,8 @@
         </action>
 
         <action name="performance/{examPerformanceId}?" class="de.nak.exammgmt.presentation.action.ExamPerformanceAction">
-            <result name="remove" type="redirect">${returnTo}</result>
+            <result name="update" type="redirectAction">${returnTo}</result>
+            <result name="remove" type="redirectAction">${returnTo}</result>
         </action>
 
     </package>

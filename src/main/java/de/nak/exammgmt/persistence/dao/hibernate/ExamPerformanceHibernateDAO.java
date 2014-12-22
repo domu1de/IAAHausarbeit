@@ -109,7 +109,7 @@ public class ExamPerformanceHibernateDAO extends HibernateDAO<ExamPerformance> i
     @Override
     @SuppressWarnings("unchecked")
     public List<ExamPerformance> findAllEntriesByCourseAndStudent(Course course, Student student) {
-        return getCurrentSession().createQuery("FROM ExamPerformance WHERE exam.course = :course AND student = :student ORDER BY updatedAt ASC")
+        return getCurrentSession().createQuery("FROM ExamPerformance WHERE exam.course = :course AND student = :student ORDER BY updatedAt DESC, createdAt DESC")
                 .setParameter("course", course)
                 .setParameter("student", student)
                 .list();

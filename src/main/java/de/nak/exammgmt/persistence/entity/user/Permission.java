@@ -24,4 +24,6 @@ public enum Permission {
 
     SHOW_GRADE_PROTOCOL,
 
+    SHOW_STUDENT_GRADES
+
 }
