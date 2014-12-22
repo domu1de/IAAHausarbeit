@@ -60,7 +60,7 @@ public class WelcomeAction extends BaseAction {
                 executeManagement();
                 return MANAGEMENT;
             default:
-                return LOGIN; // TODO permission for login  and here exception
+                return LOGIN;
         }
     }
 
@@ -81,11 +81,9 @@ public class WelcomeAction extends BaseAction {
     }
 
     private void executeLecturer() {
-        //TODO implement.
     }
 
     private void executeStudent() {
-        //TODO check if student assigned.
     }
 
     private void executeAdmin() {

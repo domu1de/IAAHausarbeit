@@ -20,20 +20,29 @@
 
         <div class="container" th:with="dateFormatLong=#{format.date.long}">
 
-            <dl class="dl-horizontal">
-                <dt th:text="#{txt.student}">Student</dt>
-                <dd th:text="${model.student.name}">Hans Müllerchen</dd>
-                <dt th:text="#{txt.studentId}">StudentId</dt>
-                <dd th:text="${model.student.studentId}">1001</dd>
-                <dt th:text="#{txt.maniple}">Manipel</dt>
-                <dd th:text="${model.student.maniple}">I11</dd>
-            </dl>
+            <div class="alert alert-success alert-dismissible fade in" role="alert" th:each="message : ${action.actionMessages}">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <span th:text="${message}">Message 1</span>
+            </div>
 
-            <div class="grade-indicator" th:classappend="${model.enrollment.grade ? model.gradeToCssClass(model.enrollment.grade) : 'grade-none'}">
-                <div class="grade-value">
-                    <strong th:text="${model.enrollment.grade ? #numbers.formatDecimal(model.enrollment.grade, 1, 1) : 'x'}">1.0</strong>
+            <div class="clearfix">
+                <dl class="dl-horizontal pull-left">
+                    <dt th:text="#{txt.student}">Student</dt>
+                    <dd th:text="${model.student.name}">Hans Müllerchen</dd>
+                    <dt th:text="#{txt.studentId}">StudentId</dt>
+                    <dd th:text="${model.student.studentId}">1001</dd>
+                    <dt th:text="#{txt.maniple}">Manipel</dt>
+                    <dd th:text="${model.student.maniple}">I11</dd>
+                </dl>
+
+                <div class="grade-indicator pull-right" th:classappend="${model.enrollment.grade ? model.gradeToCssClass(model.enrollment.grade) : 'grade-none'}">
+                    <div class="grade-value">
+                        <strong th:text="${model.enrollment.grade ? #numbers.formatDecimal(model.enrollment.grade, 1, 1) : 'x'}">1.0</strong>
+                    </div>
                 </div>
-                <div class="passed-label">Passed</div>
             </div>
 
 

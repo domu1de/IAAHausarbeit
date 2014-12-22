@@ -11,7 +11,6 @@ import com.maxmind.geoip2.model.CityResponse;
 import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.presentation.model.UserSessionActionModel;
 import de.nak.exammgmt.service.authentication.AuthenticationService;
-import de.nak.exammgmt.service.exception.NotFoundException;
 
 import java.net.InetAddress;
 
@@ -31,38 +30,26 @@ public class UserSessionsAction extends BaseAction {
 
     @Override
     @Protected(login = true)
-    public String index() {
-        try {
-            userSessionActionModel.setUserSessions(authenticationService.listUserSessions(getCurrentUser()));
-        } catch (NotFoundException e) {
-            // TODO: loggen? Dieser fehler dürfte niemals auftreten
-            return ERROR;
-        }
+    public String index() throws Exception{
+        userSessionActionModel.setUserSessions(authenticationService.listUserSessions(getCurrentUser()));
         return INDEX;
     }
 
     @Override
     @Protected(login = true)
-    public String remove() {
+    public String remove() throws Exception {
         if (userSessionId == null) {
             return NOT_FOUND;
         }
 
         if (getCurrentUser().getCurrentUserSession().getId().equals(userSessionId)) {
-            return NOT_FOUND; // TODO: oder anderes result?
+            return NOT_FOUND;
         }
 
-        try {
-            authenticationService.revokeUserSession(userSessionId, getCurrentUser());
-            return INDEX;
-        } catch (Exception e) {
-            // TODO: refactor.
-        }
-
-        return ERROR;
+        authenticationService.revokeUserSession(userSessionId, getCurrentUser());
+        return INDEX;
     }
 
-    // TODO: exceptions
     public CityResponse locateIp(String ip) throws Exception {
         try {
             return geoIp2Provider.city(InetAddress.getByName(ip));

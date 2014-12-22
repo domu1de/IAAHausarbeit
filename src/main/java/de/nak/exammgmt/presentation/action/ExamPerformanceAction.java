@@ -25,13 +25,14 @@ public class ExamPerformanceAction extends BaseAction {
     @Override
     public String update() throws Exception {
         if (examPerformanceId == null) {
-            return ERROR; //FIXME
+            return NOT_FOUND;
         }
 
         ExamPerformance examPerformance = examPerformanceActionModel.getExamPerformance();
         examPerformanceService.updateGrade(examPerformanceId, examPerformance.getGrade(), examPerformance.isReexaminationPossible());
 
         examPerformanceId = null; // Avoid examPerformanceId in query string
+        addActionMessage(getText("txt.gradeChangeSuccessful"));
         return UPDATE;
     }
 
@@ -44,6 +45,7 @@ public class ExamPerformanceAction extends BaseAction {
         examPerformanceService.reverse(examPerformanceId);
 
         examPerformanceId = null; // Avoid examPerformanceId in query string
+        addActionMessage(getText("txt.gradeReversalSuccessful"));
         return REMOVE;
     }
 
