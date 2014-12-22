@@ -12,46 +12,95 @@
         <title th:text="#{txt.pageTitle}">NAK Exam Management</title>
 
         <link href="../../../static/css/vendor/bootstrap.min.css" th:href="@{/static/css/vendor/bootstrap.min.css}" rel="stylesheet"/>
+        <link href="../../../static/css/vendor/select2/select2.min.css" th:href="@{/static/css/vendor/select2/select2.min.css}" rel="stylesheet"/>
+        <link href="../../../static/css/vendor/select2/select2-bootstrap.css" th:href="@{/static/css/vendor/select2/select2-bootstrap.css}" rel="stylesheet"/>
         <link href="../../../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet"/>
     </head>
     <body>
         <th:block th:replace="layout :: layout-header (subTitle=#{txt.title.welcome.mgmt})"></th:block>
 
-        <div class="container">
-            <div>
-                <p>Noten erfassen</p>
-                <button id="main-exam-grades" type="button" class="btn btn-default">Hauptprüfung</button>
-                <button id="reexam-grades" type="button" class="btn btn-default">Nachprüfung</button>
+        <div class="container" th:with="dateFormatLong=#{format.date.long}">
+            <div class="row">
+                <div class="boxed-group col-md-6">
+                    <h3>Noten erfassen</h3>
+                    <div class="boxed-group-inner">
+                        <div class="form-group">
+                            <button id="main-exam-grades" type="button" class="btn btn-primary" data-toggle="modal" data-target="#select-exam-modal" th:text="#{txt.mainExam}">Hauptprüfung</button>
+                            <button id="reexam-grades" type="button" class="btn btn-primary" data-reex="true" data-toggle="modal" data-target="#select-exam-modal" th:text="#{txt.reexamination}">Nachprüfung</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="boxed-group col-md-6">
+                    <h3>Suche</h3>
+                    <div class="boxed-group-inner">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary">Hauptprüfung</button>
+                            <button type="button" class="btn btn-primary">Nachprüfung</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div>
-                <p>Prüfung</p>
-                <a th:href="@{/exam/new}" class="btn btn-default">Anlegen</a>
+
+
+            <div id="select-exam-modal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <form id="select-exam-form" th:action="@{/exam/}" role="form" accept-charset="UTF-8" method="get">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title" th:text="#{txt.selectExam}">Select exam</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-group">
+                                    <select id="exam-input" class="form-control advanced-select" th:attr="data-placeholder=#{txt.selectExam}">
+                                        <option></option>
+                                        <optgroup th:each="entry : ${action.welcomeManagementActionModel.exams}" th:label="${#temporals.format(entry.key, dateFormatLong)}">
+                                            <option th:each="exam : ${entry.value}" th:value="${exam.id}"
+                                                    th:text="|${exam.course} (${#strings.listJoin(exam.course.lecturers.{name}, ', ')})|">Exam 1</option>
+                                        </optgroup>
+                                    </select>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="submit" th:text="#{btn.continue}">Go!</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div>
-                <p>Studenten</p>
-                <button type="button" class="btn btn-default">Suchen</button>
-            </div>
-            <div>
-                <p>Module</p>
-                <button type="button" class="btn btn-default">Suchen</button>
-            </div>
+
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="../../../static/js/vendor/bootstrap.min.js" th:src="@{/static/js/vendor/bootstrap.min.js}"></script>
+        <script src="../../../static/js/vendor/select2.min.js" th:src="@{/static/js/vendor/select2.min.js}"></script>
         <script src="../../../static/js/script.js" th:src="@{/static/js/script.js}"></script>
         <script th:inline="javascript">
-            var baseURL = /*[[@{/}]]*/ '/';
             $(function() {
-                $('#main-exam-grades').on('click', function(event) {
-                    var id = prompt("ID!");
-                    window.location.href = baseURL + '/exam/' + id + '/grades';
+
+                $('#select-exam-modal').on('show.bs.modal', function (event) {
+                    var $button = $(event.relatedTarget);
+                    $(this).find('.modal-title').text($button.text());
+                    $('#select-exam-form').data('reex', $button.data('reex'));
                 });
 
-                $('#reexam-grades').on('click', function(event) {
-                    var id = prompt("ID!");
-                    window.location.href = baseURL + '/exam/' + id + '/reexamination';
+                $('#select-exam-form').submit(function(event) {
+                    var $select = $('#exam-input');
+                    var value = $select.val();
+
+                    $select.closest('.input-group').removeClass('has-error');
+                    if (!value) {
+                        $select.closest('.input-group').addClass('has-error');
+                        return false;
+                    }
+
+                    var action = $(this).prop('action') + value + ($(this).data('reex') ? '/reexamination' : '/grades');
+                    $(this).prop('action', action);
+                    return true;
                 });
+
+                $('.advanced-select').select2();
+
             });
         </script>
     </body>
