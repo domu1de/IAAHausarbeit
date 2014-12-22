@@ -20,7 +20,7 @@
         <th:block th:replace="layout :: layout-header (subTitle=#{txt.title.profile.userSessions})" />
 
         <div class="content container" th:with="dateFormatLong=#{format.date.long}">
-            <ul class="nav nav-pills"> <!-- TODO eigener view für profile? -->
+            <ul class="nav nav-pills">
                 <li role="presentation"><a th:href="@{..}" th:text="#{txt.profile}">Profile</a></li>
                 <li role="presentation" class="active"><a th:text="#{txt.security}">Security</a></li>
             </ul>
@@ -50,7 +50,7 @@
                                 <span th:text="${userSession.ip}">91.106.134.15</span>
                             </strong>
 
-                            <!-- Gimme those dates TODO equals in usersession -->
+                            <!-- Gimme those dates  -->
                             <small class="session-last-accessed" th:text="${isCurrent} ? #{txt.yourCurrentSession} : #{txt.lastAccessed(${#temporals.format(userSession.updatedAt, dateFormatLong)})}">
                                 Your current session
                             </small>

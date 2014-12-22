@@ -106,7 +106,6 @@ public class DefaultExamPerformanceService implements ExamPerformanceService {
         newExamPerformance.setGrade(newGrade);
         newExamPerformance.setReexaminationPossible(reexaminationPossible);
 
-        // TODO extra validate
         create(newExamPerformance);
 
         protocolItem.setType(EDIT);

@@ -29,11 +29,10 @@ public class DefaultTemplateEngineProvider implements TemplateEngineProvider {
         templateResolver.setSuffix(".html");
         templateResolver.setCharacterEncoding("UTF-8");
 
-        // TODO: reenable cache
         templateResolver.setCacheable(false);
         // Set template cache TTL to 1 hour. If not set, entries would live in cache
         // until expelled by LRU
-        //templateResolver.setCacheTTLMs(3600000L);
+        templateResolver.setCacheTTLMs(3600000L);
 
         templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);

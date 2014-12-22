@@ -43,7 +43,7 @@ public class ActivationAction extends BaseAction {
             addActionError(getText("txt.activation.invalid"));
             return ERROR;
         } catch (NotFoundException e) {
-            e.printStackTrace(); // FIXME
+            return NOT_FOUND;
         }
 
         addActionMessage(getText("txt.activation.successful"));

@@ -42,7 +42,7 @@ public class ExamPerformanceAction extends BaseAction {
     @Protected(Permission.REVERSE_GRADE)
     public String remove() throws Exception {
         if (examPerformanceId == null) {
-            return ERROR; //FIXME
+            return NOT_FOUND;
         }
 
         examPerformanceService.reverse(examPerformanceId);

@@ -40,8 +40,6 @@ public class CourseAction extends BaseAction {
             return ERROR;
         }
 
-
-        // TODO nur berechtigte studenten
         Course course = courseService.get(courseId);
         List<Enrollment> enrollments = enrollmentService.listByCourse(course);
         courseActionModel.setCourse(course);
@@ -53,7 +51,6 @@ public class CourseAction extends BaseAction {
                         TreeMap::new,
                         Collectors.counting()))));
 
-        // TODO eigene note in liste und auswertung markieren
         courseActionModel.setAverageGrade(enrollments.stream()
                 .filter(e -> e.getGrade() != null)
                 .mapToDouble(Enrollment::getGrade)

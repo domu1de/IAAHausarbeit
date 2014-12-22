@@ -50,7 +50,6 @@ public class DefaultExamService implements ExamService {
     public void create(Exam exam) throws AlreadyCreatedException {
         Objects.requireNonNull(exam);
 
-        // TODO: fachlicher test
         examDAO.save(exam);
     }
 
