@@ -82,6 +82,9 @@
                                         <input type="radio" th:name="'batchActionModel.examPerformances[' + ${iterStat.index} + '].grade'" value="5.0" autocomplete="off"> 6,0
                                     </label>
                                 </div>
+                                <div class="btn changed-indicator">
+                                    <div><span></span></div>
+                                </div>
                             </td>
                             <td>
                                 <button type="button" class="btn btn-default unattended-button" data-toggle="button" aria-pressed="false" autocomplete="off">
@@ -103,12 +106,14 @@
             $(function() {
                 var $form = $('#form-exam-grades');
 
-                $form.on('change.reexamination-possible', '[type="radio"]', function(event) {
+                $form.on('change', '[type="radio"]', function(event) {
                     var $radio = $(event.target);
                     var $entry = $radio.closest('tr');
                     var reexaminationPossible = $radio.prop('checked') && $radio.hasClass('reexamination-radio');
+
                     $radio.closest('tr').find('.reexamination-possible').val(reexaminationPossible).trigger('change');
                     $entry.find('.unattended-button.active').button('toggle');
+                    $entry.find('.changed-indicator').hide();
 
                     if ($entry.hasClass('has-error')) {
                         validateEntry.call($entry);
@@ -122,6 +127,8 @@
                     if (unattended) {
                         $entry.find('.btn.active').removeClass('active').find('input').prop('checked', false);
                     }
+
+                    $entry.find('.changed-indicator').toggle(!unattended);
 
                     if ($entry.hasClass('has-error')) {
                         setTimeout(function() {
@@ -142,7 +149,7 @@
                         $entries.each(function() {
                             var $entry = $(this);
                             var unattended = $entry.find('.unattended-button').hasClass('active');
-                            unattended && $entry.remove();
+                            unattended && $entry.find('input').prop('disabled', true);
                         });
                         return true;
                     } else {

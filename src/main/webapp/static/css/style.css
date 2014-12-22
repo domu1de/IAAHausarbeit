@@ -9,13 +9,14 @@
 .jumbotron p {
     color: #D3E3F0;
     margin-bottom: 0;
+    margin-top: 5px;
     font-weight: 300;
     line-height: 1.4;
     font-size: 22px;
 }
 
 .jumbotron h1 {
-    margin-top: 0;
+    margin: 0;
 }
 
 .jumbotron .container {
@@ -98,7 +99,7 @@
 }
 
 .boxed-group-inner {
-    padding: 10px 10px 1px;
+    padding: 10px 10px 0px;
     border: 1px solid #ddd;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
@@ -115,7 +116,7 @@
 
 .boxed-group-list > li {
     display: block;
-    padding: 5px 10px;
+    padding: 15px;
     line-height: 23px;
     border: 1px solid #ddd;
 }
@@ -136,6 +137,28 @@
 
 .boxed-group-list > li .minibutton {
     float: right;
+}
+
+.boxed-group-inner > .boxed-group-list {
+    margin-top: -10px;
+}
+
+.boxed-group-inner > .boxed-group-list > li {
+    margin-left: -10px;
+    margin-right: -10px;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.boxed-group-inner > .boxed-group-list > li:first-child {
+    border-top: none;
+}
+
+.boxed-group-inner > .boxed-group-list > li:last-child {
+    border-bottom: none;
 }
 
 /*
@@ -486,4 +509,41 @@ label.btn.active {
  */
 #form-exam-grades tr.has-error {
     background-color: #F2DEDE;
+}
+
+.changed-indicator {
+    display: inline-block;
+    padding-right: 0;
+}
+
+.changed-indicator div {
+    display: table-cell;
+}
+
+.changed-indicator span {
+    width: 8px;
+    height: 8px;
+    border-radius: 5px;
+    background-color: #C64449;
+    box-shadow: 0 0 10px rgba(198, 68, 98, 0.5);
+    display: inline-block;
+}
+
+/*
+ * History
+ */
+.grade-indicator {
+    border-radius: 4px;
+    display: inline-block;
+    text-align: center;
+}
+
+.grade-indicator .grade-value {
+    padding: 10px 15px;
+    font-size: 24px;
+}
+
+.grade-indicator .passed-label {
+    border-top: 1px solid rgba(0, 0, 0, 0.6);
+    padding: 10px 15px;
 }
