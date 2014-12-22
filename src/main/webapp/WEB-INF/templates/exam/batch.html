@@ -26,7 +26,7 @@
                 <dt th:text="#{txt.maniple}">Maniple</dt>
                 <dd th:text="${model.exam.course.maniple}">I11</dd>
                 <dt th:text="#{txt.lecturers}">Lecturers</dt>
-                <dd th:text="${#strings.listJoin(model.exam.course.lecturers.{name}, ', ')}">Anft, Reichert</dd>
+                <dd th:text="${#strings.listJoin(model.exam.lecturers.{name}, ', ')}">Anft, Reichert</dd>
             </dl>
 
             <form id="form-exam-grades" role="form" accept-charset="UTF-8" method="post">

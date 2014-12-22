@@ -20,13 +20,32 @@
         <th:block th:replace="layout :: layout-header (subTitle=#{txt.title.welcome.mgmt})"></th:block>
 
         <div class="container" th:with="dateFormatLong=#{format.date.long}">
+
+            <div class="alert alert-success alert-dismissible fade in" role="alert" th:each="message : ${action.actionMessages}">
+                <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <span th:text="${message}">Message 1</span>
+            </div>
+
             <div class="row">
-                <div class="boxed-group col-md-6">
-                    <h3>Noten erfassen</h3>
-                    <div class="boxed-group-inner">
-                        <div class="form-group">
-                            <button id="main-exam-grades" type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#select-exam-modal" th:text="#{txt.mainExam}">Hauptprüfung</button>
-                            <button id="reexam-grades" type="button" class="btn btn-primary btn-block" data-reex="true" data-toggle="modal" data-target="#select-exam-modal" th:text="#{txt.reexamination}">Nachprüfung</button>
+                <div class="col-md-6">
+                    <div class="boxed-group">
+                        <h3 th:text="#{txt.title.exam.new}">Create exam</h3>
+                        <div class="boxed-group-inner">
+                            <div class="form-group">
+                                <a th:href="@{/exam/new}" class="btn btn-primary btn-block" th:text="#{txt.title.exam.new}">Create exam</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boxed-group">
+                        <h3 th:text="#{txt.recordGrades}">Record grades</h3>
+                        <div class="boxed-group-inner">
+                            <div class="form-group">
+                                <button id="main-exam-grades" type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#select-exam-modal" th:text="#{txt.mainExam}">Hauptprüfung</button>
+                                <button id="reexam-grades" type="button" class="btn btn-primary btn-block" data-reex="true" data-toggle="modal" data-target="#select-exam-modal" th:text="#{txt.reexamination}">Nachprüfung</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -84,7 +103,7 @@
                                         <option></option>
                                         <optgroup th:each="entry : ${model.exams}" th:label="${#temporals.format(entry.key, dateFormatLong)}">
                                             <option th:each="exam : ${entry.value}" th:value="${exam.id}"
-                                                    th:text="|${exam.course} (${#strings.listJoin(exam.course.lecturers.{name}, ', ')})|">Exam 1</option>
+                                                    th:text="|${exam.course} (${#strings.listJoin(exam.lecturers.{name}, ', ')})|">Exam 1</option>
                                         </optgroup>
                                     </select>
                                     <span class="input-group-btn">

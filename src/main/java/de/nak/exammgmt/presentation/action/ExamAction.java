@@ -13,7 +13,6 @@ import de.nak.exammgmt.presentation.action.interceptor.Protected;
 import de.nak.exammgmt.presentation.model.ExamActionModel;
 import de.nak.exammgmt.service.ExamService;
 import de.nak.exammgmt.service.ManipleService;
-import de.nak.exammgmt.service.exception.AlreadyCreatedException;
 
 import java.util.HashSet;
 import java.util.List;
@@ -21,6 +20,8 @@ import java.util.List;
 import static java.util.stream.Collectors.toMap;
 
 /**
+ * RESTful action to handle exams.
+ *
  * @author Domenic Muskulus <domenic@muskulus.eu>
  */
 @Protected(login = true)
@@ -54,19 +55,13 @@ public class ExamAction extends BaseAction {
         Exam exam = examActionModel.getExam();
 
         if (exam == null) {
-            addActionError("bg"); // FIXME
             return ERROR;
         }
 
         exam.setLecturers(new HashSet<>(examActionModel.getLecturers()));
+        examService.create(examActionModel.getExam());
 
-        try {
-            examService.create(examActionModel.getExam());
-        } catch (AlreadyCreatedException e) {
-            addActionError("bla2");
-            return ERROR; // FIXME
-        }
-
+        addActionMessage(getText("txt.examSuccessfullyCreated"));
         return REDIRECT_WELCOME;
     }
 
