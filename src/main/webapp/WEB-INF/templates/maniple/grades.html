@@ -27,7 +27,7 @@
 
             <div class="boxed-group" th:fragment="grade-overview">
                 <h3 th:text="#{txt.gradeOverview}">Grade overview</h3>
-                <div class="boxed-group-inner">
+                <div class="boxed-group-inner" style="overflow: scroll">
                     <table class="table table-hover">
                         <thead>
                             <tr>
@@ -43,9 +43,11 @@
                                     <a th:href="@{/student/{studentId}(studentId=${enrollment.key.id})}" th:text="|${enrollment.key.lastName}, ${enrollment.key.firstName} (${enrollment.key.studentId})|">Hans Müllerchen (1001)</a>
                                 </th>
                                 <td th:each="courseEnrollment : ${enrollment.value}">
-                                    <span class="grade-label grade-label-sm"
-                                          th:text="${courseEnrollment.value.grade ? #numbers.formatDecimal(courseEnrollment.value.grade, 1, 1) : 'x'}"
-                                          th:classappend="${courseEnrollment.value.grade ? action.manipleActionModel.gradeToCssClass(courseEnrollment.value.grade) : 'grade-none'}">1.0</span>
+                                    <a th:href="@{/course/__${courseEnrollment.value.course.id}__/student/__${courseEnrollment.value.student.id}__}">
+                                         <span class="grade-label grade-label-sm"
+                                               th:text="${courseEnrollment.value.grade ? #numbers.formatDecimal(courseEnrollment.value.grade, 1, 1) : 'x'}"
+                                               th:classappend="${courseEnrollment.value.grade ? action.manipleActionModel.gradeToCssClass(courseEnrollment.value.grade) : 'grade-none'}">1.0</span>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>
