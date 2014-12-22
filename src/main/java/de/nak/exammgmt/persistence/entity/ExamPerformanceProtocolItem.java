@@ -24,6 +24,7 @@ public class ExamPerformanceProtocolItem extends AbstractEntity{
     private Type type;
 
     @OneToOne(optional = false)
+    @JoinColumn(unique = true, updatable = false, nullable = false)
     public ExamPerformance getOldExamPerformance() {
         return oldExamPerformance;
     }
@@ -33,6 +34,7 @@ public class ExamPerformanceProtocolItem extends AbstractEntity{
     }
 
     @OneToOne(optional = true)
+    @JoinColumn(unique = true, updatable = false, nullable = true)
     public ExamPerformance getNewExamPerformance() {
         return newExamPerformance;
     }
@@ -42,6 +44,7 @@ public class ExamPerformanceProtocolItem extends AbstractEntity{
     }
 
     @ManyToOne(optional = false)
+    @JoinColumn(updatable = false, nullable = false)
     public Employee getEditor() {
         return editor;
     }

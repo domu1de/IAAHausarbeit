@@ -28,7 +28,7 @@ public class DefaultResetDatabaseService implements ResetDatabaseService {
     public void resetDatabase() {
         try {
             stringBuffer = new StringBuffer();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getInputStream(), "UTF8"));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getInputStream(), "UTF-8"));
             reader.lines().forEach(this::appendLine);
             sessionFactory.getCurrentSession().createSQLQuery(stringBuffer.toString()).executeUpdate();
         } catch (IOException e) {
