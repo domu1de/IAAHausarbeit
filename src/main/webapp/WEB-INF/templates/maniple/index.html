@@ -18,7 +18,7 @@
         <link href="../../../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet"/>
 
     </head>
-    <body>
+    <body th:with="model=${action.manipleActionModel}">
 
         <th:block th:replace="layout :: layout-header (subTitle=#{txt.title.maniple.grades})"></th:block>
 
@@ -27,7 +27,7 @@
                 <label class="control-label" for="maniple-input" th:text="#{txt.maniple}">Maniple</label>
                 <select id="maniple-input" class="form-control advanced-select step1" th:attr="data-placeholder=#{input.maniple}, data-remote-url=@{/maniple/}">
                     <option></option>
-                    <option th:each="maniple : ${action.manipleActionModel.maniples}" th:value="${maniple.id}" th:text="${maniple}">Maniple 1</option>
+                    <option th:each="maniple : ${model.maniples}" th:value="${maniple.id}" th:text="${maniple}">Maniple 1</option>
                 </select>
             </div>
             <div id="grade-overview">

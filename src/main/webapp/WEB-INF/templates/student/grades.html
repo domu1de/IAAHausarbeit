@@ -15,36 +15,41 @@
         <link href="../../../static/css/vendor/bootstrap.min.css" th:href="@{/static/css/vendor/bootstrap.min.css}" rel="stylesheet" />
         <link href="../../../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet" />
     </head>
-    <body>
+    <body th:with="model=${action.studentActionModel}">
         <th:block th:replace="layout :: layout-header (subTitle=#{txt.title.student.grades})"></th:block>
 
         <div class="container">
 
             <dl class="dl-horizontal">
                 <dt th:text="#{txt.student}">Student</dt>
-                <dd th:text="${action.studentActionModel.student.name}">Hans Müllerchen</dd>
+                <dd th:text="${model.student.name}">Hans Müllerchen</dd>
                 <dt th:text="#{txt.studentId}">StudentId</dt>
-                <dd th:text="${action.studentActionModel.student.studentId}">1001</dd>
+                <dd th:text="${model.student.studentId}">1001</dd>
                 <dt th:text="#{txt.maniple}">Manipel</dt>
-                <dd th:text="${action.studentActionModel.student.maniple}">I11</dd>
+                <dd th:text="${model.student.maniple}">I11</dd>
             </dl>
 
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th th:text="#{txt.course}">Course</th>
-                        <th th:text="#{txt.grade}">Grade</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="enrollment : ${action.studentActionModel.enrollments}" th:if="${enrollment.grade}">
-                        <td><a th:href="@{/course/{courseId}(courseId=${enrollment.course.id})}"  th:text="${enrollment.course}">Modul 1</a></td>
-                        <td>
-                            <span th:text="${#numbers.formatDecimal(enrollment.grade, 1, 1)}" class="grade-label-lg" th:classappend="${action.toCssClass(enrollment.grade)}">1.0</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="boxed-group">
+                <h3 th:text="#{txt.performancePerCourse}">Course performances</h3>
+                <div class="boxed-group-inner">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th th:text="#{txt.course}">Course</th>
+                                <th th:text="#{txt.grade}">Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="enrollment : ${model.enrollments}" th:if="${enrollment.grade}">
+                                <td><a th:href="@{/course/{courseId}(courseId=${enrollment.course.id})}"  th:text="${enrollment.course}">Modul 1</a></td>
+                                <td>
+                                    <span th:text="${#numbers.formatDecimal(enrollment.grade, 1, 1)}" class="grade-label grade-label-lg" th:classappend="${action.toCssClass(enrollment.grade)}">1.0</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

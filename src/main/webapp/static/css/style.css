@@ -489,7 +489,7 @@ li.session-device .minibutton {
     background-color: #f5f5f5;
 }
 
-.grade-label-lg {
+.grade-label {
     display: inline-block;
     margin-bottom: 0;
     font-weight: normal;
@@ -499,7 +499,15 @@ li.session-device .minibutton {
     font-size: 14px;
     line-height: 1.42857143;
     border-radius: 4px;
+}
+
+.grade-label-lg {
     width: 43px;
+}
+
+.grade-label-sm {
+    padding: 1px 8px;
+    width: 35px;
 }
 
 label.btn.active {

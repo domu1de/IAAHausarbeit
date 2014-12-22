@@ -89,7 +89,7 @@
             $(function () {
                 $('tbody', '#students-table').on('click', 'tr', function(event) {
                     var href = $(this).data('href');
-                    if (href) {
+                    if (href && !window.getSelection().toString()) {
                         window.location.href = href;
                     }
                 });

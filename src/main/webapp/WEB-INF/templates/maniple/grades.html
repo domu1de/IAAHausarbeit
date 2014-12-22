@@ -25,26 +25,33 @@
                 <dd th:text="${action.manipleActionModel.maniple}">IAA</dd>
             </dl>
 
-            <table class="table table-hover" th:fragment="grade-overview">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th th:each="course : ${action.manipleActionModel.manipleCourses}">
-                            <a th:href="@{/course/{courseId}(courseId=${course.id})}" th:text="${course}">Course 1</a>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="enrollment : ${action.manipleActionModel.manipleEnrollments}">
-                        <th>
-                            <a th:href="@{/student/{studentId}(studentId=${enrollment.key.id})}" th:text="|${enrollment.key.lastName}, ${enrollment.key.firstName} (${enrollment.key.studentId})|">Hans Müllerchen (1001)</a>
-                        </th>
-                        <td th:each="courseEnrollment : ${enrollment.value}">
-                            <span th:text="${courseEnrollment.value.grade ? #numbers.formatDecimal(courseEnrollment.value.grade, 1, 1) : 'x'}" th:class="${courseEnrollment.value.grade ? action.manipleActionModel.gradeToCssClass(courseEnrollment.value.grade) : 'grade-none'}">1.0</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="boxed-group" th:fragment="grade-overview">
+                <h3 th:text="#{txt.gradeOverview}">Grade overview</h3>
+                <div class="boxed-group-inner">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th th:each="course : ${action.manipleActionModel.manipleCourses}">
+                                    <a th:href="@{/course/{courseId}(courseId=${course.id})}" th:text="${course.courseId}">I140</a>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="enrollment : ${action.manipleActionModel.manipleEnrollments}">
+                                <th>
+                                    <a th:href="@{/student/{studentId}(studentId=${enrollment.key.id})}" th:text="|${enrollment.key.lastName}, ${enrollment.key.firstName} (${enrollment.key.studentId})|">Hans Müllerchen (1001)</a>
+                                </th>
+                                <td th:each="courseEnrollment : ${enrollment.value}">
+                                    <span class="grade-label grade-label-sm"
+                                          th:text="${courseEnrollment.value.grade ? #numbers.formatDecimal(courseEnrollment.value.grade, 1, 1) : 'x'}"
+                                          th:classappend="${courseEnrollment.value.grade ? action.manipleActionModel.gradeToCssClass(courseEnrollment.value.grade) : 'grade-none'}">1.0</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
