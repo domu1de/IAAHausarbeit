@@ -25,7 +25,7 @@ public class ExamPerformanceHibernateDAO extends HibernateDAO<ExamPerformance> i
         return (ExamPerformance) getCurrentSession()
                 .createQuery("FROM ExamPerformance WHERE reversed = false AND exam.course = :course AND student = :student ORDER BY updatedAt DESC")
                 .setParameter("course", course)
-                .setParameter("input.student", student)
+                .setParameter("student", student)
                 .setMaxResults(1)
                 .uniqueResult();
     }
@@ -36,7 +36,7 @@ public class ExamPerformanceHibernateDAO extends HibernateDAO<ExamPerformance> i
         return getCurrentSession()
                 .createQuery("FROM ExamPerformance WHERE reversed = false AND exam.course = :course AND student = :student ORDER BY updatedAt DESC")
                 .setParameter("course", course)
-                .setParameter("input.student", student)
+                .setParameter("student", student)
                 .list();
     }
 
@@ -90,7 +90,7 @@ public class ExamPerformanceHibernateDAO extends HibernateDAO<ExamPerformance> i
     public ExamPerformance findLastEntryByCourseAndStudent(Course course, Student student) {
         return (ExamPerformance) getCurrentSession().createQuery("FROM ExamPerformance WHERE exam.course = :course AND student = :student ORDER BY updatedAt DESC")
                 .setParameter("course", course)
-                .setParameter("input.student", student)
+                .setParameter("student", student)
                 .setMaxResults(1)
                 .uniqueResult();
     }
@@ -111,7 +111,7 @@ public class ExamPerformanceHibernateDAO extends HibernateDAO<ExamPerformance> i
     public List<ExamPerformance> findAllEntriesByCourseAndStudent(Course course, Student student) {
         return getCurrentSession().createQuery("FROM ExamPerformance WHERE exam.course = :course AND student = :student ORDER BY updatedAt DESC, createdAt DESC")
                 .setParameter("course", course)
-                .setParameter("input.student", student)
+                .setParameter("student", student)
                 .list();
     }
 
