@@ -61,9 +61,11 @@
     </bean>
 
     <!-- The advice -->
+    <!-- get* and list* methods are executed in a read-only transaction -->
     <tx:advice id="txAdvice" transaction-manager="txManager">
         <tx:attributes>
-            <!-- TODO subclass and use @Transactional? -->
+            <tx:method name="get*" propagation="REQUIRED" read-only="true" rollback-for="de.nak.exammgmt.service.exception.TransactionSensitiveException" />
+            <tx:method name="list*" propagation="REQUIRED" read-only="true" rollback-for="de.nak.exammgmt.service.exception.TransactionSensitiveException" />
             <tx:method name="*" propagation="REQUIRED" rollback-for="de.nak.exammgmt.service.exception.TransactionSensitiveException" />
         </tx:attributes>
     </tx:advice>
