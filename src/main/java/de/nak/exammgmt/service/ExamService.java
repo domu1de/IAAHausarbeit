@@ -31,6 +31,13 @@ public interface ExamService {
     Exam get(long examId) throws NotFoundException;
 
     /**
+     * Lists all exams in the system.
+     *
+     * @return list of all exams.
+     */
+    List<Exam> list();
+
+    /**
      * Persists the given exam.
      *
      * @param exam the exam to create

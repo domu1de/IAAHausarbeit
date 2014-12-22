@@ -41,6 +41,11 @@ public class DefaultExamService implements ExamService {
     }
 
     @Override
+    public List<Exam> list() {
+        return examDAO.findAll();
+    }
+
+    @Override
     public void create(Exam exam) throws AlreadyCreatedException {
         if (exam.getId() != null) {
             throw new AlreadyCreatedException();
