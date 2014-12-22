@@ -147,6 +147,7 @@
         <script th:inline="javascript">
             $(function() {
                 var currentGrade = /*[[${model.enrollment.grade}]]*/ null;
+                var currentReexaminationPossible = /*[[${model.enrollment.reexaminationPossible}]]*/ null;
                 var changedGrade = false;
                 var txtConfirmReverse = /*[[#{txt.confirmReverse}]]*/ null;
 
@@ -157,7 +158,7 @@
 
                     $modalBody.find('.reexamination-possible').val(reexaminationPossible).trigger('change');
 
-                    changedGrade = $radio.val() != currentGrade;
+                    changedGrade = ($radio.val() != currentGrade) || (reexaminationPossible != currentReexaminationPossible);
 
                     $('#form-change-grade').find('[type=submit]').prop('disabled', !changedGrade);
 
